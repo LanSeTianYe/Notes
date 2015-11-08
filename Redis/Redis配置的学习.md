@@ -53,8 +53,29 @@
         1446478797.993426 [0 127.0.0.1:48057] "auth" "sunfeilong"
         1446478800.769308 [0 127.0.0.1:48057] "get" "name"
 ## 其他常用配置
-
-
+1. daemonize 是否以后台进程运行，默认为no
+2. pidfile 如以后台进程运行，则需指定一个pid，默认为/var/run/redis.pid
+3. bind 绑定主机IP，默认值为127.0.0.1
+4. port 监听端口，默认为6379
+5. timeout 超时时间，默认为300（秒）
+6. loglevel 日志记录等级，有4个可选值，debug，verbose（默认值），notice，warning
+7. logfile 日志记录方式，默认值为stdout
+8. databases 可用数据库数，默认值为16，默认数据库为0
+9. rdbcompression 存储至本地数据库时是否压缩数据，默认为yes
+10. dbfilename 本地数据库文件名，默认值为dump.rdb
+11. dir 本地数据库存放路径，默认值为 ./(当前目录)
+12. slaveof <masterip> <masterport> 当本机为从服务时，设置主服务的IP及端口
+13. masterauth <master-password> 当本机为从服务时，设置主服务的连接密码
+14. requirepass 连接密码
+15. maxclients 最大客户端连接数，默认不限制
+16. maxmemory <bytes> 设置最大内存，达到最大内存设置后，Redis会先尝试清除已到期或即将到期的Key，当此方法处理后，任到达最大内存设置，将无法再进行写入操作
+17. appendonly 是否在每次更新操作后进行日志记录，如果不开启，可能会在断电时导致一段时间内的数据丢失。因为redis本身同步数据文件是按上面save条件来同步的，所以有的数据会在一段时间内只存在于内存中。默认值为no
+18. appendfilename 更新日志文件名，默认值为appendonly.aof
+19. appendfsync 更新日志条件，共有3个可选值。no表示等操作系统进行数据缓存同步到磁盘，always表示每次更新操作后手动调用fsync()将数据写到磁盘，everysec表示每秒同步一次（默认值）
+20. vm-enabled 是否使用虚拟内存，默认值为no
+21. vm-swap-file 虚拟内存文件路径，默认值为/tmp/redis.swap，不可多个Redis实例共享
+22. vm-max-memory 将所有大于vm-max-memory的数据存入虚拟内存,无论vm-max-memory设置多小,所有索引数据都是内存存储的(Redis的索引数据就是keys),也就是说,当vm-max-memory设置为0的时候,其实是所有value都存在于磁盘。默认值为0。
+23. 
 
 
 
