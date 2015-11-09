@@ -8,3 +8,14 @@
 2. 查看版本
 
 		node -v
+
+
+3. 查看主机环境对ES6新特性的支持
+
+		$ npm install -g es-checker
+		$ es-checker
+		
+		=========================================
+		Passes 24 feature Dectations
+		Your runtime supports 57% of ECMAScript 6
+		=========================================
