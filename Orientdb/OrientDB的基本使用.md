@@ -8,6 +8,7 @@
 * `help 命令` 查看对应命令的作用  例如：`HELP SELECT`
 * `list databases` 查看所有的数据库
 * `connect remote:127.0.0.1/Demo root 000000` 连接到指定的数据库
+* 创建数据库 `create database remote:127.0.0.1/Demo root 000000 plocal`
 
 ## Class操作
 
