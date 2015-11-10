@@ -1,3 +1,6 @@
+## 安装  `cnpm install oriento`
+
+
 	//加载模块
 	var Oriento = require('oriento');
 	//设置连接信息
