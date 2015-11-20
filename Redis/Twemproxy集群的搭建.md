@@ -8,11 +8,15 @@
 1. 下载  
 
 		git clone https://github.com/twitter/twemproxy.git
+2. 依赖包的安装
 
+		sudo apt-get install automake
+		sudo apt-get install libtool
 2. 安装，进入目录
 		
 		root@ubuntu:/home/llx/software# cd twemproxy/
-		root@ubuntu:/home/llx/software# ./configure 
+		root@ubuntu:/home/llx/software# autoreconf -fvi
+		root@ubuntu:/home/llx/software# ./configure --enable-debug=full
 		root@ubuntu:/home/llx/software/twemproxy# make && make install
 
 3. 查看是否安装成功
