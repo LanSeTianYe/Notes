@@ -19,3 +19,9 @@
 		Passes 24 feature Dectations
 		Your runtime supports 57% of ECMAScript 6
 		=========================================
+
+
+##  压缩包安装
+下载安装包之后，解压即可，然后把配置环境变量(/etc/profile)
+
+	export PATH="/home/llx/software/node-v5.1.0-linux-x64/bin:$PATH"
