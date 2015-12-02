@@ -185,4 +185,167 @@ MyBatis 也支持很多高级的数据类型，比如结构体，但是当注册
   
 	ORDER BY ${columnName}
 
+##### resultMap（最重要最强大的元素）
 
+	<select id="selectPasswordAndAgeByID" parameterType="int" resultType="hashmap">
+        select id, userName,userAge from `user` where id = #{id}
+    </select>
+
+> `resultType="hashmap"` 只能查询一行，并把查询的结果放入Map中，可以通过get列名来获取对应列的数据  
+> 例如：`result.get("id")`
+> resultType可以为对象
+
+###### 如何手动把查询的元素映射到对象上
+
+	<!-- 把列映射到对象的属性上面 -->
+	<resultMap id="userResultMap" type="User">
+		<id property="id" column="id" />
+		<result property="userName" column="userName"/>
+		<result property="userAge" column="userAge"/>
+	</resultMap>
+查询语句
+
+	<select id="selectByIdUseResultMap" parameterType="int" resultMap="userResultMap">
+    	 select id, userName,userAge from `user` where id = #{id}
+    </select>
+这样就把，对应的列手动映射到了对象对应的属性上面了，效果等同于把resultType指定为对象`User`
+
+
+###### 高级结果映射
+resultMap的一些常见属性  
+
+* `constructor`   类在实例化时，用来注入结果到构造方法中
+ * `idArg`   ID 参数；标记结果作为 ID 可以帮助提高整体效能
+ * `arg`    注入到构造方法的一个普通结果
+* `id`   一个 ID 结果；标记结果作为 ID 可以帮助提高整体效能
+* `result`   注入到字段或 JavaBean 属性的普通结果
+* `association`    一个复杂的类型关联；许多结果将包成这种类型
+ * `嵌入结果映射`    结果映射自身的关联，或者参考一个
+* `collection`     复杂类型的集
+ * `嵌入结果映射`    结果映射自身的集，或者参考一个
+* `discriminator`    使用结果值来决定使用哪个结果映射
+ * `case`   基于某些值的结果映射
+     * `嵌入结果映射`    这种情形结果也映射它本身，因此可以包含很多相
+同的元素，或者它可以参照一个外部的结果映射
+
+###### 属性解析
+1. id 和 result  
+
+		<id property="id" column="post_id"/>
+		<result property="subject" column="post_subject"/>
+`id`和`result`都映射一个单独列的值到简单数据类型（字符串，整型，双精度浮点数，日期等）的单独属性或字段。  
+`id`表示的结果将是当比较对象实例时用到的标识属性。这帮助来改进整体表现，特别是缓存和嵌入结果映射（也就是联合映射）。  
+`id`和`result`的一些属性
+ * `property` 映射到列结果的字段或属性。如果匹配的是存在的，和给定名称相同的JavaBeans的属性，那么就会使用。否则MyBatis将会寻找给定名称的字段。这两种情形你可以使用通常点式的复杂属性导航。比如，你可以这样映射一些东西：“username ”，或者映射到一些复杂的东西：“address.street.number”。
+ * `column` 从数据库中得到的列名，或者是列名的重命名标签。这也是通常和会传递给 resultSet.getString(columnName) 方法参数中相同的字符串。
+ * `javaType` 一个 Java 类的完全限定名，或一个类型别名（参加上面内建类型别名的列表）。如果你映射到一个 JavaBean，MyBatis 通常可以断定类型。然而，如果你映射到的是 HashMap，那么你应该明确地指定javaType来保证所需的行为。
+ * `jdbcType` 在这个表格之后的所支持的 JDBC 类型列表中的类型。 JDBC 类型是仅仅需要对插入，更新和删除操作可能为空的列进行处理。这是 JDBC的需要，而不是 MyBatis 的。如果你直接使用 JDBC 编程，你需要指定这个类型,但仅仅对可能为空的值。
+ * `typeHandler` 我们在前面讨论过默认的类型处理器。使用这个属性，你可以覆盖默认的类型处理器。这个属性值是类的完全限定名或者是一个类型处理器的实现，或者是类型别名。
+         > `JDBC TYPE` BIT  FLOAT  CHAR  TIMESTAMP  OTHER  UNDEFINED TINYINT  REAL  VARCHAR  BINARY  BLOB  NVARCHAR SMALLINT  DOUBLE  LONGVARCHAR  VARBINARY  CLOB  NCHAR INTEGER   NUMERIC  DATE  LONGVARBINARY  BOOLEAN  NCLOB BIGINT  DECIMAL  TIME   NULL  CURSOR
+2. 构造方法
+
+		<constructor>
+			<idArg column="id" javaType="int"/>
+			<arg column=”username” javaType=”String”/>
+		</constructor>
+
+    JAVA实体类
+
+			public class User {
+			//…
+				public User(int id, String username) {
+					//…
+				} 
+			//…
+			}
+    通过构造方法，初始化对象的属性，注意顺序和类型必须和构造方法的参数一一对应    
+    一些属性
+ * `column` 同上
+ * `javaType` 同上
+ * `jdbcType` 同上
+ * `typeHandler` 同上 
+
+3. 关联（association） 一个对象的属性包含另外一个对象，只是需要通过关联关系，把对应的结果映射到关联的对象的属性上面。
+
+		<association property="author" column="blog_author_id" javaType=" Author">
+			<id property="id" column="author_id"/>
+			<result property="username" column="author_username"/>
+		</association>
+在mybatis中存在两种不同的加载关联的方式
+ * **嵌套查询**：通过执行另外一个 SQL 映射语句来返回预期的复杂类型
+ * **嵌套结果**：使用嵌套结果映射来处理重复的联合结果的子集
+
+    包含的属性：
+    * `property` 同上
+    * `column` 同上，注意：要处理复合主键，你可以指定多个列名通过 column=”{prop1=col1,prop2=col2} ” 这种语法来传递给嵌套查询语句。这会引起prop1和prop2以参数对象形式来设置给目标嵌套查询语句。
+    * `javaType` 同上
+    * `jdbcType` 同上
+    * `typeHandler ` 同上
+
+    3.1 关联的嵌套查询 
+
+    > 另外一个映射语句的 ID，可以加载这个属性映射需要的复杂类型。获取的在列属性中指定的列的值将被传递给目标 select 语句作为参数。表格后面有一个详细的示例。
+
+		<resultMap id=”blogResult” type=”Blog”>
+			<association property="author" column="blog_author_id" 
+			javaType="Author"  select=”selectAuthor”/>
+		</resultMap>
+
+		<select id=”selectBlog” parameterType=”int” resultMap=”blogResult”>
+			SELECT * FROM BLOG WHERE ID = #{id}
+		</select>
+
+		<select id=”selectAuthor” parameterType=”int” resultType="Author">
+			SELECT * FROM AUTHOR WHERE ID = #{id}
+		</select>
+    这里有两个查询语句，执行id=“selectBlog”的查询语句之后，由于指定了resultMap=”blogResult”，所以查询的结果会映射到Blog和Author上面，这样做很简单，但是当遇到1+N问题的时候，由于Author的数量可能有N个所以就会执行1+N个Sql查询，这样会降低效率。  
+    MyBatis 能延迟加载这样的查询就是一个好处，因此你可以分散这些语句同时运行的消耗。然而，如果你加载一个列表，之后迅速迭代来访问嵌套的数据，你会调用所有的延迟加载，这样的行为可能是很糟糕的  
+
+    3.2 关联的嵌套结果
+    * `resultMap` 这是结果映射的 ID，可以映射关联的嵌套结果到一个合适的对象图中。这是一种替代方法来调用另外一个查询语句。这允许你联合多个表来合成到一个单独的结果集。这样的结果集可能包含重复，数据的重复组需要被分解，合理映射到一个嵌套的对象图。为了使它变得容易， MyBatis 让你“链接”结果映射，来处理嵌套结果。例子会很容易来仿照，这个表格后面也有一个示例。
+
+			<select id="selectBlog" parameterType="int" resultMap="blogResult">
+				select
+				B.id as blog_id,
+				B.title as blog_title,
+				B.author_id as blog_author_id,
+				A.id as author_id,
+				A.username as author_username,
+				A.password as author_password,
+				A.email as author_email,
+				A.bio as author_bio
+				From Blog B left outer join Author A on B.author_id = A.id
+				where B.id = #{id}
+			</select>
+
+        映射结果
+
+			<resultMap id="blogResult" type="Blog">
+				<id property=”blog_id” column="id" />
+				<result property="title" column="blog_title"/>
+				<association property="author" column="blog_author_id"
+				javaType="Author"  resultMap=”authorResult”/>
+			</resultMap>
+
+			<resultMap id="authorResult" type="Author">
+				<id property="id" column="author_id"/>
+				<result property="username" column="author_username"/>
+				<result property="password" column="author_password"/>
+				<result property="email" column="author_email"/>
+				<result property="bio" column="author_bio"/>
+			</resultMap>
+    同样的映射结果，但是不能重用
+
+			<resultMap id="blogResult" type="Blog">
+				<id property=”blog_id” column="id" />
+				<result property="title" column="blog_title"/>
+				<association property="author" column="blog_author_id"
+				javaType="Author">
+					<id property="id" column="author_id"/>
+					<result property="username" column="author_username"/>
+					<result property="password" column="author_password"/>
+					<result property="email" column="author_email"/>
+					<result property="bio" column="author_bio"/>
+				</association>
+			</resultMap>
+4. 集合
