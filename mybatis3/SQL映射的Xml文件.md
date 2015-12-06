@@ -349,3 +349,28 @@ resultMap的一些常见属性
 				</association>
 			</resultMap>
 4. 集合
+
+		<collection property="posts" ofType="domain.blog.Post">
+			<id property="id" column="post_id"/>
+			<result property="subject" column="post_subject"/>
+			<result property="body" column="post_body"/>
+		</collection>
+
+    在一个对象中包含多个另外的元素
+
+		private List<Post> posts;
+
+    such as
+
+		<resultMap id=”blogResult” type=”Blog”>
+			<collection property="posts" javaType=”ArrayList” column="blog_id"
+						ofType="Post" select=”selectPostsForBlog”/>
+		</resultMap>
+
+		<select id=”selectBlog” parameterType=”int” resultMap=”blogResult”>
+			SELECT * FROM BLOG WHERE ID = #{id}
+		</select>
+
+		<select id=”selectPostsForBlog” parameterType=”int” resultType="Author">
+			SELECT * FROM POST WHERE BLOG_ID = #{id}
+		</select>
