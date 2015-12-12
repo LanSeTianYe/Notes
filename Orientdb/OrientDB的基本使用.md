@@ -10,7 +10,7 @@
 * `connect remote:127.0.0.1/Demo root 000000` 连接到指定的数据库
 * 创建数据库 `create database remote:127.0.0.1/Demo root 000000 plocal`
 
-## Class操作
+## Class操作 （相当于表）
 
 1. 创建class `create class Student`
 2. 创建属性  `create property Student.name String`
