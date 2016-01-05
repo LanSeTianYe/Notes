@@ -6,23 +6,23 @@
 所有的用法都经过实际测试
 
 ### 总结
-感觉使用 `ajax` 的方法会比较方便，不论是 `get` 还是 `post` 方法后台的接收方法基本一样。  
+> 感觉使用 `ajax` 的方法会比较方便，不论是 `get` 还是 `post` 方法后台的接收方法基本一样。  
 使用Angular的 `$http` 后台的接收方法参数的注解方式可能不同。最大的问题在于使用post传递普通的参数和对象+普通参数，实现比较困难，虽然网上也有实现的方法，但是需要额外的配置，没有 `Ajax` 用起来那么简单。
 
 
 ## angular篇
 $http的配置项：
 
-		method   方法(Get Post ...)
-		url      路径
-		params   GET请求的参数
-		data     post请求的参数
-		headers  请求头
-		transformRequest   请求预处理函数
-		transformResponse  响应预处理函数
-		cache              缓存
-		timeout            超时毫秒，超时的请求会被取消
-		withCredentials    跨域安全策略的一个东西 
+	method   方法(Get Post ...)
+	url      路径
+	params   GET请求的参数
+	data     post请求的参数
+	headers  请求头
+	transformRequest   请求预处理函数
+	transformResponse  响应预处理函数
+	cache              缓存
+	timeout            超时毫秒，超时的请求会被取消
+	withCredentials    跨域安全策略的一个东西 
 
 1. 传递普通的参数---GET  
 js:
