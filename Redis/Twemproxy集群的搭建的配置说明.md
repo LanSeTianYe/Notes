@@ -1,11 +1,9 @@
 ## 命令
 
 	Help
-	
 	Usage: nutcracker [-?hVdDt] [-v verbosity level] [-o output file]
 	                  [-c conf file] [-s stats port] [-a stats addr]
 	                  [-i stats interval] [-p pid file] [-m mbuf size]
-	
 	Options:
 	  -h, --help             : 显示帮助
 	  -V, --version          : show version and exit

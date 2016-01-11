@@ -1,4 +1,4 @@
-## 快照的方式持久话数据，保存到dump.rdp文件中
+## 快照的方式持久化数据，保存到dump.rdp文件中
 * `save seconds change` 用于配置redis服务器将数据持久化的时间。
 
 * 默认参数如下：
@@ -17,21 +17,24 @@
 * 开启方式 配置文件中  `appendonly yes`
 * 保存的文件名字  `appendfilename appendonly.aof`
 * 开启之后 每一条回改变redis中的数据的命令都会被追加到文件中。
-* 重写AOF文件，来缩小文件的大小，删除一下写无用的命令。
-        auto-aof-rewrite-percentage 10 //当前文件超过上次重写文件大小的百分之多少
+* 重写AOF文件，来缩小文件的大小，删除一些无用的命令。  
+
+        auto-aof-rewrite-percentage 10 //当前文件超过上次重写文件大小的百分之多少  
         auto-aof-rewrite-size  64mb    //限制重写文件的最小大小
 * `bgrewriteaof` 手动重写,不会受上面两个参数的影响。
 * `appendfsync ` no 系统默认30s always每次  everysec每秒
 
 ## Redis 主从服务器的配置 （数据复制）
 * 主数据库master  从数据库 slave
-* 从数据库一般是只读的，主数据库可以有多个从数据库，从数据库只能又一个主数据库。
+* 从数据库一般是只读的，主数据库可以有多个从数据库，从数据库只能有一个主数据库。
 * 配置 在从数据库的配置文件中加入 `slaveof (ip)127.0.0.1 (port)6379`
-* 启动服务器和客户端命令：(建议使用配置的凡是这样可以长久保存)
+* 启动服务器和客户端命令：(建议使用配置的方式，这样可以长久保存)  
+
         redis-server --port 6379
         redis-server --port 6380 -slaveof 127.0.0.1 6379
         redis-cli -p 6379
         redis-cli -p 6380
+
 * 在redis-cli客户端中修改 slaveof 127.0.0.1 6379
 * 可以设置 `slave-read-only yes`设置从服务器可写。
 * `laveof no one` 停止从主服务器接收数据
@@ -49,25 +52,26 @@
 * 配置耗时 `slowlog-log-slower-than 10000` 单位微秒
 * `slowlog-max-len 128`  限制耗时日志的条数
 * `monitor` 监控（一个监控会耗费redis将近一半的性能）
+
         ok
         1446478797.993426 [0 127.0.0.1:48057] "auth" "sunfeilong"
         1446478800.769308 [0 127.0.0.1:48057] "get" "name"
 ## 其他常用配置
-1. daemonize 是否以后台进程运行，默认为no
-2. pidfile 如以后台进程运行，则需指定一个pid，默认为/var/run/redis.pid
-3. bind 绑定主机IP，默认值为127.0.0.1
-4. port 监听端口，默认为6379
-5. timeout 超时时间，默认为300（秒）
+1. daemonize 是否以守护进程运行，默认为no，如果设置为守护进程，则启动Redis之后，在终端不显示任何的启动信息，Redis将在后台运行。
+2. pidfile 如以后台进程运行，则需指定一个pid，默认为/var/run/redis.pid。注意，启动Redis服务的时候要使用root权限，否则的话不会在 `var/run` 目录下面生成`pid`文件。
+3. bind 绑定要监听的Redis所在主机网卡的IP，默认监听所有的网卡。
+4. port 监听端口，默认为6379 。
+5. timeout 客户端多长时间没有请求，则关闭连接(默认为0，不关闭)。
 6. loglevel 日志记录等级，有4个可选值，debug，verbose（默认值），notice，warning
-7. logfile 日志记录方式，默认值为stdout
+7. logfile 日志记录方式，默认值为 `stdout` ,如果开启的是守护进程，则会被发送到 `null`。
 8. databases 可用数据库数，默认值为16，默认数据库为0
-9. rdbcompression 存储至本地数据库时是否压缩数据，默认为yes
-10. dbfilename 本地数据库文件名，默认值为dump.rdb
-11. dir 本地数据库存放路径，默认值为 ./(当前目录)
+9. rdbcompression 存储数据库至本地(.dump)时是否压缩数据，默认为yes。
+10. dbfilename 本地数据库文件名，默认值为dump.rdb。
+11. dir 本地数据库存放路径，默认值为 ./(Redis配置文件所在的目录)。
 12. slaveof <masterip> <masterport> 当本机为从服务时，设置主服务的IP及端口
 13. masterauth <master-password> 当本机为从服务时，设置主服务的连接密码
 14. requirepass 连接密码
-15. maxclients 最大客户端连接数，默认不限制
+15. maxclients 最大客户端连接数，默认不限制，如果没能成功限制，则设置为当前限制最大打开文件文件减32。
 16. maxmemory <bytes> 设置最大内存，达到最大内存设置后，Redis会先尝试清除已到期或即将到期的Key，当此方法处理后，任到达最大内存设置，将无法再进行写入操作
 17. appendonly 是否在每次更新操作后进行日志记录，如果不开启，可能会在断电时导致一段时间内的数据丢失。因为redis本身同步数据文件是按上面save条件来同步的，所以有的数据会在一段时间内只存在于内存中。默认值为no
 18. appendfilename 更新日志文件名，默认值为appendonly.aof
@@ -75,7 +79,6 @@
 20. vm-enabled 是否使用虚拟内存，默认值为no
 21. vm-swap-file 虚拟内存文件路径，默认值为/tmp/redis.swap，不可多个Redis实例共享
 22. vm-max-memory 将所有大于vm-max-memory的数据存入虚拟内存,无论vm-max-memory设置多小,所有索引数据都是内存存储的(Redis的索引数据就是keys),也就是说,当vm-max-memory设置为0的时候,其实是所有value都存在于磁盘。默认值为0。
-23. 
 
 
 
