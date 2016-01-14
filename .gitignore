@@ -1,5 +1,5 @@
 ## 忽略HBuider工程文件
-*.progect
+*.project
 ## 忽略Intelij idea工程文件夹
 .idea/
 ## 忽略Intellij idea 工程文件
