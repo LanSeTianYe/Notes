@@ -16,6 +16,14 @@
         run {
         	backup incremental level 0 database tag 'everymonth_0_all' format "d:\backup\everymonth_0_all_%d_%T_%t" skip inaccessible  include current controlfile plus archivelog delete all input ;
         }
+说明：
+ * `backup incremental level 0 database` 0级增量备份
+ * `tag 'everymonth_0_all'` 备份的标签
+ * `format "d:\backup\everymonth_0_all_%d_%T_%t"` 输出文件的位置及名字 `%d`数据库名字 `%T`(YYYYMMDD) `%t` 时间戳，防止文件名冲突
+ * `skip inaccessible` 跳过不可读的文件
+ * `include current controlfile` 增加控制文件的备份
+ * `plus archivelog` 增加归档日志的备份
+ * `delete all input` 删除没用的日志备份
 * 每周执行一次的累计增量备份
 
         run {
@@ -27,7 +35,7 @@
         	backup incremental level 1 database tag 'everyweek_1_d' format "d:\backup\everymonth_0_all_%d_%T_%t" skip inaccessible  include current controlfile plus archivelog delete all input ;
         }
 
-### 编写运行这些脚本的 *.bat的脚本，用于windows的计划任务。
+### 编写运行这些脚本的 `*.bat` 的脚本，用于windows的计划任务。
 
     set oracle_sid = orcl
     rman target sys/password log S:\RmanLog\everyday_1_c.txt cmdfile=S:\everyday_1_c.rman
