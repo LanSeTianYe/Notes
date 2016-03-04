@@ -1,4 +1,9 @@
 ## rman增量备份
+需要备份的东西：
+1. 数据文件
+2. 控制文件
+3. 归档日志文件
+
 步骤：  
 
 1. 制定备份策略。
@@ -22,7 +27,8 @@
  * `format "d:\backup\everymonth_0_all_%d_%T_%t"` 输出文件的位置及名字 `%d`数据库名字 `%T`(YYYYMMDD) `%t` 时间戳，防止文件名冲突
  * `skip inaccessible` 跳过不可读的文件
  * `include current controlfile` 增加控制文件的备份
- * `plus archivelog` 增加归档日志的备份
+ * `plus archivelog` 增加归档日志的备份  
+    该命令的作用是，在备份开始前备份一下日志，在备份结束之后再次备份日志。
  * `delete all input` 删除没用的日志备份
 * 每周执行一次的累计增量备份
 
