@@ -11,8 +11,8 @@
 启动的时候，报错  
 #### 解决方法：  
 需要把启动类放在一个包里面，不能直接放在main目录下面
-### 扫描不到Controller
-## 问题描述：
+## 扫描不到Controller
+### 问题描述：
 项目突然不能扫描Controller所有的Controller都不能访问。
 #### 解决：
 原来是 `@ComponentScan` 只能扫描当前类所在保下面的类，由于把启动类单独移动到了一个保下面，所以不能扫描到其他包里面的Controller。使用 `@ComponentScan(basePackages = {"com.sun.xiaotian.authority"})` 即可.  
