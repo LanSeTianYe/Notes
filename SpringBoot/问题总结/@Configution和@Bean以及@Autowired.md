@@ -51,6 +51,7 @@
 	@EntityScan("com.sun.xiaotian.authority.model")
 	@EnableJpaRepositories("com.sun.xiaotian.authority.repository")
 	@ComponentScan(basePackages = {"com.sun.xiaotian.authority"})
+	@SpringBootApplication
 	@EnableTransactionManagement
 	public class RunProjectApplication {
 	
