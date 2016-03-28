@@ -194,7 +194,7 @@ code, tt {
     border-radius: 4px;
     font-size: 14px;
     line-height: -4px;
-    font-family: 'Hiragino Sans GB', "Microsoft Yahei", "微软雅黑", sans-serif;
+    font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
 }
 
 pre>code {
@@ -209,7 +209,7 @@ pre {
     background-color: #ffffff;
     border: 1px solid #ccc;
     font-size: 18px;
-    line-height: 35px;
+    line-height: 25px;
     overflow: auto;
     padding: 6px 10px;
     border-radius: 3px;
