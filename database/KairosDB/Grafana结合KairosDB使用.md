@@ -16,7 +16,7 @@
         $ ./kairosdb.sh stop    To stop KairosDB when running as a background process type
 2. 安装 `TDM-GCC` 插件，目前不清楚不安装这个插件会出现什么问题。
 3. 安装 `grafana-3.0.0-beta2`, 下载之后解压即可，直接在cmd里面启动 `grafana-server.exe`。
-4. 安装 `grafana kariosDB插件`, 下载之后解压，在 `grafana-3.0.0-beta2\public\` 目录下创建 `plugins\kairosdb` 目录，把加压的内容拷贝进去即可。
+4. 安装 `grafana kariosDB插件`, 下载之后解压，在 `grafana-3.0.0-beta2\public\` 目录下创建 `plugins\kairosdb` 目录，把解压的内容拷贝进去即可。
 
 注意：步骤一和步骤2 的顺序可以调换
 

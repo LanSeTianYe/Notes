@@ -8,7 +8,7 @@
 2. 解压之后, cmd命令行切换到bin目录下面，执行 `./kairosdb.bat run` 即可启动。
 
 ## 配置 `cassandra` 存储.
-1. 选用 `cassandrs`
+1. 选用 `cassandrs`， 修改 `kairosdb` 的配置文件`kairosdb.properties`
 
     
         #kairosdb.service.datastore=org.kairosdb.datastore.h2.H2Module
