@@ -5,7 +5,7 @@
 1. 下载并解压。
 2. cmd切换到bin目录执行 `cassandra run` 即可启动服务。
 
-注意: 3.4版本的必需使用 jdk1.8，所以换件变量里面的JAVA_HOME要设置成1.8的路径，buRn的话会报下面的错误。
+注意: 3.4版本的必需使用 jdk1.8，所以环境变量里面的JAVA_HOME要设置成1.8的路径，不然的话会报下面的错误。
 
 		Exception in thread "main" java.lang.UnsupportedClassVersionError: org/apache/cassandra/service/CassandraDaemon : Unsupported major.minor version 51.0
 			at java.lang.ClassLoader.defineClass1(Native Method)

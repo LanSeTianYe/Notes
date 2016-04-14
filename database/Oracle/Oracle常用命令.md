@@ -27,4 +27,4 @@
 * 当前用户的表 `select table_name from user_tables;`
 * 获取当前时间 `select to_char(sysdate,'yy-mm-dd hh24:mi:ss') from dual;`
 * 查看数据库的DBID `select name,dbid from v$database`
-* 
+* 查看表一共有多少行 `select num_rows from all_tables`
