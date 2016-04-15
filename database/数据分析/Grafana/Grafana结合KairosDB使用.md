@@ -4,7 +4,9 @@
 1. [grafana-3.0.0-beta2](http://pan.baidu.com/s/1bRK4Ei)
 2. [KairosDB数据库](http://pan.baidu.com/s/1bo8LDSz)
 3. [grafana kariosDB插件](http://pan.baidu.com/s/1i4GGTA9)
-4. [TDM-GCC](http://pan.baidu.com/s/1geRAsWr)
+4. [piechart-panel 饼图插件](http://pan.baidu.com/s/1pLP86Ll) 
+5. [clock-panel 时钟插件](http://pan.baidu.com/s/1cLVslg) 
+6. [TDM-GCC](http://pan.baidu.com/s/1geRAsWr)
 
 #### 环境搭建步骤
 1. 安装kairosDB，在Linux下面，解压下载的文件，然后运行服务，在浏览器打开查询页面。(默认使用8080端口)。
@@ -16,7 +18,11 @@
         $ ./kairosdb.sh stop    To stop KairosDB when running as a background process type
 2. 安装 `TDM-GCC` 插件，目前不清楚不安装这个插件会出现什么问题。
 3. 安装 `grafana-3.0.0-beta2`, 下载之后解压即可，直接在cmd里面启动 `grafana-server.exe`。
-4. 安装 `grafana kariosDB插件`, 下载之后解压，在 `grafana-3.0.0-beta2\public\` 目录下创建 `plugins\kairosdb` 目录，把解压的内容拷贝进去即可。
+4. 安装 `grafana kariosDB插件`, 下载之后解压。
+       >把解压的目录拷贝到 `grafana-3.0.0-beta2\bin\data\plugins` 目录下，没有目录需要创建目录。   
+       >把解压的目录拷贝到 `grafana-3.0.0-beta2\public\plugins` 目录下，没有目录需要创建目录。 
+5. 安装 `piechart-panel 饼图插件`, 步骤同上。
+6. 安装 `clock-panel 时钟插件`, 步骤同上。
 
 注意：步骤一和步骤2 的顺序可以调换
 
