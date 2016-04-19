@@ -1,15 +1,15 @@
+[JPA 官方文档](http://docs.spring.io/spring-data/jpa/docs/current/reference/html/)
 ## 核心
 ### 核心类
-1. `Repository` 
+1. `Repository`
 
         public interface Repository<T, ID extends Serializable> {
-        
         }
 2. `CrudRepository` 提供增删改查方法
 
         public interface CrudRepository<T, ID extends Serializable>
             extends Repository<T, ID> {
-        
+ 
             <S extends T> S save(S entity); 
         
             T findOne(ID primaryKey);       
@@ -55,7 +55,33 @@
         	 * @see org.springframework.data.repository.PagingAndSortingRepository#findAll(org.springframework.data.domain.Sort)
         	 */
         	List<T> findAll(Sort sort);
-5. 自定义查询接口
+5. 支持的通过名字查找的连接词
 
+|Keyword	|Sample	|JPQL snippet|
+|::|::|::|
+|And|findByLastnameAndFirstname|… where x.lastname = ?1 and x.firstname = ?2|
+|Or|findByLastnameOrFirstname|… where x.lastname = ?1 or x.firstname = ?2|
+|Is,Equals|findByFirstname,findByFirstnameIs,findByFirstnameEquals|… where x.firstname = ?1|
+|Between|findByStartDateBetween|… where x.startDate between ?1 and ?2|
+|LessThan|findByAgeLessThan|… where x.age < ?1|
+|LessThanEqual|findByAgeLessThanEqual|… where x.age ⇐ ?1|
+|GreaterThan|findByAgeGreaterThan|… where x.age > ?1|
+|GreaterThanEqual|findByAgeGreaterThanEqual|… where x.age >= ?1|
+|After|findByStartDateAfter|… where x.startDate > ?1|
+|Before|findByStartDateBefore|… where x.startDate < ?1|
+|IsNull|findByAgeIsNull|… where x.age is null|
+|IsNotNull,NotNull|findByAge(Is)NotNull|… where x.age not null|
+|Like|findByFirstnameLike|… where x.firstname like ?1|
+|NotLike|findByFirstnameNotLike|… where x.firstname not like ?1|
+|StartingWith|findByFirstnameStartingWith|… where x.firstname like ?1 (parameter bound with appended %)|
+|EndingWith|findByFirstnameEndingWith|… where x.firstname like ?1 (parameter bound with prepended %)|
+|Containing|findByFirstnameContaining|… where x.firstname like ?1 (parameter bound wrapped in %)|
+|OrderBy|findByAgeOrderByLastnameDesc|… where x.age = ?1 order by x.lastname desc|
+|Not|findByLastnameNot|… where x.lastname <> ?1|
+|In|findByAgeIn(Collection<Age> ages)|… where x.age in ?1|
+|NotIn|findByAgeNotIn(Collection<Age> age)|… where x.age not in ?1|
+|True|findByActiveTrue()|… where x.active = true|
+|False|findByActiveFalse()|… where x.active = false|
+|IgnoreCase|findByFirstnameIgnoreCase|… where UPPER(x.firstame) = UPPER(?1)|
 
 
