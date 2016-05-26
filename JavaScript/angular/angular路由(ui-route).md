@@ -79,3 +79,28 @@
 	            });
 	    }]);
 	})(window.angular);
+
+
+## 存在的问题以及解决方案
+
+1. `ui-route` 的 `templateUrl` 里面的 `html` 缓存问题
+
+**问题描述：** 
+
+`templateUrl` 里引用的 `html` 会被缓存，导致修改对应的 `html` 文件之后，刷新页面，修改的内容不会被应用的页面上，给开发时的调试带来了很大的麻烦。
+
+** 解决办法 **  
+监听 `$stateChangeSuccess` 事件，当模板删除缓存。
+
+
+	 angular.module('MyAPP', [])
+		.run(['$rootScope','$templateCache', function ($rootScope, $templateCache) {
+	        //监听页面跳转时间,删除ui-route 的模板缓存
+	        var stateChangeSuccess = $rootScope.$on('$stateChangeSuccess', stateChangeSuccess);
+	        function stateChangeSuccess($rootScope) {
+	            $templateCache.removeAll();
+	        }
+	    }]);
+
+
+

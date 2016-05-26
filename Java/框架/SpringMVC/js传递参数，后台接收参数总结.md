@@ -53,7 +53,28 @@ js:
 		}
 注意：后台接收的时候`String[] idList` 改为 `Long[] idList`也是可以的
 
-2. 传递普通参数---POST（没能实现）
+2. 传递普通参数---POST（没能实现）  
+js
+
+		var data = {
+	        id:'3213',
+	        oldPassword:'oldPassword',
+	        newPassword:'newPassword',
+	    }
+	    $http({
+	        method: 'POST',
+	        url: '/authorityUser/changePassword',
+	        data: $.param(data),
+	        headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+	    }).success(function(sysMsg){
+	
+	    });
+java
+	
+		@RequestMapping(value = "/authorityUser/changePassword", method = RequestMethod.POST)
+	    @ResponseBody
+	    public SystemMessage changePassword(String id, String oldPassword, String newPassword) {
+
 3. 传递对象------Get  
 js:
 
