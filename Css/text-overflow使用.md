@@ -17,7 +17,7 @@
 
 ## 用在 `a`
 
-    li{
+    a{
         overflow: hidden;
         white-space: nowrap;
         text-overflow:ellipsis; 
