@@ -17,7 +17,19 @@
 15. CTRL + ALT + U --------------------------查看类的继承关系图
 16. CTRL + ALT + 上/下键 -------------------- 跳转到下/上一次浏览的位置
 17. CTRL + ALT + T -------------------------- 插入代码
-18. CTRL + ALT + V -------------------------- 根据方法返回值自动生成对应的变量
+18. CTRL + ALT + V -------------------------- 根据方法返回值自动生成对应的变量,也可以把方法的参数转换为变量
+    1. 方法或构造函数返回值
+    
+            new String("abc");
+            //在new前面按CTRL+ALT+V,会自动补全前面的代码
+            String abc = new String("abc");
+    2. 方法的参数
+
+            BufferedInputStream bin = new BufferedInputStream(System.in);
+            //选中参数 System.in会自动生成下面代码
+            InputStream in = System.in;
+            BufferedInputStream bin = new BufferedInputStream(in);
+
 19. CTRL + SHIFT + T ------------------------ 生成测试代码 
 
 ## 文件查找和替换(替换完之后出现莫名的字符串，慎用)
