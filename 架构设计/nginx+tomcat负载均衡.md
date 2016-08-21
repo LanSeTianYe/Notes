@@ -1,5 +1,5 @@
 ## 系统环境
-1. win8
+1. win8 64为
 2. jdk1.8
 ## 软件版本
 1. [nginx-1.10.1](http://nginx.org/en/download.html)
@@ -38,7 +38,7 @@ Tomca支持的并发数为300-500， nginx支持的并发数为 50000。
 
 
 ## nginx 代理配置
-1. 在 `#gzip  on;` 下面添加
+1. 在 `#gzip  on;` 下面添加(`192.168.1.10` 是本机ip)
  
 		#gzip  on;
 			
