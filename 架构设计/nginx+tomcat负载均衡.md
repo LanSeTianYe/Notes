@@ -1,6 +1,7 @@
 ## 系统环境
 1. win8 64为
 2. jdk1.8
+3. 关闭系统防火墙。（如果不关闭可能需要对端口进行特殊处理）
 ## 软件版本
 1. [nginx-1.10.1](http://nginx.org/en/download.html)
 2. [tomcat-8.5.4](http://tomcat.apache.org/download-80.cgi)
