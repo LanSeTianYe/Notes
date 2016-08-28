@@ -84,7 +84,8 @@ windows安装一个，Linux虚拟机安装一个，这里没有遵从 `2n+1` 的
 1. 复制 `windows` 上的文件到虚拟机。
 2. 修改配置文件，只需修改配置文件中的数据存放目录即可。
 
-    dataDir=D:home\用户名\zookeeper
+		## 我的位置
+	    dataDir=\home\用户名\zookeeper
 3. 指定 `zookeeper` 的id。  
 在 `数据存放目录` 创建 `myid` 文件，文件内容为当前zookeeper的id（自己指定，必须为整数），要和配置文件里面的 `server.X` 的 X `对应`。这里是 `2`
 
