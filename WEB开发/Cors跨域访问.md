@@ -21,6 +21,33 @@ CORS需要浏览器和服务器同时支持。目前，所有浏览器都支持�
 
 因此，实现CORS通信的关键是服务器。只要服务器实现了CORS接口，就可以跨源通信。
 
+#### 配置
+1. 允许通过的站点
+
+        response.setHeader("Access-Control-Allow-Origin", "http://127.0.0.1:8020");
+2. 允许的请求方法
+
+        response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
+3. 来指定本次预检请求的有效期，单位毫秒，在有效期内不会再次发送请求进行预检。
+
+        response.setHeader("Access-Control-Max-Age", "3600");
+4. 允许访问的请求头信息
+
+        response.setHeader("Access-Control-Allow-Headers", "x-requested-with");
+5. 是否允许发送 Cookie
+
+    * 服务器端
+    
+            //允许访问的域名必须是确定的
+            response.setHeader("Access-Control-Allow-Origin", "http://127.0.0.1:8020");
+            response.setHeader("Access-Control-Allow-Credentials", "true");
+    * 前台页面，ajax请求添加如下属性
+
+    		xhrFields: {
+                withCredentials: true
+            },
+
+
 #### 实现
 只需要在服务器端允许跨域访问即可，前台数据数据请求不许要任何特别的设置。  
 
