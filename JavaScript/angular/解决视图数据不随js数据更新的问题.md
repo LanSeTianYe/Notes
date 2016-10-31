@@ -10,3 +10,11 @@
 		//数据改变
 		$scope.data =  newdata;
 	});
+
+#### 解决办法，解决报错问题
+
+    if(!$scope.$$phase) {
+        $scope.$apply(function () {
+            $scope.currSelectLeftIndex = index;
+        });
+    }
