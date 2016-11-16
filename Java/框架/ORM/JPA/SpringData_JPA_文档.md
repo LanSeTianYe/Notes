@@ -55,6 +55,17 @@
         	 * @see org.springframework.data.repository.PagingAndSortingRepository#findAll(org.springframework.data.domain.Sort)
         	 */
         	List<T> findAll(Sort sort);
+5. 关联查询
+
+        //根据 Address 属性的 ZipCode 属性查找
+        List<Person> findByAddress_ZipCode(ZipCode zipCode);
+
+6. 分页排序
+           
+        //创建分页条件的时候加入排序规则
+        public PageRequest(int page, int size, Sort sort);
+        Pageable pageable1 = new PageRequest(1, 2, new Sort(Sort.Direction.DESC, FillReportStructure_.tagName.getName()));
+
 5. 支持的通过名字查找的连接词
 
 |Keyword	|Sample	|JPQL snippet|
@@ -83,5 +94,3 @@
 |True|findByActiveTrue()|… where x.active = true|
 |False|findByActiveFalse()|… where x.active = false|
 |IgnoreCase|findByFirstnameIgnoreCase|… where UPPER(x.firstame) = UPPER(?1)|
-
-
