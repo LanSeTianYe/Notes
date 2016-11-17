@@ -16,6 +16,3 @@ RESTful 比较核心的地方是要实现 Hypermedia ，服务器每个服务返
 
 ##  设计 RESTful Service
 
-状态码和含义
-
-200 
