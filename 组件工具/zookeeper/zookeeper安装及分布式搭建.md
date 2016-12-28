@@ -7,7 +7,7 @@
 4. windows防火墙关闭
 ## 单独一个安装(window)
 1. [下载](http://zookeeper.apache.org/releases.html) zookeeper，并解压。（我用的 [zookeeper-3.5.2](http://apache.org/dist/zookeeper/) ）。
-2. 创建配置文件，在 `conf` 目录下创建 `zoo.cfg`，添加如下内容，`dataDir=D:\zookeeper` 数据存放的位置，根据自己的需要修改。
+2. 创建配置文件，在 `conf` 目录下创建 `zoo.cfg`，添加如下内容，`dataDir=D:\\zookeeper` 数据存放的位置，根据自己的需要修改。
         
         # The number of milliseconds of each tick
         tickTime=2000
@@ -20,7 +20,7 @@
         # the directory where the snapshot is stored.
         # do not use /tmp for storage, /tmp here is just 
         # example sakes.
-        dataDir=D:\zookeeper
+        dataDir=D:\\zookeeper
         # the port at which the clients will connect
         clientPort=2181
         # the maximum number of client connections.
