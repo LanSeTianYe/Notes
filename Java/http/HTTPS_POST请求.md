@@ -8,7 +8,8 @@
 4. [java.security.InvalidAlgorithmParameterException](http://stackoverflow.com/questions/4764611/java-security-invalidalgorithmparameterexception-the-trustanchors-parameter-mus) 未使用
 
 ************************ 
-
+## 简介
+由于HTTPS是基于数字证书的认证，使用JAVA发送 Https 请求时需要进行证书认证。因此我们需要先下载好证书信息，然后放在 `$JAVA_HOME/jre/lib/security` 目录下，这样Java会自动去加载证书。
 ## 安装证书
 使用下面代码安装证书，证书会被安装到当前目录下。 
 
