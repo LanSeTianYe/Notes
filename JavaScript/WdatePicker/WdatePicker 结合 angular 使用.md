@@ -2,7 +2,7 @@
 ## 通过input双向绑定数据
 
     <div>
-        <input id="startDate" type="text" ng-model="currClickLineData.startDate" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" />
+        <input id="startDate" type="text" onchange="" ng-model="currClickLineData.startDate" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" />
     </div>
 
 ## 绑定input，通过watch监测不到input数据变化问题解决
