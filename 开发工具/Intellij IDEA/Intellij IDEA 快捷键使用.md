@@ -32,7 +32,7 @@
             BufferedInputStream bin = new BufferedInputStream(in);
 
 19. CTRL + SHIFT + T ------------------------ 生成测试代码 
-20. CTRL + SHIFT + F10-----------------------调出运行项目列表，按 SHITF 键可以以 Debug 的的方式运行。
+20. ALT + SHIFT + F10------------------------调出运行项目列表，按 SHITF 键可以以 Debug 的的方式运行。
 21. CTRL + SIFT + ENTER --------------------- 快速补全括号(输入if/for/while后使用)
 22. CTRL + J -------------------------------- 查看模板
 23. CTRL + ｗ ------------------------------- 选择代码块
