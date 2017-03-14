@@ -19,9 +19,14 @@
 		# 配置局部或全局用户名
 		git config [--global] user.name "sunfeilong1993"
 		git config [--global] user.email "1498282352@qq.com"
-2. 克隆项目
-
-		git clone https://github.com/longlongxiao/XiaoTian.git
+2. 项目初始化  
+3. 
+		# 从远程仓库获取，默认名字是最后一个/号后面.git前面的内容
+		git clone https://github.com/longlongxiao/XiaoTian.git [projectName]
+		# 把当前目录初始化成git项目
+		git init
+		# 在当前目录下初始化一个项目
+		git init [projectName]
 3. 查看信息
 
 		# 查看文件变化
@@ -118,3 +123,34 @@
 		git push [remote] --tags
 		# 新建一个分支，指向某个tag
 		git checkout -b [branch] [tag]
+8. 分支  
+
+		# 列出所有本地分支
+		git branch
+		# 列出所有远程分支
+		git branch -r
+		# 列出所有本地分支和远程分支
+		git branch -a
+		# 新建一个分支，但依然停留在当前分支
+		git branch [branchName]
+		# 新建一个分支，并且换到新建分支
+		git branch - b [branchName]
+		# 新建一个分支，执行指定commit
+		git branch [branch] [commit]
+		# 新建一个分支，与指定的远程分支建立追踪关系
+		git branch --track [branch] [remote-branch]
+		# 切换到指定分区，并更新工作区
+		git checkout [branchName]
+		# 切换到上一个分支
+		git branch -
+		# 建立追踪关系，在现有分支与指定的远程分支之间
+		git branch --set-upstream [branch] [remote-branch]
+		# 合并指定分支到当前分支
+		git megre [branch]
+		# 选择一个commit，合并进当前分支
+		git cherry-pick [commit]
+		# 删除分支
+		git branch -d [branchName]
+		# 删除远程分支
+		git push origin -delete [branchName]
+		git branch -dr [remote/branch]
