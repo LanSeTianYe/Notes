@@ -1,7 +1,120 @@
-* 设置特定项目的用户名和邮箱（.git/config）
+## 
+1. 时间:2017/3/13 22:31:58 
+2. 参考：  
+	* [常用 Git 命令清单](http://www.ruanyifeng.com/blog/2015/12/git-cheat-sheet.html)
 
-		git config user.name sunfeilong user.email 192909@qq.com
+## git模型
+1. 工作区：存储修改过的未缓存的文件
+2. 缓存区：缓存修改过的文件
+3. 本地仓库：提交缓存文件到本地仓库
+4. 远程仓库：推送本地仓库文件到远程仓库
 
-* 设置系统当前用户的用户名和邮箱(userhome/.gitconfig)
+## 基本命令
+1. 配置
 
-		git config --globally user.name sunfeilong user.email 192909@qq.com
+		# 查看配置信息
+		git config --list
+		# 编辑配置信息
+		git config -e [--global]
+		# 配置局部或全局用户名
+		git config [--global] user.name "sunfeilong1993"
+		git config [--global] user.email "1498282352@qq.com"
+2. 克隆项目
+
+		git clone https://github.com/longlongxiao/XiaoTian.git
+3. 查看信息
+
+		# 查看文件变化
+		git status -s
+		# 显示当前版本历史
+		git log
+		# 显示提交历史，以及每次提交发生变更的文件
+		git log --stat
+		# 搜索提交历史，根据关键字
+		git log -S [keyword]
+		# 显示某个commit之后的所有变动，每个commit占据一行
+		git log [tag] HEAD --pretty=format:%s
+		# 显示过去的五次提交
+		git log -5 --pretty --oneline
+		# 显示所有提交过的用户，按提交次数排序
+		git shortlog -sn
+		# 显示指定文件在什么时候修改过
+		git blame [file]
+		# 显示缓存区和工作区的差异
+		git diff
+		# 显示缓存区和上一次提交的差异
+		git diff --cached [file]
+		# 显示工作区和当前分支最新提交之间的差异
+		git diff HEAD
+		# 显示今天写了多少代码
+		git diff --shortstat "@{0 day ago}"
+		# 显示当前分支最近几次提交
+		git reflog
+4. 缓存修改
+
+		# 缓存当前目录下所有修改的文件
+		git add .
+		# 缓存指定文件
+		git add [file1] [file2] ...
+		# 缓存指定目录下所有修改的文件
+		git add [dir]
+		
+		# 删除工作区文件，并将这次删除放入缓存区
+		git rm [file1] [file2] ...	
+		# 停止追踪文件，但该文件会保留在工作区
+		git rm -cached [file]
+		# 改文件名，并将这个改名放入缓存区
+		git mv [original-file] [renames-file]
+5. 提交修改
+	
+		# 把缓存区文件放入本地仓库
+		git commit -m ["修改说明"]
+		# 提交缓存区指定文件到仓库
+		git commmit [file1] [file2] ... -m [message]
+		# 提交工作区自上次提交之后的变化，直接到本地仓库
+		git commit -a 
+		# 提交时显示所有diff信息
+		git commit -v
+		# 使用一次新的提交代替上一次提交，如果代码没有发生任何变化，则用来改写上一次提交的提交说明
+		git commit --amend -m [message]
+		# 重做上一次提交，并包含指定文件的心变化
+		git commit --amend [file1] [file2] ...
+
+6. 推送修改
+	
+		# 显示所有远程仓库
+		git remote -v
+		# 从远程仓库下载更新
+		git fetch [remote]
+		# 显示指定远程仓库信息
+		git remote show [remote]
+		# 增加远程仓库
+		git remote add [shortname] [url]
+		# 取回远程仓库的变化，并与本地分之合并
+		git pull [remote] [branch]
+		# 上传本地分支到远程仓库
+		git push [remote] [branch]
+		# 强行推送当前分支到远程仓库，即使有冲突
+		git push [remote] --force
+		# 推送所有分支到远程仓库
+		git push [remote] --all
+7. 标签
+
+		# 列出所有标签
+		git tag
+		# 新建一个tag在当前commit
+		git tag [tagName]
+		# 新建一个tag在指定提交
+		git tag [tagName] [commit]
+		# 删除本地tag
+		git tag -d [tagName]
+		# 删除远程tag
+		git push origin :refs/tags/[tagName]
+		# 查看tag信息
+		git show [tag] 
+		# 提交指定tag
+		git push [remote] [tag]
+		# 提交所有tag
+		git push [remote] --tags
+		# 新建一个分支，指向某个tag
+		git checkout -b [branch] [tag]
