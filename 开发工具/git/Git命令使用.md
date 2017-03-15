@@ -20,7 +20,7 @@
 		git config [--global] user.name "sunfeilong1993"
 		git config [--global] user.email "1498282352@qq.com"
 2. 项目初始化  
-3. 
+
 		# 从远程仓库获取，默认名字是最后一个/号后面.git前面的内容
 		git clone https://github.com/longlongxiao/XiaoTian.git [projectName]
 		# 把当前目录初始化成git项目
@@ -131,6 +131,8 @@
 		git branch -r
 		# 列出所有本地分支和远程分支
 		git branch -a
+		# 显示分支最新版本（和-r、-a结合使用）
+		git branch -v
 		# 新建一个分支，但依然停留在当前分支
 		git branch [branchName]
 		# 新建一个分支，并且换到新建分支
@@ -154,3 +156,17 @@
 		# 删除远程分支
 		git push origin -delete [branchName]
 		git branch -dr [remote/branch]
+9. 合并分支
+
+	# 合并其他分支到当前分支
+	git merge [currBranch] [otherBranch]
+
+10. `statsus` 查看工作区状态
+
+	* `-s` : --short 简短形式输出
+	* `-b` : --branch 显示分支信息（在简短格式下也可以使用）
+	* `--porcelain` : 输出脚本易读的简短形式，在各种Git版本和用户配置保持输出格式一致。
+	* `long` : （默认选项），输出完整信息
+	* `-v` : --verbos 展示已经添加到本地缓存的文件里面被修改的内容，类似于 `git diff --cached`,
+	* `-vv` : 展示没有缓存的文件和缓存文件的被修改的内容，类似于 `git diff`
+
