@@ -19,8 +19,10 @@
 		# 配置局部或全局用户名
 		git config [--global] user.name "sunfeilong1993"
 		git config [--global] user.email "1498282352@qq.com"
+        # 配置支持长路径文件
+		git config --global core.longpaths true
 2. 项目初始化  
-3. 
+
 		# 从远程仓库获取，默认名字是最后一个/号后面.git前面的内容
 		git clone https://github.com/longlongxiao/XiaoTian.git [projectName]
 		# 把当前目录初始化成git项目
