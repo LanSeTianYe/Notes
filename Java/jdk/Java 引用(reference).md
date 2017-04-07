@@ -2,7 +2,8 @@
 时间：2017/4/6 21:43:49 
 
 ## 引用简介
-Java里面包含四种引用：引用位于 `java.lang.ref.*` 包中。
+Java里面包含四种引用：引用位于 `java.lang.ref.*` 包中。  
+在Java中可以指定对对象的不同类型的引用，不同类型的引用在JVM进行垃圾回收时候有不同的处理策略，通过构建一些弱引用和软引用来引用对象可以有效的防止内存溢出。
   
 1. 虚引用：`PhantomReference`  
      
@@ -73,7 +74,7 @@ Java里面包含四种引用：引用位于 `java.lang.ref.*` 包中。
             System.out.println("虚引用队列:\t" + reference);
         }
     }
-输出结果（可能是下面的内容，也可能是空）：
+输出结果（可能是下面的内容，队列里面元素的顺序不确定）：
 
 	软引用:	java.lang.ref.SoftReference@50675690
 	软引用:	java.lang.ref.SoftReference@31b7dea0
