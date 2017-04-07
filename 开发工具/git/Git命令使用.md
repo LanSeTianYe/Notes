@@ -88,6 +88,8 @@
 		git commit --amend -m [message]
 		# 重做上一次提交，并包含指定文件的心变化
 		git commit --amend [file1] [file2] ...
+		# 丢弃本次更改(没有提交的更改都返回到没有修改的状态)
+		git checkout .
 
 6. 推送修改
 	
@@ -162,8 +164,9 @@
 		git branch -dr [remote/branch]
 9. 合并分支
 
-	# 合并其他分支到当前分支
-	git merge [currBranch] [otherBranch]
+		# 合并其他分支到当前分支
+		git merge [currBranch] [otherBranch]
+
 
 10. `statsus` 查看工作区状态
 
