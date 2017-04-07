@@ -43,6 +43,8 @@
 		git log [tag] HEAD --pretty=format:%s
 		# 显示过去的五次提交
 		git log -5 --pretty --oneline
+		# 树形展示历史
+		git --graph
 		# 显示所有提交过的用户，按提交次数排序
 		git shortlog -sn
 		# 显示指定文件在什么时候修改过
