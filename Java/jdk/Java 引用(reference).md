@@ -73,7 +73,9 @@ Java里面包含四种引用：引用位于 `java.lang.ref.*` 包中。
             System.out.println("虚引用队列:\t" + reference);
         }
     }
-输出结果（可能是下面的内容，也可能是空）：
+输出结果（可能是下面的内容，引用队列的顺序没有保证，引用队列的实现是一个栈）：
+
+A：
 
 	软引用:	java.lang.ref.SoftReference@50675690
 	软引用:	java.lang.ref.SoftReference@31b7dea0
@@ -85,3 +87,16 @@ Java里面包含四种引用：引用位于 `java.lang.ref.*` 包中。
 	弱引用队列:	java.lang.ref.WeakReference@2d6a9952
 	虚引用队列:	java.lang.ref.PhantomReference@3930015a
 	虚引用队列:	java.lang.ref.PhantomReference@629f0666
+
+B：
+
+	软引用:	java.lang.ref.SoftReference@50cbc42f
+	软引用:	java.lang.ref.SoftReference@75412c2f
+	弱引用:	java.lang.ref.WeakReference@13b6d03
+	弱引用:	java.lang.ref.WeakReference@f5f2bb7
+	虚引用:	java.lang.ref.PhantomReference@64c64813
+	虚引用:	java.lang.ref.PhantomReference@3ecf72fd
+	弱引用队列:	java.lang.ref.WeakReference@f5f2bb7
+	弱引用队列:	java.lang.ref.WeakReference@13b6d03
+	虚引用队列:	java.lang.ref.PhantomReference@3ecf72fd
+	虚引用队列:	java.lang.ref.PhantomReference@64c64813
