@@ -21,7 +21,7 @@
  * 解决思路：
 
 		CATALINA_OPTS is immensely useful for setting debug parameters, Java memory settings, etc. One very common use is to set the system property java.awt.headless to true. Most graphical applications (like Jasper, JFreechart, LiquidOffice, StyleReport, etc.) will halt Tomcat when they render if something isn't done to disable display rendering, and this is by far the easiest method. (This problem occurs with most J2EE servers, not just Tomcat). Here's how to make this setting in UNIX.
- * 解决办法（在tomcat配置文件天机如下配置）：
+ * 解决办法（在tomcat配置文件添加如下配置）：
 
 		export CATALINA_OPTS: CATALINA_OPTS=-Djava.awt.headless=true
 	* windows：Tomcat catalina.bat 添加如下配置
