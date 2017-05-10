@@ -1,8 +1,22 @@
 ## Redis的安装
-1. 下载安装包
-2. 解压 `tar -avxf redis.3.0.5`
-3. 进入到解压后的目录 `cd redis.3.0.5`
-4. 安装 执行make命令
-5. 把配置文件拷贝到 /etc/目录下面 `cp redis.conf /etc/`
-6. 配置path，把需要运行的命令拷贝到/usr/bin/目录下  `cp redis-benchmark redis-cli redis-server /usr/bin/ `
-7. 之后在命令行输入命令即可启动redis `redis-server` `redis-cli`
+
+1. 下载安装
+
+		$ wget http://download.redis.io/releases/redis-3.2.8.tar.gz
+		$ tar xzf redis-3.2.8.tar.gz
+		$ cd redis-3.2.8
+		$ make
+2. 启动服务
+
+		//默认启动
+		$ src/redis-server
+		//指定配置文件
+		$ src/redis-server ./redis.conf
+
+3. 启动命令行
+
+		//连接本机服务
+		$ src/redis-cli
+		//连接指定Redis服务(指定ip和端口)
+		$ src/redis-cli -h 192.168.0.1 -p 6379 
+		
