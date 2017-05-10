@@ -8,6 +8,20 @@
 
 ## ORM 简介
 Object-Relational Mapping 即对象关系映射，把对象以及对象之间的关系映射到数据库表中。
+
+将关系数据库中表的数据映射成为对象，以对象的形式展现，这样开发人员就可以把对数据库的操作转化为对这些对象的操作。因此它的目的是为了方便开发人员以面向对象的思想来实现对数据库的操作。
+
+常用的ORM中间件有：
+
+ * Apache OJB
+ * Cayenne 
+ * Jaxor 
+ * Hibernate 
+ * iBatis 
+ * jRelationalFramework 
+ * mirage 
+ * SMYLE 
+ * TopLink 
 ## 常见ORM框架比较
 
 ### 1、JPA（Java Persistence API）
@@ -122,7 +136,72 @@ JPA只是一种规范，具体的实现如Hibernate、EclipseLink（toplink）�
 		}
 
 ### 2、Hibernate
+Hibernate是一个基于Java的开源持久化中间件，对JDBC做了轻量级的封装。
 
+采用ORM映射机制，负责实现Java对象和关系数据库之间的映射，把sql语句传给数据库，并且把数据库返回的结果封装成对象。内部封装了JDBC访问数据库的操作，向上层应用提供了面向对象的数据库访问API.
+
+使用：
+Java实体：
+
+	public class User {  
+	    private String id;  
+	    private String username;  
+	    private String password;  
+	
+		... ...
+		get&set  
+	}
+映射文件(可以用注解)：
+
+	<hibernate-mapping>  
+	    <class name="com.example.hibernate.User">  
+	        <id name="id">  
+	            <generator class="uuid"/>  
+	        </id>  
+	        <property name="username"/>  
+	        <property name="password"/>  
+	    </class>  
+	</hibernate-mapping>  
+配置文件：
+	
+	<hibernate-configuration>  
+	    <session-factory >  
+	        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>  
+	        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/test</property>  
+	        <property name="hibernate.connection.username">root</property>  
+	        <property name="hibernate.connection.password">000000</property>  
+	        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>  
+	          
+	        <mapping resource="com/example/hibernate/User.hbm.xml"/></span>  
+	    </session-factory>  
+	</hibernate-configuration> 
+
+数据操作：
+
+	Configuration cfg = new Configuration().configure();    
+	SessionFactory factory = cfg.buildSessionFactory();  
+	Session session = null;  
+	try{  
+	    session = factory.openSession();   
+	    session.beginTransaction();  
+	    User user = new User();  
+	    user.setUsername("用户名");  
+	    user.setPassword("123");  
+	    session.save(user);  
+	    //提交事务  
+	    session.getTransaction().commit();  
+	}catch(Exception e){  
+	    e.printStackTrace();  
+	    //回滚事务  
+	    session.getTransaction().rollback();  
+	}finally{  
+	    if(session != null){  
+	        if(session.isOpen()){  
+	            //关闭session  
+	            session.close();  
+	        }  
+	    }  
+	}  
 
 ### 3、 iBatis
 优点：  
