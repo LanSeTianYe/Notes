@@ -13,7 +13,7 @@
 
 3. 登录完成之后点击顶部 的 `Control Panel`, 在页面的选项卡里面选择 `Validations Wizard` ,然后选择 ` Domain Validation (for SSL certificate)` ,之后点击 `Continue`。
 
-4. 输入域名点击继续。（注意为了邮件可以正常发送到你的邮箱，需要在关闭 `域名保护`）。  
+4. 输入域名点击继续。（注意为了邮件可以正常发送到你的邮箱，需要关闭 `域名保护`）。  
 
 5. 选择邮箱发送验证码，填入收到的验证码即可验证成功。
 
@@ -48,7 +48,7 @@
         
         //前面的ip是本机的ip地址
         192.168.2.106   sunfielong1993.club
-3. 刷新host问价 `ipconfig /flushdns`
+3. 刷新host文件 `ipconfig /flushdns`
 4. 启动tomcat。
 5. 输入网址访问项目 `https://sunfielong1993.club:8443/`, 会发现网址前面有一个绿色的锁。
 
