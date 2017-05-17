@@ -49,7 +49,7 @@ mount (选项) (参数)
 		挂载
 	
 			//如果没有用户名和密码（共享有GUEST权限），可以不要 -o 和后面的内容，直接回车即可	
-			mount //192.168.1.68//share /mnt/share -o username=username,password=password 
+			mount //192.168.1.68/share /mnt/share -o username=username,password=password 
 
 
 
