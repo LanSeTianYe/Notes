@@ -8,28 +8,38 @@
 
 **堆内存：**存储对象实例。多线程共享。
 
- * -Xms20M  初始化堆内存大小
- * -Xmx20m  最大堆内存大小
+ * -Xms20M  初始化堆内存大小(最小)
+ * -Xmx20m  最大堆内存大小（最大）
   * -Xmn10m  新生代大小（剩余的为老年代）
+     * -XX:SurvivorRation=8 新生代Eden和Survivor取得空间比是8:1(8:1:1) 
 
-**方法区**：俗称永久代，1.8取消了方法区改为Metaspace。存储加载的类信息，常量等。多线程共享。
+**方法区**：俗称永久代，1.8取消了方法区改为Metaspace。存储已被虚拟机加载的类信息，常量、静态变量、即时编译后的代码数据等（方法名、类名等）。多线程共享。
  
  * -XX:PermSize=20m  方法区大小
  * -XX:MaxPermSize=20m 最大方法区大小
  * -XX:MaxMetaspaceSize=128m 设置源空间大小
 
-**虚拟机栈**：存储方法块儿里面的数据，包含局部变量，对象引用和方法返回地址等。
+**虚拟机栈**：每个方法在创建的时候都会创建一个栈帧，用于存放局部变量表，操作数栈，动态链接，方法出口等信息。
  
  * -Xss5m 调节线程堆栈大小
 
 **直接内存**：不受Java虚拟机管理，属于操作系统内存。
 
- * -XX:MaxDirectMemorySize=10M 设置直接内存大小
+ * -XX:MaxDirectMemorySize=10M 设置直接内存大小，默认和Java堆大小相同
 
-
+## 性能调优
+ * 对象优先分配在新生代的Eden区
+ * -XX:PretenureSizeThreshold=8 使大于这个值得对象直接进入老年区（只对Serial和ParNew两个垃圾回收器起作用）
+ * 长期存活的对象会进入老年区
+ * -XX:MaxTenuringThreshold=15 默认值15。对象在Eden中出生，第一次Minor GC之后仍然存活，并且能被Survivor容纳，将被移动到Survivor区，并且年龄设置为1，对象在Survivor中每经历过一次Minor GC对象的年龄就增加一，当年龄达到设定值之后就会进入老年区。
+ * 动态年龄判断，如果Survivor空间中相同年龄的所有对象的大小大于Survivor空间的一半，年龄大于或等于该年龄的对象直接进入老年区。
+ * 空间分配担保，当老年代最大可用连续空间小于新生代多有对象占用空间大小，可能需要一次Full GC。
+ * -XX:HandlePromotionFailure=false 空间担保不可行的情况下是否允许冒险
+ * 内存限制：32位windows每个进程最大2GB内存，Linux和Unix系统，可以提升至3GB甚至4GB。32位虚拟机最大内存4GB（2^32）内存。
 ## 其他配置信息
 
  * -Xverify:none 是否在编译前检查类
+ * -verbos:gc 显示gc信息
  * -XX:+UseConcMarkSweepGC  使用CMS收集器（老年代）
  * -XX:+USeParNewGC (CMS默认的新生代收集器)
  * -XX:+PrintGCDetails 打印GC信息
@@ -39,4 +49,6 @@
  * -Xloggc:gclog.log 把GC日志打印到文件中
  * -Dsun.awt.keepWorkingSetOnMinimize=true 设置程序可以在后台运行，防止程序最小化之后，操作系统把内存数据转移到磁盘中，导致程序运行缓慢的问题
  * -Dcom.sun.management.jmxremote  允许JMX远程连接
- * -XX:+HeapDumpOnOutOfMemoryError 虚拟机出现OutOfMemory异常的时候自动生成dump文件
+ * -XX:+HeapDumpOnOutOfMemoryError 虚拟机出现内存溢出异常时Dump出当前的内存堆转储快照以便时候分析
+ * -XX:+UseCompressedOops:普通对象指针压缩功能（建议维持虚拟机默认的机制，不推荐使用）
+
