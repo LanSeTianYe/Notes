@@ -21,6 +21,9 @@
 		git config [--global] user.email "1498282352@qq.com"
         # 配置支持长路径文件
 		git config --global core.longpaths true
+        # 添加或删除远端
+	    git remote add remote_name https://github.com/longlongxiao/abc.git
+        git remote remove remote_name
 2. 项目初始化  
 
 		# 从远程仓库获取，默认名字是最后一个/号后面.git前面的内容
