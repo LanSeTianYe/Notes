@@ -23,7 +23,8 @@
  3. 多行注释 `--[[  --]]`
 
 ## 命令行参数
-* 在脚本中可以通过 arg[n] 来获取
+* 在脚本中可以通过 arg[n] 来获取  
+
 ![命令行参数](http://7xle4i.com1.z0.glb.clouddn.com/mackdownLua参数.jpg)
 
 ## 8中变量类型
@@ -105,7 +106,7 @@
 			end 
 
 * 泛型for循环
-* 
+
 		revDays = { ["Sunday"] = 1,		 ["Monday"] = 2,
 					["Tuesday"] = 3, 	 ["Wednesday"] = 4,
 					["Thursday"] = 5, 	 ["Friday"] = 6,

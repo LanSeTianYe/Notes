@@ -1,13 +1,22 @@
 ## 几个常用注解的使用
 #### @Bean
+
 > 标注在方法前面，表明方法的返回值将成为一个被Spring容器管理的Bean。
-#### @Configuration
+
+#### @Configuration  
+
 > 标注在类前面，表明类的方法会产生一个或者多个@Bean注解的方法将会被Spring容器初始化成为Bean，这些Bean会在运行时被请求。
-#### @EnableAutoConfiguration
+
+#### @EnableAutoConfiguration  
+
 > 注解在启动类前面，表明当你需要Bean的时候，会尝试自动去寻找并配置你需要的Bean。自动配置类依赖你的的ClassPath和已经定义的Bean。
-#### @ComponentScan
+
+#### @ComponentScan  
+
 > 配置在启动类前面，自动从有@Configuration配置的类里面扫描Bean组件。
-#### @SpringBootApplication
+
+#### @SpringBootApplication  
+
 如果你的启动类在根路径之下则 `@SpringBootApplication` 等价于 `@Configuration` 、 `@ComponentScan` 和 `@EnableAutoConfiguration`  
 
 SpringBoot建议你将主应用class（main application class）放在包根路径上，即其他子包之上。@EnableAutoConfiguration通常放在你的main class上，这样也隐含的指定了对某些配置项的搜索路径。比如，对@Entity的搜索。

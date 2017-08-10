@@ -101,6 +101,7 @@
 	4、`allkeys-random`：随机删除一个（所有）  
 	5、`volatile-ttl`：删除生存时间最近的  
 	6、`noeviction`：不删除键，只返回错误  
+
 ## 排序（很有用，只可以对列表，集合和有序集合进行排序）
 `sort key`可以对列表，集合有序集合进行排序，在对有序集合进行排序的时候，排序的依据是元素自身而不是对应的分数。  
 
@@ -164,7 +165,7 @@
 		redis 127.0.0.1:6379>
 
 * `sort key alpha desc limit 1 2` 获取指定的元素
-* 
+
 		# 跳过前一个元素依次取两个元素
 		redis 127.0.0.1:6379> sort user:2 alpha desc limit 1 2
 		1) "5"
@@ -229,7 +230,7 @@
 		4) "c1"
 		redis 127.0.0.1:6379>
 * `get #` 返回元素本身，即返回ids里面的内容
-* 
+
 		redis 127.0.0.1:6379> sort ids by computers*->num desc get computers*->name  get #
 		1) "c1"
 		2) "1"
@@ -328,7 +329,7 @@
 		(integer) 1
 
 * `psubscribe` 根据规则订阅（订阅的频道名可以包含glob风格的通配符）
-* 
+
 		//订阅客户端
 		redis 127.0.0.1:6379> psubscribe cannel*
 		Reading messages... (press Ctrl-C to quit)

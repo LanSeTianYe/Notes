@@ -48,6 +48,7 @@ SQL Server 默认在主键 `Id` 上面创建了一个聚合索引，所以根据
 
 1. 当只需要部分结果时使用 `top` 限制返回结果的数量。
 2. 当只需要部分字段的时候，限制返回结果的列数。
+
 #### 创建视图
 
     create view count as SELECT * from [user] WHERE name LIKE '%11'

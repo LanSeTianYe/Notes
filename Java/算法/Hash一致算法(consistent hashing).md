@@ -6,7 +6,7 @@ consistent hashing 算法早在 1997 年就在论文 Consistent hashing and rand
 * 基本场景  
 	比如你有 N 个 cache 服务器（后面简称 cache ），那么如何将一个对象 object 映射到 N 个 cache 上呢，你很可能会采用类似下面的通用方法计算 object 的 hash 值，然后均匀的映射到到 N 个 cache：
 
-			hash(object)%N
+		hash(object)%N
 
 	一切都运行正常，再考虑如下的两种情况；
 
@@ -59,10 +59,7 @@ Hash 算法的一个衡量指标是单调性（ Monotonicity ），定义如下�
 		… …
 		hash(cache C) = key C;
 
-
 	![图 3 cache 和对象的 key 值分布](http://7xle4i.com1.z0.glb.clouddn.com/consistenthashing3.JPG)
-
- 
 
 	说到这里，顺便提一下 cache 的 hash 计算，一般的方法可以使用 cache 机器的 IP 地址或者机器名作为 hash 输入。
 
@@ -84,17 +81,13 @@ Hash 算法的一个衡量指标是单调性（ Monotonicity ），定义如下�
 
 		因此这里仅需要变动对象 object4 ，将其重新映射到 cache C 上即可；参见图
 
-
 		![图 4 Cache B 被移除后的 cache 映射](http://7xle4i.com1.z0.glb.clouddn.com/consistenthashing4.JPG)
 
 	* 添加 cache
 
 		再考虑添加一台新的 cache D 的情况，假设在这个环形 hash 空间中， cache D 被映射在对象 object2 和 object3 之间。这时受影响的将仅是那些沿 cache D 逆时针遍历直到下一个 cache （ cache B ）之间的对象（它们是也本来映射到 cache C 上对象的一部分），将这些对象重新映射到 cache D 上即可。
 
- 
-
 		因此这里仅需要变动对象 object2 ，将其重新映射到 cache D 上；参见图 
-
 
 		![图 5 添加 cache D 后的映射关系](http://7xle4i.com1.z0.glb.clouddn.com/consistenthashing5.JPG)
 
@@ -114,8 +107,6 @@ Hash 算法的一个衡量指标是单调性（ Monotonicity ），定义如下�
 
 	![图 6 引入“虚拟节点”后的映射关系](http://7xle4i.com1.z0.glb.clouddn.com/consistenthashing6l.JPG)
 
- 
-
 	此时，对象到“虚拟节点”的映射关系为：
 
 		objec1->cache A2 ； objec2->cache A1 ； objec3->cache C1 ； objec4->cache C2 ；
@@ -125,8 +116,6 @@ Hash 算法的一个衡量指标是单调性（ Monotonicity ），定义如下�
 	引入“虚拟节点”后，映射关系就从 { 对象 -> 节点 } 转换到了 { 对象 -> 虚拟节点 } 。查询物体所在 cache 时的映射关系如图 7 所示。
 
 	![图 7 查询对象所在 cache](http://7xle4i.com1.z0.glb.clouddn.com/consistenthashing7.JPG)
-
- 
 
 	“虚拟节点”的 hash 计算可以采用对应节点的 IP 地址加数字后缀的方式。例如假设 cache A 的 IP 地址为 202.168.14.241 。
 

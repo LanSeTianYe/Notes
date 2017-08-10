@@ -1,3 +1,4 @@
+##   
 时间:2017/7/18 7:42:38   
 参考： 
   
@@ -12,8 +13,6 @@
  * databind（jackson-databind）：数据绑定
  * streaming（jackson-core）：流处理，数据写入文件
  * annotations（jackson-annotations）：注解
-
-
 
 ## 数据绑定
 
@@ -40,7 +39,6 @@ POJO：
 		value = mapper.readValue("{\"name\":\"Bob\", \"age\":13}", MyValue.class);
 
 2. 复杂对象使用 `TypeReference`
-
 
 		Map<String, ResultValue> results = mapper.readValue(jsonSource,new TypeReference<Map<String, MyValue>>() { } );
 

@@ -1,4 +1,5 @@
-## `@Configution` 里面的 `@Bean` 里面引用了 使用 `@Autowired`
+## `@Configution` 里面的 `@Bean` 里面引用了 使用 `@Autowired`  
+
 ### 问题描述
 `@Configution` 注解的类里面的 `@Bean` 注解的方法引用的类使用了 `@Autowired` 注解引入 `Service`，程序运行的时候报错。
 代码结构如下：

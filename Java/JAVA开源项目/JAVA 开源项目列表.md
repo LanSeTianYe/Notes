@@ -23,7 +23,6 @@
 		![](http://www.oschina.net/uploads/img/201003/10110357_6Cfu.jpg)
     * 可支持的图像处理方法有：
 		
-
 			* Open image.
 			* Save image
 			* Convert image

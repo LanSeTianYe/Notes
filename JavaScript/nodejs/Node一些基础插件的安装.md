@@ -12,6 +12,7 @@
 		set "NVMW_NODEJS_ORG_MIRROR=http://npm.taobao.org/mirrors/node"
 		set "NVMW_IOJS_ORG_MIRROR=http://npm.taobao.org/mirrors/iojs"
 		set "NVMW_NPM_MIRROR=http://npm.taobao.org/mirrors/npm"
+
 ## 3.ubuntu安装nvm插件
 1. 需要安装git版本管理工具。
 2. 克隆到本地

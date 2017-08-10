@@ -1,9 +1,10 @@
-##
+##  
 
 日期：2016-11-20 16:38:36   
 环境：  
 1. [dubbo-2.8.4](http://pan.baidu.com/s/1sltlR5b)  
 2. Spring Boot 项目
+
 ##
 
 ### 简介
@@ -13,6 +14,7 @@
 
 
 ### 搭建
+
 #### 服务提供端
 1. 本地安装dubbo包 ，在 dubbo，所在文件夹里，按住SHIFT 同时点击鼠标右键，选择打开命令行，执行如下代码：
 
@@ -50,7 +52,6 @@
         <!--版本号属性-->
         <properties>
         
-
             <dubbo-version>2.8.4</dubbo-version>
             <kryo-version>2.24.0</kryo-version>
             <kryo-serializers-version>0.26</kryo-serializers-version>
@@ -160,7 +161,6 @@
             http://code.alibabatech.com/schema/dubbo
             http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
         
-        
             <!-- 提供方应用名称信息，方便dubbo管理页面知道是哪个应用暴露出来的 -->
             <dubbo:application name="xiao_tian_provider" />
         
@@ -169,14 +169,11 @@
         
             <dubbo:protocol name="dubbo" port="20881"  serialization="kryo"/>
         
-        
-
             <!--提供远程服务-->
             <dubbo:service ref="authorityResourceService" interface="com.sun.xiaotian.authority.service.AuthorityResourceService"  loadbalance="leastactive" />
         </beans>
 
 6. 引用配置文件，启动类
-
 
         @SpringBootApplication
         @EnableTransactionManagement
@@ -226,7 +223,6 @@
             <dubbo:reference id="authorityResourceService" interface="com.sun.xiaotian.authority.service.AuthorityResourceService" retries="0" />
         </beans>
 3. 引用配置文件，已经测试。
-
         
         @SpringBootApplication
         @EnableTransactionManagement
@@ -239,7 +235,6 @@
         
             @Autowired
             private AuthorityUserAndRoleService authorityUserAndRoleService;
-        
         
             public static void main(String[] args) throws Exception {
                 //设置 dubbo 的日志系统

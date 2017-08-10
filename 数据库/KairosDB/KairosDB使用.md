@@ -4,13 +4,13 @@
 
 ### ubuntu安装  
 1. 解压之后，在bin目录里面运行 `./kairosdb.sh run` 即可启动。
+
 ### windows安装
 2. 解压之后, cmd命令行切换到bin目录下面，执行 `./kairosdb.bat run` 即可启动。
 
 ## 配置 `cassandra` 存储.
 1. 选用 `cassandrs`， 修改 `kairosdb` 的配置文件`kairosdb.properties`
 
-    
         #kairosdb.service.datastore=org.kairosdb.datastore.h2.H2Module
         kairosdb.datastore.concurrentQueryThreads=5
         kairosdb.service.datastore=org.kairosdb.datastore.cassandra.CassandraModule

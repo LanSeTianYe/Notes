@@ -1,11 +1,11 @@
-##### 基本语法元素  
+## 基本语法元素  
 
 * if     满足条件即添加，可以添加多个
 * choose(when,otherwise)    只添加一个，从上向下进行匹配
 * trim(where,set)
 * foreach
 
-###### if
+### if  
 
 	<select id="findActiveBlogWithTitleLike" parameterType="Blog" resultType="Blog">
 		SELECT * FROM BLOG WHERE state = "ACTIVE"
@@ -15,7 +15,7 @@
 	</select>
 作用：相当于在where里面增加了一个查询条件，只有传递的title不为空的时候才会添加该条件，当传递的title为空的时候，`title like #{title}`语句不会被添加，此时的查询语句相当于`SELECT * FROM BLOG WHERE state = "ACTIVE"`。意思类似于，在满足神么样的条件下添加该语句到SQL的条件中。
 用纯SQL的方式怎么实现动态SQL？
-###### choose , when, otherwise
+### choose , when, otherwise
 
 	<select id=”findActiveBlogLike” parameterType=”Blog” resultType=”Blog”>
 		SELECT * FROM BLOG WHERE state = “ACTIVE‟
@@ -34,7 +34,7 @@
 
 作用： 从第一个when开始匹配，找到匹配的即停止匹配，没找到则用others里面的。
 
-###### trim where set
+### trim where set
 
 可能出错的查询语句
 

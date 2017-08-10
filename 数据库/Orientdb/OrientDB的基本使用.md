@@ -55,8 +55,8 @@
 	    The JSON syntax:
 	
 	    orientdb> INSERT INTO Employee CONTENT {name : 'Jay', surname : 'Miner',gender : 'M'}
-10. **update**
 
+10. **update**
 
 	    The standard ANSI-92 syntax:
 	

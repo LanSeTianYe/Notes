@@ -1,8 +1,8 @@
 ## angular的三种启动方式
 
-1.  Angular会自动的找到ng-app，将它作为启动点，自动启动
-  * html
+1. Angular会自动的找到ng-app，将它作为启动点，自动启动
 
+  * html
 
 			<!DOCTYPE html>
 			<html ng-app="myModule">
@@ -30,7 +30,8 @@
 			    }
 			]);
 
-2. 手动启动
+2. 手动启动  
+
     > 在没有ng-app的情况下，只需要在js中添加一段注册代码即可
 
 			<body>
@@ -81,21 +82,21 @@
 				
 			</body>
 		</html>
+
   * js
   
-		//第一个模块
-		var firstModule = angular.module("firstApp",[]);
-		
-		firstModule.controller('FirstController',function($scope){
-			$scope.number = 1;
-		});
-		
-		
-		//第二个模块
-		var secondModule = angular.module("secondModule", []);
-		secondModule.controller('FirstController',function($scope) {
-		        $scope.number = "2";
-		});
-		angular.element(document).ready(function() {
-		    angular.bootstrap(secondAppId, ['secondModule']);
-		});
+			//第一个模块
+			var firstModule = angular.module("firstApp",[]);
+			
+			firstModule.controller('FirstController',function($scope){
+				$scope.number = 1;
+			});
+			
+			//第二个模块
+			var secondModule = angular.module("secondModule", []);
+			secondModule.controller('FirstController',function($scope) {
+			        $scope.number = "2";
+			});
+			angular.element(document).ready(function() {
+			    angular.bootstrap(secondAppId, ['secondModule']);
+			});

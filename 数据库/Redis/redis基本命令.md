@@ -17,7 +17,7 @@
 		redis 127.0.0.1:6379> type task001
 		hash
 
-##5种数据类型的常用操作
+## 5种数据类型的常用操作
 
 1. 字符串：Redis字符串是二进制安全的，这意味着他们有一个已知的长度没有任何特殊字符终止，所以你可以存储任何东西，最大容量512M。
  
@@ -92,7 +92,7 @@
 		3) "sun4"
 		redis 127.0.0.1:6379>
 
-##redis中的一些基础命令
+## redis中的一些基础命令
 ### 1、字符串操作
 	redis 127.0.0.1:6379> set name "sun"
 	OK
@@ -101,7 +101,6 @@
 * `select 0~15`   切换数据库,默认有16个数据库  
 
 * `keys pattern`  获取符合正则表达式的规则列表  
-
 
 		? 匹配一个字符  
 		* 匹配人一个字符  
@@ -194,25 +193,25 @@
 		redis 127.0.0.1:6379[1]>
 * `位操作...`
 
-###2、散列表的一些操作
+### 2、散列表的一些操作  
 
-		redis 127.0.0.1:6379> hmset user name sun age 20
-		OK
-		redis 127.0.0.1:6379> hgetall user
-		1) "name"
-		2) "sun"
-		3) "pasword"
-		4) "1"
-		5) "age"
-		6) "20"
-		redis 127.0.0.1:6379[1]> hgetall car:1
-		1) "name"
-		2) "BMW"
-		3) "color"
-		4) "black"
-		5) "price"
-		6) "10"
-		redis 127.0.0.1:6379[1]>
+	redis 127.0.0.1:6379> hmset user name sun age 20
+	OK
+	redis 127.0.0.1:6379> hgetall user
+	1) "name"
+	2) "sun"
+	3) "pasword"
+	4) "1"
+	5) "age"
+	6) "20"
+	redis 127.0.0.1:6379[1]> hgetall car:1
+	1) "name"
+	2) "BMW"
+	3) "color"
+	4) "black"
+	5) "price"
+	6) "10"
+	redis 127.0.0.1:6379[1]>
 
 * `hexists key filed` 判断对应key的字段是否存在
 
@@ -234,7 +233,6 @@
 		redis 127.0.0.1:6379[1]> hdel car:1 whight
 		(integer) 1
 * `hkeys key` 获取字段名
-
 
 		redis 127.0.0.1:6379[1]> hkeys car:1
 		1) "name"
@@ -444,7 +442,6 @@
 	* count > 0 获取count个不同的元素，count大于集合元素的个数的时候获取所有。
 	* count < 0 获取|count|个元素，可能重复
 
-	
 			redis 127.0.0.1:6379[1]> srandmember ABC 3
 			1) "e"
 			2) "d"
@@ -470,12 +467,12 @@
 		(integer) 2
 
 * `zadd key score member` 改变元素的分数
-* 
+
 		redis 127.0.0.1:6379[1]> zadd listSet 3 a
 		(integer) 0
 
 * ` zscore key member` 获取对应元素的分数
-* 
+
 		redis 127.0.0.1:6379[1]> zscore listSet a
 		"3"
 		redis 127.0.0.1:6379[1]> zscore listSet b
@@ -547,12 +544,10 @@
 
 * `zrem key members [members...]`删除一个或多个元素
 
-		
 		redis 127.0.0.1:6379[1]> zrem listSet a b c
 		(integer) 3
 
 * `zremrangebyscore key start end` 删除指定分数范围的元素
-
 
 		redis 127.0.0.1:6379[1]> zremrangebyscore listSet 3 (5
 		(integer) 1
@@ -565,6 +560,5 @@
 		(integer) 0
 * `zrevrank key member` 获取倒数排名
 
-		
 		redis 127.0.0.1:6379[1]> zrevrank listSet e
 		(integer) 2

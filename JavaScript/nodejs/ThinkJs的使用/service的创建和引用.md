@@ -18,8 +18,8 @@
 		//test-->service   home-->模块名
 		let testService = think.service("test", "home"); 
 		let instance = new testService();
-2. 不跨模块加载
 
+2. 不跨模块加载
 
 		let testService = think.service("test"); 
 		let instance = new testService();

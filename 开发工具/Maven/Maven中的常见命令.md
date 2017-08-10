@@ -1,14 +1,13 @@
-##Maven中的常见命令
+## Maven中的常见命令
 		
-
-		`maven -v`    				查看maven的版本
-		`maven clean` 				清除目标文件
-		`maven complie` 			编译源代码
-		`mvn test` 					执行测试
-		`mvn package`				编译并打包项目，生成jar包 
-		`mvn install` 				把当前项目发布到本地仓库中，如果其它项目依赖该模块就可以直接根据坐标从本
-                                    地仓库中查找
-		`mvn archetype:generate` 	自动创建目录
+	`maven -v`    				查看maven的版本
+	`maven clean` 				清除目标文件
+	`maven complie` 			编译源代码
+	`mvn test` 					执行测试
+	`mvn package`				编译并打包项目，生成jar包 
+	`mvn install` 				把当前项目发布到本地仓库中，如果其它项目依赖该模块就可以直接根据坐标从本
+                                地仓库中查找
+	`mvn archetype:generate` 	自动创建目录
 
 
 ## maven生命周期
@@ -75,9 +74,9 @@
 * groupId
 * artifactId
 * version
-* type
-
+* type  
 * scope依赖范围(test)只能在test目录下引入对应的类   
+
   compile 编译、测试和运行都有效  
   provided 测试和编译的时候有效，运行时不加入  
   runtime 测试和运行时有效  
@@ -85,22 +84,21 @@
   system 编译和测试的时候有效  
   import  只使用在dependencyManagement依赖管理表示从其他的pom中导入的dependency的配置
 	
- 
-		 <dependencies>
+		<dependencies>
 		    <dependency>
-		      <groupId>junit</groupId>
-		      <artifactId>junit</artifactId>
-		      <version>3.8.1</version>
-		      <!-- 依赖范围 -->
-		      <scope>test</scope>
-		    </dependency>
-		  </dependencies>
+			   <groupId>junit</groupId>
+			   <artifactId>junit</artifactId>
+			   <version>3.8.1</version>
+			   <!-- 依赖范围 -->
+			   <scope>test</scope>
+			</dependency>
+		</dependencies>
 
 * optional false 子项目继承  ture子项目必须显示引入
 * exclusions 排除依赖
 * exclusion
 * dependencyManagement依赖管理，供子模块继承
-* 
+
 		<dependencies>
 			<dependency>
 			</dependency>
@@ -111,7 +109,7 @@
 
 
 
-##pom文件配置jetty插件  
+## pom文件配置jetty插件  
 	<build>
     <plugins>
     	<plugin>
@@ -132,7 +130,7 @@
     </plugins>
     </build>
 
-##pom 配置tomcat插件
+## pom 配置tomcat插件
 	<build>
 	    <finalName>maven-demo</finalName>
 	    <plugins>
@@ -153,7 +151,7 @@
 	    	</plugin>
 	    </plugins>
 	  </build>
-##模块的依赖 直接写入对应的项目的坐标添加到项目即可
+## 模块的依赖 直接写入对应的项目的坐标添加到项目即可
 	<!-- 依赖的父模块 -->
     <dependency>
     	<groupId>com.sunfeilong.child1</groupId>
@@ -168,12 +166,14 @@
 	    </exclusions>
     </dependency>
 
-##依赖冲突
+## 依赖冲突
 1、短的路径优先  
+
 	A->B->C.jar  
 	A->B->E->C.jar  
 	结果：A依赖C.jar
 2、路径长度相同先声明的优先
+
     A->B->C.jar  
 	A->E->C.jar  
 	结果：如果先配置A->B则A依赖C.jar

@@ -1,11 +1,11 @@
-##
+##  
 日期：2016-11-07 21:38:22
   
 参考文章：  
 1. [理解RESTful架构](http://www.ruanyifeng.com/blog/2011/09/restful.html)  
 
 
-##
+##  
 #### REST 简介
 
 `REST` 是 `Representational State Transfer`（表现层状态转化） 的缩写。如果一个架构符合REST原则，就称它为RESTful架构。

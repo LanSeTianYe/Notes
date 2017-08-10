@@ -1,9 +1,11 @@
-##
+##  
 日期：2016-11-11 07:48:22  
 参考文章：  
 1.  [A Guide to Designing and Building RESTful Web Services with WCF 3.5](https://msdn.microsoft.com/en-us/library/dd203052.aspx)  
 2. [RESTful Web services: The basics](http://www.ibm.com/developerworks/library/ws-restful/)
-##
+
+
+##  
 
 
 #### RESTful 是什么？

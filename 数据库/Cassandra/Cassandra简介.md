@@ -35,7 +35,7 @@ Cassandra支持对一列数据进行insert、update、或delete操作。其中in
 ### 轻量级事务
 从2.0版开始，Cassandra支持轻量级事务。这种事务被称为“compare-and-set”，简称CAS。通过paxos算法实现在满足某条件后才修改数据否则不修改。目前支持"insert if not exist"、"update if col=value"、"delete if not exist"等几种操作。
 ### 数据类型
-Cassandra在CQL语言层面支持多种数据类型
+Cassandra在CQL语言层面支持多种数据类型  
 ![](http://7xle4i.com1.z0.glb.clouddn.com/Cassandra.jpg)
 ### 与类似开源系统的比较
 **Apache HBase**  

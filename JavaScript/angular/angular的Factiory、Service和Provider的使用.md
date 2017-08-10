@@ -1,4 +1,4 @@
-##
+##  
 日期 : 2016-5-16 22:27:41  
 参考地址：   
 [AngularJS 之 Factory vs Service vs Provider](http://www.oschina.net/translate/angularjs-factory-vs-service-vs-provider)

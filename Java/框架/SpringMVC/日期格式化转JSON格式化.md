@@ -1,8 +1,9 @@
-#####   步骤
+####   步骤  
+
 1. 自定义一个日期格式转换类
 2. 注解使用该类
 
-###### 自定义一个日期格式转换类	
+##### 自定义一个日期格式转换类	
 	import com.fasterxml.jackson.core.JsonGenerator;
 	import com.fasterxml.jackson.core.JsonProcessingException;
 	import com.fasterxml.jackson.databind.JsonSerializer;
@@ -23,7 +24,7 @@
 	}
 
 
-###### 注解使用该类（添加在get方法上面）
+##### 注解使用该类（添加在get方法上面）
 
 
 	@Temporal(TemporalType.TIMESTAMP)

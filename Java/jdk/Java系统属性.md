@@ -1,4 +1,4 @@
-##
+##  
 时间：2017/4/13 13:25:39 
 
 ##  java.awt.headless
@@ -10,7 +10,6 @@
 
  * 遇到问题：  
    Web项目，使用 JFreechart 生成图表，在本地电脑部署项目可以正常生成，在服务器上出现如下错误：
-
 
 		Handler processing failed; nested exception is java.lang.NoClassDefFoundError: Could not initialize class org.jfree.chart.JFreeChart
  * 问题原因：  

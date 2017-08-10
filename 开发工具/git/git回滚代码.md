@@ -11,8 +11,8 @@
 #####  1.没有push
 这种情况发生在你的本地代码仓库,可能你add ,commit 以后发现代码有点问题,准备取消提交,用到下面命令
 		
-		reset
-		git reset [--soft | --mixed | --hard
+	reset
+	git reset [--soft | --mixed | --hard
 
 * **mixed**
 
@@ -47,7 +47,6 @@
 
 	revert 之后你的本地代码会回滚到指定的历史版本,这时你再 git push 既可以把线上的代码更新.(这里不会像reset造成冲突的问题)
 
-
 	revert 使用,需要先找到你想回滚版本唯一的commit标识代码,可以用 git log 或者在adgit搭建的web环境历史提交记录里查看.
 
 		git revert c011eb3c20ba6fb38cc94fe5a8dda366a3990c61
@@ -55,7 +54,6 @@
 	通常,前几位即可
 
 		git revert c011eb3
-
 
 	git revert是用一次新的commit来回滚之前的commit，git reset是直接删除指定的commit
 

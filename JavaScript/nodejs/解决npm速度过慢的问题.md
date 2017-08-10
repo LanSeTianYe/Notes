@@ -5,7 +5,6 @@
 
 2. 安装模块
 
-
 		cnpm install [name]
 
 3. 同步模块

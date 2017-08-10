@@ -1,6 +1,8 @@
 日期 : 2016/5/16 14:49:38 
 
-# 结合 `angular` 使用
+
+# 结合 `angular` 使用  
+
 ## 怎么使用，在 `grid` 里面的代码
 
 1. 创建一个factory
@@ -128,7 +130,6 @@
         .controller("MyController", function (validation) {
 
 3. 使用 
-
 
         model: {
             id: "id",

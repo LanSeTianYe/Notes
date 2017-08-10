@@ -50,7 +50,6 @@ Tomca支持的并发数为300-500， nginx支持的并发数为 50000。
 		}
 2. 修改 `location /` 的内容如下：
 
-
 		location / { 
             root   html; 
             index  index.html index.htm; 

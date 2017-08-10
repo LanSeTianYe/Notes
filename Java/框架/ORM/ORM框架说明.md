@@ -22,9 +22,10 @@ Object-Relational Mapping 即对象关系映射，把对象以及对象之间的
  * mirage 
  * SMYLE 
  * TopLink 
-## 常见ORM框架比较
 
-### 1、JPA（Java Persistence API）
+
+## 常见ORM框架比较  
+### 1、JPA（Java Persistence API）  
 Java 持久化API，是一个独立于供应商的、用于映射Java对象和关系型数据库表的规范。使得开发人员可以通过对象的方式操作数据库。使得应用程序的开发者们可以不依赖于他们工作中面对的特定数据库产品，从而开发出可以与不同数据库产品良好工作的CRUD（创建、读取、更新、删除）操作代码。
 
 JPA由三个不同组件构成：
@@ -110,7 +111,6 @@ JPA只是一种规范，具体的实现如Hibernate、EclipseLink（toplink）�
 			get()&set()
 		}
 * 查询
-
 
 		EntityManagerFactory factory = null;
 		EntityManager entityManager = null;
