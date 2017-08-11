@@ -37,7 +37,7 @@
 		5) "age"
 		6) "20"
 
-3. 列表：Redis的列表是简单的字符串列表，排序插入顺序。可以添加元素到Redis的列表的头部或尾部，列表的最大长度为 2[32] - 1 元素（4294967295，每个列表中可容纳超过4十亿的元素）。（必须有list）。
+3. 列表：Redis的列表是简单的字符串列表，按插入顺序。可以添加元素到Redis的列表的头部或尾部，列表的最大长度为 2[32] - 1 元素（4294967295，每个列表中可容纳超过4十亿的元素）。（必须有list）。
 
 		redis 127.0.0.1:6379> lpush numberlist 1
 		(integer) 1
@@ -54,7 +54,7 @@
 		4) "3"
 		redis 127.0.0.1:6379>
 
-4. 集合:Redis的集合是字符串的无序集合。在Redis您可以添加，删除和测试文件是否存在，在成员O（1）的时间复杂度。
+4. 集合:Redis的集合是字符串的无序集合。在Redis中你可以添加，删除和测试值是否存在，这些操作只需要 O（1）的时间复杂度。
 
 		redis 127.0.0.1:6379> sadd namelist sun
 		(integer) 1
@@ -280,7 +280,7 @@
 		redis 127.0.0.1:6379[1]> llen numbers
 		(integer) 1
 
-* `lrange key start end` 获取列表的片段（包含最右边的元素[0，10]），-1表示最右边第一个元素，-2表示最右边第二个元素，一次类推
+* `lrange key start end` 获取列表的片段（包含最右边的元素[0，10]），`end` 为-1表示最右边第一个元素，-2表示最右边第二个元素，以此类推
 * 
 		redis 127.0.0.1:6379[1]> lrange numbers 0 10
 		1) "2"
@@ -289,9 +289,9 @@
 
 * `lrem key count value` 删除列表中的值，会删除列表前count个value.
 * 注：
-	* count > 0 从左侧开始删除
-	* count < 0 从右侧开始删除
-	* count = 0 删除所有
+	* count > 0 从左侧开始删除对应的 `value`
+	* count < 0 从右侧开始删除对应的 `value`
+	* count = 0 删除所有的 `value`
 
 			redis 127.0.0.1:6379[1]> lrange numbers 0 10
 			1) "2"
@@ -305,7 +305,7 @@
 			2) "1"
 			redis 127.0.0.1:6379[1]>
 
-* `lindex key index` `lset key index value`获取和设置对应索引的值
+* `lindex key index` `lset key index value` 获取和设置对应索引的值（索引从零开始）。
 
 		redis 127.0.0.1:6379[1]> lset numbers 0 3
 		OK
@@ -313,7 +313,7 @@
 		"3"
 		redis 127.0.0.1:6379[1]>
 
-* `ltrim key start end` 删除指定范围外的所有元素
+* `ltrim key start end` 删除指定范围外的所有元素(start和end不会被删除)
 
 		redis 127.0.0.1:6379[1]> lrange numbers 0 10
 		 1) "3456789"
@@ -471,7 +471,7 @@
 		redis 127.0.0.1:6379[1]> zadd listSet 3 a
 		(integer) 0
 
-* ` zscore key member` 获取对应元素的分数
+* `zscore key member` 获取对应元素的分数
 
 		redis 127.0.0.1:6379[1]> zscore listSet a
 		"3"
@@ -490,7 +490,7 @@
 		3) "a"
 		4) "inf"
 
-* `zrangebyscore key startscore （endscore` 获取指定分数范围内的元素 `(`不包含端点
+* `zrangebyscore key startscore endscore` 获取指定分数范围内的元素 `(` 表示不包含端点。
 
 		redis 127.0.0.1:6379[1]> zrangebyscore listSet 1 10
 		1) "b"
@@ -542,7 +542,7 @@
 		(integer) 2
 		redis 127.0.0.1:6379[1]>
 
-* `zrem key members [members...]`删除一个或多个元素
+* `zrem key members [members...]` 删除一个或多个元素
 
 		redis 127.0.0.1:6379[1]> zrem listSet a b c
 		(integer) 3

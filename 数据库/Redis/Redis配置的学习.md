@@ -13,7 +13,7 @@
 * 另外save(主)和bgsave(子)命令也可以执行快照命令.
 * 可以通过 dir(默认 dir ./) dbfilename(默认dump.rdb) 配置保存文件的目录和名字。
 
-## AOF(append only file) 方式持久话数据
+## AOF(append only file) 方式持久化数据
 * 开启方式 配置文件中  `appendonly yes`
 * 保存的文件名字  `appendfilename appendonly.aof`
 * 开启之后 每一条回改变redis中的数据的命令都会被追加到文件中。
@@ -39,7 +39,7 @@
 * 可以设置 `slave-read-only yes`设置从服务器可写。
 * `laveof no one` 停止从主服务器接收数据
 * 用途实现读写分离，主数据库负责写，从数据库负责读。
-* 数据安全：当从数据库崩溃时从其即可同步主数据库的数据，当主服务器崩溃的时候，把从服务器提升为主服务器即可。
+* 数据安全：当从数据库崩溃时重启即可同步主数据库的数据，当主服务器崩溃的时候，把从服务器提升为主服务器即可。
 
 ## reids的安全
 * 前提Redis运行在可信的环境下

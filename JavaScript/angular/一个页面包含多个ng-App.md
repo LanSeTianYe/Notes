@@ -61,27 +61,27 @@
 
   * html
 
-		<!DOCTYPE html>
-		<html>
-			<head>
-				<meta charset="utf-8">
-				
-				<script type="text/javascript" src="../InitAngular/js/angular-1.4.3/angular.js" " ></script>
-				<script type="text/javascript" src="../InitAngular/js/init.js" ></script>
-				
-				<title></title>
-			</head>
-			<body>
-				<div ng-app="firstApp" ng-controller="FirstController">
-					{{number}}
-				</div>
-				
-				<div id="secondAppId" ng-app="secondApp" ng-controller="FirstController">
-					{{number}}
-				</div>
-				
-			</body>
-		</html>
+			<!DOCTYPE html>
+			<html>
+				<head>
+					<meta charset="utf-8">
+					
+					<script type="text/javascript" src="../InitAngular/js/angular-1.4.3/angular.js" " ></script>
+					<script type="text/javascript" src="../InitAngular/js/init.js" ></script>
+					
+					<title></title>
+				</head>
+				<body>
+					<div ng-app="firstApp" ng-controller="FirstController">
+						{{number}}
+					</div>
+					
+					<div id="secondAppId" ng-app="secondApp" ng-controller="FirstController">
+						{{number}}
+					</div>
+					
+				</body>
+			</html>
 
   * js
   
