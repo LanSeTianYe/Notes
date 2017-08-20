@@ -1,27 +1,103 @@
-[参考地址](http://www.cnblogs.com/xpxu/p/4300013.html)
-## 个人信息
-* 姓名：孙飞龙
-* 性别：男
-* 年龄：24
-* 学历：本科
-* 工作经验：2年
-* 手机：15210012050
-* 邮箱：sunfeilong1993@163.com
-* 毕业院校：河南工业大学
-## 工作经历
-（工作经历按逆序排列，最新的在最前边，按公司做一级分组，公司内按二级分组）  
-ABC公司 （ 2012年9月 ~ 2014年9月 ）  
-DEF项目  
-我在此项目负责了哪些工作，分别在哪些地方做得出色/和别人不一样/成长快，这个项目中，我最困难的问题是什么，我采取了什么措施，最后结果如何。这个项目中，我最自豪的技术细节是什么，为什么，实施前和实施后的数据对比如何，同事和领导对此的反应如何。
-## 技能清单
-* 开发语言：Java/JavaScript。
-* Web框架：SpringMVC/SpringBoot/SpringData
-* 前端框架：AngularJs/KendoUI/ECharts
-* 开发框架：Shiro/Quartz/iText/JFreeChart
-* 关系型数据库：MySql/SQL Server
-* NoSql数据库：KairosDB/Redis
-* 开发工具：Intellij IDEA/Git/Maven
+## 联系方式  
+ * 手机：152 1001 2050
+ * Emial：sunfeilong1993@163.com
+ * QQ：1498282352(蓝田)
 
-## 知识积累
+## 个人信息   
+* 孙飞龙/男/1993
+* 本科/软件工程/河南工业大学
+* 工作年限：2年
+* 期望职位：Java开发工程师  
+* 工作地点：北京
+* GitHub：[https://github.com/sunfeilong1993](https://github.com/sunfeilong1993)
 
-[个人笔记](https://github.com/longlongxiao/Notes)
+
+
+
+## 工作经历  
+
+#### 北京合思信息技术有限公司 [2017-06至2017-07 (2个月)] 
+
+##  
+#### [易快报](https://www.ekuaibao.com/)
+
+**主要工作：**   
+
+* 通讯录模块接口开发：员工数据从第三方平台导入，考虑不同第三方平台用户数据的不一致性，通过配置文件的方式控制员工信息的可编辑性。
+* 短信验证码通用接口开发：作为基础服务，提供发送短信的接口，结合Redis的能力，实现对发送频率和验证频率的限制。  
+* 全局字段模块的改造工作：改造的是项目的一个基础模块，影响范围比较大，由于自己对项目各模块不是熟悉，最后是在原项目成员的帮助下完成的。在这个过程中接触到了一种新的编程思想：元编程。
+* 指导初级开发人员使用公司内部框架：指导初级开发人员，使用公司框架开发，最终完成滴滴绑定和滴滴数据导入功能。     
+
+**收获与成长：**  
+
+* 新的一家公司，所用的技术和自己的技术栈基本不匹配，刚开始经历过一段困难时期，经过自己的不断学习和问问题，慢慢的熟悉了公司的技术栈，开始有了输出。     
+* 在这里的两个月时间，自己得到了很大的提高，比如说编码的规范性，设计思想和交流表达能力。写代码的时候开始考虑一些更细节的问题，开始考虑有没有更好的替代方案，开始考虑并发过程中可能会出现的问题，开始考虑自己的代码有没有bug等等。
+* 接触到的新技术和框架：Docker、Rancher、Maxwell、Etcd、MongoDB、Drill、Jersey、gRPC和RxJava等。
+
+
+#### 翼虎能源科技有限公司 [2015-07至2017-05 (1年10个月)]
+
+##  
+#### [Abas超级楼控管理云平台](http://www.tslgy.com/r_abas/login)   
+
+
+**项目框架：**  
+
+* 后台框架：SpringMVC、SpringBoot、SpringData和Shiro等。
+* 前端框架：AngularJs、jQuery、KendoUI和ECharts等。
+* 数 据 库：MySQL(项目数据存储) 和 KairosDb(项目设备运行数据存储)。
+* 组件工具：Redis(缓存)、dubbo+zookeeper(微服务)、nginx+tomcat（负载均衡）。
+
+**主要工作：**  
+
+* 权限管理模块开发：基于Shiro开发权限管理模块。了解了加密解密算法相关的内容，理清了资源、角色和用户之间的关系。
+* 用能报告模块开发：在Web页面进行配置，然后根据Web页面的配置计算生成建筑的用能报告（PDF类型文件包含图表和表格）。通过对比测试图表生成工具最终选择使用JfreeChart，以及iText7作为基础工具类库，通过阅读文档，查找资料，最终完成功能。
+* 数据导入、Excel报表导出以及数据转移工具开发：通过定义和协商导入和导出模板格式，之后开发对应的功能。
+* DashBoard开发：开发可配置的项目首页，配置信息以JSON的方式存储在数据库中，后台只负责存取，前端负责数据解析和逻辑实现，简化配置功能的复杂度。
+* 开发基于AngularJs的表单验证插件：利用AngularJs的指令和数据绑定开发了一套简单易用的表单验证插件，提高前端开发效率。
+* 数据库备份和查询优化：学会使用Oracle数据库增量备份和恢复，并生成文档。学习MySQL慢查询优化方式，并生文档。
+
+**收获与成长：**  
+
+* 接触到KairosDB、Redis等，开始了解NoSQL数据库，开始NoSQL数据库的学习使用。
+* 接触到了Dubbo、ZooKeeper和kafKa等框架和组件，学会了它们的特性，以及应用场景。
+* 开始开发节省时间的工具：如表单验证插件（虽然网上已经存在一些，但是相对来说比较复杂），开始研究一种语言或工具的更高级的用法。
+* 在阅读一些开源组件的官方文档过程中，自己的英文阅读能力得到了提升。
+
+##  
+#### 凯燕国际酒店工程考评管理系统  
+
+**项目描述：**  
+
+维护酒店任务和档案资料，把任务的执行过程数据化，方便酒店管理人员管理和分派任务，以及查看任务的状态和任务的执行过程。通过层级关系，把集团用户，酒店总监、维修主管和维修工类型的用户管理起来，方便任务的分配和责任监管。统计分析任务完成情况，通过图表直观展示任务汇总信息。
+
+**主要工作：**  
+
+* 需求讨论：讨论各模块的需求，明确需求的可行性，最终确定需求。
+* 数据库设计：讨论分析系统各模块之间的关系，设计合理的数据表，以及对应的实体关系。
+* 前后端（伪）分离框架搭建：抛弃原始的由后台控制页面跳转逻辑的做法，在前端通过AngularJs的路由功能控制页面跳转，后台只提供数据接口，降低前后端的耦合性。
+* 项目各模块功能开发：在Web同事的帮助下，完成项目各模块功能开发，主要包含权限模块、任务模块和档案模块的前端数据交互和后台数据接口开发。
+
+
+## 开源项目和作品 
+
+#### 开源项目 
+* [XiaoTian](https://github.com/longlongxiao/XiaoTian)：汇集自己工作和学习的代码，以及一些技术和组件实际应用的Demo。
+* 博客项目：把包含md文件的文件夹和md文件转换为博客（已完成）。下一步考虑从GitHub项目中抓取数据，生成博客。最终做一个平台，支持用户接入。
+	* [Blogger_Backstage](https://github.com/longlongxiao/Blogger_Backstage) 博客项目后台
+	* [Blogger_FrontEnd](https://github.com/longlongxiao/Blogger_FrontEnd) 博客项目前端
+#### 知识积累    
+* [个人笔记](https://github.com/longlongxiao/Notes) 
+
+注：推荐使用 [octotree](https://github.com/buunguyen/octotree) （Google浏览器插件），可以方便浏览GitHub项目。 
+
+## 技能清单  
+* Web开发：Java/JavaScript/HTML/CSS  
+* Web框架：SpringBoot/SpringData   
+* 前端框架：AngularJs/jQuery/KendoUI/ECharts  
+* 类库工具：Dubbo/Shiro/Quartz/iText/JFreeChart  
+* 数据库：MySQL/SQL Server/KairosDB/Redis  
+* 组件工具：Kafka/ZooKeeper  
+* 项目管理、版本管理和开发工具：Maven、Gradle/Git、Svn/Intellij IDEA   
+* 项目部署服务器：Tomcat、Nginx  
+* 操作系统：Windows/Linux/Mac  
