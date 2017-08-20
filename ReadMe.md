@@ -1,3 +1,6 @@
+##  
+推荐使用 [octotree](https://github.com/buunguyen/octotree) Google浏览器插件，方便浏览GitHub项目。
+
 ## 项目说明  
 ### 描述  
 1. 一个简单的知识库，用于记录工作和学习过程中用到的知识。
