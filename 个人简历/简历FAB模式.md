@@ -17,7 +17,7 @@
 2. 熟悉数据结构和算法，了解计算机基础知识。熟悉常用加密解密技术。
 3. 熟练掌握SpringMVC、SpringBoot和SpringData等框架。熟悉Struts、Spring和Hibernate框架使用方法及工作原理。
 4. 熟练掌握AngularJs、jQuery和Echarts等前端框架，有Node使用经验。  
-5. 熟悉SQL Server和MySql数据库的使用，以及简单的Sql性能优化分析。熟悉KairosDB和Redis等NoSql数据库使用，以及Redis集群搭建及配置。  
+5. 熟悉SQL Server和MySql数据库的使用，以及Sql性能优化分析。熟悉KairosDB和Redis等NoSql数据库使用，以及Redis集群搭建及配置。  
 6. 熟悉Shiro、Ehcache、Quartz、JFreeChart和iText等框架的使用。  
 7. 熟悉RPC框架Dubbo的使用，熟悉WebSocket和消息队列等技术使用。  
 8. 熟悉Tomcat、Nginx服务器配置和使用。  
