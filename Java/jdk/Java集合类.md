@@ -1,10 +1,10 @@
 ##  
-时间：2017/3/18 17:39:18 
+时间：2017/3/18 17:39:18  
 
-## 集合类
+## 集合类  
 
-### List 列表
-#### ArrayList（非线程安全）
+### List 列表  
+#### ArrayList（非线程安全）  
 **描述**：  
 内部使用数组实现，数组有默认初始大小，插入元素时如果元素个数超过数组大小，在重新初始化一个更大的数组存放数字。
 
@@ -12,18 +12,20 @@
 
  * 优点：根据位置（第几个）访问元素块。
  * 缺点：删除元素效率低。
-#### LinkedList（非线程安全）
+
+#### LinkedList（非线程安全）    
 **描述**：   
 内部用链表的方式实现，容量大小不收限制。  
 **优缺点**：  
 
  * 优点：删除元素效率高。
- * 缺点：根据位置（第几个）访问元素慢。
-#### Vector（线程安全）
+ * 缺点：根据位置（第几个）访问元素慢。   
+
+#### Vector（线程安全）  
 **描述**：  
 基本等同于ArrayList，但由于是线程安全的，单线程情况下，性能相对ArrayList差。
 
-### Stack 栈(线程安全)
+### Stack 栈(线程安全)  
 **描述**:   
 继承 Vector。Vector是线程安全的容器类。  
 **主要方法**：  
@@ -35,9 +37,9 @@
 
 ### Queue 队列
 
-#### ArrayList和LinkedList（非线程安全）
+#### ArrayList和LinkedList（非线程安全）  
 **描述**：  
-ArrayList和LinkedList实现了Queue接口，可以通过 `Queue<String> queue = new ArrayList<>()` 的方式初始化队列。  
+LinkedList实现了Dueue(Dueue实现了Queue)接口，可以通过 `Queue<String> queue = new LinkedList<>()` 的方式初始化队列。  
 **主要方法**：  
 
  * add : 插入队尾，没有空间可用抛出异常
@@ -68,7 +70,7 @@ ArrayList和LinkedList实现了Queue接口，可以通过 `Queue<String> queue =
 继承HashSet，元素按添加的顺序进行排序，不能有重复元素。
 ####  TreeSet（非线程安全)  
 **描述**：  
-元素不能重复，切有序。基本操作（add、remove 和 contains）提供受保证的 log(n) 时间开销。
+元素不能重复，且有序。基本操作（add、remove 和 contains）提供受保证的 log(n) 时间开销。
 ### Map 键值存储
 #### HashMap（非线程安全）
 **描述**：  
