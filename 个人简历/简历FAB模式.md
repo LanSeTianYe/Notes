@@ -14,14 +14,13 @@
 
 ## 知识技能  
 1. 熟练掌握Java基础知识以及面向对象的程序设计思想，熟悉常用设计模式。
-2. 熟悉数据结构和算法，了解计算机基础知识。
-3. 熟练掌握SpringBoot和SpringData等框架使用。
-4. 熟练掌握AngularJs、jQuery和Echarts等前端框架。  
-5. 熟悉SQL Server和MySql数据库的使用。熟悉KairosDB和Redis等NoSql数据库使用。
+3. 熟悉SpringBoot和SpringData等框架使用。了解Struts、Spring和Hibernate等框架。
+4. 熟悉JavaScript、HTML和CSS等前端技术。  
+5. 熟悉SQL Server和MySql等数据库的使用。熟悉KairosDB和Redis等NoSql数据库使用。
 6. 熟悉Shiro、Ehcache、Quartz、JFreeChart和iText等框架的使用。   
+7. 了解分布式服务架构Dubbo，以及Kafka和Zookeeper等开源组件的使用。
 8. 熟悉Tomcat、Nginx服务器配置和使用。  
-9. 了解Kafka和Zookeeper等开源组件的使用。
-10. 熟练掌握Git、Maven和Intellij IDEA等项目管理和开发工具的使用方法。
+9. 熟练掌握Git、Maven和Intellij IDEA等项目管理和开发工具的使用。
 
 ## 工作经历
 
@@ -31,7 +30,7 @@
 
 **工作简介：**  
 
-* 负责后台接口开发。  
+* 后台接口开发。  
 * 指导同事使用公司框架进行项目开发。   
 * 参与需求讨评审，讨论项目功能改造方案。  
 
@@ -43,8 +42,8 @@
   
 **工作简介：**   
 
-* 项目新模块开发以及模块功能改进。  
-* 项目工具开发。
+* 新模块开发以及旧模块功能改进。  
+* 项目运维工具开发。
 * 参与需求讨论，确定项目技术方案。
 
 ##  
