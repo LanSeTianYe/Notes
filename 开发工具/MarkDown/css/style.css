@@ -12,7 +12,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 
 body {
     font-family: "lucida grande", "lucida sans unicode", lucida, helvetica, "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
-    font-size: 13px;
+    font-size: 15px;
     line-height: 1.7;
     font-weight: normal;
     color: #333;
@@ -204,7 +204,7 @@ pre {
     background-color: #ffffff;
     border: 1px solid #ccc;
     font-size: 18px;
-    line-height: 25px;
+    line-height: 20px;
     overflow: auto;
     padding: 6px 10px;
     border-radius: 3px;
