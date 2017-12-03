@@ -134,3 +134,112 @@
 		stream.writeAsText("/path/to/local/output.txt", Serdes.ByteArray(), Serdes.String());
 
 ### 有状态转换   
+
+1. Aggregate（KGroupedStream → KTable or KGroupedTable → KTable）：  滚动聚合，通过 group key 聚合记录的值。  
+
+		KGroupedStream<Bytes, String> groupedStream = ...;
+		KGroupedTable<Bytes, String> groupedTable = ...;
+		
+		// Aggregating a KGroupedStream (note how the value type changes from String to Long)
+		KTable<Bytes, Long> aggregatedStream = groupedStream.aggregate(
+	    () -> 0L, /* initializer */
+	    (aggKey, newValue, aggValue) -> aggValue + newValue.length(), /* adder */
+	    Serdes.Long(), /* serde for aggregate value */
+	    "aggregated-stream-store" /* state store name */);
+
+		// Aggregating a KGroupedTable (note how the value type changes from String to Long)
+		KTable<Bytes, Long> aggregatedTable = groupedTable.aggregate(
+	    () -> 0L, /* initializer */
+	    (aggKey, newValue, aggValue) -> aggValue + newValue.length(), /* adder */
+	    (aggKey, oldValue, aggValue) -> aggValue - oldValue.length(), /* subtractor */
+	    Serdes.Long(), /* serde for aggregate value */
+	    "aggregated-table-store" /* state store name */);
+
+		// windowed aggregation
+		KTable<Windowed<Bytes>, Long> windowedAggregate = groupedStream.windowedBy(TimeWindows.of(TimeUnit.MINUTES(5).toMillis()).aggregate(
+			() -> 0L, /* initializer */
+	        (aggKey, newValue, aggValue) -> aggValue + newValue.length(), /* aggregator */
+	        Serdes.Long()) /* serde for aggregate value */
+2. Aggregate (windowed)（KGroupedStream → KTable）：窗口聚合，根据 group key，聚合每个窗口的记录。  
+
+		KGroupedStream<String, Long> groupedStream = ...;
+
+		KTable<Windowed<String>, Long> timeWindowedAggregatedStream = groupedStream
+		    .windowedBy(TimeWindows.of(TimeUnit.MINUTES.toMillis(5))) /* time-based window */
+		    .aggregate(
+		        () -> 0L, /* initializer */
+		        (aggKey, newValue, aggValue) -> aggValue + newValue, /* adder */
+		        Materialized.<String, Long, WindowStore<Bytes, byte[]>>as("time-windowed-aggregated-stream-store") /* state store name */
+		            .withValueSerde(Serdes.Long())); /* serde for aggregate value */
+
+		// Aggregating with session-based windowing (here: with an inactivity gap of 5 minutes)
+		KTable<Windowed<String>, Long> sessionizedAggregatedStream = groupedStream
+		    .windowedBy(SessionWindows.with(TimeUnit.MINUTES.toMillis(5))) /* session window */
+		    .aggregate(
+		        () -> 0L, /* initializer */
+		        (aggKey, newValue, aggValue) -> aggValue + newValue, /* adder */
+		        (aggKey, leftAggValue, rightAggValue) -> leftAggValue + rightAggValue, /* session merger */
+		        Materialized.<String, Long, SessionStore<Bytes, byte[]>>as("sessionized-aggregated-stream-store") /* state store name */
+		            .withValueSerde(Serdes.Long())); /* serde for aggregate value */
+				
+3. Count（KGroupedStream → KTable or KGroupedTable → KTable）：滚动聚合，根据 group key 统计每个 group里面的数量。  
+
+		KGroupedStream<String, Long> groupedStream = ...;
+		KGroupedTable<String, Long> groupedTable = ...;
+		 
+		// Counting a KGroupedStream
+		KTable<String, Long> aggregatedStream = groupedStream.count();
+		 
+		// Counting a KGroupedTable
+		KTable<String, Long> aggregatedTable = groupedTable.count();
+4. Count (Windowed)（KGroupedStream → KTabl）：窗口聚合，根据 group key统计每个窗口里每个分组的里面的数量。  
+
+		KGroupedStream<String, Long> groupedStream = ...;
+		 
+		// Counting a KGroupedStream with time-based windowing (here: with 5-minute tumbling windows)
+		KTable<Windowed<String>, Long> aggregatedStream = groupedStream
+		    .windowedBy(TimeWindows.of(TimeUnit.MINUTES.toMillis(5))) /* time-based window */
+		    .count();
+		 
+		// Counting a KGroupedStream with session-based windowing (here: with 5-minute inactivity gaps)
+		KTable<Windowed<String>, Long> aggregatedStream = groupedStream
+		    .windowedBy(SessionWindows.with(TimeUnit.MINUTES.toMillis(5))) /* session window */
+		    .count();
+5. Reduce（KGroupedStream → KTable or KGroupedTable → KTable）： 滚动聚合，根据 group key 组合记录的值，返回值类型不能改变。  
+
+		KGroupedStream<String, Long> groupedStream = ...;
+		KGroupedTable<String, Long> groupedTable = ...;
+		 
+		// Java 8+ examples, using lambda expressions
+		 
+		// Reducing a KGroupedStream
+		KTable<String, Long> aggregatedStream = groupedStream.reduce(
+		    (aggValue, newValue) -> aggValue + newValue /* adder */
+		);
+		 
+		// Reducing a KGroupedTable
+		KTable<String, Long> aggregatedTable = groupedTable.reduce(
+		    (aggValue, newValue) -> aggValue + newValue, /* adder */
+		    (aggValue, oldValue) -> aggValue - oldValue /* subtractor */
+		);
+6. Reduce (windowed)（KGroupedStream → KTable）： 窗口聚合，港剧 group key 组合每个窗口里面的每个分组的记录。  
+
+		KGroupedStream<String, Long> groupedStream = ...;
+		 
+		// Aggregating with time-based windowing (here: with 5-minute tumbling windows)
+		KTable<Windowed<String>, Long> timeWindowedAggregatedStream = groupedStream
+		    .windowedBy(TimeWindows.of(TimeUnit.MINUTES.toMillis(5))) /* time-based window */
+		    .reduce((aggValue, newValue) -> aggValue + newValue /* adder */);
+		 
+		// Aggregating with session-based windowing (here: with an inactivity gap of 5 minutes)
+		KTable<Windowed<String>, Long> sessionzedAggregatedStream = groupedStream
+		    .windowedBy(SessionWindows.with(TimeUnit.MINUTES.toMillis(5))) /* session window */
+		    .reduce((aggValue, newValue) -> aggValue + newValue); /* adder */
+
+### 合并多个流 (join)    
+
+1. KStream -> KStream : 
+2. KTable -> KTable:  
+3. KStream -> KTable:  
+4. KStream -> GlobalKTable:  
+
