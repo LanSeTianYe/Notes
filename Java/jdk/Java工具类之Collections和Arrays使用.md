@@ -76,8 +76,6 @@
 		public static <K,V> Map<K,V> synchronizedMap(Map<K,V> m) 
 		public static <K,V> SortedMap<K,V> synchronizedSortedMap(SortedMap<K,V> m) 
 		public static <K,V> NavigableMap<K,V> synchronizedNavigableMap(NavigableMap<K,V> m)
-	
-	
 
 	源代码：
 
@@ -117,14 +115,13 @@
 		public static <K,V> SortedMap<K,V> checkedSortedMap(SortedMap<K, V> m,Class<K> keyType,Class<V> valueType)
 		public static <K,V> NavigableMap<K,V> checkedNavigableMap(NavigableMap<K, V> m,Class<K> keyType,Class<V> valueType) 
 		
-		
       固化无类型集合的类型，当你获得一个无类型的集合，你可以通过该方法指定集合的类型。
 
 		//无类型
 		List objectArrayList = new ArrayList<>();
 		//固化类型
         Collection<String> checkedCollection = Collections.checkedCollection(objectArrayList, String.class);
-17. 空集合，静态内部类，单例模式。
+17. 空集合，静态内部类。
 
 		public static <T> Iterator<T> emptyIterator()
 		public static <T> ListIterator<T> emptyListIterator()
@@ -137,7 +134,6 @@
 		public static final <K,V> SortedMap<K,V> emptySortedMap() 
 		public static final <K,V> NavigableMap<K,V> emptyNavigableMap() 
 		
-
 	源码：
 
 		class Collections {
@@ -197,7 +193,6 @@
 	        return result;
 	    }
 		
-
 24. 判断两个集合是否有交集，（代码可以优化）
 
 		public static boolean disjoint(Collection<?> c1, Collection<?> c2) {
