@@ -3,6 +3,11 @@
 
 1. [请求体查询](https://www.elastic.co/guide/cn/elasticsearch/guide/current/full-body-search.html)   
 
+环境：  
+
+* 系统版本：Win10 64位  
+* Elasticsearch版本:6.0.0
+
 ##  请求体查询
 ### 空查询  
 
