@@ -75,7 +75,6 @@ Blogger内容存储在Github上，后台项目启动时会从Github拉取更新�
 		## 需要隐藏的文件的名字(不在左侧目录结构里面展示)
 		hideInLeftMenuFileName=AboutMe,ReadMe
 		
-
 5. 执行如下命令，在后台启动后台项目，下面 `blogger.jar` 是第三步打的jar包的名字。
 
 		nohup java --add-modules java.xml.bind -jar -Dfile.encoding=UTF-8 -Dspring.config.location=./application.properties ./blogger.jar > log.txt &
