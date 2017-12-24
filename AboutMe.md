@@ -18,8 +18,8 @@ Blogger内容存储在Github上，后台项目启动时会从Github拉取更新�
 
 ### 项目组成
 
-1. [后台](https://github.com/longlongxiao/Blogger_FrontEnd) 基于Java的系统，记录数据以及提供数据查询接口，可以直接以jar包的方式运行。
-2. [前端](https://github.com/longlongxiao/Blogger_Backstage) 数据展示以及数据查询。
+1. [后台](https://github.com/longlongxiao/Blogger_Backstage) 基于Java的系统，记录数据以及提供数据查询接口，可以直接以jar包的方式运行。
+2. [前端](https://github.com/longlongxiao/Blogger_FrontEnd) 数据展示以及数据查询。
 3. [内容](https://github.com/longlongxiao/Notes) 博客内容，通过目录结构组织起来的md文档，前端也以目录结构的方式进行展示。
 
 ### 项目搭建（Linux）    
