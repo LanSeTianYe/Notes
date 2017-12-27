@@ -47,7 +47,7 @@ Hash 算法的一个衡量指标是单调性（ Monotonicity ），定义如下�
 		... ...
 		hash(object4) = key4;
 
-      ![图 2 4 个对象的 key 值分布](http://7xle4i.com1.z0.glb.clouddn.com/consistenthashing2.JPG)
+	![图 2 4 个对象的 key 值分布](http://7xle4i.com1.z0.glb.clouddn.com/consistenthashing2.JPG)
 
  * 把cache 映射到hash 空间  
 
