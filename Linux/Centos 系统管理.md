@@ -35,7 +35,7 @@
 * 重启防火墙 ：`systemctl restart firewalld`
 * 查看防火墙版本 ：`firewall-cmd --version`
 * 查看状态： `firewall-cmd --state`
-* 显示所有打开的窗口: `firewall-cmd --zone=public --list-ports`
+* 显示所有打开端口: `firewall-cmd --zone=public --list-ports`
 * 更新防火墙规则: `firewall-cmd --reload`
 * 拒绝所有包：`firewall-cmd --panic-on`
 * 取消拒绝状态： ` firewall-cmd --panic-off`
