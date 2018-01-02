@@ -94,6 +94,10 @@
 		find / -name "*nginx*" | xargs ls  -l
 		# 输出查询到的文件
 		ls -al $(find / -name *nginx*)
+* `sed -n '5,10p' filename` 显示文件第[5,10)行。
+* `cat filename| head -n 3000 | tail -n +1000` 显示文件1000到3000行 [1000,30000)
+* `cat filename| tail -n +3000 | head -n 1000` 显示文件3000到4000行 [1000,4000]
+* `tail filename -n 1000` 显示文件的后1000行 
 	
 
 	 
