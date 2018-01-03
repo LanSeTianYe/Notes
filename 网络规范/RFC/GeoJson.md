@@ -79,7 +79,9 @@ Coordinates of LineString are an array of positions.
 	             ]
 	         ]
 	     }
-#### MultiPoints 多个点  
+
+
+#### MultiPoints 多个点    
 
      {
          "type": "MultiPoint",
@@ -88,7 +90,8 @@ Coordinates of LineString are an array of positions.
              [101.0, 1.0]
          ]
      }
-#### MultiPolygons 多个多边形  
+
+#### MultiPolygons 多个多边形   
 
      {
          "type": "MultiPolygon",
@@ -120,8 +123,7 @@ Coordinates of LineString are an array of positions.
              ]
          ]
      }
-
-####  MultiLineStrings 多条线  
+####  MultiLineStrings 多条线    
 
      {
          "type": "MultiLineString",
@@ -136,7 +138,8 @@ Coordinates of LineString are an array of positions.
              ]
          ]
      }
-#### GeometryCollections 几何图形集合
+
+#### GeometryCollections 几何图形集合 
 
 	{
          "type": "GeometryCollection",
