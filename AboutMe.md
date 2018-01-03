@@ -34,15 +34,15 @@ Blogger内容存储在Github上，后台项目启动时会从Github拉取更新�
 2. 修改前端项目的接口请求地址, 在 `javascript/constant.js`里面，如：
 
 		var HOST = 'http://www.sunfeilong.cn:8080';
-3. 修改 `nginx` 配置文件 `/conf/nginx.conf`,指定静态目位置。
+3. 修改 `nginx` 配置文件 `/conf/nginx.conf`,指定静态目录位置。
 
 		location / {
             root   /home/xiaotian/workspace/Blogger_FrontEnd;
             index  html/blogger.html;
         }
-3. 进入后端项目目录使用 `mvn clean; mvn install` 打包后端项目，然后复制 `target` 目录下的jar包，到你想要放置项目文件的目录。
+3. 进入后端项目目录使用 `mvn clean; mvn install` 打包后端项目，然后把 `target` 目录下的jar包复制到你想要放置项目文件的目录。
 
-4. 在防止项目jar包的目录创建 `application.properties`  文件，添加如下内容，并修改为你自己的内容。
+4. 在放置项目jar包的目录创建 `application.properties`  文件，添加如下内容，并修改为你自己的内容。
 
 		## 后台项目启动端口号
 		server.port = 8080
