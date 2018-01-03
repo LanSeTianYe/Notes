@@ -6,6 +6,12 @@
 * 系统版本：Win10 64位  
 * Elasticsearch版本:6.0.0
 
+准备：  
+
+* hash计算插件安装
+
+		./elasticsearch-plugin.bat install mapper-murmur3
+
 ## 近似聚合  
 
 **初始化数据：** 在color字段里面映射一个计算的hash值，可以提高统计时的效率（索引的时候已经完成hash计算）。
