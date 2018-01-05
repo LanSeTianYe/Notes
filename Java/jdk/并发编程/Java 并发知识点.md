@@ -189,6 +189,36 @@ CachedThreadPool 在程序执行过程中通常会创建与所需数量相同的
 ## 管道通信
 PipeWriter PipeReader
 
-## 死锁
+## 死锁的情况
 
-举个例子：两个资源，两个用户，用户同时持有两种资源的时候才能执行下一步操作，用户一已经持有了第一种资源，用二持有了第二种资源，用户一因为等待资源二而阻塞，用户二因为等待资源一而阻塞，用户一和二谁也不释放自己所持有的资源，用户一和用户二只能无限的阻塞下去，这就造成了死锁。
+1. 两个资源，两个用户，用户同时持有两种资源的时候才能执行下一步操作，用户一已经持有了第一种资源，用二持有了第二种资源，用户一因为等待资源二而阻塞，用户二因为等待资源一而阻塞，用户一和二谁也不释放自己所持有的资源，用户一和用户二只能无限的阻塞下去，这就造成了死锁。
+比如哲学家就餐问题。
+2. 在同步代码块里面，创建一个新的线程去获取该同步对象的锁，获取不到锁就阻塞执行，此时会出现死锁现象。
+
+		public class Test {
+		
+		    private Object lock = new Object();
+		
+		    public void methodA() {
+		        synchronized (lock) {
+		            System.out.println("methodA");
+		            Test test = this;
+		            ExecutorService executorService = Executors.newSingleThreadExecutor();
+		            try {
+		                executorService.submit(new Runnable() {
+		                    @Override
+		                    public void run() {
+		                        test.methodA();
+		                    }
+		                }).get();
+		            } catch (Exception e) {
+		                //eat
+		            }
+		            System.out.println("A end");
+		        }
+		    }
+		    public static void main(String[] args) {
+		        Test test = new Test();
+		        test.methodA();
+		    }
+		}
