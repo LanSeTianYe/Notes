@@ -9,12 +9,12 @@
 
 ## Linux 网络状况  
 
-#### 简单查看 ping  
+### 简单查看 ping  
 * 检查网络是否异常：
 
 		ping www.baidu.com
 
-####  查看实时网络流量 iftop  
+###  查看实时网络流量 iftop  
 
 1. 安装 
 
@@ -88,4 +88,21 @@
 		 o - freeze current order
 		
 		iftop, version 1.0pre4
+### 网速测试 speedtest.py
 
+* 下载文件： 
+
+		wget https://raw.github.com/sivel/speedtest-cli/master/speedtest.py --no-check-certificate 
+* 修改文件权限： `chmod 100 speedtest.py`
+* 运行脚本 ： `./speedtest.py`
+* 运行结果： 
+
+		Retrieving speedtest.net configuration...
+		Testing from hongkong kwaifong information service limited (*.*.*.*)...
+		Retrieving speedtest.net server list...
+		Selecting best server based on ping...
+		Hosted by STC (Hong Kong) [4.08 km]: 12.056 ms
+		Testing download speed................................................................................
+		Download: 2.91 Mbit/s
+		Testing upload speed................................................................................................
+		Upload: 2.33 Mbit/s
