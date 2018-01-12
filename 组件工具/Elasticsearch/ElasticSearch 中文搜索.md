@@ -3,6 +3,7 @@
 参考：  
 
 1. [Smart Chinese Analysis plugin](https://www.elastic.co/guide/en/elasticsearch/plugins/current/analysis-smartcn.html)
+2. [IK](https://github.com/medcl/elasticsearch-analysis-ik)
 
 
 环境：  
@@ -12,11 +13,18 @@
 
 ##  中文搜索 
 
-###  安装及配置中文分析器  
+###  中文分析器smartcn 和 ik
+  
+smartcn 不支持自定以分析器
 
-1. 进入bin目录执行下面命令安装插件。
+1. 进入bin目录执行下面命令安装插件，安装成功之后需要重启es。
+		
+		1. 安装 smartcn
+		.\elasticsearch-plugin.bat install analysis-smartcn
+		2. 安装 ik
+		.\elasticsearch-plugin.bat install https://github.com/medcl/elasticsearch-analysis-ik/releases/download/v6.0.0/elasticsearch-analysis-ik-6.0.0.zip
+		分析器: ik_smart , ik_max_word , token过滤器: ik_smart , ik_max_wor
 
-		./elasticsearch-plugin.bat install analysis-smartcn
 2. 配置索引使用中文分析器（指定创建索引分析器和搜索分析器）。
 
 		DELETE animals

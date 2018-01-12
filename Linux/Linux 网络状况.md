@@ -48,7 +48,7 @@
 		   The following options are only available in combination with -t  
 		   -s num              print one single text output afer num seconds, then quit  
 		   -L num              number of lines to print     
-3. 界面说明  
+3. 界面说明   
 
 	iptop命令界面：
 
@@ -89,7 +89,7 @@
 		
 		iftop, version 1.0pre4  
 
-### 网速测试 speedtest.py
+### 网速测试 speedtest.py   
 
 * 下载文件： 
 
