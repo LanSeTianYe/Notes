@@ -156,4 +156,80 @@
     requests.append(DeleteMany({"name": "x"}))
     result = db.get_collection("test").bulk_write(requests)
     print("bulk API", result.bulk_api_result, sep=" : ")
+### [文本搜索](https://docs.mongodb.com/manual/text-search/) (需要创建索引)  
+
+1. 插入数据
+
+		db.get_collection("stores").insert_many(
+		        [
+		            {"name": "Java Hut", "description": "Coffee and cakes"},
+		            {"name": "Burger Buns", "description": "Gourmet hamburgers"},
+		            {"name": "Coffee Shop", "description": "Just coffee"},
+		            {"name": "Clothes Clothes Clothes", "description": "Discount clothing"},
+		            {"name": "Java Shopping", "description": "Indonesian goods"}
+		        ]
+		    )
+2. 创建索引，一个集合只允许创建一个文本索引，可以是多个字段。 
+	
+	    index = IndexModel([("name", pymongo.TEXT), ("description", pymongo.TEXT)], name="name_description")
+	    db.get_collection("stores").create_indexes([index])
+3. 文本搜索  
+		
+		# 搜索 name 和 description 包含 java coffee shop三个单词的文本
+		db.get_collection("stores").find({"$text": {"$search": "java coffee shop"}})
+		# 搜索 name 和 description 包含 java 以及 "coffee shop" 短语的文本
+		db.get_collection("stores").find({"$text": {"$search": "java coffee shop"}})  
+	    # 排除单词
+	    result = db.get_collection("stores").find({"$text": {"$search": "java -coffee shop"}})
+		# 相关性评分
+	    result = db.get_collection("stores").find(
+	        {"$text": {"$search": "java coffee shop"}},
+	        {"score": {"$meta": "textScore"}}
+	    ).sort([("score", {"$meta": "textScore"})])
+### [地理位置搜索](https://docs.mongodb.com/manual/geospatial-queries/)
+
+1. 初始化数据。   
+
+		db.get_collection("places").insert({
+		        "name": "Central Park",
+		        "location": {
+		            "type": "Point",
+		            "coordinates": [-73.97, 40.77]
+		        },
+		        "category": "Parks"
+		    })
+		    db.get_collection("places").insert({
+		        "name": "Sara D. Roosevelt Park",
+		        "location": {
+		            "type": "Point",
+		            "coordinates": [-73.9928, 40.7193]
+		        },
+		        "category": "Parks"
+		    })
+		    db.get_collection("places").insert({
+		        "name": "Polo Grounds",
+		        "location": {
+		            "type": "Point",
+		            "coordinates": [-73.9375, 40.8303]
+		        },
+		        "category": "Stadiums"
+		    })
+
+2. 创建 `GEOSPHERE` 索引
+
+	    index = IndexModel([("location", pymongo.GEOSPHERE)], name="location_2ds")
+	    db.get_collection("places").create_indexes([index])
+3. 查询，距离在指定范围之间。
+
+	    result = db.get_collection("places").find({
+	        "location": {
+	            "$near": {
+	                "$geometry": {"type": "Point", "coordinates": [-73.9667, 40.78]},
+	                "$minDistance": 1000,
+	                "$maxDistance": 5000
+	            }
+	        }
+	    })
+
+
 

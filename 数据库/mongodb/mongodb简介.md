@@ -19,6 +19,9 @@
 		db.createCollection("log", { capped: true, size: 100000 } )
 		db.createCollection("log", { capped: true, size: 5242880, max: 5000 } )
 5. 文档字段可动态扩展。
+6. 支持文档搜索和地理空间搜索，精简版的 Elasticsearch。
+7. 支持索引。
+8. 单文档原子性。
 6. 集合分片，扩容。
 7. 主从备份，容灾。
 
