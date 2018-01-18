@@ -11,7 +11,7 @@
 3. python
 
 ##  查询总结   
-### 插入数据
+### 插入数据  
 
 1. 插入一条数据，集合不存在自动创建  
 
@@ -49,7 +49,7 @@
 		//数据3
 		db.inventory.insert([{"item": None}, {}])
 
-### 查询数据  
+### 查询数据   
 0. 使用 Python
 	
 		import gridfs
@@ -104,8 +104,9 @@
 2. 固定大小集合查询  
 
 		# 以插入顺序的逆序返回结果
-		db.cappedCollection.find().sort( { $natural: -1 } )
-### 更新数据      
+		db.cappedCollection.find().sort( { $natural: -1 } )  
+
+### 更新数据        
 
 1. 更新一条数据。更新第一条匹配的数据，`$set` 设置新的值，`$currentDate` 设置为当前日期。
 
@@ -131,7 +132,7 @@
 
 注： 指定upsert选项为True，当文档不存在的时候会插入文档。默认为False。
 
-### 删除数据
+### 删除数据  
  
 1. 删除所有(直接删除集合效率更高)。  
  
@@ -143,7 +144,7 @@
 
 		db.get_collection("inventory").delete_one({"status": "D"})
 
-### 批量操作  
+### 批量操作    
 
     requests = list();
     requests.append(InsertOne({"name": "x", "age": 23}))
@@ -156,7 +157,8 @@
     requests.append(DeleteMany({"name": "x"}))
     result = db.get_collection("test").bulk_write(requests)
     print("bulk API", result.bulk_api_result, sep=" : ")
-### [文本搜索](https://docs.mongodb.com/manual/text-search/) (需要创建索引)  
+
+### [文本搜索](https://docs.mongodb.com/manual/text-search/) (需要创建索引)    
 
 1. 插入数据
 
@@ -185,8 +187,9 @@
 	    result = db.get_collection("stores").find(
 	        {"$text": {"$search": "java coffee shop"}},
 	        {"score": {"$meta": "textScore"}}
-	    ).sort([("score", {"$meta": "textScore"})])
-### [地理位置搜索](https://docs.mongodb.com/manual/geospatial-queries/)
+	    ).sort([("score", {"$meta": "textScore"})])    
+
+### [地理位置搜索](https://docs.mongodb.com/manual/geospatial-queries/)  
 
 1. 初始化数据。   
 
