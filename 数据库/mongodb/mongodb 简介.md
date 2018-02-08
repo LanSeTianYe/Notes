@@ -2,12 +2,17 @@
  
 环境：
   
-1. win 10
-2. MongoDB 3.6.2 Community
+1. MongoDB 3.6.2 Community
 
 ## 简介  
-### 存储结构
-1. 数据库 -> 集合 -> 文档(由字段组成)  
+### 核心概念    
+#### [存储](https://docs.mongodb.com/manual/storage/)  
+1. 存储引擎 
+	* WiredTiger：3.2及之后版本默认的存储引擎。 提供文档级别的并发模型、检查点、数据压缩和其它特性。企业版支持数据加密。
+	* MMAPv1：3.2之前版本的默认存储引擎，在大量读写和实时更新方面性能较好。
+	* In-Memory Storage Engine ： 企业版特有，把数据存储在内存中。
+
+1. [GridFS](https://docs.mongodb.com/manual/core/gridfs/)：文件存储系统，适用于大文件或大文档。 
 
 ### 特性  
 
