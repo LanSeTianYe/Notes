@@ -1,20 +1,22 @@
 时间： 2017/11/26 9:33:23   
 参考：  
 
-1. [https://dev.mysql.com/doc/refman/5.7/en/server-logs.html](https://dev.mysql.com/doc/refman/5.7/en/server-logs.html)
+1. [https://dev.mysql.com/doc/refman/5.7/en/server-logs.html](https://dev.mysql.com/doc/refman/5.7/en/server-logs.html)  
 
-## 
+##   
 
 ### 日志类型  
 
-默认情况下任何日志都是没有开启的，除了再Windows上默认开启了error log。 
+默认情况下任何日志都是没有开启的，除了再Windows上默认开启了error log。  
+
+注： `--` 代表用 [mysqladmin](https://dev.mysql.com/doc/refman/5.7/en/mysqladmin.html) 命令执行。   
 
 1.  Error Log(错误日志）：启动、结束或运行是遇到的问题。相关配置可以再运行时通过改变环境变量进行改变。
 
 	记录数据库启动和关闭过程信息，记录启动过程和运行期间出现的错误，警告和 Note。例如:如果MySql发现一个表需要检查或修复，就会写一条消息到错误日志。
 
 		# 把错误日志输出到控制台，会被 log-error 覆盖
-		 --console 
+		--console 
 		# 开启或关闭错误日志
 		log-error=[ON|OFF]
 	    # 开启错误日志，并指定错误日志名字
@@ -51,7 +53,7 @@
 	* 复制：用于主从复制，主服务把数据改变的语句发送到从服务器，从服务器执行语句从而使得从服务和主服务的数据同步。  
 	* 数据恢复操作：备份回复后，执行 bin log 里面记录的语句，把数据恢复到指定的时间。  
 
-			# 开 bin log
+			# 开 bin log(配置文件中 log_bin=mysql-binlog)
 			--log-bin[=base_name] 
 			# 指定bin log 最大大小
 			max_binlog_size
@@ -60,13 +62,13 @@
 			# bin log 格式 取决于MySql版本  
 			binlog_format=[row（事件）|statement（语句）|mixed（前两种混合）]
 			# 主从时，从数据库的配置 
-				--log-slave-updates
+			--log-slave-updates
 			# 查看二进制日志的内容
 			mysqlbinlog log_file | mysql -h server_name 
 			# 多少条之后同步到磁盘
 			sync_binlog = 1(最安全，但是速度慢)
 			# 确保磁盘数据和 bin log同步
-			 --innodb_support_xa=1  
+			--innodb_support_xa=1  
 			# 查看bin log 数据
 			show binlog events;
 			mysqlbinlog "C:\ProgramData\MySQL\MySQL Server 5.7\Data\DESKTOP-OV8JFOA-bin.000001"
