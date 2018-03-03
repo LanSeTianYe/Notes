@@ -117,7 +117,7 @@
 		# 列出所有标签
 		git tag
 		# 新建一个tag在当前commit
-		git tag [tagName]
+		git tag -a [tagName]
 		# 新建一个tag在指定提交
 		git tag [tagName] [commit]
 		# 删除本地tag
@@ -154,16 +154,18 @@
 		git checkout [branchName]
 		# 切换到上一个分支
 		git branch -
+		# 检出分支到新分支
+		git checkout -b newbranch branch
 		# 建立追踪关系，在现有分支与指定的远程分支之间
 		git branch --set-upstream [branch] [remote-branch]
 		# 合并指定分支到当前分支
-		git megre [branch]
+		git megre -no-ff [branch]
 		# 选择一个commit，合并进当前分支
 		git cherry-pick [commit]
 		# 删除分支
 		git branch -d [branchName]
 		# 删除远程分支
-		git push origin -delete [branchName]
+		git push origin --delete [branchName]
 		git branch -dr [remote/branch]
 9. 合并分支
 
