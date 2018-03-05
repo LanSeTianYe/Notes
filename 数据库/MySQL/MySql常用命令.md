@@ -32,6 +32,9 @@
 11. 查询表有多少行
 
         select count(*) from alarminfo
+12. 限制查询条目，跳过30条之后的20条  
+
+		SELECT * FROM employees ORDER BY emp_no LIMIT 30, 20  
 12. 创建索引
 
         -- 唯一索引
@@ -62,3 +65,21 @@
         	PRIMARY KEY (`id`),
         	UNIQUE INDEX index_name (title(255))
         )
+16. 视图，可以通过视图更新原表数据但是有条件限制。
+
+		创建视图
+		CREATE VIEW testView AS
+		  SELECT
+		    emp_no,
+		    dept_no,
+		    from_date
+		  FROM dept_emp c
+		  WHERE c.dept_no = 'd004' WITH CHECK OPTION;
+		替换视图
+		CREATE OR REPLACE VIEW testView AS
+		  SELECT
+		    emp_no,
+		    dept_no,
+		    from_date
+		  FROM dept_emp c
+		  WHERE c.dept_no = 'd004' WITH CHECK OPTION;
