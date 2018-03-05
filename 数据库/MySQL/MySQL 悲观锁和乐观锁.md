@@ -24,7 +24,8 @@
 
 		SELECT id, version FROM person;
 		//id和verson时上面获取的
-		update person set age = 24 where id = 'id' and verson = 'version'
+		update person set age = 24 where id = 'id' and verson = 'version'  
+  
 ##### JPA 乐观锁
 
 1. 实体增加version字段，并增加@Version注解。
