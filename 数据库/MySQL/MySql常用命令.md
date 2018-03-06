@@ -1,3 +1,6 @@
+1. 查看数据库版本。
+
+		select version();
 1. 查看数据库编码信息
 
 		show variables like 'character_set_%';
@@ -13,12 +16,23 @@
 5. 显示表的结构
 
         describe alarminfo;
+7. 显示表信息。
+
+		show create table tablename;
+		SHOW TABLE STATUS\G;
+8. 变更表的存储引擎。
+
+		alter table person engine=innodb;
 6. 查看数据库配置信息
 
         show variables;
 7. 查看端口
 
         show variables  like 'port';
+8. 设务隔离级别
+
+		set session transaction isolation level read committed;
+
 8. 查看存储引擎
 
         show variables  like '%storage%';
