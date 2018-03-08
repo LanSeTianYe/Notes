@@ -74,7 +74,9 @@
 结合 `-exec` 使用
 
 
-	//把匹配的文件内容直接复制到 all.txt
+	1. 把匹配的文件内容直接复制到 all.txt
 	find /home/llx/Desktop/ -name "*.txt" -exec cat {} \;> all.txt
-	//把匹配的文件内容复制到 all.txt ，复制过程会询问是否要复制指定的文件
+	2. 把匹配的文件内容复制到 all.txt ，复制过程会询问是否要复制指定的文件
 	find /home/llx/Desktop/ -name "*.txt" -ok cat {} \;> all.txt
+	3. 查看大于指定大小的文件，并显示大小信息
+	find / -type f -size +100M -exec ls -lh {} \;
