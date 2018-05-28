@@ -13,11 +13,16 @@
 
 		set KAFKA_JVM_PERFORMANCE_OPTS=-server -Xverify:none -XX:+UseG1GC ...
 ## Windows安装
-1. 下载[https://kafka.apache.org/downloads](https://kafka.apache.org/downloads)
+1. 下载 [https://kafka.apache.org/downloads](https://kafka.apache.org/downloads)
 2. 解压。
 3. 修改 ` server.properties` 里面日志文件目录
 
 	   log.dirs=Windows目录
+
+## Linux 安装
+1. 下载 [https://kafka.apache.org/downloads](https://kafka.apache.org/downloads)
+2.  解压 `tar -xzf kafka_2.11-1.1.0.tgz`
+
 ## 运行
 
 1. 启动 `kafka` ，启动之前需要启动 `zookeeper`,在 kafka 根目录按住 `SHIFT` 点击鼠标右键打开两个窗口。分别启动 `zookeeper` 和 `kafka` 
@@ -34,3 +39,4 @@
 
 		kafka-console-consumer.bat --zookeeper localhost:2181 --topic test
 5. 在Producer窗口输入信息，观察Consumer窗口的变化。
+
