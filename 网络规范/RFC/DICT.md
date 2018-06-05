@@ -27,7 +27,7 @@ DICT是基于查询和响应的，允许客户端从一系列自然语言数据�
 	STATUS                       -- display timing information
 	HELP                         -- display this help information
 	QUIT                         -- terminate connection
-	
+
 	下面是简化命令，在其他服务器可能不支持
 	D word                       -- DEFINE * word
 	D database word              -- DEFINE database word
@@ -48,5 +48,3 @@ DICT是基于查询和响应的，允许客户端从一系列自然语言数据�
 	curl dict://dict.org/define:bash:fd-deu-fra
 	//显示fd-deu-fra中f为后缀的单词
 	curl dict://dict.org/match:f:fd-deu-fra:suffix
-
-

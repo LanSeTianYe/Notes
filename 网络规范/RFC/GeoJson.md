@@ -19,16 +19,16 @@
 
 GeoJson类型，包含上面七个（大小写敏感），以及：
 
-* Feature ：代表空间有限的事物 
+* Feature ：代表空间有限的事物
 * FeatureCollection
 
 ## 示例  
 
 ### 几何图形（Geometry）  
 #### Points 点
-  
-Point coordinates are in x, y order (easting, northing for projected coordinates, longitude, and latitude for geographic coordinates): 
-	
+
+Point coordinates are in x, y order (easting, northing for projected coordinates, longitude, and latitude for geographic coordinates):
+
 	{
 		"type": "Point",
 		"coordinates": [100.0, 0.0]
@@ -44,7 +44,7 @@ Coordinates of LineString are an array of positions.
 	  ]
 	}
 #### Polygons 多边形  
-* 无孔多边形： 
+* 无孔多边形：
 
 	     {
 	         "type": "Polygon",
@@ -139,7 +139,7 @@ Coordinates of LineString are an array of positions.
          ]
      }
 
-#### GeometryCollections 几何图形集合 
+#### GeometryCollections 几何图形集合
 
 	{
          "type": "GeometryCollection",
@@ -147,7 +147,7 @@ Coordinates of LineString are an array of positions.
 			{
              "type": "Point",
              "coordinates": [100.0, 0.0]
-         	}, 
+         	},
 			{
              "type": "LineString",
              "coordinates": [
@@ -211,6 +211,3 @@ Coordinates of LineString are an array of positions.
 	    }
 	  ]
 	}
-
-
-
