@@ -78,6 +78,36 @@
 		    </choose>
 		</select> 
 
+* trim 会自动消除多余的AND
+	
+		<select id=”findActiveBlogLike” parameterType=”Blog” resultType=”Blog”>
+			SELECT * FROM BLOG
+			<trim prefix="WHERE" prefixOverrides="AND|OR ">
+				<if test=”state != null”>
+					state = #{state}
+				</if>
+				<if test=”title != null”>
+					AND title like #{title}
+				</if>
+				<if test=”author != null and author.name != null”>
+					AND title like #{author.name}
+				</if>
+			</trim>
+		</select>
+
+* update
+
+		<update id="updateAuthorIfNecessary" parameterType="domain.blog.Author"> 
+			update Author
+			<set>
+				<if test="username != null">username=#{username},</if>
+				<if test="password != null">password=#{password},</if>
+				<if test="email != null">email=#{email},</if>
+				<if test="bio != null">bio=#{bio}</if>
+			</set>
+			where id=#{id}
+		</update>
+
 * 批量插入数据之后回显ID，（单条插入类似）
 
 	重点在于 `useGeneratedKeys="true" keyProperty="carId"`, carId是Id对应的字段名字。
