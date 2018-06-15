@@ -1,5 +1,4 @@
 ## 信息
-时间 : 2016/9/1 11:29:24   
 参考文章：  
 
 1. [跨域资源共享 CORS 详解](http://www.ruanyifeng.com/blog/2016/04/cors.html)  
