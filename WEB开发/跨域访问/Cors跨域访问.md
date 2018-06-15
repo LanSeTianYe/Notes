@@ -48,7 +48,7 @@ CORS需要浏览器和服务器同时支持。目前，所有浏览器都支持�
 
 
 #### 实现
-只需要在服务器端允许跨域访问即可，前台数据数据请求不许要任何特别的设置。  
+只需要在服务器端允许跨域访问即可，前台数据数据请求不需要任何特别的设置。  
 
 ##### 服务器端
 
@@ -70,13 +70,26 @@ java代码：
         @Override
         public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
             HttpServletResponse response = (HttpServletResponse) servletResponse;
-            //允许访问的域名
-            response.setHeader("Access-Control-Allow-Origin", "*");
-            //允许访问的请求类型
-            response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
-            response.setHeader("Access-Control-Max-Age", "3600");
-            response.setHeader("Access-Control-Allow-Headers", "x-requested-with");
-            filterChain.doFilter(servletRequest, servletResponse);
+	        String origin = ((HttpServletRequest) servletRequest).getHeader("Origin");
+	        if (StringUtils.isEmpty(origin)) {
+	            origin = "";
+	        }
+	        logger.debug(String.format("allowOrigins: 127.0.0.1.* or localhost* or %s, access origin: %s", allowOrigins, origin));
+	
+	        //本地域名通过请求,配置文件指定的域名也允许通过
+	        if(origin.contains("127.0.0.1") || origin.contains("localhost") || allowOrigins.contains(origin)) {
+	            response.setHeader("Access-Control-Allow-Origin", origin);
+	        }
+	        //允许跨域的请求类型
+	        response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
+	        //指定本次预检请求的有效期,单位为秒,在此期间不用发出另一条预检请求
+	        response.setHeader("Access-Control-Max-Age", "3600");
+	        //允许cookie
+	        response.setHeader("Access-Control-Allow-Credentials", "true");
+	        //允许所有类型的请求头
+	        response.setHeader("Access-Control-Allow-Headers", "*");
+	
+	        filterChain.doFilter(servletRequest, servletResponse);
         }
     
         @Override
