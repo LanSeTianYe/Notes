@@ -3,8 +3,27 @@
 参考：  
 
 1. [官方文档](http://static.javadoc.io/org.mockito/mockito-core/2.18.3/org/mockito/Mockito.html)
+2. [Mockito介绍](https://www.jianshu.com/p/1d41f5c28e2b)
+3. [使用强大的 Mockito 测试框架来测试你的代码](https://juejin.im/entry/578f11aec4c971005e0caf82)
 
-### Mockito 使用
+### Mock 简介
+#### 为什么需要Mock  
+测试驱动的开发(Test Driven Design, TDD)要求我们先写单元测试，再写实现代码。在写单元测试的过程中，我们往往会遇到要测试的类有很多依赖，这些依赖的类/对象/资源又有别的依赖，从而形成一个大的依赖树，要在单元测试的环境中完整地构建这样的依赖，是一件很困难的事情。
+
+### Mockito 介绍及使用 
+
+#### 简介
+
+Mockito是一个模拟测试框架，可以让你用优雅，简洁的接口写出漂亮的单元测试。Mockito可以让单元测试易于可读，产生简洁的校验错误。
+
+#### 使用场景  
+
+* 提前创建测试，TDD（测试驱动开发）
+* 团队可以并行工作
+* 你可以创建一个验证或者演示程序
+* 为无法访问的资源编写测试
+* Mock可以交给用户
+* 隔离系统
 
 #### 准备工作
 1. 引入依赖 [最新版点击此处](http://mvnrepository.com/search?q=mockito-core)
