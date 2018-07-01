@@ -76,3 +76,9 @@ grep（global search regular expression(RE) and print out the line)是一种机�
 7. 显示匹配结果前面的两行和后面的三行。  
 
 		grep -P -B 2 -A 3 "^a" redis.conf
+8. 多文件查找
+
+		grep "a" A.txt B.txt
+9. 查找空行 
+
+ 		grep -n "^$" log.txt
