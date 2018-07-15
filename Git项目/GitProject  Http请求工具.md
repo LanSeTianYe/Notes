@@ -83,6 +83,12 @@ Android和Java的Http客户端。
 
 使Java应用程序可以很方便的执行http请求和异步处理响应结果，支持 WebSocket 协议。基于Netty实现。
 
+作者博客：
+  
+1. [Going Asynchronous using AsyncHttpClient: The Basic](https://jfarcand.wordpress.com/2010/12/21/going-asynchronous-using-asynchttpclient-the-basic/)
+2. [Going Asynchronous using AsyncHttpClient: The Complex](https://jfarcand.wordpress.com/2011/01/04/going-asynchronous-using-asynchttpclient-the-complex/)
+3. [Writing WebSocket Clients using AsyncHttpClient](https://jfarcand.wordpress.com/2011/12/21/writing-websocket-clients-using-asynchttpclient/)
+
 特点：  
 
 * 异步请求，支持jdk1.8 CompletableFuture 和回调函数的方式。
