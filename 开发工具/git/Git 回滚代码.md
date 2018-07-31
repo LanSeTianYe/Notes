@@ -11,7 +11,6 @@
 
 本地已经提交，提交并没有 `push` 服务器，可以选择使用 `reset`。`reset` 可以重置到指定版本，指定版本之后的提交内容会回到未缓存的状态或直接丢弃。
 		
-	reset
 	git reset [--soft | --mixed | --hard] c011eb3
 
 reset 的三种模式：(默认是 `--mixed`)
