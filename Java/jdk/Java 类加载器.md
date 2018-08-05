@@ -97,7 +97,6 @@
 	        FileSystemClassLoader fileSystemClassLoader1 = new FileSystemClassLoader("D:\\");
 	        FileSystemClassLoader fileSystemClassLoader2 = new FileSystemClassLoader("D:\\");
 	
-	
 	        Class<?> simpleCLass1 = fileSystemClassLoader1.loadClass("com.sun.xiaotian.demo.test.cl.Simple");
 	        Class<?> simpleCLass2 = fileSystemClassLoader2.loadClass("com.sun.xiaotian.demo.test.cl.Simple");
 	        System.out.println(simpleCLass1.getClassLoader());
