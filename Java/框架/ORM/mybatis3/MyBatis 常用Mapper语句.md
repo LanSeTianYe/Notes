@@ -128,4 +128,12 @@
 	    </foreach>
 	  </insert>
 
+### resultMap
 
+映射查询结果到对应实体：
+
+ 	<resultMap id="resultMapId" type="com.sun.Demo">
+        <result column="id" jdbcType="INTEGER" property="id"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="address" jdbcType="VARCHAR" property="address"/>
+    </resultMap>

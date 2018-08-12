@@ -1,3 +1,7 @@
+参考：
+
+1. [Lua在线编辑器](http://www.tutorialspoint.com/execute_lua_online.php)
+
 ## 全局变量和局部变量
 
 	print ("空的变量",b)
