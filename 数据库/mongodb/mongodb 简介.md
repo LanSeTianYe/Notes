@@ -1,4 +1,8 @@
 时间：2017/8/8 10:13:05  
+
+参考：
+
+1. [MongoDB 通过配置文件启动](https://blog.csdn.net/zhu_tianwei/article/details/44261235)
  
 环境：
   
@@ -29,6 +33,30 @@
 8. 单文档原子性。
 6. 集合分片，扩容。
 7. 主从备份，容灾。
+
+### Linux 安装（CentOS）
+
+1. 安装依赖
+
+		yum install libcurl openssl
+	  
+2. 下载 tar 压缩包，并解压
+
+3. 修改 `/etc/profile` 文件，替换环境变量。
+
+		export PATH=<mongodb-install-directory>/bin:$PATH
+4. 修改配置文件
+		
+		# 数据存放目录
+		dbpath= /home/data/mongodb/
+		# 认证模式
+		auth = false
+		# 绑定IP
+		bind_ip = 0.0.0.0
+
+5. 启动
+
+		mongod --config ../conf/mongod.conf
 
 
 
