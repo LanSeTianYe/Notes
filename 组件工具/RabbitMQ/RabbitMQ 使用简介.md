@@ -43,7 +43,6 @@
 		        amqpAdmin.declareBinding(even);
 		    }
 		
-		
 		    @Override
 		    public void run(String... args) throws Exception {
 		        while (true) {
