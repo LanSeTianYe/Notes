@@ -13,3 +13,11 @@
 
 	翻译插件
 
+4. Maven 依赖冲突分析工具
+
+	Maven Helper
+5. 启动 `VisualVM` 插件
+
+ 	VisualVM Launcher
+
+	
