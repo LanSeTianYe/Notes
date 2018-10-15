@@ -47,13 +47,24 @@ SpringCloud GateWay 把路由作为 `Spring WebFlux` 的 `HandlerMapping`。默�
 
 ##### 内置过滤模板
 
-* 添加请求头 
-* 添加请求参数  
-* 添加响应Header 
+* 添加请求头。 
+* 添加请求参数。  
+* 添加响应Header。 
 * Hystrix 支持，需要指定实现 `HystrixCommand` 接口的类。
 * 前缀路径，给请求添加前缀路径。 `/hello` 会映射到 `/mypath/hello`。
-* 请求频率限制 
-* 重定向 
+* 请求频率限制。
+* 重定向。
+* 删除请求头。
+* 删除响应头。
+* 重写 path。
+* 保存Session。
+* 安全头。
+* 设置Path。
+* 设置响应头。
+* 设置响应码。
+* 跳过path，跳过path的前几级。
+* 重试。
+* 请求大小。
 
 ##### 全局过滤 GlobalFilter 
 
