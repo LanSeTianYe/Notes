@@ -26,7 +26,8 @@
 		DEVICE=ens33
 		* ONBOOT=true
 		ZONE=
-### 环境变量  
+
+### 环境变量    
 
 1. 打开配置文件 `vim /etc/profile`
 	
