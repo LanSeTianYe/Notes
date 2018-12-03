@@ -79,6 +79,9 @@
 		    return x > y
 		end
 		table.sort(s, compare)
+### 数学函数 
+
+* `math.random(m,n)`: 无参数 [0~1)， 一个参数 [0~m]，两个参数 [m,n]。
 ### 文件操作函数
 
 按指定的模式 mode，打开一个文件名为 filename 的文件，成功则返回文件句柄，失败则返回 nil 加错误信息。
