@@ -13,7 +13,7 @@
 * 用途：压缩图片，减少占用空间，减小网络压力。  
 * 缺点：压缩过程比较耗时。   
 
-#### EasyImage
+#### [EasyImage](https://dzone.com/articles/easyimage-%E2%80%93-third-party-jar)
 
 EasyImage是一个图片制作的第三方Jar包，可以做所有基础的图片操作：转换，裁剪，缩放，选择等；可以结合很多总操作，创造出很酷的效果；操作 简单等。    
 
