@@ -21,6 +21,10 @@ Redis 服务器可以解释执行 Lua脚本，使用脚本可以实现一些复�
 * `key`: redis 里面数据的key，数量由 key_number 控制。集群模式下相同的key路由到固定的机器。
 * `arg`：参数，额外的参数。
 
+返回值：
+
+返回值和命令的返回值相同。
+
 **Evalsah 命令：**
 
 类似 eval 相同，唯一的不同是，执行的时候传递的是 `SHA1 签名`，而不是脚本，当缓存中不存在签名对应的脚本是，会返回错误，当缓存中存在则直接执行缓存中的脚本。
@@ -34,8 +38,13 @@ Redis 服务器可以解释执行 Lua脚本，使用脚本可以实现一些复�
 
 **工具函数：**
 
+	# 响应错误信息
 	redis.error_reply(error_string) <==> {err = error_string}
+	# 响应成功信息
 	redis.status_reply(status_string) <==> {ok = status_string}
+	# 在Redis服务中打印日志
+	redis.log(redis.LOG_NOTICE, "message")
+
 **支持的函数库：**
 
 * base
