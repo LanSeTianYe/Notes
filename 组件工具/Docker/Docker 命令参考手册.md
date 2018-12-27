@@ -3,11 +3,73 @@
  
 1. [docker 安装](https://yeasy.gitbooks.io/docker_practice/install/centos.html)
  
-## Docker 命令
+## Docker 命令    
 
-1. 拉取镜像： `docker pull IMAGE_NAME:IMAGE_VERSION`
-3. 查看镜像容器所占空间： `docker system df`
-4. 镜像相关 `docker image command`   
+docker 帮助信息 `docker --help`
+
+docker 具体命令帮助信息 `docker command --help`
+
+容器存放目录：`/var/lib/docker/containers`
+
+镜像存放目录：`/var/lib/docker/devicemapper/`
+ 
+### 容器命令  
+
+0. 运行镜像 `docker run`
+	* 完整命令 `docker run -d -p 8080:80 image_id/image_name`
+	* `-d`: 后台运行。 
+	* `-p`: 指定 `主机端口号：容器端口号`
+	* `--name`: 指定容器名字。
+	* `--restart condition`: 当容器停止运行之后自动重启容器。
+		* `always`: 总是自动重启。
+		* `on-failure`: 当容器推出代码不为0时自动重启。
+		* `on-failure:failure_times`: 限制重启次数，超过之后不重启。  
+0. 停止运行中的容器：
+	* `docker stop`：发送停止命令。
+	* `docker kill`：直接结束运行。
+
+0. 删除容器: `docker rm container_id`
+	* `-f` 删除运行中的容器。
+	* `docker rm 'docker ps -a -q'`
+
+0. 查看运行的容器  `docker ps`
+	* `-l`: 最后运行的一个容器
+	* `-a`: 所有运行的（包含已经结束运行的）。 
+	* `-q`: 只显示容器Id。
+	* `-n number`： 显示最后运行的 `number`  个容器（包含已经结束的容器）。
+0. 查看容器详细信息 `docker inspect continer_id`
+
+0. 查看容器内运行的进程 `docker top container_id`
+
+0. 查看容器运行状态 `docker stats container_id1 container_id1 ...`
+
+0. 容器内部运行进程 `docker exec`
+
+	* 交互式命令行 `docker exec -it containers_id /bin/bash`
+	* 后台进程 `docker exec -d containers_id 进程名字`
+
+0. 查看镜像容器所占空间： `docker system df`
+
+0. 运行日志 `docker logs`
+	* 默认输出最后几行日志
+	* `-f`：持续输出。
+	* `-t`：显示日志时间。
+
+### 镜像命令
+
+0. 账号登陆 `docker login` 
+
+0. 拉取镜像： `docker pull IMAGE_NAME:IMAGE_VERSION`
+
+0. 提交镜像：`docker commit container_id username/container_name:tag`
+	* `-a`：作者信息
+	* `-m`：注释
+
+0. 查找镜像： `docker search image_name` 
+
+0. 列出docker里面的镜像 `docker images`
+ 
+0. 镜像相关 `docker image command`   
 
 	    build       Build an image from a Dockerfile
 		history     Show the history of an image
@@ -21,17 +83,15 @@
 		rm          Remove one or more images
 		save        Save one or more images to a tar archive (streamed to STDOUT by default)
 		tag         Create a tag TARGET_IMAGE that refers to SOURCE_IMAGE
-5. 运行镜像
-	* 指定端口，后台运行 `docker run -d -p 8080:80 image_id/image_name`
 
-6. 构建镜像 `docker build [选项] 上下文路径（Docker服务器中的路径）`
+0. 构建镜像 `docker build [选项] 上下文路径（Docker服务器中的路径）`
 
 	* 从当前文件加下构建： `docker build -t nginx:v3 .`
 	* 从git仓库构建： `docker build https://github.com/twang2218/gitlab-ce-zh.git#:8.14`
 	* 从压缩包构建：`docker build http://server/context.tar.gz`
 
 	Docker命令行通过API调用的方式和Docker服务通信，构造的时候会把指定路径的内容打包上传到Docker服务器（默认为当亲目录）。
-7. 容器相关 `docker container`
+0. 容器相关 `docker container`
 
 		attach      Attach local standard input, output, and error streams to a running container
 		commit      Create a new image from a container's changes
