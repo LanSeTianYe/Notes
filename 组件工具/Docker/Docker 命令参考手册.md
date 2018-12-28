@@ -118,3 +118,12 @@ docker 具体命令帮助信息 `docker command --help`
 		unpause     Unpause all processes within one or more containers
 		update      Update configuration of one or more containers
 		wait        Block until one or more containers stop, then print their exit codes
+
+### 避免冲突  
+
+0. `docker build` 构造镜像。
+ 
+	* `--build-arg`:传递参数给Deckerfile里面的变量名 `docker build --build-arg build=1234 -t jamtur01/webapp .`
+0. 推送镜像 `docker push image_name:image_version`。
+1. 删除镜像 `docker rmi image_id`。
+
