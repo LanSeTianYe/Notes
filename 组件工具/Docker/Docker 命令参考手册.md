@@ -124,6 +124,9 @@ docker 具体命令帮助信息 `docker command --help`
 0. `docker build` 构造镜像。
  
 	* `--build-arg`:传递参数给Deckerfile里面的变量名 `docker build --build-arg build=1234 -t jamtur01/webapp .`
+	* `-v`：把宿主机的目录挂载到容器。
+
+			docker run -d -p 80 --name website -v $PWD/website:/var/www/html/website:ro jamtur01/nginx nginx
 0. 推送镜像 `docker push image_name:image_version`。
 1. 删除镜像 `docker rmi image_id`。
 
