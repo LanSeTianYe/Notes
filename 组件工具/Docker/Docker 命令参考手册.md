@@ -15,10 +15,12 @@ docker 具体命令帮助信息 `docker command --help`
  
 ### 容器命令  
 
-0. 运行镜像 `docker run`
-	* 完整命令 `docker run -d -p 8080:80 image_id/image_name`
+0. 从镜像启动容器 `docker run`，例如: `docker run -d -p 8080:80 image_id/image_name command`
+
+	`command` 表示要在容器中执行的命令，如 打开命令行 `/bin/bash`，启动nginx `nginx -g "deamon off"`
 	* `-d`: 后台运行。 
-	* `-p`: 指定 `主机端口号：容器端口号`
+	* `-p`: 指定 `宿主机端口：容器暴露端口`
+	* `-P`：对外公开容器构造时暴露的端口，并绑定到一个随机端口上。
 	* `--name`: 指定容器名字。
 	* `--restart condition`: 当容器停止运行之后自动重启容器。
 		* `always`: 总是自动重启。
@@ -85,12 +87,19 @@ docker 具体命令帮助信息 `docker command --help`
 		tag         Create a tag TARGET_IMAGE that refers to SOURCE_IMAGE
 
 0. 构建镜像 `docker build [选项] 上下文路径（Docker服务器中的路径）`
+	
+	* `--no-cache`：不使用构造缓存。
+	* `-t "user_name/image_name:version"`：指定镜像名和版本。
 
+    例子：
+	
 	* 从当前文件加下构建： `docker build -t nginx:v3 .`
 	* 从git仓库构建： `docker build https://github.com/twang2218/gitlab-ce-zh.git#:8.14`
 	* 从压缩包构建：`docker build http://server/context.tar.gz`
 
-	Docker命令行通过API调用的方式和Docker服务通信，构造的时候会把指定路径的内容打包上传到Docker服务器（默认为当亲目录）。
+	Docker命令行通过API调用的方式和Docker服务通信，构造的时候会把指定路径的内容打包上传到Docker服务器（默认为当前目录）。
+
+0. 镜像构造过程： `docker history image_id`
 0. 容器相关 `docker container`
 
 		attach      Attach local standard input, output, and error streams to a running container
