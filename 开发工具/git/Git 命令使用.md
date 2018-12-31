@@ -24,6 +24,8 @@
         # 添加或删除远端
 	    git remote add remote_name https://github.com/longlongxiao/abc.git
         git remote remove remote_name
+		# Linux 命令行显示颜色
+		git config --global color.ui auto
 2. 项目初始化  
 
 		# 从远程仓库获取，默认名字是最后一个/号后面.git前面的内容
