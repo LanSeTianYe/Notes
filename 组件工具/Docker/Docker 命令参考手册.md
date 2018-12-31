@@ -66,12 +66,15 @@ docker 具体命令帮助信息 `docker command --help`
 0. 提交镜像：`docker commit container_id username/container_name:tag`
 	* `-a`：作者信息
 	* `-m`：注释
+0. 推送镜像 `docker push image_name:image_version`
 
-0. 查找镜像： `docker search image_name` 
+0. 查找镜像： `docker search image_name`
+
+0. 删除镜像 `docker rmi image_id`。 
 
 0. 列出docker里面的镜像 `docker images`
  
-0. 镜像相关 `docker image command`   
+0. 镜像 `docker image command`   
 
 	    build       Build an image from a Dockerfile
 		history     Show the history of an image
@@ -90,12 +93,17 @@ docker 具体命令帮助信息 `docker command --help`
 	
 	* `--no-cache`：不使用构造缓存。
 	* `-t "user_name/image_name:version"`：指定镜像名和版本。
+	* `--build-arg`:传递参数给Deckerfile里面的变量名 `docker build --build-arg build=1234 -t jamtur01/webapp .`
+	* `-v`：把宿主机的目录挂载到容器。
 
     例子：
 	
 	* 从当前文件加下构建： `docker build -t nginx:v3 .`
 	* 从git仓库构建： `docker build https://github.com/twang2218/gitlab-ce-zh.git#:8.14`
 	* 从压缩包构建：`docker build http://server/context.tar.gz`
+	* 挂载目录:
+	 
+			docker run -d -p 80 --name website -v $PWD/website:/var/www/html/website:ro jamtur01/nginx nginx
 
 	Docker命令行通过API调用的方式和Docker服务通信，构造的时候会把指定路径的内容打包上传到Docker服务器（默认为当前目录）。
 
@@ -127,3 +135,7 @@ docker 具体命令帮助信息 `docker command --help`
 		unpause     Unpause all processes within one or more containers
 		update      Update configuration of one or more containers
 		wait        Block until one or more containers stop, then print their exit codes
+
+
+
+

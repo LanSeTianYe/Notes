@@ -24,13 +24,16 @@
 			&& apt-get purge -y --auto-remove $buildDeps
 	*  exec 命令
 
-3. `COPY` 复制文件
+3. `COPY` 复制文件，文件必需和Dockerfile在统一目录下（原始文件不解压）。
 
 	* 单文件复制：`COPY <源路径>... <目标路径>`， 比如 `COPY package.json /usr/src/app/`
 	* 多文件复制：`COPY ["<源路径1>",... "<目标路径>"]` ，源路径可以是多个文件，或者则表达式。
 
-4. `ADD` 文件复制的补充，自动解压缩，从URL下载文件等。不推荐使用。
-5. `CMD` 指定容器启动时运行的命令和参数。如果 `docker run` 后面有指令则会覆盖 `CMD`。
+4. `ADD` 文件复制的补充，自动解压缩，从URL下载文件等。将构建环境中的文件复制到镜像中（不推荐使用），当文件是压缩文件时会自动解压。
+
+		# 把构建目录下的index.html文件复制到镜像指定目录
+		ADD index.html /user/share/nginx/index.html
+5. `CMD` 指定容器启动时运行的命令和参数，如果 `docker run` 后面有指令则会覆盖 `CMD`。
 	* `CMD <命令>`
 	* `CMD ["可执行文件", "参数1", "参数2"...]`（推荐使用）。
 	
@@ -90,4 +93,37 @@
 
 	* `user nginx`: 用 nginx 身份运行。
 13. `HEALTHCHECK` 健康检查
-14. `ONBUILD` 镜像作为基础镜像是起作用。
+14. `ONBUILD` 添加触发器，当镜像作为基础镜像使用时触发，会在 `FROM` 之后执行触发器指定的任务。
+
+	添加触发器：
+
+		FROM ubuntu:14.04　
+		MAINTAINER James Turnbull "james@example.com"　
+		RUN apt-get update && apt-get install -y apache2　
+		ENV APACHE_RUN_USER www-data　
+		ENV APACHE_RUN_GROUP www-data　
+		ENV APACHE_LOG_DIR /var/log/apache2　
+		ONBUILD ADD . /var/www/　
+		EXPOSE 80　
+		ENTRYPOINT ["/usr/sbin/apache2"]　
+		CMD ["-D", "FOREGROUND"]
+	基于上面的镜像构造镜像（会把Dockerfile目录下的所有文件拷贝到 /var/www 目录）：
+
+		FROM jamtur01/apache2　
+		MAINTAINER James Turnbull "james@example.com"　
+		ENV APPLICATION_NAME webapp　
+		ENV ENVIRONMENT development
+
+
+15. `LABEL`: 给镜像添加元数据。
+
+		LABEL version="1.0"
+		LABEL location="New York" type="Data Center" role="Web Server"
+16. `STOPSIGNAL`：设置停止容器时发送什么系统调用信号给容器。这个信号必须是内核系统调用表中合法的数，如9，或者SIGNAME格式中的信号名称，如SIGKILL。
+17. `ARG`: 接收docker运行镜像时传递的参数。
+
+		#参数名字
+		ARG build
+		ARG webapp_user=user
+		# 传递参数 build接收1234，webapp_user使用默认值 
+		docker build --build-arg build=1234 -t jamtur01/webapp .
