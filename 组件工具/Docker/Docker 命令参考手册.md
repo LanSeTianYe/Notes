@@ -22,6 +22,7 @@ docker 具体命令帮助信息 `docker command --help`
 	* `-p`: 指定 `宿主机端口：容器暴露端口`
 	* `-P`：对外公开容器构造时暴露的端口，并绑定到一个随机端口上。
 	* `--name`: 指定容器名字。
+	* `--net`：指定容器使用的网络。同一个网络中的容器可以通过容器名直接访问 `ping container_name`。
 	* `--restart condition`: 当容器停止运行之后自动重启容器。
 		* `always`: 总是自动重启。
 		* `on-failure`: 当容器推出代码不为0时自动重启。
@@ -56,6 +57,7 @@ docker 具体命令帮助信息 `docker command --help`
 	* 默认输出最后几行日志
 	* `-f`：持续输出。
 	* `-t`：显示日志时间。
+0. 查看绑定端口：`docker port container_id`
 
 ### 镜像命令
 
@@ -91,23 +93,23 @@ docker 具体命令帮助信息 `docker command --help`
 
 0. 构建镜像 `docker build [选项] 上下文路径（Docker服务器中的路径）`
 	
-	* `--no-cache`：不使用构造缓存。
-	* `-t "user_name/image_name:version"`：指定镜像名和版本。
-	* `--build-arg`:传递参数给Deckerfile里面的变量名 `docker build --build-arg build=1234 -t jamtur01/webapp .`
-	* `-v`：把宿主机的目录挂载到容器。
+	* `--no-cache`：不使用构造缓存。  
+	* `-t "user_name/image_name:version"`：指定镜像名和版本。  
+	* `--build-arg`:传递参数给Deckerfile里面的变量名 `docker build --build-arg build=1234 -t jamtur01/webapp .`  
+	* `-v`：把宿主机的目录挂载到容器。卷可以在容器间共享。即便容器停止，卷里的内容依旧存在。  
 
-    例子：
-	
-	* 从当前文件加下构建： `docker build -t nginx:v3 .`
-	* 从git仓库构建： `docker build https://github.com/twang2218/gitlab-ce-zh.git#:8.14`
-	* 从压缩包构建：`docker build http://server/context.tar.gz`
-	* 挂载目录:
-	 
+	例子：
+
+	* 从当前文件加下构建： `docker build -t nginx:v3 .`  
+	* 从git仓库构建： `docker build https://github.com/twang2218/gitlab-ce-zh.git#:8.14`  
+	* 从压缩包构建：`docker build http://server/context.tar.gz`  
+	* 挂载目录:（`ro:只读 rw：读写`）   
+ 
 			docker run -d -p 80 --name website -v $PWD/website:/var/www/html/website:ro jamtur01/nginx nginx
 
 	Docker命令行通过API调用的方式和Docker服务通信，构造的时候会把指定路径的内容打包上传到Docker服务器（默认为当前目录）。
 
-0. 镜像构造过程： `docker history image_id`
+0. 镜像构造过程： `docker history image_id`  
 0. 容器相关 `docker container`
 
 		attach      Attach local standard input, output, and error streams to a running container

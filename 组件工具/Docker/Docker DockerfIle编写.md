@@ -60,9 +60,13 @@
 	* `ENV RVM_PATH /home/redis RVM_ARCHFLAGS="-arch i386"`:设置多个环境变量。
 	* `WORKDIR $RVM_PATH`: 引用环境变量。
 
-8. `ARG` 构建参数
+17. `ARG`: 接收docker运行镜像时传递的参数。
 
-		格式：ARG <参数名>[=<默认值>]
+		#参数名字
+		ARG build
+		ARG webapp_user=user
+		# 传递参数 build接收1234，webapp_user使用默认值 
+		docker build --build-arg build=1234 -t jamtur01/webapp .
 
 9. `VOLUME` 向基于镜像创建的容器添加卷。一个卷可以存在于一个或多个容器内的特定目录，这个目录可以绕过联合文件系统，提供数据共享或持久化的功能。
 
@@ -72,7 +76,7 @@
 	* 对卷的修改不会对更新镜像产生影响。
 	* 卷会一直存在直到没有任何容器再使用它。
 
-    通过卷可以将数据、数据库获取他内容天机大到镜像中，而不是提交到镜像中，并且允许多个容器共享这些内容。
+    通过卷可以将数据、数据库获取他内容田间到镜像中，而不是提交到镜像中，并且允许多个容器共享这些内容。
 		
 		VOLUME ["<路径1>", "<路径2>"...]
 		VOLUME <路径>
@@ -120,10 +124,3 @@
 		LABEL version="1.0"
 		LABEL location="New York" type="Data Center" role="Web Server"
 16. `STOPSIGNAL`：设置停止容器时发送什么系统调用信号给容器。这个信号必须是内核系统调用表中合法的数，如9，或者SIGNAME格式中的信号名称，如SIGKILL。
-17. `ARG`: 接收docker运行镜像时传递的参数。
-
-		#参数名字
-		ARG build
-		ARG webapp_user=user
-		# 传递参数 build接收1234，webapp_user使用默认值 
-		docker build --build-arg build=1234 -t jamtur01/webapp .
