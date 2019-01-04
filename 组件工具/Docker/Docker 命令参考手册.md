@@ -18,15 +18,19 @@ docker 具体命令帮助信息 `docker command --help`
 0. 从镜像启动容器 `docker run`，例如: `docker run -d -p 8080:80 image_id/image_name command`
 
 	`command` 表示要在容器中执行的命令，如 打开命令行 `/bin/bash`，启动nginx `nginx -g "deamon off"`
-	* `-d`: 后台运行。 
+	* `-d`: 后台运行。
+	* `-h`：设置容器的主机名。 
 	* `-p`: 指定 `宿主机端口：容器暴露端口`
 	* `-P`：对外公开容器构造时暴露的端口，并绑定到一个随机端口上。
+	* `-v 宿主机目录:容器内部目录`： 把宿主机目录挂载到容器内部指定的目录，容器内部目录不存在会自动创建。容器内外数据变化实时同步。
+	* `--volumes-from container_id`：把指定容器里的所有卷都挂载到新容器。
 	* `--name`: 指定容器名字。
 	* `--net`：指定容器使用的网络。同一个网络中的容器可以通过容器名直接访问 `ping container_name`。
 	* `--restart condition`: 当容器停止运行之后自动重启容器。
 		* `always`: 总是自动重启。
 		* `on-failure`: 当容器推出代码不为0时自动重启。
-		* `on-failure:failure_times`: 限制重启次数，超过之后不重启。  
+		* `on-failure:failure_times`: 限制重启次数，超过之后不重启。
+	* `--rm`/：容器运行完成之后删除容器。  
 0. 停止运行中的容器：
 	* `docker stop`：发送停止命令。
 	* `docker kill`：直接结束运行。
