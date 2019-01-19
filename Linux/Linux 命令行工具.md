@@ -50,6 +50,7 @@
 		cal | boxes -d dog -a c | lolcat -F 0.1
 		# 雪花日历
 		$ clear;cal|boxes -d diamonds -p a1t2l3|boxes -a c -d scroll|lolcat;sleep 3;while :;do echo $LINES $COLUMNS $(($RANDOM%$COLUMNS)) $(printf "\u2744\n");sleep 0.1;done|gawk '{a[$3]=0;for(x in a) {o=a[x];a[x]=a[x]+1;printf "\033[%s;%sH ",o,x;printf "\033[%s;%sH%s \033[0;0H",a[x],x,$4;}}'
+
 ### 小游戏  
 
 1. [2048](https://github.com/tiehuis/2048-cli) 
