@@ -16,11 +16,7 @@
 1. [boxes](https://github.com/ascii-boxes/boxes) 字符串包装工具。
 
 	语法：`echo "xiaotian" | boxes [[option] [option argument]] ...`
-
-	**option：**
-		
-	* `-d` : 样式 。`parchment` `diamonds` `simple` `dog` `html` `peek` `shell` 等。  
-
+	
 	示例文档: [http://boxes.thomasjensen.com/examples.html](http://boxes.thomasjensen.com/examples.html)
 	
 			_________
@@ -32,7 +28,7 @@
 	
 	注：源码安装之后需要把配置文件拷贝到 `/usr/share/boxes` 目录。详细可参考官方文档。
 		
-		make && cp ./boxes-config /usr/share/boxes && link ./src/boxes /usr/bin/boxes
+			make && cp ./boxes-config /usr/share/boxes && link ./src/boxes /usr/bin/boxes
 
 2. [figlet](https://github.com/cmatsuoka/figlet.git) 文字转换。
 
