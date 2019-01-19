@@ -61,18 +61,20 @@
 
 		# ctrl + ] -> quit 退出
 		telnet towel.blinkenlights.nl   
-2. [奔跑的小猫](https://github.com/klange/nyancat)
+2. [奔跑的小猫](https://github.com/klange/nyancat)  
+
 3. [显示矩阵](https://github.com/abishekvashok/cmatrix)：[下载地址](https://codeload.github.com/abishekvashok/cmatrix/tar.gz/1.2), （建议使用 release 版本安装）。
+  
 4. [aafire](http://aa-project.sourceforge.net/aalib/) : 显示火的图像。
 
 		aafire | lolcat -F 0.00001 -p 1
 
 ### 其他工具  
 
-* [sl](https://github.com/mtoyoda/sl)：命令行玩笑工具，输入 `sl` 命令行会有一列火车通过。
+1. [sl](https://github.com/mtoyoda/sl)：命令行玩笑工具，输入 `sl` 命令行会有一列火车通过。
 
 		git clone https://github.com/mtoyoda/sl.git
 		cd sl
 		make && link ./sl /usr/sbin/sl
-* [espeak](http://espeak.sourceforge.net/): 读文字。
+2. [espeak](http://espeak.sourceforge.net/): 读文字。
 		
