@@ -32,7 +32,6 @@
 	
 	注：源码安装之后需要把配置文件拷贝到 `/usr/share/boxes` 目录。详细可参考官方文档。
 		
-		# 安装命令
 		make && cp ./boxes-config /usr/share/boxes && link ./src/boxes /usr/bin/boxes
 
 2. [figlet](https://github.com/cmatsuoka/figlet.git) 文字转换。
@@ -41,7 +40,6 @@
 		  / ___/
 		 (__  )
 		/____/
-
 
 2. [lolcat](https://github.com/busyloop/lolcat) 命令行文本转换成彩虹色
   
