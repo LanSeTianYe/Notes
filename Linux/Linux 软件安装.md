@@ -10,9 +10,15 @@
 #### 简介  
 yum 全称 Yellow dog Updater, Modified，是一个在 Fedora 和 RedHat 以及 SUSE 中的 Shell 前端软件包管理器。基于 RPM 包管理，可以自动处理依赖关系，简单好用。
 
-支持同时配置多个软件仓库，
+支持同时配置多个软件仓库。
 
-#### yum 命令    
+#### yum-config-manager yum 配置管理 
+
+* `yum-config-manager --add-repo [file/url]`：添加仓库。
+* `yum-config-manager --disable "仓库名"`：启用仓库。
+* `yum-config-manager --enable "仓库名"`：禁用仓库。
+
+#### yum 软件管理   
 
 **语法：** `yum [option] [commands] [package ...]`
 
