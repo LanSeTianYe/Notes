@@ -55,7 +55,7 @@ Linux 分为两种用户超级管理员（root）和普通用户，超级管理�
 
 		# 替换文件内容
 		root$ visudo
-		User_Alias  ADMINS = pro1, pro2, pro3, myuser1
+		User_Alias  ADMINS = xiaotian, xiaotian2
 		ADMINS ALL=（root）  /bin/su -
         xiaotian$ sudo su -
 ### 文件系统 
