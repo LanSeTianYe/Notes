@@ -11,13 +11,13 @@
  * -Xms20M  初始化堆内存大小(最小)
  * -Xmx20m  最大堆内存大小（最大）
   * -Xmn10m  新生代大小（剩余的为老年代）
-     * -XX:SurvivorRation=8 新生代Eden和Survivor取得空间比是8:1(8:1:1) 
+     * -XX:SurvivorRation=8 Eden:ToSurvivor:FromSurvivor空间比是 `8:1:1`  
 
 **方法区**：俗称永久代，1.8取消了方法区改为Metaspace。存储已被虚拟机加载的类信息，常量、静态变量、即时编译后的代码数据等（方法名、类名等）。多线程共享。
  
  * -XX:PermSize=20m  方法区大小
  * -XX:MaxPermSize=20m 最大方法区大小
- * -XX:MaxMetaspaceSize=128m 设置源空间大小
+ * -XX:MaxMetaspaceSize=128m 设置元空间大小
 
 **虚拟机栈**：每个方法在创建的时候都会创建一个栈帧，用于存放局部变量表，操作数栈，动态链接，方法出口等信息。
  
@@ -40,7 +40,7 @@
 ## 其他配置信息
 
  * -Xverify:none 是否在编译前检查类
- * -verbos:gc 显示gc信息
+ * -verbose:gc 显示gc信息
  * -XX:+UseConcMarkSweepGC  使用CMS收集器（老年代）
  * -XX:+USeParNewGC (CMS默认的新生代收集器)
  * -XX:+PrintGCDetails 打印GC信息
