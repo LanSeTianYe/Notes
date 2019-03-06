@@ -2,9 +2,12 @@
 
 参考：
 
+1. [Linux基础 30分钟GDB调试快速突破](https://www.cnblogs.com/life2refuel/p/5396538.html)
+2. [Give me 15 minutes & I'll change your view of GDB](https://undo.io/resources/presentations/cppcon-2015-greg-law-give-me-15-minutes-ill-change/)
+
 ## GDB 调试工具
 
-Unix 及 Unix Like 系统下命令行调试工具。
+Unix 及 Unix Like 系统下命令行调试工具。主要用于调试 C/C++ 程序，有文本UI界面，交互模式下支持 python 语法调用。
 
 ### 常用命令  
 
