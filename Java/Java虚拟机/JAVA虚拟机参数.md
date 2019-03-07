@@ -25,7 +25,7 @@
 
 **直接内存**：不受Java虚拟机管理，属于操作系统内存。
 
- * -XX:MaxDirectMemorySize=10M 设置直接内存大小，默认和Java堆大小相同
+ * -XX:MaxDirectMemorySize=10M 设置直接内存大小，默认和Java堆大小相同。
 
 ## 性能调优
  * 对象优先分配在新生代的Eden区
