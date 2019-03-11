@@ -24,7 +24,7 @@ tmux 通过 `seesion`、`window`（窗口）、`pane`（窗格） 来区分窗�
 
 ### 窗口内命令
 
-窗口内命令需要先按 `ctrl + b` 然后输入命令。
+窗口内命令需要先按 `ctrl + b` 然后输入命令，按 `CTRL + B` 之后使用 `PageUp/PageDowm` 可以上下翻页。
 
 1. `?` ：查看帮助。
 1. `d` ：退出session。
