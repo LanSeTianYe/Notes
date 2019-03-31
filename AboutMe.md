@@ -1,9 +1,13 @@
 ## 任务清单   
 
-|内容|状态|开始时间|结束时间|
-|::|::|::|::|
-|Java 并发内容回顾总结|doing|2019/3/31 16:44:08 |  |
-|Zookeeper 内容整理  |todo |                   |  |
+* Java 并发内容回顾总结    
+	* status:doing  
+	* start at: 2019/3/31 16:44:08 
+	* end   at: 
+* Zookeeper 内容整理 
+	* status:todo  
+	* start at:
+	* end   at: 
 
 ## 统计  
 
