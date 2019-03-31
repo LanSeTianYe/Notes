@@ -2,4 +2,4 @@
 
 ## 统计  
 
-[![HitCount](http://hits.dwyl.io/sunfeilong/{project}.svg)](http://hits.dwyl.io/sunfeilong/{project})
+[![HitCount](http://hits.dwyl.io/sunfeilong/note/project.svg)](http://hits.dwyl.io/sunfeilong/note/project)
