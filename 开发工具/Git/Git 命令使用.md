@@ -4,28 +4,14 @@
 	* [常用 Git 命令清单](http://www.ruanyifeng.com/blog/2015/12/git-cheat-sheet.html)
 
 ## git模型
+  
 1. 工作区：存储修改过的未缓存的文件
 2. 缓存区：缓存修改过的文件
 3. 本地仓库：提交缓存文件到本地仓库
 4. 远程仓库：推送本地仓库文件到远程仓库
 
-## 基本命令
-1. 配置
+## 基本命令  
 
-		# 查看配置信息
-		git config --list
-		# 编辑配置信息
-		git config -e [--global]
-		# 配置局部或全局用户名
-		git config [--global] user.name "sunfeilong1993"
-		git config [--global] user.email "1498282352@qq.com"
-        # 配置支持长路径文件
-		git config --global core.longpaths true
-        # 添加或删除远端
-	    git remote add remote_name https://github.com/longlongxiao/abc.git
-        git remote remove remote_name
-		# Linux 命令行显示颜色
-		git config --global color.ui auto
 2. 项目初始化  
 
 		# 从远程仓库获取，默认名字是最后一个/号后面.git前面的内容
