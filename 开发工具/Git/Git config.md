@@ -19,11 +19,6 @@
 
 		git config --global core.longpaths true
 
-5. 添加或删除远程地址。  
-
-	    git remote add remote_name https://github.com/longlongxiao/abc.git
-        git remote remove remote_name
-
 6. Linux 命令行显示颜色。 
 
 		git config --global color.ui auto

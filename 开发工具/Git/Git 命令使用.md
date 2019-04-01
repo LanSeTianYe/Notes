@@ -10,22 +10,13 @@
 3. 本地仓库：提交缓存文件到本地仓库
 4. 远程仓库：推送本地仓库文件到远程仓库
 
+工作流程：本地编辑或删除文件之后文件会放在工作区，`git add` 命令会把指定的文件放进缓存区，`git commit` 会把缓存区的文件提交到本地仓库。 `git push` 命令会把本地仓库中的文件推送到远程仓库。
+ 
 ## 基本命令  
 
-2. 项目初始化  
-
-		# 从远程仓库获取，默认名字是最后一个/号后面.git前面的内容
-		git clone https://github.com/longlongxiao/XiaoTian.git [projectName]
-		# 把当前目录初始化成git项目
-		git init
-		# 在当前目录下初始化一个项目
-		git init [projectName]
 3. 查看信息
 
-		# 查看文件变化
-		git status -s
-		# 显示当前版本历史
-		git log
+
 		# 显示提交历史，以及每次提交发生变更的文件
 		git log --stat
 		# 搜索提交历史，根据关键字
@@ -35,7 +26,7 @@
 		# 显示过去的五次提交
 		git log -5 --pretty --oneline
 		# 树形展示历史
-		git --graph
+		git log --graph
 		# 显示所有提交过的用户，按提交次数排序
 		git shortlog -sn
 		# 显示指定文件在什么时候修改过
@@ -52,12 +43,6 @@
 		git reflog
 4. 缓存修改
 
-		# 缓存当前目录下所有修改的文件
-		git add .
-		# 缓存指定文件
-		git add [file1] [file2] ...
-		# 缓存指定目录下所有修改的文件
-		git add [dir]
 		
 		# 删除工作区文件，并将这次删除放入缓存区
 		git rm [file1] [file2] ...	
@@ -92,14 +77,7 @@
 		git remote show [remote]
 		# 增加远程仓库
 		git remote add [shortname] [url]
-		# 取回远程仓库的变化，并与本地分之合并
-		git pull [remote] [branch]
-		# 上传本地分支到远程仓库
-		git push [remote] [branch]
-		# 强行推送当前分支到远程仓库，即使有冲突
-		git push [remote] --force
-		# 推送所有分支到远程仓库
-		git push [remote] --all
+
 7. 标签
 
 		# 列出所有标签
@@ -122,28 +100,13 @@
 		git checkout -b [branch] [tag]
 8. 分支  
 
-		# 列出所有本地分支
-		git branch
-		# 列出所有远程分支
-		git branch -r
-		# 列出所有本地分支和远程分支
-		git branch -a
-		# 显示分支最新版本（和-r、-a结合使用）
-		git branch -v
-		# 新建一个分支，但依然停留在当前分支
-		git branch [branchName]
 		# 新建一个分支，并且换到新建分支
 		git branch - b [branchName]
 		# 新建一个分支，执行指定commit
 		git branch [branch] [commit]
 		# 新建一个分支，与指定的远程分支建立追踪关系
 		git branch --track [branch] [remote-branch]
-		# 切换到指定分区，并更新工作区
-		git checkout [branchName]
-		# 切换到上一个分支
-		git branch -
-		# 检出分支到新分支
-		git checkout -b newbranch branch
+
 		# 建立追踪关系，在现有分支与指定的远程分支之间
 		git branch --set-upstream [branch] [remote-branch]
 		# 合并指定分支到当前分支
@@ -159,14 +122,4 @@
 
 		# 合并其他分支到当前分支
 		git merge [currBranch] [otherBranch]
-
-
-10. `statsus` 查看工作区状态
-
-	* `-s` : --short 简短形式输出
-	* `-b` : --branch 显示分支信息（在简短格式下也可以使用）
-	* `--porcelain` : 输出脚本易读的简短形式，在各种Git版本和用户配置保持输出格式一致。
-	* `long` : （默认选项），输出完整信息
-	* `-v` : --verbos 展示已经添加到本地缓存的文件里面被修改的内容，类似于 `git diff --cached`,
-	* `-vv` : 展示没有缓存的文件和缓存文件的被修改的内容，类似于 `git diff`
 
