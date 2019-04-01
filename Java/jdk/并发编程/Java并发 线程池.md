@@ -7,7 +7,7 @@
 
 ## 线程池   
 
-线程池是为了重用线程，减少线程创建的开销，从而提高任务执行效率。
+线程池可以重用已经创建的线程，从而减少线程创建的开销，提高任务执行效率。
 
 ![CompletableFuture 继承结构图](https://raw.githubusercontent.com/LanSeTianYe/Notes/master/images/java/concurrent/ExecutorService.png) 
 
@@ -15,9 +15,9 @@ Jdk1.5 提供了 `ThreadPoolExecutor`，是一个直观的线程池模型。
 
 Jdk1.7 引入了 `ForkJoinPool`，核心方法是 `fork` 分解 和 `join` 合并，简化 `分解/合并` 模型的任务的执行方式。用于任务需要拆分成子任务，或任务依赖多个子任务的场景。
 
-### 简介      
+### ThreadPoolExecutor 线程池   
  
-线程池通过复用线程减少新建线程的开销，在 Java 中线程池基于 `ThreadPoolExecutor` 类实现。可以用过不同的参数配置不同的线程池。
+在 Java 中线程池基于 `ThreadPoolExecutor` 类实现。可以用过不同的参数配置不同的线程池。
 
 参数： 
 
@@ -63,7 +63,7 @@ Jdk1.7 引入了 `ForkJoinPool`，核心方法是 `fork` 分解 和 `join` 合�
 * `afterExecute`：任务执行结束之后调用。
 * `terminated`：线程池终止之后调用。
 
-### 默认线程池    
+**默认线程池：**    
 
 在Java中　`Executors` 提供了几种线程池的默认实现。
 
@@ -71,7 +71,11 @@ Jdk1.7 引入了 `ForkJoinPool`，核心方法是 `fork` 分解 和 `join` 合�
 * `Executors.newCachedTheadPoll`：为每一个任务创建或使用一个线程，内部使用 `SynchronousQueue`。
 * `Executors.newSingledThreadPool`：每次执行一个任务，当新任务到达时会阻塞。
 
-### Jdk1.7 ForkJoinPool
+### ForkJoinPool    
+
+`ForkJoinPool` 构造函数CPU核心数确定线程的数量，适用于计算密集型的任务，不适用于IO密集的任务。
+
+提供 `Fork/Join` 任务模型，适用于递归、分治、归并的场景。
 
 ### Jdk1.8异步执行器  
 
