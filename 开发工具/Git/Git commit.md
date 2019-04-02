@@ -13,5 +13,9 @@
 2. 提交缓存区指定文件。
 
 		git commit <file>... -m "message"
+
+3. 显示文件内容变更信息。
+
+		git commit <file>... -v -m "message"
 	
 	 
