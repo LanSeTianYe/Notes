@@ -18,4 +18,6 @@
 
 		git commit -v -m "message" <file>... 
 	
-	 
+4. 会把缓冲区的内容和上次提交合并为一个提交，提交历史中只有一个记录。同时也可以更改提交信息。
+
+		git commit --amend

@@ -9,9 +9,9 @@
 1. 把暂存区的文件移动到工作区。  
 
 		# 取消缓存指定文件
-		git reset branch_name <file>...
+		git reset HEAD <file>...
 		# 取消缓存所有的文件
-		git reset branch_name .
+		git reset HEAD .
 
 2. 恢复本地提交历史到指定提交，用于本地提交没有推送到仓库，如果已经推送到远程仓库可以使用 `revert` 
 

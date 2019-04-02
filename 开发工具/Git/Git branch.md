@@ -28,11 +28,8 @@
 
 		git branch -d [local_branch_name]
 
-5. 删除远程分支。
+5. 设置分支跟踪的远程分支
 
-		# 删除本地仓库远程分支
-		git branch -dr [remote_branch_name]
-		# 提交删除信息
-		git push origin :remote_branch_name
+		git branch --set-upstream-to=origin/<branch> dev
 
 

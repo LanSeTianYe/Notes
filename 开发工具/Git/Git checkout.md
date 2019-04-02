@@ -5,9 +5,9 @@
 1. 恢复缓存区的文件到上一次提交。  
 
 		# 恢复指定文件，到上一次提交
-		git checkout HEAD file_name
+		git checkout -- file_name
 		# 恢复所有变更的文件，到上一次提交。 
-		git checkout .
+		git checkout -- .
 
 2. 切换到本地分支。
 

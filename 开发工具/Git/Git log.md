@@ -16,4 +16,16 @@
 
 3. 显示每个用户的提交历史。
 
-		git shortlog	
+		git shortlog
+	
+4. 最近两次提交的差异。
+
+		git log -p -2
+5. 查看统计信息。
+
+		git log --stat
+
+6. 指定显示格式。
+
+		git log --pretty=oneline
+

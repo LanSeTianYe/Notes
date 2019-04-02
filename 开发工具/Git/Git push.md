@@ -18,6 +18,8 @@
 
 		git push --all
 
+5. 删除远程分支。
 
+		git push origin :remote_branch_name
 
 
