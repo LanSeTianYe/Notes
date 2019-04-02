@@ -33,3 +33,6 @@
 
 		git push origin :v0.0.1
 
+8. 图像化展示各分支信息。
+
+ 		git log --oneline --decorate --graph --all

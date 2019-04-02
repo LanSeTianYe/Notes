@@ -29,3 +29,7 @@
 7. 配置别名，类似于Linux的别名。
 
 		git config --global alias.co checkout
+
+7. 配置缓存，之后会缓存输入的用户名和密码。
+
+		git config --global credential.helper cache

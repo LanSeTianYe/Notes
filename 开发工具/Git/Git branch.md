@@ -28,8 +28,15 @@
 
 		git branch -d [local_branch_name]
 
-5. 设置分支跟踪的远程分支
+5. 设置当前分支分支跟踪的远程分支。
 
-		git branch --set-upstream-to=origin/<branch> dev
+		git branch --set-upstream-to=origin/<branch>
 
+6. 查看已经合并到当前分支的分支。
+
+		git branch --merged
+
+7. 查看分支跟踪的远程分支。
+
+		git branch -vv
 
