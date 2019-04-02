@@ -14,8 +14,8 @@
 
 		git commit <file>... -m "message"
 
-3. 显示文件内容变更信息。
+3. 显示文件内容变更信息，如 `1 file changed, 4 insertions(+)`。
 
-		git commit <file>... -v -m "message"
+		git commit -v -m "message" <file>... 
 	
 	 

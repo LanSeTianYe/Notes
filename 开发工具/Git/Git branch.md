@@ -24,4 +24,15 @@
 
 		git branch --track [new_branch] [remote-branch]
 
+4. 删除本地。
+
+		git branch -d [local_branch_name]
+
+5. 删除远程分支。
+
+		# 删除本地仓库远程分支
+		git branch -dr [remote_branch_name]
+		# 提交删除信息
+		git push origin :remote_branch_name
+
 

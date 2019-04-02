@@ -15,38 +15,6 @@
 ## 基本命令  
 
 
-4. 缓存修改
-
-		# 改文件名，并将这个改名放入缓存区
-		git mv [original-file] [renames-file]
-5. 提交修改
-	
-		# 把缓存区文件放入本地仓库
-		git commit -m ["修改说明"]
-		# 提交缓存区指定文件到仓库
-		git commmit [file1] [file2] ... -m [message]
-		# 提交工作区自上次提交之后的变化，直接到本地仓库
-		git commit -a 
-		# 提交时显示所有diff信息
-		git commit -v
-		# 使用一次新的提交代替上一次提交，如果代码没有发生任何变化，则用来改写上一次提交的提交说明
-		git commit --amend -m [message]
-		# 重做上一次提交，并包含指定文件的心变化
-		git commit --amend [file1] [file2] ...
-		# 丢弃本次更改(没有提交的更改都返回到没有修改的状态)
-		git checkout .
-
-6. 推送修改
-	
-		# 显示所有远程仓库
-		git remote -v
-		# 从远程仓库下载更新
-		git fetch [remote]
-		# 显示指定远程仓库信息
-		git remote show [remote]
-		# 增加远程仓库
-		git remote add [shortname] [url]
-
 7. 标签
 
 		# 列出所有标签
@@ -82,13 +50,5 @@
 		git megre -no-ff [branch]
 		# 选择一个commit，合并进当前分支
 		git cherry-pick [commit]
-		# 删除分支
-		git branch -d [branchName]
-		# 删除远程分支
-		git push origin --delete [branchName]
-		git branch -dr [remote/branch]
-9. 合并分支
-
-		# 合并其他分支到当前分支
-		git merge [currBranch] [otherBranch]
+	
 

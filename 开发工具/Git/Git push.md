@@ -10,6 +10,10 @@
 
 		git push [remote] [local_branch]
 
+2. 指定推送的远程分支的名字。
+
+		git push origin local_branch:remote_branch
+
 2. 推送所有分支。
 
 		git push --all
