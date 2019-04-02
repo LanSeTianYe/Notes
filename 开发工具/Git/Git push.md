@@ -22,4 +22,14 @@
 
 		git push origin :remote_branch_name
 
+6. 推送标签。
+
+		# 推送指定标签
+		git push origin v0.0.1
+		# 推送所有标签
+		git push origin --tags
+		
+7. 删除远程标签。
+
+		git push origin :v0.0.1
 

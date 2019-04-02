@@ -25,3 +25,7 @@
 6. Linux 命令行显示颜色。 
 
 		git config --global color.ui auto
+
+7. 配置别名，类似于Linux的别名。
+
+		git config --global alias.co checkout

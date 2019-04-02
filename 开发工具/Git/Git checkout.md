@@ -24,5 +24,9 @@
 5. 创建本地分支跟踪指定远程分支。
 
 		git checkout --track origin/remote_branch
+
+7. 检出标签，此时仓库会处于分离指针头的状态，修改提交之后将处于无分支状态。可以从标签创建新分支，解决这个问题。
+
+		git checkout "tag_name" 
  
 
