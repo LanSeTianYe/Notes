@@ -14,40 +14,9 @@
  
 ## 基本命令  
 
-3. 查看信息
 
-
-		# 显示提交历史，以及每次提交发生变更的文件
-		git log --stat
-		# 搜索提交历史，根据关键字
-		git log -S [keyword]
-		# 显示某个commit之后的所有变动，每个commit占据一行
-		git log [tag] HEAD --pretty=format:%s
-		# 显示过去的五次提交
-		git log -5 --pretty --oneline
-		# 树形展示历史
-		git log --graph
-		# 显示所有提交过的用户，按提交次数排序
-		git shortlog -sn
-		# 显示指定文件在什么时候修改过
-		git blame [file]
-		# 显示缓存区和工作区的差异
-		git diff
-		# 显示缓存区和上一次提交的差异
-		git diff --cached [file]
-		# 显示工作区和当前分支最新提交之间的差异
-		git diff HEAD
-		# 显示今天写了多少代码
-		git diff --shortstat "@{0 day ago}"
-		# 显示当前分支最近几次提交
-		git reflog
 4. 缓存修改
 
-		
-		# 删除工作区文件，并将这次删除放入缓存区
-		git rm [file1] [file2] ...	
-		# 停止追踪文件，但该文件会保留在工作区
-		git rm -cached [file]
 		# 改文件名，并将这个改名放入缓存区
 		git mv [original-file] [renames-file]
 5. 提交修改

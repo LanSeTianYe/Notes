@@ -13,3 +13,7 @@
 2. 图形化展示提交历史。
 
 		git log --graph
+
+3. 显示每个用户的提交历史。
+
+		git shortlog	
