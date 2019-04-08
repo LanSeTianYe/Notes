@@ -18,6 +18,10 @@
 
 		git push --all
 
+6. 推送并跟踪远程分支。
+	
+	    git push -u orgin fetureA:fetureAA			
+
 5. 删除远程分支。
 
 		git push origin :remote_branch_name
@@ -33,6 +37,7 @@
 
 		git push origin :v0.0.1
 
-8. 图像化展示各分支信息。
+8. 覆盖远程分支，当分支变基之后使用。
 
- 		git log --oneline --decorate --graph --all
+		git push -f origin fetureA 
+

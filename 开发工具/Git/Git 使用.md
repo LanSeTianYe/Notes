@@ -3,13 +3,11 @@
 2. 参考：
   
 	* [Git book](https://git-scm.com/book/en/v2)
+	* [How to Install latest version of Git ( Git 2.x ) on CentOS 7](https://computingforgeeks.com/how-to-install-latest-version-of-git-git-2-x-on-centos-7/)
 
 ## 简介  
 
 在Git中所有用来表示项目历史信息的文件，是通过一个40个字符的（40-digit）“对象名”来索引的。
-
-
-
 
 ## git模型
   
@@ -24,5 +22,9 @@
 
 * [gitkraken](https://www.gitkraken.com/): 用过的比较好用的客户端工具。  
 
-
-
+## 安装 
+1.  Centos 7 安装 2.0 版本。
+ 
+	 	yum remove git	
+		yum install  https://centos7.iuscommunity.org/ius-release.rpm
+		yum install  git2u-all

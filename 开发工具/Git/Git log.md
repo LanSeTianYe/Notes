@@ -29,3 +29,10 @@
 
 		git log --pretty=oneline
 
+7. 显示在后面分支但不在前面分支的提交。
+
+		git log --no-merges is55..origin/master	
+
+8. 图像化展示各分支信息。
+
+ 		git log --oneline --decorate --graph --all
