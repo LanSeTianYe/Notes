@@ -114,8 +114,20 @@
 		    if message.lower() == "quit":
 		        print("exit")
 		        break
-		    print(message) 
+		    print(message)
 
+### 异常处理  
+
+1. 异常处理模型。
+
+		try:
+		    print(5 / 1)
+		except ZeroDivisionError as err:
+		    print("You can't divide by zero!")
+		except FileNotFoundError as err:
+    		pass
+		else:
+		    print("other")
 ### 函数 
 
 1. 一般函数。
@@ -151,6 +163,28 @@
 		            user[k] = v
 		    return user
 
+### 类 
+
+1. 类、类继承、重写方法。
+
+		class Car:
+		    def __init__(self, name: str = "", year: int = 0):
+		        self.name = name
+		        self.year = year
+		
+		    def __str__(self) -> str:
+		        return self.name + str(self.year)
+		
+		    def show_name(self):
+		        print(self.name.title())
+		
+		
+		class BMW(Car):
+		    def __init__(self, year: int = 0):
+		        super().__init__("BMW", year)
+		
+		    def __str__(self):
+		        return super().__str__()
 ### 模块导入 
 
 1. 导入整个模块。
