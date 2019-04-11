@@ -4,6 +4,8 @@
 
 ## Python 基础语法   
 
+在 `Python` 中 `0 空 None False` 在条件判断是都是 `False`。
+
 ### 变量  
 
 1. 变量定义和赋值。
