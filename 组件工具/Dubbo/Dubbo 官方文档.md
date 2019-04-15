@@ -3,10 +3,11 @@
 
 1. [Dubbo 官方中文文档](http://dubbo.apache.org/#!/docs/user/references/xml/dubbo-service.md?lang=zh-cn)
 
-## 
-### 参数配置以及用途说明
+##   
 
-#### xml 标签配置方式
+### 参数配置以及用途说明  
+
+#### xml 标签配置方式  
 配置关系覆盖原则：`方法配置优先优先` 优先于 `接口配置` 优先于 `全局配置`。   
 级别相同的情况下：消费端配置优先于提供放端配置，服务提供方配置通过URL经注册中心传递给服务消费方。
 
@@ -50,6 +51,7 @@
 * 关闭注册中心启动时检查，前面两个都是指订阅成功，但提供者列表是否为空时否报错，如果注册订阅失败时，也允许启动，需使用此选项，将在后台定时重试。
 
 		dubbo.registry.check=false
+
 #### 集群容错  
 
 在集群调用失败时，Dubbo 提供了多种容错方案，缺省为 failover 重试。
@@ -61,7 +63,7 @@
 * Forking:  并行调用多个服务器，只要一个成功即返回。通常用于实时性要求较高的读操作，但需要浪费更多服务资源。可通过 `forks="2"` 来设置最大并行数。
 * Broadcast:  广播调用所有提供者，逐个调用，任意一台报错则报错。通常用于通知所有提供者更新缓存或日志等本地资源信息。
 
-#### 负载均衡
+#### 负载均衡   
 
 在集群负载均衡时，Dubbo 提供了多种均衡策略，缺省为 random 随机调用。也可自行扩展负载均衡策略。
 
@@ -81,7 +83,7 @@
 	* 默认只对第一个参数 Hash，如果要修改，请配置 <dubbo:parameter key="hash.arguments" value="0,1" />
 	* 默认用 160 份虚拟节点，如果要修改，请配置 <dubbo:parameter key="hash.nodes" value="320" />
 
-#### 线程模型
+#### 线程模型  
 
 如果事件处理的逻辑能迅速完成，并且不会发起新的 IO 请求，比如只是在内存中记个标识，则直接在 IO 线程上处理更快，因为减少了线程池调度。   
 但如果事件处理逻辑较慢，或者需要发起新的 IO 请求，比如需要查询数据库，则必须派发到线程池，否则 IO 线程阻塞，将导致不能接收其它请求。  
@@ -102,7 +104,8 @@
 * limited：可伸缩线程池，但池中的线程数只会增长不会收缩。只增长不收缩的目的是为了避免收缩时突然来了大流量引起的性能问题。
 * eager：优先创建Worker线程池。在任务数量大于corePoolSize但是小于maximumPoolSize时，优先创建Worker来处理任务。当任务数量大于maximumPoolSize时，将任务放入阻塞队列中。阻塞队列充满时抛出RejectedExecutionException。(相比于cached:cached在任务数量超过maximumPoolSize时直接抛出异常而不是将任务放入阻塞队列)
 
-#### 直接连接到提供者 
+#### 直接连接到提供者  
+ 
 开发测试环境绕过注册中心，直接连接指定的服务。支持三种配置方式。
 
 * XML 配置
@@ -119,7 +122,7 @@
 		# 映射文件内容
 		com.alibaba.xxx.XxxService=dubbo://localhost:20890
 
-#### 只订阅/只注册
+#### 只订阅/只注册  
 
 * 只订阅
 
@@ -131,13 +134,14 @@
 
 		<dubbo:registry id="hzRegistry" address="10.20.153.10:9090" />
 		<dubbo:registry id="qdRegistry" address="10.20.141.150:9090" subscribe="false" />
-#### 静态服务
+
+#### 静态服务  
 
 如果需要人工管理服务的上下线，则需要指定静态模式。服务提供者初次注册时为禁用状态，需人工启用。断线时，将不会被自动删除，需人工禁用。
 
 	<dubbo:registry address="10.20.141.150:9090" dynamic="false" />
 
-#### 多协议
+#### 多协议  
 
 Dubbo 允许配置多协议，在不同服务上支持不同协议或者同一服务上同时支持多种协议。
 
@@ -157,7 +161,8 @@ Dubbo 允许配置多协议，在不同服务上支持不同协议或者同一�
 	    <dubbo:protocol name="hessian" port="8080" />
 	    <!-- 使用多个协议暴露服务 -->
 	    <dubbo:service id="helloService" interface="com.alibaba.hello.api.HelloService" version="1.0.0" protocol="dubbo,hessian" />
-#### 多注册中心  
+
+#### 多注册中心    
 
 Dubbo 支持同一服务向多注册中心同时注册，或者不同服务分别注册到不同的注册中心上去，甚至可以同时引用注册在不同注册中心上的同名服务。
 
@@ -187,7 +192,8 @@ Dubbo 支持同一服务向多注册中心同时注册，或者不同服务分�
 	    <dubbo:reference id="chinaHelloService" interface="com.alibaba.hello.api.HelloService" version="1.0.0" registry="chinaRegistry" />
 	    <!-- 引用国际站站服务 -->
 	    <dubbo:reference id="intlHelloService" interface="com.alibaba.hello.api.HelloService" version="1.0.0" registry="intlRegistry" />
-#### 服务分组
+
+#### 服务分组  
 
 当一个接口有多种实现时，可以用 group 区分。
 
@@ -200,7 +206,7 @@ Dubbo 支持同一服务向多注册中心同时注册，或者不同服务分�
 	# 引用任意分组
 	<dubbo:reference id="barService" interface="com.foo.BarService" group="*" />
 
-#### 多版本
+#### 多版本  
 
 当一个接口实现，出现不兼容升级时，可以用版本号过渡，版本号不同的服务相互间不引用。  
 
@@ -213,14 +219,14 @@ Dubbo 支持同一服务向多注册中心同时注册，或者不同服务分�
 		# 消费者不区分版本调用
 		<dubbo:reference id="barService" interface="com.foo.BarService" version="*" />
 
-#### 分组聚合
+#### 分组聚合  
 
 按组合并返回结果，比如菜单服务，接口一样，但有多种实现，用group区分，现在消费方需从每种group中调用一次返回结果，合并结果返回，这样就可以实现聚合菜单项。
 
-#### 参数验证
+#### 参数验证  
 不稳定
 
-#### 结果缓存
+#### 结果缓存  
 
 结果缓存，用于加速热门数据的访问速度，Dubbo 提供声明式缓存，以减少用户加缓存的工作量。
 
@@ -231,10 +237,11 @@ Dubbo 支持同一服务向多注册中心同时注册，或者不同服务分�
 * jcache: 与 `JSR107` 集成，可以桥接各种缓存实现。
 
 		<dubbo:reference interface="com.foo.BarService" cache="lru" />
-#### 泛化引用/泛化实现
+
+#### 泛化引用/泛化实现  
 忽略
 
-#### 回声测试
+#### 回声测试  
 
 回声测试用于检测服务是否可用，回声测试按照正常请求流程执行，能够测试整个调用是否通畅，可用于监控。 
 
@@ -247,7 +254,8 @@ Dubbo 支持同一服务向多注册中心同时注册，或者不同服务分�
 	// 回声测试可用性
 	String status = echoService.$echo("OK"); 
 	assert(status.equals("OK"));
-#### 上下文信息
+
+#### 上下文信息  
 
 上下文中存放的是当前调用过程中所需的环境信息。所有配置信息都将转换为 URL 的参数。
 
@@ -311,6 +319,7 @@ Dubbo 支持同一服务向多注册中心同时注册，或者不同服务分�
 	<dubbo:method name="findFoo" async="true" sent="true" />
 	# 不接收返回值
 	<dubbo:method name="findFoo" async="true" return="false" />
+
 #### 本地调用  
 
 本地调用使用了`injvm`协议，是一个伪协议，它不开启端口，不发起远程调用，只在`JVM`内直接关联，但执行`Dubbo`的`Filter`链。  
@@ -354,7 +363,8 @@ Dubbo 支持同一服务向多注册中心同时注册，或者不同服务分�
 	        }
 	    }
 	}
-#### 本地伪装
+
+#### 本地伪装  
 
 通常用于服务降级，比如某验权服务，当服务提供方全部挂掉后，客户端不抛出异常，而是通过 Mock 数据返回授权失败。
 
@@ -371,13 +381,14 @@ Dubbo 支持同一服务向多注册中心同时注册，或者不同服务分�
 	    }
 	} 
 
-#### 延迟暴露
+#### 延迟暴露  
 
 	# 延迟5秒
 	<dubbo:service delay="5000" />
  	# 延迟到 Spring 初始化完成后
 	<dubbo:service delay="-1" />
-#### 并发控制 
+
+#### 并发控制   
 
 限制每一个方法不能超过10个
 
@@ -389,7 +400,7 @@ Dubbo 支持同一服务向多注册中心同时注册，或者不同服务分�
 	    <dubbo:method name="sayHello" executes="10" />
 	</dubbo:service>
 
-#### 连接控制 
+#### 连接控制  
 
 限制服务器端接受的连接不能超过 10 个：
 
@@ -439,16 +450,19 @@ Dubbo 是通过 JDK 的 ShutdownHook 来完成优雅停机的，所以如果用�
 	
 	# 15秒之后如果没有停止则强制关机
 	dubbo.service.shutdown.wait=15000
+
 #### 指定日志框架
 
 	dubbo.application.logger=log4j
+
 #### 访问日志 
 
 	# 默认输出到日志框架配置的文件中
 	<dubbo:protocol accesslog="true" />	
 	# 输出到指定文件
 	<dubbo:protocol accesslog="http://10.20.160.198/wiki/display/dubbo/foo/bar.log" />
-#### ReferenceConfig 缓存
+
+#### ReferenceConfig 缓存  
 
 ReferenceConfig 实例很重，封装了与注册中心的连接以及与提供者的连接，需要缓存。否则重复生成 ReferenceConfig 可能造成性能问题并且会有内存和连接泄漏。在 API 方式编程时，容易忽略此问题。
 
@@ -495,7 +509,6 @@ dubbo 2.5.6版本新增了对netty4通信模块的支持
 消费端： 
 
 	<dubbo:consumer client="netty4" />
-
 
 ### 配置参考
 
@@ -599,16 +612,15 @@ dubbo 2.5.6版本新增了对netty4通信模块的支持
 
 该标签为<dubbo:protocol>或<dubbo:service>或<dubbo:provider>或<dubbo:reference>或<dubbo:consumer>的子标签，用于配置自定义参数，该配置项将作为扩展点设置自定义参数使用。
 
-
 ### 协议简介
 
-#### dubbo 协议
+#### dubbo 协议  
 
 接口增加方法，对客户端无影响，如果该方法不是客户端需要的，客户端不需要重新部署。输入参数和结果集中增加属性，对客户端无影响，如果客户端并不需要新属性，不用重新部署。
 
 输入参数和结果集属性名变化，对客户端序列化无影响，但是如果客户端不重新部署，不管输入还是输出，属性名变化的属性值是获取不到的。
 
-**特性：**
+**特性：**  
 
 默认协议，使用基于 mina 1.1.7 和 hessian 3.2.1 的 tbremoting 交互。
 
@@ -626,7 +638,7 @@ dubbo 2.5.6版本新增了对netty4通信模块的支持
 * 参数及返回值不能自定义实现 List, Map, Number, Date, Calendar 等接口，只能用 JDK 自带的实现，因为 hessian 会做特殊处理，自定义实现类中的属性值都会丢失。
 * Hessian 序列化，只传成员属性值和值的类型，不传方法或静态变量。
 
-#### RMI 协议
+#### RMI 协议  
 
 RMI 协议采用 JDK 标准的 `java.rmi.*` 实现，采用阻塞式短连接和 JDK 标准序列化方式。
 
@@ -669,7 +681,7 @@ Dubbo 的 Hessian 协议可以和原生 Hessian 服务互操作，即：
 * 参数及返回值需实现 Serializable 接口。
 * 参数及返回值不能自定义实现 List, Map, Number, Date, Calendar 等接口，只能用 JDK 自带的实现，因为 hessian 会做特殊处理，自定义实现类中的属性值都会丢失。
 
-### 注册中心介绍
+### 注册中心介绍  
 
 #### zookeeper 注册中心
 
@@ -755,4 +767,3 @@ Zookeeper 是 Apacahe Hadoop 的子项目，是一个树型的目录服务，支
 #### exit
 
 * exit: 退出当前 telnet 命令行
-
