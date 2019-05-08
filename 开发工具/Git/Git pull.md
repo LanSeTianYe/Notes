@@ -12,3 +12,6 @@
 2. 拉取所有分支。
 
 		git pull --all
+3. 合并两个不同仓库的分支。
+
+		git pull origin master --allow-unrelated-histories
