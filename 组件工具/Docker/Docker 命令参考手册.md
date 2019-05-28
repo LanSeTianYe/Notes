@@ -3,16 +3,10 @@
  
 1. [docker 安装](https://yeasy.gitbooks.io/docker_practice/install/centos.html)
  
-## Docker 命令    
+## Docker 命令
 
-docker 帮助信息 `docker --help`
+查看帮助文档 : `docker --help` `docker [start][ps][build] --help`    
 
-docker 具体命令帮助信息 `docker command --help`
-
-容器存放目录：`/var/lib/docker/containers`
-
-镜像存放目录：`/var/lib/docker/devicemapper/`
- 
 ### 容器命令  
 
 0. 从镜像启动容器 `docker run`，例如: `docker run -d -p 8080:80 image_id/image_name command`
@@ -64,11 +58,11 @@ docker 具体命令帮助信息 `docker command --help`
 	* 默认输出最后几行日志
 	* `-f`：持续输出。
 	* `-t`：显示日志时间。
-0. 查看绑定端口：`docker port container_id`
+0. 查看绑定端口：`docker port container_id`  
 
-### 镜像命令
+### 镜像命令  
 
-0. 账号登陆 `docker login` 
+0. 账号登陆 `docker login`  
 
 0. 拉取镜像： `docker pull IMAGE_NAME:IMAGE_VERSION`
 
