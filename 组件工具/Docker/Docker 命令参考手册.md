@@ -40,7 +40,7 @@ docker 具体命令帮助信息 `docker command --help`
 	* `docker rm 'docker ps -a -q'`
 
 0. 更新容器运行配置信息 `docker update`
-	*  镜像 `docker` 自动启动：`docker update --restart always mysql`
+	*  容器 `docker` 自动启动：`docker update --restart always mysql`
 
 0. 查看运行的容器  `docker ps`
 	* `-l`: 最后运行的一个容器
