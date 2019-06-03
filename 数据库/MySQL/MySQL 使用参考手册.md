@@ -1,13 +1,22 @@
-## MySQL 使用参考手册 
+时间：2019/5/31 15:49:02   
+参考：
 
-### 数据库基本信息    
+1. 《高性能MySQL》第三版
+  
+## MySQL 使用参考手册   
 
-* 查看数据库版本 `select version()`
-* 查看所有的数据库 `SHOW DATABASES`
-* 查看当前使用的数据库 `SELECT DATABASE()`
-* 查看当前库里面的表 `show tables`
-* 查看SQL语句执行过程 `EXPLAIN SQL语句`
-* 查看服务器连接线程的状态 `SHOW FULL PROCESSLIST`
+> 所有返回结果都可以使用 `where` 语句进行过滤 `show variables where variable_name like 'sql%'`
+
+### 数据库信息      
+
+* 查看数据库版本： `select version()`
+* 查看数据库状态： `show status` `show global status`
+* 查看数据库配置： `show variables`
+* 查看所有的数据库： `show databases`
+* 查看当前使用的数据库： `select database()`
+* 查看当前库里面的表： `show tables`
+* 查看SQL语句执行过程： `explain SQL语句`
+* 查看服务器连接线程的状态： `show full processlist`
 	* `Sleep` 等待客户端发送请求。
 	* `Query` 正在执行查询或者正在把查询结果发送给客户端。
 	* `Locked` 正在等待表锁。
@@ -19,41 +28,57 @@
 ### 数据表操作相关语句
 
 #### 表操作
-* 查看表结构 `describe TABLE_NAME`
-* 查看表状态 `SHOW TABLE status`
-* 查看建表语句 `SHOW CREATE TABLE TABLE_NAME`
-* 添加主键 `ALTER TABLE TABLE_NAME ADD PRIMARY KEY (COLUMN1,COLUMN2...)`
-* 删除主键 `ALTER TABLE TABLE_NAME DROP PRIMARY KEY`
-* 变更存储引擎 `alter table TABLE_NAME engine=innodb`
-* 变更列属性(创建新表，效率低)
+* 查看建表语句： `show create table table_name`
+* 查看表结构： `desc table_name`
+* 添加主键： `alter table table_name add primary key (col1_name, col2_name)`
+* 删除主键： `alter table table_name drop primary key`
+* 变更存储引擎： `alter table table_name engine = innodb`
+* 变更列属性(创建新表，效率低)：
     
 		# 执行时数据库内部会创建临时表
-		ALTER TABLE person_temp MODIFY COLUMN name VARCHAR(30) NOT NULL DEFAULT '' COMMENT '姓名'
+		alter table table_name modify column col_name varchar(50) not null default '' comment '注释'
 		# 执行时不创建临时表
-		ALTER TABLE click_statistic ALTER COLUMN count SET DEFAULT 0
-* 根据旧表创建新表 `CREATE TABLE NEW_TABLE_NAME LIKE OLD_TABLE_NAME`
-* 复制旧表数据到新表 `INSERT INTO NEW_TABLE_NAME SELECT * FROM LOD_TABLE_NAME`
-* 插入数据当主键存在时更新数据 
+		alter table table_name alter col_name set default 1
+* 根据旧表创建新表： `create table new_table_name like old_table_name;` 
+* 复制旧表数据到新表： `insert into new_table_name select * from old_table_name;`
+* 插入数据当主键存在时更新数据： 
 
-		INSERT INTO person (name, age) VALUES ('7', 7) ON DUPLICATE KEY UPDATE age = age + 1;
+		insert into person (primary_key, col1_name) values ('7', 7) on duplicate key update col1_name = col1_name + 1;
 
 #### 查询数据
-* 查询行数 `select count(*) from TABLE_NAME`
-* 限制查询的行数 `SELECT * FROM TABLE_NAME ORDER BY emp_no LIMIT 30, 20`
+
+MySQL服务器会对查询的SQL语句进行优化，因此实际执行的SQL和发送给服务器的SQL并不相同，但是返回的结果是一样的。查看MySQL服务器优化之后实际执行的SQL可以使用如下方法：
+
+1. 执行 `EXPLAIN EXTENDED SQL 语句`
+2. 查看 `SHOW WARNINGS`
+
+**常用查询：** 
+
+* 支持的比较运算: `=` `>` `<` `>=` `<=` `<>` `in` `between ... and ...` `exists` `is` `is not` `is NULL` `like`
+* 查询行数： `select count(*) from table_name`
+* 限制查询的行数(跳过两行之后查找一行)： `select * from article limit 2, 1` 
 * 关联查询：
-	* 内连接：交集
-	* 左连接/右链接：左表全部/右表全部     
+	* `inner join`：交集。  
+	* `left join`：左表全部。 
+	* `right join`：右表全部。    
 * 连接查询结果：需要返回的列数一样
-	* 去重复（去重可能一种影响性能）：
+	* `UNION`：去重复（去重可能严重影响性能）
 	
 			select coulmn1, column2 ... from TABLE_NAME UNION select column1, column2 ... from TABLE_NAME
-	* 保留重复：
-		
+	* `UNION ALL`: 保留重复
+	
 			select coulmn1, column2 ... from TABLE_NAME UNION ALL select column1, column2 ... from TABLE_NAME
+* 分组过滤：
 
-* 查看数据库重构的查询：
-	1. 执行 `EXPLAIN EXTENDED SQL 语句`。
-	2. 查看 `SHOW WARNINGS`。 
+		select user_id, count(*) as atricle_count from article group by user_id having atricle_count > 100
+* 子查询：
+
+		select
+		  article_id,
+		  article_name
+		from note.article
+		where article_id in (select article_id from user_article where user_id = 1);
+
 #### 索引
 
 * 创建唯一索引 `CREATE UNIQUE INDEX INDEX_NAME ON TABLE_NAME(COLUMN1,COLUMN2...)`
@@ -92,14 +117,25 @@
 #### 数据库维护
 
 * 表维护：
-	* 查看表状态：`CHECK TABLE TABLE_NAME`
+	* 查看表状态：`check table table_name`
 	* 修复表索引：
-		* 常用办法：`REPAIR TABLE TABLE_NAME`
-		* INNODB 引擎：`ALTER TABLE TABLE_NAME ENGINE = 'INNODB'`
+		* 常用办法：`repair table table_name`
+		* INNODB 引擎：`alter table table_name engine = 'innodb'`
 
 #### 常用函数
 
+* `count()`:累计数量，`count(*)` `count(if(user_id = 1, 1 , NULL))`
+* `sum()`：求和， `sum(*)` `sum(user_id = 1)`
 * `left('str', length)`: 截取字符串的前 `length` 个字符。 
+* `group_concat(col_name)`: 连接一个分组内的某些字段，经常结合 `group by` 使用。
+
+		# 默认使用逗号做分隔符
+		select group_concat(article_id separator ',') as atricle_id_list from user_article group by user_id;
+		# 排序
+		select group_concat(article_id order by article_id desc separator ',') as atricle_id_list from user_article group by user_id;
+		# 连接多个字段
+		select group_concat(user_id,'-', article_id ) as atricle_id_list from user_article group by user_id;
+* `using(id)`: 连接查询时如果连个表的字段名字相同可以使用 `useing(id)` 代替 `a.id = b.id`
 
 #### 经典示例
 
