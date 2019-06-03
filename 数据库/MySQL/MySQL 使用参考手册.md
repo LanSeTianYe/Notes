@@ -135,7 +135,8 @@ MySQL服务器会对查询的SQL语句进行优化，因此实际执行的SQL和
 		select group_concat(article_id order by article_id desc separator ',') as atricle_id_list from user_article group by user_id;
 		# 连接多个字段
 		select group_concat(user_id,'-', article_id ) as atricle_id_list from user_article group by user_id;
-* `using(id)`: 连接查询时如果连个表的字段名字相同可以使用 `useing(id)` 代替 `a.id = b.id`
+* `using(id)`: 连接查询时如果连个表的字段名字相同可以使用 `useing(id)` 代替 `a.id = b.id`。
+* `distinct`：去重。
 
 #### 经典示例
 
