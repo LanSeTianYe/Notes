@@ -15,7 +15,7 @@
 5.  注销服务：`systemctl mask  service_name`
 5.  取消注销：`systemctl unmask service_name`
 6.  查看状态：`systemctl status service_name`
-### 服务查看 
+### 服务查看  
 1. 查看所有系统服务： `systemctl`
 2. 查看所有启动 unit: `systemctl list-units`
 3. 查看所有启动文件：`systemctl list-unit-files`
@@ -27,26 +27,3 @@
 
 		systemctl list-dependencies
 		systemctl list-dependencies boot.mount
-
-## 防火墙操作 `firewall `
-
-* 打开防火墙 ：`systemctl start firewalld`
-* 停止防火墙 ：`systemctl stop firewalld`
-* 重启防火墙 ：`systemctl restart firewalld`
-* 查看防火墙版本 ：`firewall-cmd --version`
-* 查看状态： `firewall-cmd --state`
-* 显示所有打开端口: `firewall-cmd --zone=public --list-ports`
-* 更新防火墙规则: `firewall-cmd --reload`
-* 拒绝所有包：`firewall-cmd --panic-on`
-* 取消拒绝状态： ` firewall-cmd --panic-off`
-* 查看是否拒绝：`firewall-cmd --query-panic`
-* 打开一个端口的步骤 : 
-	
-		//1. 添加 --permanent永久生效，没有此参数重启后失效
- 		firewall-cmd --zone=public --add-port=80/tcp --permanent
-		//2. 重新加载
-		firewall-cmd --reload
-		//3. 查看
-		firewall-cmd --zone=public --query-port=80/tcp
-		//4. 删除
-		firewall-cmd --zone=public --remove-port=80/tcp --permanent
