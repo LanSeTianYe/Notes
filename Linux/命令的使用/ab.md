@@ -4,6 +4,8 @@
 
 `Apache HTTP server benchmarking tool` 简称 `ab`, HTTP 服务性能测试工具。
 
+安装：`yum -y install httpd-tools`
+
 ##  选项  
 
 1. `-b`：接收和发送TCP缓冲区大小。
