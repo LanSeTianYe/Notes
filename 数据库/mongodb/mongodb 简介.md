@@ -3,9 +3,9 @@
 参考：
 
 1. [MongoDB 通过配置文件启动](https://blog.csdn.net/zhu_tianwei/article/details/44261235)
- 
+
 环境：
-  
+
 1. MongoDB 3.6.2 Community
 
 ## 简介  
@@ -24,22 +24,24 @@
 2. [视图](https://docs.mongodb.com/manual/core/views/)：只读，不能改名。3.4+
 3. [固定容量集合](https://docs.mongodb.com/manual/core/capped-collections/):集合大小固定，类似于一个环，当存储数据超过指定大小时，会删除以前的记录。不能删除元素，不能分片。
 
-		# size bytes，最小 4096
+		# size bytes，最小 4096 
 		db.createCollection("log", { capped: true, size: 100000 } )
 		db.createCollection("log", { capped: true, size: 5242880, max: 5000 } )
+
 5. 文档字段可动态扩展。
-6. 支持文档搜索和地理空间搜索，精简版的 Elasticsearch。
-7. 支持索引。
-8. 单文档原子性。
-6. 集合分片，扩容。
-7. 主从备份，容灾。
+6. 一个集合可以有 `64` 个索引。
+2. 支持文档搜索和地理空间搜索，精简版的 Elasticsearch。
+3. 支持索引。
+4. 单文档原子性。
+5. 集合分片，扩容。
+6. 主从备份，容灾。
 
 ### Linux 安装（CentOS）
 
 1. 安装依赖
 
 		yum install libcurl openssl
-	  
+	
 2. 下载 tar 压缩包，并解压
 
 3. 修改 `/etc/profile` 文件，替换环境变量。
@@ -64,4 +66,4 @@
 
 
 
-	
+​	
