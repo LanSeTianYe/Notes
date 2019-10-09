@@ -44,6 +44,9 @@
 * 插入数据当主键存在时更新数据： 
 
 		insert into person (primary_key, col1_name) values ('7', 7) on duplicate key update col1_name = col1_name + 1;
+* 从一个表查询插入到另一个表：
+
+		INSERT INTO arc_sys_menu_perm(menu_id, read_permission, write_permission, detail_permission) SELECT id, 1, 0, 0 FROM arc_sys_menu ON DUPLICATE KEY UPDATE read_permission = 1;
 
 #### 查询数据
 
