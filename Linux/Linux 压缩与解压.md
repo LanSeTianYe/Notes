@@ -81,10 +81,10 @@
 * `-C`：指定解压的目录。
 
 		# 解压
-		tar -z -v -x -f 213.tar.gz
-		# 压缩
-		tar -z -v -c -f 213.tar.gz
-		# 解压到指定目录
-		tar -z -v -x -f 213.tar.gz -C ./dd
+		tar -zvxf 123.tar.gz
+		# 压缩(需要进入文件夹所在目录进行压缩，把 iamge 目录压缩到 123.tar.gz 文件中，解压之后目录结构从 /image 开始)
+		tar -zvcf 123.tar.gz image/
+		# 解压到指定目录（解压之后目录结构 /dd/image）
+		tar -zvxf 123.tar.gz -C ./dd
 		# 只解压指定文件
 		tar -jxv -f /root/etc.tar.bz2 etc/shadow
