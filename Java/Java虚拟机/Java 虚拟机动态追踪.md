@@ -50,6 +50,8 @@
 			//辅助判断标记，当前的方法调用以正常返回的形式结束。
 		    private final boolean isReturn; 
 		}  
+2. 常用过滤条件。
+ * `'#cost >0'` 耗时大于零。 
 
 ### 命令  
 
@@ -122,8 +124,8 @@
 15. `mc` 内存编译器，编译 `.java` 文件。
 16. `redefine` 加载外部class。
 17. `monitor` 监控方法调用。
- * `monitor -c 5 demo.MathGame primeFactors`
-18. `watch` 观察方法参数、返回值等。
+ * `monitor -c 5 demo.MathGame primeFactors` 监控方法调用 调用次数、成功次数、失败次数。`-c` 指定统计周期（单位秒）。
+18. `watch` 观察方法参数、返回值等。 `-b` 方法调用之前 `-e` 方法异常之后 `-s` 方法返回之后 `-f` 方法结束之后（正常返回合异常返回）。
  * `watch demo.MathGame primeFactors "{params,returnObj}" -x 2` 观察方法出参和返回值，深度为2。
  * `watch demo.MathGame primeFactors "{params,returnObj}" -x 2 -b` 观察方法入参。
  * `watch demo.MathGame primeFactors "{params,target,returnObj}" -x 2 -b -s -n 2` 同时观察方法调用前和方法返回后，执行两次。
@@ -132,12 +134,13 @@
  * `watch demo.MathGame primeFactors "{params[0],throwExp}" -e -x 2` 观察异常信息。
  * `watch demo.MathGame primeFactors '{params, returnObj}' '#cost>200' -x 2` 按照耗时进行过滤。
  * `watch demo.MathGame primeFactors 'target'` 观察当前对象中的属性。 
-18. `trace` 方法内部调用耗时，只能追踪一级。
+18. `trace` 方法内部调用路径，及每个调用的耗时（方法内部调用）。
  * `trace com.sun.xiaotian.blogger.web.FileInfoController getContentByFilePath` 查看对应方法里的方法调用及耗时。
+ * `trace *StringUtils isBlank` 通配符。
  * `trace -j com.sun.xiaotian.blogger.web.FileInfoController getContentByFilePath` 查看对应方法里的方法调用及耗时。过滤掉JDK内部方法。
  * `trace demo.MathGame run '#cost > 10'` 耗时大于10毫秒。
  * `trace -E com.test.ClassA|org.test.ClassB method1|method2|method3` 跟踪多个方法。
-18. `stack` 打印方法的调用堆栈。
+18. `stack` 打印方法的调用堆栈，及执行耗时（从哪里调用到方法）。
  * `stack demo.MathGame primeFactors` 打印方法调用堆栈。
  * `stack demo.MathGame primeFactors 'params[0]<0' -n 2` 根据参数过滤，限制执行两次。
  * `stack demo.MathGame primeFactors '#cost>5'` 根据耗时过滤。
