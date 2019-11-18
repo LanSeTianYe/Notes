@@ -6,6 +6,19 @@
 
 ## 虚拟机各分区内存配置
 
+### GC 日志相关配置 
+
+* `-XX:+PrintGC` 输出GC日志（简要信息）。
+* `-XX:+PrintGCDetails` 输出详细日志。
+* `-XX:+PrintGCTimeStamps` 输出GC时间戳。
+* `-XX:+PrintGCDateStamps` 输出GC时间戳，日期形式。
+* `-XX:+PrintHeapAtGC` 在进行GC前后打印出堆信息。
+* `-Xloggc:./gc.log` 指定GC日志文件位置。
+* `-XX:+PrintGCApplicationConcurrentTime` 打印应用程序的执行时间。
+* `-XX:+PrintGCApplicationStoppedTime` 打印程序由于GC而停顿的时间。
+* `-XX:+PrintReferenceGC` 跟踪弱引用。
+
+### 其它 
 **堆内存：**存储对象实例。多线程共享。
 
  * -Xms20M  初始化堆内存大小(最小)
