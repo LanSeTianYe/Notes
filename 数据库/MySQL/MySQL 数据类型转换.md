@@ -30,7 +30,6 @@
 		SELECT BINARY('a') = BINARY('A');
 
 #### CAST
- 
 1.  转换编码  
 
 		SELECT CAST('test' AS CHAR CHARACTER SET utf8);
@@ -51,6 +50,7 @@
 	* SIGNED: 有符号整数。
 	* UNSIGNED: 无符号整数。
 	* TIME: 时间。
+
 #### CONVERT
   
 1. 转换编码  
@@ -58,7 +58,6 @@
 		SELECT CONVERT(_latin1'Müller' USING utf8);
 		SELECT CONVERT(latin1_column USING utf8) FROM latin1_table;
 		SELECT CONVERT('test', CHAR CHARACTER SET utf8);
-
 
 ### 隐式类型转换 
 
