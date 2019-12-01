@@ -7,6 +7,7 @@
 3. [Arthas文档](https://alibaba.github.io/arthas)
 4. [Arthas 案例](https://github.com/alibaba/arthas/issues/569)
 5. [ONGL](https://commons.apache.org/proper/commons-ognl/language-guide.html)
+6. [百度云](https://pan.baidu.com/s/1ughNiI4kuxCHKTMmujIM1Q)
 
 ## Java动态追踪技术探究  
 
@@ -18,6 +19,7 @@
 * 监控JVM实时运行状况。
 * 监控方法的调用耗时。
 * 观察方法的返回值、抛出异常、入参等。
+* 方法执行记录，需要时可以使用记录的参数等信息多次调用测试。
 * 支持 `ongl` 表达式。
 * 支持 `Tab` 自动补全。
 * ...
@@ -167,13 +169,22 @@
 20. `pwd` 返回当前工作目录。
 21. `cat` 查看文件内容。
 
-#### 下载及启动 
-1. 下载和使用    
+#### 部署使用 
 
-		# 下载   
-		wget https://alibaba.github.io/arthas/arthas-boot.jar
-		# 启动   
-		java -jar arthas-boot.jar --target-ip 0.0.0.0
+Arthas 支持单机版本使用，也支持 `server` 模式。在单机模式下，需要登录需要监控的机器，然后启动 `Arthas` 进行使用。在 `server` 模式下，需要先启动一个 `server` 服务，然后在需要监控的机器上启动一个 `arthas` 注册到服务器上，注册成功之后会有一个 `代理Id`，然后即可通过Web界面监控注册的机器。
 
-	
+#### 常用命令 
 
+* 查看帮助信息: `java -jar arthas-boot.jar -h`
+* 简单启动: `java -jar arthas-boot.jar`
+* 启动 server: `java -jar -Dserver.port=8080 arthas-tunnel-server.jar`,默认 web 端口是 `8080`, 代理端口是 `7777`。
+* 启动时注册到 server: `java -jar arthas-boot.jar --tunnel-server 'ws://192.168.0.201:7777/ws'`
+
+**单机版启动:**  `java -jar arthas-boot.jar pid`  
+
+**server 版启动：**
+
+* 启动Server：`java -jar -Dserver.port=8080 arthas-tunnel-server.jar`
+* 注册:`java -jar arthas-boot.jar --tunnel-server 'ws://192.168.0.201:7777/ws`
+
+启动成功之后访问: `http://ip:8080`,然后输入 代理Id 即可连接。
