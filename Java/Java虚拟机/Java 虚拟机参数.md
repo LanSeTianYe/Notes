@@ -4,7 +4,26 @@
 
 1. [周志明]深入理解JAVA虚拟机
 
-## 虚拟机各分区内存配置
+## 虚拟机参数配置  
+
+### 虚拟机垃圾回收器配置  
+
+* `-XX:+UseSerialGC` 新生代使用 `Seriol` 老年代使用 `Serial Old`。
+* `-XX:+UseParnNewGC` 新生代使用 `ParNew` 老年代使用 `Serial Old`。
+* `-XX:+UseConcMarkSweepGC`  新生代使用 `ParNew` 老年代使用 `CMS`。
+* `-XX:+UseParallel` 新生代使用 `Parallel Scavenge` 老年代使用 `Serial Old`。
+* `-XX:UseParallelOldGC` 新生代使用 `Parallel Scavenge` 老年代使用 `Parallel Old`。
+* `-XX:SurvivorRatio` 新生代 `Eden` 区域和 `Survivor` 区域比率配置。
+* `-XX:PretenureSizeThreshold` 直接晋升到老年代的对象大小。
+* `-XX:MaxTenuringThreshold` 晋升到老年代对象的年龄。
+* `-XX:UseAdapttiveSizePolicy` 动态调整Java堆中各区域大小以及进入老年代的年龄。
+* `-XX:HandlePromotionFailure` 是否允许担保失败，当老年代剩余空间进行担保不足时，是否尝试进行担保，如果失败则会执行 `Full GC`。
+* `-XX:ParallelGCThreads` 并行GC时的内存回收线程数。
+* `-XX:GCTimeRatio` GC 占总时间的比值，默认 99%，即允许 1% 的GC时间。在 `Parallel Scavenge` 垃圾收集器有用。
+* `-XX:MaxGcPauseMillis` 最大GC停顿时间，在 `Parallel Scavenge` 垃圾收集器有用。
+* `-XX:CMSInitiatingOccupaneyFraction` CMS 在老年代占用超过多少时进行垃圾回收，默认 68%。
+* `-XX:UseCMSCompactAtFullCollection` 设置 CMS 是否在垃圾回收完成时进行一次内存整理。
+* `-XX:CMSFullGcsBeforeCompaction` 设置 CMS 在若干次垃圾回收后再进行内存整理。
 
 ### GC 日志相关配置 
 
@@ -56,13 +75,6 @@
 
  * -Xverify:none 是否在编译前检查类
  * -verbose:gc 显示gc信息
- * -XX:+UseConcMarkSweepGC  使用CMS收集器（老年代）
- * -XX:+USeParNewGC (CMS默认的新生代收集器)
- * -XX:+PrintGCDetails 打印GC信息
- * -XX:+PrintReferenceGC 打印GC过程中不同类型引用耗时
- * -XX:+PrintGCApplicationStoppedTime 显示GC过程，停止执行应用程序的时间
- * -XX:+PrintGCDateStamps 
- * -Xloggc:gclog.log 把GC日志打印到文件中
  * -Dsun.awt.keepWorkingSetOnMinimize=true 设置程序可以在后台运行，防止程序最小化之后，操作系统把内存数据转移到磁盘中，导致程序运行缓慢的问题
  * -Dcom.sun.management.jmxremote  允许JMX远程连接
  * -XX:+HeapDumpOnOutOfMemoryError 虚拟机出现内存溢出异常时Dump出当前的内存堆转储快照以便时候分析
