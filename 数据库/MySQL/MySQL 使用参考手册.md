@@ -33,6 +33,8 @@
 * 添加主键： `alter table table_name add primary key (col1_name, col2_name)`
 * 删除主键： `alter table table_name drop primary key`
 * 变更存储引擎： `alter table table_name engine = innodb`
+* 新增字段: `ALTER TABLE person ADD COLUMN city VARCHAR(50) NOT NULL DEFAULT '' COMMENT '城市' `
+* 变更字段名字: `ALTER TABLE person CHANGE COLUMN name province VARCHAR(50) NOT NULL DEFAULT '' COMMENT '省份';`
 * 变更列属性(创建新表，效率低)：
     
 		# 执行时数据库内部会创建临时表
