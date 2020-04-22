@@ -8,4 +8,4 @@
 
 1. 同步远程仓库信息。
 
-		git fetch origin
+		git fetch -p 
