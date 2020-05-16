@@ -84,7 +84,7 @@ awk是行处理器，过滤并格式化输入输出。
 	*  自定义变量：如果变量不是数字，则在执行数学运算时，变量的值会变成零
 		* 使用自定以变量： `df -h | awk '{name="sun"; print name}'`
 		* 引入sheel变量： `awk -v path=$PATH 'BEGIN{print path}'`
-		* `df  | awk '{sum = sum + $2} END{print sum}'`
+		* `df  | awk '{sum = sum + $2}; END{print sum}'`
 
 ## 使用示例
 
