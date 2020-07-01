@@ -121,11 +121,11 @@ theme:
         
      *  配置 
      
-        ````
+        ```yml
         plugins:
             - search # necessary for search to work
             - git-revision-date-localized
-        ````
+        ```
     
 2. [目录控制](https://squidfunk.github.io/mkdocs-material/plugins/awesome-pages/): 控制目录标题，目录文章的顺序，目录是否展示等。
 
