@@ -28,13 +28,13 @@ MkDocs 是一个基于 MarkDown 构建文档的工具。可以把 MarkDown 文�
 
 2. 启动服务(进入项目目录)
 
-    ``` shell
+    ```shell
     mkdocs serve -a 0.0.0.0:8000
     ````
     
 3. 构建项目成静态文件  
 
-    ``` shell
+    ```shell
     mkdocs build
     # 删除已经没有的文件 
     mkdocs build --clean
@@ -51,7 +51,7 @@ MkDocs 是一个基于 MarkDown 构建文档的工具。可以把 MarkDown 文�
 
 1. 配置模板 
 
-    ``` yml
+    ```yml
     # 网站名字
     site_name: 蓝田的笔记
 
