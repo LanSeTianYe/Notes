@@ -31,6 +31,7 @@ MkDocs 是一个基于 MarkDown 构建文档的工具。可以把 MarkDown 文�
     ``` shell
     mkdocs serve -a 0.0.0.0:8000
     ````
+    
 3. 构建项目成静态文件  
 
     ``` shell
@@ -81,6 +82,7 @@ MkDocs 是一个基于 MarkDown 构建文档的工具。可以把 MarkDown 文�
             collapse_single_pages: true
             strict: false
     ```
+    
 ### 主题 
 
 主题配置,在 `mkdocs.yml` 文件中加入下面内容。
@@ -93,14 +95,18 @@ theme:
 #### [mkdocs-material](https://github.com/squidfunk/mkdocs-material)
 
 1. 安装: 
+2. 
     ```shell
     pip install mkdocs-material
     ```
+    
 2. 配置:  
+3. 
     ```shell
     theme:
         name: material
     ```
+    
 3. 预览: [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/)
 
 ##### Material 插件
@@ -125,6 +131,7 @@ theme:
        ```shell
        pip install mkdocs-awesome-pages-plugin	
        ```
+       
     * 配置
         ```yml
         plugins:
