@@ -144,7 +144,7 @@ theme:
             filename: .pages.yml        # 指定配置文件名，默认文件名是 .pages
             collapse_single_pages: true # 当目录只有一个文件时是否收缩目录
             strict: false               # 当 arrange 配置的文件不存在是是否报错
-        ````
+        ```
 
     * 目录配置模板
     
