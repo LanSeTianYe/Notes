@@ -32,7 +32,7 @@ MkDocs 是一个基于 MarkDown 构建文档的工具。可以把 MarkDown 文�
     mkdocs serve -a 0.0.0.0:8000
     ```
     
-3. 构建项目成静态文件
+3. 构建项目成静态文件 
 
     ```shell
     mkdocs build
@@ -40,12 +40,12 @@ MkDocs 是一个基于 MarkDown 构建文档的工具。可以把 MarkDown 文�
     mkdocs build --clean
     ```
 
-4. 帮助信息
+4. 帮助信息 
 
-   ```shell
+    ```shell
     mkdocs -help
     mkdocs command --help
-   ```
+    ```
 
 ### MkDocs 配置   
 
@@ -95,13 +95,13 @@ theme:
 #### [mkdocs-material](https://github.com/squidfunk/mkdocs-material)
 
 1. 安装: 
-2. 
+
     ```shell
     pip install mkdocs-material
     ```
     
-2. 配置:  
-3. 
+3. 配置:  
+
     ```shell
     theme:
         name: material
@@ -114,11 +114,13 @@ theme:
 1. [修订日期](https://squidfunk.github.io/mkdocs-material/plugins/revision-date/): 基于 git 提交日志生成修订日期。
 
     * 安装   
+    
         ```shell
         pip install mkdocs-git-revision-date-localized-plugin
         ```
         
      *  配置 
+     
         ````
         plugins:
             - search # necessary for search to work
@@ -128,11 +130,13 @@ theme:
 2. [目录控制](https://squidfunk.github.io/mkdocs-material/plugins/awesome-pages/): 控制目录标题，目录文章的顺序，目录是否展示等。
 
     * 安装 
-       ```shell
-       pip install mkdocs-awesome-pages-plugin	
-       ```
+    
+        ```shell
+        pip install mkdocs-awesome-pages-plugin	
+        ```
        
     * 配置
+    
         ```yml
         plugins:
         - search # necessary for search to work
@@ -143,6 +147,7 @@ theme:
         ````
 
     * 目录配置模板
+    
         ``` yaml
         # 目录显示的标题
         title: Lua 使用
