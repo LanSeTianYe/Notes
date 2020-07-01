@@ -119,7 +119,7 @@ theme:
         pip install mkdocs-git-revision-date-localized-plugin
         ```
         
-     *  配置 
+    *  配置 
      
         ```yml
         plugins:
