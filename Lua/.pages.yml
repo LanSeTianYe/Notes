@@ -1,0 +1,15 @@
+# 目录显示的标题
+title: Lua 使用
+
+# 目录顺序
+arrange:
+    - Lua 协程.md
+    - ...
+    - Lua 基础语法.md
+    - Lua 常用函数库.md
+
+# 是否隐藏
+hide: false
+
+# 当目录只有一个文件的时候收缩目录
+collapse: true
