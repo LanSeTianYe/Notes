@@ -32,7 +32,7 @@ MkDocs 是一个基于 MarkDown 构建文档的工具。可以把 MarkDown 文�
     mkdocs serve -a 0.0.0.0:8000
     ```
     
-3. 构建项目成静态文件  
+3. 构建项目成静态文件
 
     ```shell
     mkdocs build
@@ -40,7 +40,7 @@ MkDocs 是一个基于 MarkDown 构建文档的工具。可以把 MarkDown 文�
     mkdocs build --clean
     ```
 
-4. 帮助信息    
+4. 帮助信息
 
    ```shell
     mkdocs -help
