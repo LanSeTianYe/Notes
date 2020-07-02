@@ -32,4 +32,7 @@
 
 7. 配置缓存，之后会缓存输入的用户名和密码。
 
+		# 存储到磁盘
+		git config --global credential.helper store
+		# 存储到内存
 		git config --global credential.helper cache
