@@ -1,5 +1,10 @@
 时间：2020/7/1 9:55:22  
 
+环境: 
+
+1.  CentOS 7
+2.  Python 3.6
+
 参考：
 
 1. [mkdocs](https://www.mkdocs.org/)  
