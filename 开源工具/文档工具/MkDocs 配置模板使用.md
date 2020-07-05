@@ -52,7 +52,7 @@ mkdocs 安装和插件安装可参考 [软件安装](./MkDocs 安装使用.md) �
 ## 自动更新  
 提供一个接口当 `git 仓库` 内容发生变化的时候，调用该接口执行 `build.sh` 脚本，实现自动构建。当然也可以手动调用接口，服务端基于 `python` 实现。服务启动脚本`run_server.sh`。
 
-### 服务配置
+### 服务配置  
 
 修改 [run_server.sh](https://github.com/ProjectTemplate/mkdocs-config-template/blob/master/run_server.sh) 里面的三个参数为自己需要的参数。
 
