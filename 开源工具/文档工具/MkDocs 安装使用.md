@@ -1,16 +1,44 @@
 时间：2020/7/1 9:55:22  
 
+环境: 
+
+1.  CentOS 7
+2.  Python 3.6
+
 参考：
 
 1. [mkdocs](https://www.mkdocs.org/)  
 2. [主题](https://jamstackthemes.dev/ssg/mkdocs/)
 3. [Typora](https://www.typora.io/)
 
-## MkDoc 
+## MkDocs  
 
 ### 简介   
 
-MkDocs 是一个基于 MarkDown 构建文档的工具。可以把 MarkDown 文档转换为静态网页，方便查看。配置简单，支持不同的主题。
+MkDocs 是一个基于 MarkDown 的文档构建工具。把一个文件夹下的内容构建成一个以文件夹目录结构为网页菜单结构的静态网页。支持 [主题](https://jamstackthemes.dev/ssg/mkdocs/) 配置。不同的主题支持不同的插件。
+
+我的自己的一个 [配置模板](https://github.com/ProjectTemplate/mkdocs-config-template.git),可以直接使用。但是需要提前安装模板需要的插件。参考: [MkDocs 配置模板使用](./MkDocs 配置模板使用.md)
+
+具体效果: 
+
+1.  [文档内容](https://github.com/LanSeTianYe/Notes.git)
+2.  [配置模板](https://github.com/ProjectTemplate/mkdocs-config-template.git)
+3.  [效果预览](http://note.sunfeilong.com/)
+
+> MkDocs 使用 `python` 编写。因此需要 `python` 环境,我把操作系统的python升级到3.6之后进行的安装。在 CentOS 上也可以使用 `yum install mkdocs` 安装, 但是为了安装最新版本，推荐使用 ` pip install mkdocs` 安装最新版本。我自己安装的是 `1.1.2版本` , 安装命令 `pip install mkdocs==1.1.2`。
+
+### 使用步骤  
+
+* 最简使用
+
+    1.  安装 `mkdocs`。
+    2.  使用 `mkdocs new project_name` 创建新项目。
+    3.  使用 `mkdocs serve` 预览。
+
+* 扩展：
+
+    1. 安装主题，配置主题。
+    2. 安装插件配置插件。
 
 ### 安装及使用  
 
@@ -26,9 +54,10 @@ MkDocs 是一个基于 MarkDown 构建文档的工具。可以把 MarkDown 文�
     mkdocs new project_name 
     ```
 
-2. 启动服务(进入项目目录)
+2. 启动服务(进入项目目录),之后即可访问 [http://127.0.0.1:8000](http://127.0.0.1:8000) 预览效果.
 
     ```shell
+    cd project_name
     mkdocs serve -a 0.0.0.0:8000
     ```
     
@@ -47,42 +76,6 @@ MkDocs 是一个基于 MarkDown 构建文档的工具。可以把 MarkDown 文�
     mkdocs command --help
     ```
 
-### MkDocs 配置   
-
-1. 配置模板 
-
-    ```yml
-    # 网站名字
-    site_name: 蓝田的笔记
-
-    # 主题
-    theme:
-        name: material
-
-    # 代码高亮
-    markdown_extensions:
-        - codehilite:
-            linenums: true
-        - toc:
-            permalink: true
-
-    # 插件配置
-    plugins:
-        - search:
-            prebuild_index: true
-            lang:
-                - en
-                - de
-                - ru
-                - ja
-        - git-revision-date-localized:
-            type: iso_datetime
-        - awesome-pages:
-            filename: .pages.yml
-            collapse_single_pages: true
-            strict: false
-    ```
-    
 ### 主题 
 
 主题配置,在 `mkdocs.yml` 文件中加入下面内容。
@@ -120,7 +113,7 @@ theme:
         ```
         
     * 配置    
-     
+    
         ```yml
         plugins:
             - search # necessary for search to work
@@ -165,3 +158,40 @@ theme:
         # 当目录只有一个文件的时候收缩目录
         collapse: true
         ```
+### MkDocs 配置
+
+可参考 [配置模板](https://github.com/ProjectTemplate/mkdocs-config-template.git) 进行配置。
+
+1. 配置模板 
+
+    ```yml
+    # 网站名字
+    site_name: 蓝田的笔记
+
+    # 主题
+    theme:
+        name: material
+
+    # 代码高亮
+    markdown_extensions:
+        - codehilite:
+            linenums: true
+        - toc:
+            permalink: true
+
+    # 插件配置
+    plugins:
+        - search:
+            prebuild_index: true
+            lang:
+                - en
+                - de
+                - ru
+                - ja
+        - git-revision-date-localized:
+            type: iso_datetime
+        - awesome-pages:
+            filename: .pages.yml
+            collapse_single_pages: true
+            strict: false
+    ```
