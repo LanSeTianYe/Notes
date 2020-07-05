@@ -158,7 +158,7 @@ theme:
         # 当目录只有一个文件的时候收缩目录
         collapse: true
         ```
-### MkDocs 配置
+### MkDocs 配置    
 
 可参考 [配置模板](https://github.com/ProjectTemplate/mkdocs-config-template.git) 进行配置。
 
