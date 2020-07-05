@@ -1,0 +1,30 @@
+body,
+button,
+input,
+select,
+textarea {
+    font-family: -apple-system, BlinkMacSystemFont, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 1.4rem !important;
+}
+
+.content code {
+    font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+    font-size: 0.9rem;
+}
+
+figure.highlight figcaption span {
+    font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+}
+
+.article .content {
+    font-size: 1.4rem;
+}
+
+code[class*="language-"], pre[class*="language-"] {
+    font-size: 1.4rem;
+}
+
+pre[class*="language-"] {
+    padding: 1em;
+}
+
