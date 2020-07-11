@@ -1,12 +1,14 @@
 时间: 2020-07-10 14:13:13
 
-环境:
+环境: 
+
 1. CentOS 7
 
 参考：
-1. [Keepalived](https://github.com/acassen/keepalived)
-2. [Using Keepalived for managing simple failover in clusters](https://www.redhat.com/sysadmin/ha-cluster-linux)
-3. [Setting up a Linux cluster with Keepalived: Basic configuration](https://www.redhat.com/sysadmin/keepalived-basics)
+
+1.  [Keepalived](https://github.com/acassen/keepalived)
+2.  [Using Keepalived for managing simple failover in clusters](https://www.redhat.com/sysadmin/ha-cluster-linux)
+3.  [Setting up a Linux cluster with Keepalived: Basic configuration](https://www.redhat.com/sysadmin/keepalived-basics)
 
 # Keepalived
 
