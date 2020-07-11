@@ -22,4 +22,4 @@ GitFlow 是一个分支模型，为 Git 分支管理提供一种可参考的规�
 
 参考下图：
 
-![](https://raw.githubusercontent.com/LanSeTianYe/Notes/master/images/git/gitflow.jpg)
+![](../../img/git/gitflow.jpg)

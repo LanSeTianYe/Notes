@@ -10,7 +10,7 @@
 在Git中所有用来表示项目历史信息的文件，是通过一个40个字符的（40-digit）“对象名”来索引的。
 
 ## git模型
-  
+
 1. 工作区：存储修改过的未缓存的文件
 2. 暂存区：缓存修改过的文件
 3. 本地仓库：提交缓存文件到本地仓库
@@ -24,7 +24,9 @@
 
 ## 安装 
 1.  Centos 7 安装 2.0 版本。
- 
-	 	yum remove git	
-		yum install  https://centos7.iuscommunity.org/ius-release.rpm
-		yum install  git2u-all
+
+    ```shell
+    yum remove git	
+    yum install  https://centos7.iuscommunity.org/ius-release.rpm
+    yum install  git2u-all
+    ```
