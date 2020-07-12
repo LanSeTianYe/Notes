@@ -95,7 +95,7 @@ Keepalived是一个维护Linux 架构的服务器负载均衡和高可用的简�
     # 启动
     systemctl start keepalived
     # 停止
-    systemctl start keepalived
+    systemctl stop keepalived
     # 查看虚拟IP绑定信息
     ip a
     ```
