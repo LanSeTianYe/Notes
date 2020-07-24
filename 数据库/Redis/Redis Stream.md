@@ -5,72 +5,199 @@
 2. [Redis Stream——作为消息队列的典型应用场景](https://yq.aliyun.com/articles/603193)
 1. [Introduction to Redis Streams](https://redis.io/topics/streams-intro)
 
-## Redis Stream  
+## Redis Stream 
 
 ### 简介
 
-Streams是这样一种数据结构，可以往里面添加数据，可以根据范围查询里面的数据，每一条记录都对应一个Id，Redis自动生成的Id `毫秒-毫秒内自增序号`，也可以阻塞读取里面的数据，当没有数据的时候等待一段时间。提供消费者组概念，同一个 `Stream` 里面的数据只会被组里面的一个消费者消费一次，消费的消息被记录到 Pending Entrty List（PEL），当消费者发送 ACK 确认消费之后从 PEL 中删除。如果消费者没有来得及发送确认消息就挂掉，可以更改 Pending Entrty List 中被消费消息的所有者，指定到其他消费者再次消费。不保证数据只被消费一次，存在重复消费的问题。
+在 Redis Stream 命令中，存在如下几个特殊id:
 
-### 命令  
+* `-` 最小id `0-1`。
+* `+` 最大id `18446744073709551615-18446744073709551615`。
+* `$` 当前 Stream 中最大的id。
+* `>` 消费者组最后发布消的id。
+* `*` XADD 时使用，表示需要服务器初始化id。
 
-* 添加消息： `XADD stream_name id filed1 value1 field2 value2 ...`
-	* 返回值为添加的信息的ID。
-	* id 可以指定为具体的值，也可以有系统自动生成，自动生成格式 `毫秒-递增数字`
-* 删除消息：`XDEL stream_name 1538561700640-0`，底层标记删除，当节点的消息都被标记为删除的时候节点才会被真正删除。 
-* 流长度： `XLEN stream_name`
-* 读取消息：`XREAD COUNT 10 STREAMS mystream mystream 0-0 0-0`，从多个流中读取数据，每个流读取指定数量。
-* 阻塞读取消息：`XREAD BLOCK 5000 COUNT 100 STREAMS mystream $`。
-* 获取指定范围内的消息： `XRANGE stream_name start end COUNT messagecount`
-	* start 可以为 `-` 表示最小的Id， end 可以为 `+` 表示最大的Id。
-	* `COUNT` 限制返回数据的个数。   
-* 获取指定范围内的消息（反向）：`XREVRANGE mystream end start count 2`。
-* 获取流相关信息： `XINFO option key`
-	* option 为 STREAM：返回流长度，第一个元素和最后一个元素等信息，消费者组个数，以及 `RADIX Tree` 相关信息。
-	* option 为 GROUPS：返回流相关的消费者组。
+### Redis Stream 操作命令
 
-			1) 1) "name"
-			2) "mygroup"
-			3) "consumers"
-			4) (integer) 2
-			5) "pending"
-			6) (integer) 3
-			7) "last-delivered-id"
-			8) "1544410846131-0"
-	* option 为 CONSUMERS：返回流相关的消费者组的消费者的信息。
+1. 添加消息: `XADD stream_name id filed1 value1 field2 value2`。
 
-			1) 1) "name"
-			   2) "myconsumer1"
-			   3) "pending"
-			   4) (integer) 2
-			   5) "idle"
-			   6) (integer) 90186411
-			2) 1) "name"
-			   2) "myconsumer2"
-			   3) "pending"
-			   4) (integer) 1
-			   5) "idle"
-			   6) (integer) 91258073
-* 消费者组：` XGROUP <subcommand> arg arg ... arg.`
-	* 创建消费者组：`XGROUP CREATE stream_name group_name id`, id 表示最从那个消息开始读取（0第一个，$最新）。
-	* 删除消费者组：`XGROUP DESTROY stream_name group_name`。
-	* 删除消费者组中的消费者：`XGROUP DELCONSUMER stream_name group_name consumer_name`。
-	* 设置消费者组消费消息的ID（用于重新消费消息）：`XGROUP SETID stream_name group_name 0`。
-* 获取消费者组消费信息：`XPENDING stream_name group_name - + count`
+    示例：`XADD stream_name * name zhangsan age 24`
 
-		127.0.0.1:7006> XPENDING mystream mygroup - + 1000
-		1) 1) "1544410840356-0"
-		   2) "myconsumer1"
-		   3) (integer) 95522233
-		   4) (integer) 1
-		2) 1) "1544410844331-0"
-		   2) "myconsumer2"
-		   3) (integer) 95518258
-		   4) (integer) 1
-		3) 1) "1544410846131-0"
-		   2) "myconsumer1"
-		   3) (integer) 94446596
-		   4) (integer) 1
-* 确认消息被消费：`XACK stream_name group_name ID [ID ...]`， 每次消费者消费成功之后调用，防止消息被消费多次。
-* 修剪流的长度：`XTRIM mystream MAXLEN 1000` 和 `XTRIM mystream MAXLEN ~ 1000`。第一个精确删除，第二个非精确甚于数量可能大于等于 1000。
-* 改变消息在分组中的归属者(重新消费消息消费者组列表的)：`XCLAIM stream_name group_name consumer_name 36000 1544410840356-0`, Pending Entity List 里面的Id为  `1544410840356-0` 的消息的所有者为 `consumer_name`。
+    添加成功之后返回消息的id，id传 `*` 表示自动生成id，生成id的格式 `时间戳(毫秒)-自增序列号（64位）`。如果服务器时间发生回退，自动生成的id的序列号会在之前最大的序列号的基础上开始增加。手动指定的id必须大于流中最大的id。
+
+2. 查看流长度: `XLEN stream_name`。
+
+3. 范围查找：`XRANGE stream_name start end [COUNT count]`
+
+    ```shell
+    # 查询所有
+    XRANGE maxwell_stream - +
+    # 查询指定时间戳范围内的数据 [1595557210652,1595557210652]
+    XRANGE maxwell_stream 1595557210652 1595557210653
+    XRANGE maxwell_stream 1595557210652-0 1595557210653-1
+    # 限制返回数据的数量
+    XRANGE maxwell_stream 1595557210652-0 1595557330653-0 COUNT 1
+    ```
+    
+4. 倒序查询：`XREVRANGE stream_name end start [COUNT count]`
+
+5. 监听流里面的数据：`XREAD [COUNT count] [BLOCK milliseconds] STREAMS stream_name id`。
+
+    返回ID大于指定ID的数据，可以指定返回数据的数量，以及阻塞的时间。阻塞指的是没有数据的时候阻塞，有数据的时候即使数据的数量小于COUNT指定的个数也立即返回。
+
+    ```shell    
+    # 返回id大于 1595563390562-0 的所有元素
+    XREAD STREAMS maxwell_stream 1595563390562-0
+    # 返回id大于 0-0 的1条数据
+    XREAD COUNT 1 STREAMS maxwell_stream 0-0
+    # 阻塞获取直到有元素 0 表示阻塞知道有数据 $ 表示请求时流中最大的id
+    XREAD BLOCK 0 STREAMS mystream $
+    # 返回id大于 1595562850569-0 的20条数据，阻塞20秒
+    XREAD COUNT 20 BLOCK 20000 STREAMS maxwell_stream 1595562850569-0
+    ```
+
+### 消费者组 
+
+1. 每一条消息只会发送给消费者组中的一个消费者。
+2. 通过消费者的名字区分消费者。
+3. 消费者组存储下一个没有消费的Id，因此可以快速的发送消息给消费者。
+4. 消费者需要处理完成之后需要返回确认信息确认消息已被消费。
+5. 消费者组记录每个消费者等待处理的消息。
+
+消费者组的数据结构如下:
+
+```shell
++----------------------------------------+
+| consumer_group_name: mygroup           |
+| consumer_group_stream: somekey         |
+| last_delivered_id: 1292309234234-92    |
+|                                        |
+| consumers:                             |
+|    "consumer-1" with pending messages  |
+|       1292309234234-4                  |
+|       1292309234232-8                  |
+|    "consumer-42" with pending messages |
+|       ... (and so forth)               |
++----------------------------------------+
+```
+
+#### 消费者组相关命令
+
+1. 管理消费者组。
+
+    ```shell
+    # 创建一个 mystream 的 消费者组，从大于0的id开始消费
+    XGROUP CREATE mystream group_name 0
+    # 创建一个 mystream 的 消费者组，如果流不存在则创建
+    XGROUP CREATE mystream group_name 0 MKSTREAM
+    # 消费一条未消费的消息 > 表示从未消费的消息中获取
+    XREADGROUP GROUP group_name consumer_name COUNT 1 STREAMS stream_name >
+    # 重新消费一条消费者已消费但未确认的消息 0-0 表示从已消费待处理列表中读取
+    XREADGROUP GROUP maxwell_group c1 COUNT 1 STREAMS maxwell_stream 0-0
+    # 确认消费消息,确认之后消息将从消费者等待处理的消息列表中删除并，但是不会从流中删除
+    XACK stream_name group_name 0-0
+    # 查看待确认的消息
+    XPENDING mystream group_name
+    # 查看消费者待确认的消息
+    XPENDING maxwell_stream group_name - + 10 consumer_name
+    # 改变待处理消息的拥有者
+    XCLAIM stream_name group_name consumer_name min-idle-time id
+    # 查看流信息（长度、分组、第一个元素、最后一个元素，最后初始化id）
+    XINFO STREAM stream_name
+    # 查看流分组信息（消费者个数、最后一个消费消息的Id、等待处理的消息的个数）
+    XINFO GROUPS stream_name
+    # 查看流的分组的消费者信息
+    XINFO CONSUMERS stream_name group_name
+    # 设置流长度 只保存1000个元素
+    XTRIM stream_name MAXLEN 1000
+    # 设置流长度 至少保存1000个元素，比精确长度效率更高
+    XTRIM stream_name MAXLEN ~ 1000
+    # 删除元素
+    XDEL stream_name 1526654999635-0
+    ```
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
