@@ -1,5 +1,6 @@
-时间：2018/12/10 12:05:59   
-参考：  
+时间：2018/12/10 12:05:59 
+
+参考： 
 
 1. [Redis Stream 简介](https://yq.aliyun.com/articles/495531?spm=a2c4e.11153940.blogcont603193.10.43055c4b82T2CI)
 2. [Redis Stream——作为消息队列的典型应用场景](https://yq.aliyun.com/articles/603193)
@@ -9,12 +10,19 @@
 
 ### 简介
 
+Redis Stream 是Redis实现的一种流式存储结构。特性如下：
+
+1. 使用消费者组的控制消息的发送。一条消息只会发送给消费者组中的一个消费者。
+2. 消息确认机制，每个消费者维护一个自己消费消息的列表 （Pending List），消费者发送确认之后，才会从列表中删除。
+3. 消费者停止服务之后，可以把消费者未确认的消息分配给其他消费者。
+4. 每条消息有一个id，可以自己指定也可以系统生成，后面一条消息的id必须大于前面一条消息的Id。因此可以高效的根据ID范围进行查询。
+
 在 Redis Stream 命令中，存在如下几个特殊id:
 
 * `-` 最小id `0-1`。
 * `+` 最大id `18446744073709551615-18446744073709551615`。
 * `$` 当前 Stream 中最大的id。
-* `>` 消费者组最后发布消的id。
+* `>` 消费者组最后发布消息的id。
 * `*` XADD 时使用，表示需要服务器初始化id。
 
 ### Redis Stream 操作命令
@@ -41,7 +49,7 @@
     
 4. 倒序查询：`XREVRANGE stream_name end start [COUNT count]`
 
-5. 监听流里面的数据：`XREAD [COUNT count] [BLOCK milliseconds] STREAMS stream_name id`。
+5. 读取流里面的数据：`XREAD [COUNT count] [BLOCK milliseconds] STREAMS stream_name id`。
 
     返回ID大于指定ID的数据，可以指定返回数据的数量，以及阻塞的时间。阻塞指的是没有数据的时候阻塞，有数据的时候即使数据的数量小于COUNT指定的个数也立即返回。
 
@@ -94,7 +102,7 @@
     XREADGROUP GROUP group_name consumer_name COUNT 1 STREAMS stream_name >
     # 重新消费一条消费者已消费但未确认的消息 0-0 表示从已消费待处理列表中读取
     XREADGROUP GROUP maxwell_group c1 COUNT 1 STREAMS maxwell_stream 0-0
-    # 确认消费消息,确认之后消息将从消费者等待处理的消息列表中删除并，但是不会从流中删除
+    # 确认消费消息,确认之后消息将从消费者等待处理的消息列表中删除，但是不会从流中删除
     XACK stream_name group_name 0-0
     # 查看待确认的消息
     XPENDING mystream group_name
@@ -115,89 +123,3 @@
     # 删除元素
     XDEL stream_name 1526654999635-0
     ```
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
