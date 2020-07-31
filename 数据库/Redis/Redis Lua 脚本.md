@@ -4,7 +4,7 @@
 
 1. [https://redis.io/commands/eval](https://redis.io/commands/eval)
 
-## Redis Lua 脚本使用   
+## Redis Lua 脚本使用
 
 ### 脚本简介
 
@@ -12,24 +12,23 @@
 
 Redis 服务器可以解释执行 Lua脚本，使用脚本可以实现一些复杂的业务逻辑。执行脚本命令如下： 
 
-	eval("script", key_number, key1, key2, ..., arg1, arg2, arg3,...)
-
-参数含义：
+``` shell
+eval("script", key_number, key1, key2, ..., arg1, arg2, arg3,...)
+```
+**参数含义：**
 
 * `script`: lua脚本。
 * `key_number`: key 的数量，当 key_number = 2 时，表示有两个key，其余的参数都是 arg
 * `key`: redis 里面数据的key，数量由 key_number 控制。集群模式下相同的key路由到固定的机器。
 * `arg`：参数，额外的参数。
 
-返回值：
+**返回值：**
 
 返回值和命令的返回值相同。
 
 **Evalsah 命令：**
 
 类似 eval 相同，唯一的不同是，执行的时候传递的是 `SHA1 签名`，而不是脚本，当缓存中不存在签名对应的脚本时，会返回错误，当缓存中存在则直接执行缓存中的脚本。
-
-当脚本比较大的时候可以减少每次传输的耗时。
 
 **在 Lua 脚本中可有两种方式调用 redis 命令:**
 
@@ -38,12 +37,14 @@ Redis 服务器可以解释执行 Lua脚本，使用脚本可以实现一些复�
 
 **工具函数：**
 
-	# 响应错误信息
-	redis.error_reply(error_string) <==> {err = error_string}
-	# 响应成功信息
-	redis.status_reply(status_string) <==> {ok = status_string}
-	# 在Redis服务中打印日志
-	redis.log(redis.LOG_NOTICE, "message")
+```shell
+# 响应错误信息
+redis.error_reply(error_string) <==> {err = error_string}
+# 响应成功信息
+redis.status_reply(status_string) <==> {ok = status_string}
+# 在Redis服务中打印日志
+redis.log(redis.LOG_NOTICE, "message")
+```
 
 **支持的函数库：**
 
@@ -99,7 +100,7 @@ Lua -> Redis:
 ### 脚本的原子性  
 
 Redis 使用相同的解释器执行命令，脚本会以原子性的方式运行，脚本执行过程中不由其它命令同时执行。在其他客户只能看到脚本执行之前和脚本执行完成之后的状态，不会看到脚本执行的中间状态。
- 
+
 
 ### 其它 
 
@@ -108,9 +109,11 @@ Redis 使用相同的解释器执行命令，脚本会以原子性的方式运�
 * 刷新(删除)服务器缓存脚本： `script flush`。
 * 脚本缓存是否存在：`script exists sha1 sha2 ...`
 
-		SCRIPT EXISTS 7fdd7cbee02972e4c9c018a87d3421260820c9c8 7fdd7cbee02972e4c9c018a87d3421260820c9c8
-		1) (integer) 1
-		2) (integer) 1
+    ```shell
+    SCRIPT EXISTS 7fdd7cbee02972e4c9c018a87d3421260820c9c8 7fdd7cbee02972e4c9c018a87d3421260820c9c8
+    1) (integer) 1
+    2) (integer) 1
+    ```
 * 缓存脚本到服务器：`script load script`。
 * 终止正在执行的脚本: `script kill`。
 
@@ -121,80 +124,86 @@ Redis 使用相同的解释器执行命令，脚本会以原子性的方式运�
 ### Java Jedis 客户端  
 
 脚本文件 `hello.lua` 
-	
-	local keys = "keys :"
-	local split_char = ""
-	for i, v in ipairs(KEYS) do
-	    keys = keys .. split_char .. "[ " .. i .. " ] = " .. v
-	    split_char = ";"
-	end
-	
-	local args = "args: "
-	split_char = ";"
-	for i, v in ipairs(ARGV) do
-	    args = args .. split_char .. "[ " .. i .. " ] = " .. v
-	    split_char = ";"
-	end
-	redis.log(redis.LOG_NOTICE, keys)
-	redis.log(redis.LOG_NOTICE, args)
-	
-	return { keys, args }
+
+```lua
+local keys = "keys :"
+local split_char = ""
+for i, v in ipairs(KEYS) do
+    keys = keys .. split_char .. "[ " .. i .. " ] = " .. v
+    split_char = ";"
+end
+
+local args = "args: "
+split_char = ";"
+for i, v in ipairs(ARGV) do
+    args = args .. split_char .. "[ " .. i .. " ] = " .. v
+    split_char = ";"
+end
+
+redis.log(redis.LOG_NOTICE, keys)
+redis.log(redis.LOG_NOTICE, args)
+
+return { keys, args }
+```
 Java Demo:
 
-	private static void executeHello() throws IOException, NoSuchAlgorithmException {
-        try (Jedis jedis = jedisPool.getResource()) {
-            byte[] script = FileReadUtil.readFromResource("hello.lua");
-            String scriptSHA1 = SHA1(script);
-            Object response;
-            try {
-                response = jedis.evalsha(scriptSHA1, 2, "name", "age", "1", "2");
-                System.out.println("run sha");
-            } catch (Exception e) {
-                response = jedis.eval(new String(script), 2, "name", "age", "1", "2");
-                System.out.println("run script");
-            }
-            System.out.println(response);
+```java
+private static void executeHello() throws IOException, NoSuchAlgorithmException {
+    try (Jedis jedis = jedisPool.getResource()) {
+        byte[] script = FileReadUtil.readFromResource("hello.lua");
+        String scriptSHA1 = SHA1(script);
+        Object response;
+        try {
+            response = jedis.evalsha(scriptSHA1, 2, "name", "age", "1", "2");
+            System.out.println("run sha");
+        } catch (Exception e) {
+            response = jedis.eval(new String(script), 2, "name", "age", "1", "2");
+            System.out.println("run script");
         }
+        System.out.println(response);
     }
+}
 
-    private static String SHA1(byte[] script) throws NoSuchAlgorithmException {
-        MessageDigest sha_1 = MessageDigest.getInstance("SHA-1");
-        String result = DatatypeConverter.printHexBinary(sha_1.digest(script)).toLowerCase();
-        System.out.println(result);
-        return result;
-    }
-
+private static String SHA1(byte[] script) throws NoSuchAlgorithmException {
+    MessageDigest sha_1 = MessageDigest.getInstance("SHA-1");
+    String result = DatatypeConverter.printHexBinary(sha_1.digest(script)).toLowerCase();
+    System.out.println(result);
+    return result;
+}
+```
 ### 脚本调试 
 
-启动调试脚本：
+**启动调试脚本：**
 
-	# 逗号前面的是KEYS参数，后面的是ARGV 参数，注意逗号前后各有一个空格
-	redis-cli --ldb --eval lock.lua book2 , 100 book_num
+```shell
+# 逗号前面的是KEYS参数，后面的是ARGV 参数，注意逗号前后各有一个空格
+redis-cli --ldb --eval lock.lua book2 , 100 book_num
+```
+**脚本：**
 
-脚本：
+```lua
+--[[参数--]]
+local key_name = KEYS[1]
+local expire_time = ARGV[1]
+local lock_id_key_name = ARGV[2]
 
-	--[[参数--]]
-	local key_name = KEYS[1]
-	local expire_time = ARGV[1]
-	local lock_id_key_name = ARGV[2]
-	
-	--[[初始化锁ID--]]
-	local exists = redis.call("EXISTS", lock_id_key_name)
-	if 0 == exists then
-	    redis.call("SET", lock_id_key_name, 10000)
-	end
-	
-	--[[获取锁，获取成功返回锁ID，获取失败返回空字符串--]]
-	local lock_id = redis.call("INCR", lock_id_key_name)
-	local set_result = redis.call("SETNX", key_name, lock_id)
-	if 1 == set_result then
-	    redis.call("EXPIRE", key_name, expire_time)
-	    return lock_id .. ''
-	else
-	    return ''
-	end
+--[[初始化锁ID--]]
+local exists = redis.call("EXISTS", lock_id_key_name)
+if 0 == exists then
+    redis.call("SET", lock_id_key_name, 10000)
+end
 
-调试命令：
+--[[获取锁，获取成功返回锁ID，获取失败返回空字符串--]]
+local lock_id = redis.call("INCR", lock_id_key_name)
+local set_result = redis.call("SETNX", key_name, lock_id)
+if 1 == set_result then
+    redis.call("EXPIRE", key_name, expire_time)
+    return lock_id .. ''
+else
+    return ''
+end
+```
+**调试命令：**
 
 	h 查看帮助
 	p 输出变量

@@ -1,17 +1,13 @@
 时间: 2020-07-23 14:24:24
 
-# Redis 基本类型
-
-## 字符串 String
-
-## 列表 List
+# 列表 List
 
 类似于数组，支持从列表的左右两侧存取数据，取数据的时候支持阻塞操作。列表的下标从0开始，负数表示。
 
 `RPOPLPUSH` 源列表和目的地列表指定同一个列表可以用于实现循环列表。
 `RPOPLPUSH` 消费者先从源列表获取数据进行处理，同时放入备份队列，处理完成之后从本分队列删除。
 
-### List 常用命令：
+## List 常用命令：
 
 |命令|语法|描述|返回值|
 |::|::|::|::|
@@ -33,8 +29,3 @@
 |LTRIM  | `LTRIM key start end`       |删除指定范围外的元素|删除是否成功|
 |RPOPLPUSH| `RPOPLPUSH source destination`|从源列表删除一个元素, 放到目标列表|移动的元素|
 |BRPOPLPUSH| `BRPOPLPUSH source destination timeout`|从源列表删除一个元素, 放到目标列表,当源列表没有数据时阻塞，阻塞时间为`timeout`|移动的元素|
-## 散列 Hash
-
-## 集合 Set
-
-## 有序集合 Sort Set
