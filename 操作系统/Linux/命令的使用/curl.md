@@ -6,8 +6,9 @@
 
 ## 语法
 
+```shell
 	curl [options] [URL...]
-
+```
 
 **选项**
 
@@ -32,47 +33,86 @@
  *  `-I, --head` ： 只获取HTTP响应头
 
 ## 具体使用
+
+1.  请求指定网址，请求内容显示在命令行。
+
+    ```shell
+    curl http://www.baidu.com
+    ```
+1. GET 请求
+
+     ```shell
+     curl -X GET http://www.baidu.com
+     ```
+2. POST 请求, `-d` 指定参数 
+
+    ```shell
+    curl -d 'name=name＆age=age' -X POST http://www.baidu.com
+    ```
+3. POST 请求, `--data-urlencode` URL Encode 参数
+
+    ```shell
+    curl --data-urlencode 'name=nam e＆age=age' -X POST http://www.baidu.com
+    ```
+
+4. 指定代代理头
+
+    ```shell 
+    curl -A 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.100 Safari/537.36' https://www.baidu.com
+    ```
+    
+5. 发送Cookie
+
+    ```shell
+    curl -b 'name=value;name=value' https://www.baidu.com
+    ```
+
 1. 把网址内容保存到指定文件中。
 
-		curl -o baidu.html http://www.baidu.com
-		# 简单正则
-		curl -o "#1.html" http://www.cnblogs.com/gbyukg/p/332682[0-9].html
-		curl -o "#1_#2.html" http://www.{cnblogs}.com/gbyukg/p/332682[0-9].html
+    ```
+    curl -o baidu.html http://www.baidu.com
+    # 简单正则
+    curl -o "#1.html" http://www.cnblogs.com/gbyukg/p/332682[0-9].html
+    curl -o "#1_#2.html" http://www.{cnblogs}.com/gbyukg/p/332682[0-9].html
+    ```
 
+2. 使用服务器上的文件名自动保存在本地，（如果文件在服务器不是以文件存在，则会出错）。
 
-2. 使用服务器上的文件名自动保存在本地，（如果文件在服务器不适宜文件存在，则会出错）。
-
-		curl -O https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/logo_white_fe6da1ec.png
-		# 错误
-		curl -O http://www.baidu.com
+    ```shell
+    curl -O https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/logo_white_fe6da1ec.png
+    # 错误
+    curl -O http://www.baidu.com
+    ```
 3. 从ftp服务器下载文件
 
-		# 列出目录下的所有文件夹
-		curl -u ftpuser:ftppass -O ftp://ftp_server/public_html/
- 		# 下载文件
-		curl -u ftpuser:ftppass -O ftp://ftp_server/public_html/xss.php
+    ```shell
+    # 列出目录下的所有文件夹
+    curl -u ftpuser:ftppass -O ftp://ftp_server/public_html/
+    # 下载文件
+    curl -u ftpuser:ftppass -O ftp://ftp_server/public_html/xss.php
+    ```
 4. 上传文件
 
-		# 将myfile.txt文件上传到服务器
-		curl -u ftpuser:ftppass -T myfile.txt ftp://ftp.testserver.com
-		# 同时上传多个文件
-		curl -u ftpuser:ftppass -T "{file1,file2}" ftp://ftp.testserver.com
-		# 从标准输入获取内容保存到服务器指定的文件中
-		curl -u ftpuser:ftppass -T - ftp://ftp.testserver.com/myfile_1.txt
+    ```shell
+    # 将myfile.txt文件上传到服务器
+    curl -u ftpuser:ftppass -T myfile.txt ftp://ftp.testserver.com
+    # 同时上传多个文件
+    curl -u ftpuser:ftppass -T "{file1,file2}" ftp://ftp.testserver.com
+    # 从标准输入获取内容保存到服务器指定的文件中
+    curl -u ftpuser:ftppass -T - ftp://ftp.testserver.com/myfile_1.txt
+    ```
 5. 查询单词意思或翻译
 
-		curl dict://dict.org/d:bash
-		# 列出所有可用词典
-		curl dict://dict.org/show:db
-		# 在fd-deu-fra词典中查询bash单词的含义
-		curl dict://dict.org/d:bash:fd-deu-fra
+    ```shell
+    curl dict://dict.org/d:bash
+    # 列出所有可用词典
+    curl dict://dict.org/show:db
+    # 在fd-deu-fra词典中查询bash单词的含义
+    curl dict://dict.org/d:bash:fd-deu-fra
+    ```
+    
 6. 设置cookie
 
-		curl http://www.baidu.com --cookie "user=root;pass=123456"
-
-
-
-
-
-		
-			
+    ```shell
+    curl http://www.baidu.com --cookie "user=root;pass=123456"
+    ```
