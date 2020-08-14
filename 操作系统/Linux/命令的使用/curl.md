@@ -43,11 +43,13 @@ curl [options] [URL...]
     ```shell
     curl http://www.baidu.com
     ```
+
 * GET 请求
 
      ```shell
      curl -X GET http://www.baidu.com
      ```
+
 * GET 请求,加参数
 
      ```shell
@@ -59,6 +61,7 @@ curl [options] [URL...]
     ```shell
     curl -d 'name=name＆age=age' -X POST http://www.baidu.com
     ```
+
 * POST 请求, `--data-urlencode` URL Encode 参数
 
     ```shell
@@ -82,32 +85,37 @@ curl [options] [URL...]
     ```shell
     curl -b 'name=value;name=value' https://www.baidu.com
     ```
+
 * 设置 Referer
 
     ```shell
     curl -e 'https://www.baidu1.com' https://www.baidu.com
     ```
+
 * 添加HEADER
 
     ```shell
     curl -H 'TOKEN: xxxxxx' -H 'XX: xx'  https://www.baidu.com
     ```
+
 * 显示响应的HTTP头
 
     ```shell
     curl -i http://www.baidu.com
     ```
-*  跳过ssl检测
+
+* 跳过ssl检测
 
     ```shelll
     curl -k https://www.baidu.com
     ```
+
 * 支持重定向
 
     ```shell
     curl -L http://www.baidu.com
     ```
-    
+
 * 限制带宽
 
     ```shell
