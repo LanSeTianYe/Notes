@@ -147,6 +147,7 @@ curl [options] [URL...]
     # 下载文件
     curl -u ftpuser:ftppass -O ftp://ftp_server/public_html/xss.php
     ```
+
 * 上传文件
 
     ```shell
@@ -157,6 +158,7 @@ curl [options] [URL...]
     # 从标准输入获取内容保存到服务器指定的文件中
     curl -u ftpuser:ftppass -T - ftp://ftp.testserver.com/myfile_1.txt
     ```
+
 * 查询单词意思或翻译
 
     ```shell
