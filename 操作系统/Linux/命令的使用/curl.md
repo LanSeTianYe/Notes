@@ -38,40 +38,40 @@ curl [options] [URL...]
 
 ## 具体使用
 
-1.  请求指定网址，请求内容显示在命令行。
+*  请求指定网址，请求内容显示在命令行。
 
     ```shell
     curl http://www.baidu.com
     ```
-1. GET 请求
+* GET 请求
 
      ```shell
      curl -X GET http://www.baidu.com
      ```
-2. GET 请求,加参数
+* GET 请求,加参数
 
      ```shell
      curl -G -d 'name=name' -d 'age=age' http://www.baidu.com
      ```
 
-2. POST 请求, `-d` 指定参数 
+* POST 请求, `-d` 指定参数 
 
     ```shell
     curl -d 'name=name＆age=age' -X POST http://www.baidu.com
     ```
-3. POST 请求, `--data-urlencode` URL Encode 参数
+* POST 请求, `--data-urlencode` URL Encode 参数
 
     ```shell
     curl --data-urlencode 'name=nam e＆age=age' -X POST http://www.baidu.com
     ```
 
-4. Header 请求
+* Header 请求
 
     ```shell
     curl -I http://www.baidu.com
     ```
-
-4. 指定代代理头
+    
+* 指定代代理头
 
     ```shell 
     curl -A 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.100 Safari/537.36' https://www.baidu.com
@@ -82,39 +82,39 @@ curl [options] [URL...]
     ```shell
     curl -b 'name=value;name=value' https://www.baidu.com
     ```
-6. 设置 Referer
+* 设置 Referer
 
     ```shell
     curl -e 'https://www.baidu1.com' https://www.baidu.com
     ```
-4. 添加HEADER
+* 添加HEADER
 
     ```shell
     curl -H 'TOKEN: xxxxxx' -H 'XX: xx'  https://www.baidu.com
     ```
-5. 显示响应的HTTP头
+* 显示响应的HTTP头
 
     ```shell
     curl -i http://www.baidu.com
     ```
-6.  跳过ssl检测
+*  跳过ssl检测
 
     ```shelll
     curl -k https://www.baidu.com
     ```
-7. 支持重定向
+* 支持重定向
 
     ```shell
     curl -L http://www.baidu.com
     ```
     
-8. 限制带宽
+* 限制带宽
 
     ```shell
     curl --limit-rate 1b http://www.baidu.com
     ```
 
-1. 把网址内容保存到指定文件中。
+* 把网址内容保存到指定文件中。
 
     ```
     curl -o baidu.html http://www.baidu.com
@@ -123,7 +123,7 @@ curl [options] [URL...]
     curl -o "#1_#2.html" http://www.{cnblogs}.com/gbyukg/p/332682[0-9].html
     ```
 
-2. 使用服务器上的文件名自动保存在本地，（如果文件在服务器不是以文件存在，则会出错）。
+* 使用服务器上的文件名自动保存在本地，（如果文件在服务器不是以文件存在，则会出错）。
 
     ```shell
     curl -O https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/logo_white_fe6da1ec.png
@@ -131,7 +131,7 @@ curl [options] [URL...]
     curl -O http://www.baidu.com
     ```
 
-3. 从ftp服务器下载文件
+* 从ftp服务器下载文件
 
     ```shell
     # 列出目录下的所有文件夹
@@ -139,7 +139,7 @@ curl [options] [URL...]
     # 下载文件
     curl -u ftpuser:ftppass -O ftp://ftp_server/public_html/xss.php
     ```
-4. 上传文件
+* 上传文件
 
     ```shell
     # 将myfile.txt文件上传到服务器
@@ -149,7 +149,7 @@ curl [options] [URL...]
     # 从标准输入获取内容保存到服务器指定的文件中
     curl -u ftpuser:ftppass -T - ftp://ftp.testserver.com/myfile_1.txt
     ```
-5. 查询单词意思或翻译
+* 查询单词意思或翻译
 
     ```shell
     curl dict://dict.org/d:bash
