@@ -2,6 +2,7 @@
 参考:
 
 1. [curl 的用法指南](http://www.ruanyifeng.com/blog/2019/09/curl-reference.html)
+2. [cookbooks-curl](https://catonmat.net/cookbooks/curl)
 
 ## 命令介绍
 用于和网络服务器进行通信
@@ -129,6 +130,7 @@ curl [options] [URL...]
     # 错误
     curl -O http://www.baidu.com
     ```
+
 3. 从ftp服务器下载文件
 
     ```shell
