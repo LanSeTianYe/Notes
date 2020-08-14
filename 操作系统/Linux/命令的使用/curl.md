@@ -1,5 +1,7 @@
-##   
 时间 ： 2017/4/20 16:14:22
+参考:
+
+1. [curl 的用法指南](http://www.ruanyifeng.com/blog/2019/09/curl-reference.html)
 
 ## 命令介绍
 用于和网络服务器进行通信
@@ -7,11 +9,12 @@
 ## 语法
 
 ```shell
-	curl [options] [URL...]
+curl [options] [URL...]
 ```
 
 **选项**
 
+ * `-v`: 输出通信的整个过程。
  * `-o, --output <file>`: 把获取到的数据都写入到文件中。
  * `-O, --remote-name`: 使用服务器上的文件名字保存本地文件。
  * `-s, --silent`: 安静模式，不显示进度条或错误信息。
@@ -44,6 +47,12 @@
      ```shell
      curl -X GET http://www.baidu.com
      ```
+2. GET 请求,加参数
+
+     ```shell
+     curl -G -d 'name=name' -d 'age=age' http://www.baidu.com
+     ```
+
 2. POST 请求, `-d` 指定参数 
 
     ```shell
@@ -53,6 +62,12 @@
 
     ```shell
     curl --data-urlencode 'name=nam e＆age=age' -X POST http://www.baidu.com
+    ```
+
+4. Header 请求
+
+    ```shell
+    curl -I http://www.baidu.com
     ```
 
 4. 指定代代理头
@@ -65,6 +80,37 @@
 
     ```shell
     curl -b 'name=value;name=value' https://www.baidu.com
+    ```
+6. 设置 Referer
+
+    ```shell
+    curl -e 'https://www.baidu1.com' https://www.baidu.com
+    ```
+4. 添加HEADER
+
+    ```shell
+    curl -H 'TOKEN: xxxxxx' -H 'XX: xx'  https://www.baidu.com
+    ```
+5. 显示响应的HTTP头
+
+    ```shell
+    curl -i http://www.baidu.com
+    ```
+6.  跳过ssl检测
+
+    ```shelll
+    curl -k https://www.baidu.com
+    ```
+7. 支持重定向
+
+    ```shell
+    curl -L http://www.baidu.com
+    ```
+    
+8. 限制带宽
+
+    ```shell
+    curl --limit-rate 1b http://www.baidu.com
     ```
 
 1. 把网址内容保存到指定文件中。
@@ -109,10 +155,4 @@
     curl dict://dict.org/show:db
     # 在fd-deu-fra词典中查询bash单词的含义
     curl dict://dict.org/d:bash:fd-deu-fra
-    ```
-    
-6. 设置cookie
-
-    ```shell
-    curl http://www.baidu.com --cookie "user=root;pass=123456"
     ```
