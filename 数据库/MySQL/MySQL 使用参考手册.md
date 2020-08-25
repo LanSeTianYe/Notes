@@ -2,7 +2,7 @@
 参考：
 
 1. 《高性能MySQL》第三版
-  
+
 ## MySQL 使用参考手册   
 
 > 所有返回结果都可以使用 `where` 语句进行过滤 `show variables where variable_name like 'sql%'`
@@ -28,27 +28,45 @@
 ### 数据表操作相关语句
 
 #### 表操作
-* 查看建表语句： `show create table table_name`
-* 查看表结构： `desc table_name`
-* 添加主键： `alter table table_name add primary key (col1_name, col2_name)`
-* 删除主键： `alter table table_name drop primary key`
-* 变更存储引擎： `alter table table_name engine = innodb`
-* 新增字段: `ALTER TABLE person ADD COLUMN city VARCHAR(50) NOT NULL DEFAULT '' COMMENT '城市' `
-* 变更字段名字: `ALTER TABLE person CHANGE COLUMN name province VARCHAR(50) NOT NULL DEFAULT '' COMMENT '省份';`
-* 变更列属性(创建新表，效率低)：
-    
-		# 执行时数据库内部会创建临时表
-		alter table table_name modify column col_name varchar(50) not null default '' comment '注释'
-		# 执行时不创建临时表
-		alter table table_name alter col_name set default 1
-* 根据旧表创建新表： `create table new_table_name like old_table_name;` 
-* 复制旧表数据到新表： `insert into new_table_name select * from old_table_name;`
-* 插入数据当主键存在时更新数据： 
 
-		insert into person (primary_key, col1_name) values ('7', 7) on duplicate key update col1_name = col1_name + 1;
+* 查看建表语句： `show create table table_name`
+
+* 查看表结构： `desc table_name`
+
+* 添加主键： `alter table table_name add primary key (col1_name, col2_name)`
+
+* 删除主键： `alter table table_name drop primary key`
+
+* 变更存储引擎： `alter table table_name engine = innodb`
+
+* 新增字段: `ALTER TABLE person ADD COLUMN city VARCHAR(50) NOT NULL DEFAULT '' COMMENT '城市' `
+
+* 变更字段名字: `ALTER TABLE person CHANGE COLUMN name province VARCHAR(50) NOT NULL DEFAULT '' COMMENT '省份';`
+
+* 变更列属性(创建新表，效率低)：
+  
+    ```mysql
+    # 执行时数据库内部会创建临时表
+    alter table table_name modify column col_name varchar(50) not null default '' comment '注释'
+    # 执行时不创建临时表
+    alter table table_name alter col_name set default 1
+    ```
+    
+* 根据旧表创建新表： `create table new_table_name like old_table_name;` 
+
+* 复制旧表数据到新表： `insert into new_table_name select * from old_table_name;`
+
+* 插入数据当主键存在时更新数据：
+
+    ```mysql
+    insert into person (primary_key, col1_name) values ('7', 7) on duplicate key update col1_name = col1_name + 1;
+    ```
+
 * 从一个表查询插入到另一个表：
 
-		INSERT INTO arc_sys_menu_perm(menu_id, read_permission, write_permission, detail_permission) SELECT id, 1, 0, 0 FROM arc_sys_menu ON DUPLICATE KEY UPDATE read_permission = 1;
+    ```mysql
+    INSERT INTO arc_sys_menu_perm(menu_id, read_permission, write_permission, detail_permission) SELECT id, 1, 0, 0 FROM arc_sys_menu ON DUPLICATE KEY UPDATE read_permission = 1;
+    ```
 
 #### 查询数据
 
@@ -63,26 +81,37 @@ MySQL服务器会对查询的SQL语句进行优化，因此实际执行的SQL和
 * 查询行数： `select count(*) from table_name`
 * 限制查询的行数(跳过两行之后查找一行)： `select * from article limit 2, 1` 
 * 关联查询：
-	* `inner join`：交集。  
-	* `left join`：左表全部。 
-	* `right join`：右表全部。    
+    * `inner join`：交集。  
+    * `left join`：左表全部。 
+    * `right join`：右表全部。    
 * 连接查询结果：需要返回的列数一样
-	* `UNION`：去重复（去重可能严重影响性能）
-	
-			select coulmn1, column2 ... from TABLE_NAME UNION select column1, column2 ... from TABLE_NAME
-	* `UNION ALL`: 保留重复
-	
-			select coulmn1, column2 ... from TABLE_NAME UNION ALL select column1, column2 ... from TABLE_NAME
+    * `UNION`：去重复（去重可能严重影响性能）
+
+        ```mysql
+        select coulmn1, column2 ... from TABLE_NAME UNION select column1, column2 ... from TABLE_NAME
+        ```
+
+    * `UNION ALL`: 保留重复
+
+        ```mysql
+        select coulmn1, column2 ... from TABLE_NAME UNION ALL select column1, column2 ... from TABLE_NAME
+        ```
+
 * 分组过滤：
 
-		select user_id, count(*) as atricle_count from article group by user_id having atricle_count > 100
+    ```mysql
+    select user_id, count(*) as atricle_count from article group by user_id having atricle_count > 100
+    ```
+
 * 子查询：
 
-		select
-		  article_id,
-		  article_name
-		from note.article
-		where article_id in (select article_id from user_article where user_id = 1);
+    ```mysql
+    select
+    article_id,
+    article_name
+    from note.article
+    where article_id in (select article_id from user_article where user_id = 1);
+    ```
 
 #### 索引
 
@@ -98,34 +127,34 @@ MySQL服务器会对查询的SQL语句进行优化，因此实际执行的SQL和
 ### 存储引擎和事务  
 * 查看事务自动提交开关 `SHOW VARIABLES LIKE 'autocommit'`
 * 执行事务的步骤：
-	* 开始事务 `START TRANSACTION`
-	* 回滚事务 `ROLLBACK`
-	* 提交事务 `COMMIT`
+    * 开始事务 `START TRANSACTION`
+    * 回滚事务 `ROLLBACK`
+    * 提交事务 `COMMIT`
 * 设置事务隔离级别 `set session transaction isolation level read committed`
-	* read uncommitted
-	* read committed
-	* repeatable read
-	* serializable
+    * read uncommitted
+    * read committed
+    * repeatable read
+    * serializable
 
 #### 数据库参数设置及维护
 
 * 查看数据库变量配置 `show variables `
-	* 编码 character
-	* 端口 port
-	* 查询 query
-	* 存储引擎 storage
-* 查询性能
-	* 打开性能记录 `SET profiling = 'ON'`
-	* 查看性能记录 `SHOW PROFILES`
-	* 查看具体查询的性能记录 `SHOW PROFILE for query QUERY_ID;`
+    * 编码 character
+    * 端口 port
+    * 查询 query
+    * 存储引擎 storage
+* 查询性能   
+    * 打开性能记录 `SET profiling = 'ON'`
+    * 查看性能记录 `SHOW PROFILES`
+    * 查看具体查询的性能记录 `SHOW PROFILE for query QUERY_ID;`
 
 #### 数据库维护
 
 * 表维护：
-	* 查看表状态：`check table table_name`
-	* 修复表索引：
-		* 常用办法：`repair table table_name`
-		* INNODB 引擎：`alter table table_name engine = 'innodb'`
+    * 查看表状态：`check table table_name`
+    * 修复表索引：
+        * 常用办法：`repair table table_name`
+        * INNODB 引擎：`alter table table_name engine = 'innodb'`
 
 #### 常用函数
 
@@ -134,12 +163,15 @@ MySQL服务器会对查询的SQL语句进行优化，因此实际执行的SQL和
 * `left('str', length)`: 截取字符串的前 `length` 个字符。 
 * `group_concat(col_name)`: 连接一个分组内的某些字段，经常结合 `group by` 使用。
 
-		# 默认使用逗号做分隔符
-		select group_concat(article_id separator ',') as atricle_id_list from user_article group by user_id;
-		# 排序
-		select group_concat(article_id order by article_id desc separator ',') as atricle_id_list from user_article group by user_id;
-		# 连接多个字段
-		select group_concat(user_id,'-', article_id ) as atricle_id_list from user_article group by user_id;
+    ```mysql
+    # 默认使用逗号做分隔符
+    select group_concat(article_id separator ',') as atricle_id_list from user_article group by user_id;
+    # 排序
+    select group_concat(article_id order by article_id desc separator ',') as atricle_id_list from user_article group by user_id;
+    # 连接多个字段
+    select group_concat(user_id,'-', article_id ) as atricle_id_list from user_article group by user_id;
+    ```
+
 * `using(id)`: 连接查询时如果连个表的字段名字相同可以使用 `useing(id)` 代替 `a.id = b.id`。
 * `distinct`：去重。
 * `CONCAT(a,b)`：链接字符串。
@@ -148,48 +180,60 @@ MySQL服务器会对查询的SQL语句进行优化，因此实际执行的SQL和
 
 1. 用临时表记录页面点击次数，为了避免更新点击次数时行锁阻塞其它并发操作，在一个表里面使用多条记录来记录统计次数：
 
-		# 创建数据表
-		CREATE TABLE `click_statistic` (
-		  `slot` tinyint(4) NOT NULL AUTO_INCREMENT COMMENT '主键',
-		  `count` bigint(20) DEFAULT '0' COMMENT '点击次数',
-		  PRIMARY KEY (`slot`),
-		) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='点击数量统计表'
-		# 更新语句
-		INSERT INTO click_statistic (slot, count) VALUES (rand() * 100, 1) ON DUPLICATE KEY UPDATE count = count + 1;
-		# 统计数量
-		SELECT sum(count) FROM click_statistic
+    ```mysql
+    # 创建数据表
+    CREATE TABLE `click_statistic` (
+    `slot` tinyint(4) NOT NULL AUTO_INCREMENT COMMENT '主键',
+    `count` bigint(20) DEFAULT '0' COMMENT '点击次数',
+    PRIMARY KEY (`slot`),
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='点击数量统计表'
+    # 更新语句
+    INSERT INTO click_statistic (slot, count) VALUES (rand() * 100, 1) ON DUPLICATE KEY UPDATE count = count + 1;
+    # 统计数量
+    SELECT sum(count) FROM click_statistic
+    ```
+
 2. 长字段列，通过增加额外的hash值列，并在hash值列创建索引，提高查询效率。
 
-		# 创建数据表
-		CREATE TABLE `user_info` (
-		  `user_id` int(11) NOT NULL AUTO_INCREMENT,
-		  `profile_picture_url` varchar(200) NOT NULL DEFAULT '' COMMENT '头像URL',
-		  `profile_picture_hash` int(10) unsigned DEFAULT '0' COMMENT '头像URL的hash值',
-		  PRIMARY KEY (`user_id`),
-		  KEY `index_profile_hash` (`profile_picture_hash`)
-		) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4
-		# 初始化数据
-		INSERT INTO user_info (user_id, profile_picture_url, profile_picture_hash) VALUES (1, 'URL', crc32('URL'));
-		INSERT INTO user_info (user_id, profile_picture_url, profile_picture_hash) VALUES (2, 'URL1', crc32('URL1'));
-		INSERT INTO user_info (user_id, profile_picture_url, profile_picture_hash) VALUES (3, 'URL2', crc32('URL2'));
-		# 查询
-		SELECT *
-		FROM user_info
-		WHERE
-		  profile_picture_hash = crc32('URL') AND
-		  profile_picture_url = 'URL';
+    ```mysql
+    # 创建数据表
+    CREATE TABLE `user_info` (
+    `user_id` int(11) NOT NULL AUTO_INCREMENT,
+    `profile_picture_url` varchar(200) NOT NULL DEFAULT '' COMMENT '头像URL',
+    `profile_picture_hash` int(10) unsigned DEFAULT '0' COMMENT '头像URL的hash值',
+    PRIMARY KEY (`user_id`),
+    KEY `index_profile_hash` (`profile_picture_hash`)
+    ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4
+    # 初始化数据
+    INSERT INTO user_info (user_id, profile_picture_url, profile_picture_hash) VALUES (1, 'URL', crc32('URL'));
+    INSERT INTO user_info (user_id, profile_picture_url, profile_picture_hash) VALUES (2, 'URL1', crc32('URL1'));
+    INSERT INTO user_info (user_id, profile_picture_url, profile_picture_hash) VALUES (3, 'URL2', crc32('URL2'));
+    # 查询
+    SELECT *
+    FROM user_info
+    WHERE
+    profile_picture_hash = crc32('URL') AND
+    profile_picture_url = 'URL';
+    ```
+
 3. 删除大量数据分批完成。删除指定日期以前的数据，删除成功之后判断影响的行数，如果影响的行数不等于0则继续删除。
 
-		DELETE FROM TABLE_NAME WHERE record_date < '2018-07-30 17:00:00' LIMIT 2000
+    ```mysql
+    DELETE FROM TABLE_NAME WHERE record_date < '2018-07-30 17:00:00' LIMIT 2000
+    ```
 4. count : `count(column1)` 统计对应列非空值的行数，`count(*)` 统计总行数。
 		
-	* 统计年龄等于8和年龄等于7的数量
-	
-			SELECT count(if(age = 8 , 1 ,NULL)) as a8 , count(if(age = 8 , 1 ,NULL)) as a FROM person_copy
-	* 对于不精确的统计可以使用 Explain 代替。
-	
-			EXPLAIN SELECT count(*) FROM person_copy
+    * 统计年龄等于8和年龄等于7的数量
 
+        ```mysql
+        SELECT count(if(age = 8 , 1 ,NULL)) as a8 , count(if(age = 8 , 1 ,NULL)) as a FROM person_copy
+        ```
+
+	* 对于不精确的统计可以使用 Explain 代替。
+
+        ```
+        EXPLAIN SELECT count(*) FROM person_copy
+        ```
 
 
 
