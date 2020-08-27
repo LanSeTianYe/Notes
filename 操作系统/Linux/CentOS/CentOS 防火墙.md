@@ -32,14 +32,16 @@
 
 **判断流量属于哪一个区域的过程：** 先根据 `source`（请求来源地址）判断属于哪一个区域，找不到则使用 `Interface`(访问的哪一个网卡) 判断属于哪一个区域，找不到则使用默认区域。然后使用区域的流量过滤规则。
 
-### 启动或关闭防火墙    
+### 启动或关闭防火墙
+
 * 打开防火墙 ：`systemctl start firewalld`
 * 停止防火墙 ：`systemctl stop firewalld`
 * 重启防火墙 ：`systemctl restart firewalld`
 
-### 防火墙配置和管理 `firewall-cmd`  
+### 防火墙配置和管理 `firewall-cmd`
 
-#### 基础操作  
+#### 基础操作 
+
 1. `--state`：查看状态。  
 2. `--version`：查看版本。    
 3. `--list-all`：查看防火墙配置。  
@@ -52,63 +54,86 @@
 7. `--set-log-denied=value`：设置拒绝日志级别，设置之后对应级别的拒绝日志会被记录，默认值 `off`。 `all` `unicast` 单播 `broadcast` 广播 `multicast` 组播 and `off`
 5. 紧急选项（打开之后拒绝接收所有数据包）。  
 
-		--panic-on
-		--panic-off  
-		--query-panic  
+    ```shell
+    --panic-on
+    --panic-off  
+    --query-panic  
+    ```
+
 ### 管理防火请进出规则-简要配置  
 
 注：不指定区域的情况下，规则都定义在默认区域上，如果需要指定区域则在命令中添加 `--zone=zone_name` 即可。
-  
+
 1. 开放端口。
 
-		#添加端口/协议（TCP/UDP）
-		firewall-cmd --add-port=<port>/<protocol> 
-		#移除端口/协议（TCP/UDP）
-		firewall-cmd --remove-port=<port>/<protocol> 
-		#查看开放的端口
-		firewall-cmd --list-ports
+    ```shell
+    #添加端口/协议（TCP/UDP）
+    firewall-cmd --add-port=<port>/<protocol> 
+    #移除端口/协议（TCP/UDP）
+    firewall-cmd --remove-port=<port>/<protocol> 
+    #查看开放的端口
+    firewall-cmd --list-ports
+    ```
 
 2. 开放服务。
-			
-		# 添加服务
-		firewall-cmd --add-service=<service name>
-		# 删除服务 
-		firewall-cmd --remove-service=<service name>
-		# 查看允许的服务  
-		firewall-cmd --list-services
+
+    ```shell
+    # 添加服务
+    firewall-cmd --add-service=<service name>
+    # 删除服务 
+    firewall-cmd --remove-service=<service name>
+    # 查看允许的服务  
+    firewall-cmd --list-services
+    ```
+
 3. 开放协议。	  
 
-		# 允许协议 (例：icmp，即允许ping)
-		firewall-cmd --add-protocol=<protocol> 
-		# 取消协议
-		firewall-cmd --remove-protocol=<protocol>
-		# 查看允许的协议 
-		firewall-cmd --list-protocols 
- 
+    ```shell
+    # 允许协议 (例：icmp，即允许ping)
+    firewall-cmd --add-protocol=<protocol> 
+    # 取消协议
+    firewall-cmd --remove-protocol=<protocol>
+    # 查看允许的协议 
+    firewall-cmd --list-protocols 
+    ```
+
 ### 管理防火墙进出规则-详细配置    
 
 注：不指定区域的情况下，规则都定义在默认区域上，如果需要指定区域则在命令中添加 `--zone=zone_name` 即可。
 
 2. 允许指定IP的所有流量。  
 
-		firewall-cmd --permanent --add-rich-rule="rule family="ipv4" source address="192.168.30.66" accept"
+    ```shell
+    firewall-cmd --permanent --add-rich-rule="rule family="ipv4" source address="192.168.30.66" accept"
+    ```
 
 3. 允许指定IP、通过指定协议的所有流量。 
 
-		firewall-cmd --add-rich-rule="rule family="ipv4" source address="192.168.30.67" protocol value="tcp" accept"
+    ```shell
+    firewall-cmd --add-rich-rule="rule family="ipv4" source address="192.168.30.67" protocol value="tcp" accept"
+    ```
 
 4. 允许指定IP地址、使用指定协议，访问指定端口的流量。
 
-		firewall-cmd --permanent --add-rich-rule="rule family="ipv4" source address="172.17.0.4" port protocol="tcp" port="3306" accept"  
+    ```shelll
+    firewall-cmd --permanent --add-rich-rule="rule family="ipv4" source address="172.17.0.4" port protocol="tcp" port="3306" accept"
+    ```
+
 5. 允许指定IP地址、访问指定服务。
 
-		firewall-cmd --add-rich-rule="rule family="ipv4" source address="<ip>" service name="<service name>" accept"
+    ```shell
+    firewall-cmd --add-rich-rule="rule family="ipv4" source address="<ip>" service name="<service name>" accept"
+    ```
 
 6. 允许指定IP段、使用指定协议、访问指定端口的流量。根据子网掩码的长度计算IP段 `192.168.0.1 ~ 192.168.0.255`
 
-		firewall-cmd --add-rich-rule="rule family="ipv4" source address="192.168.0.0/24" port protocol="tcp" port="22" accept"
+    ```
+    firewall-cmd --add-rich-rule="rule family="ipv4" source address="192.168.0.0/24" port protocol="tcp" port="22" accept"
+    ```
 
 7. 禁止访问。  
 
-		firewall-cmd --add-rich-rule="rule family="ipv4" source address="192.168.0.0/24" port protocol="tcp" port="22" reject"
-		firewall-cmd --add-rich-rule="rule family="ipv4" source address="192.168.0.0/24" port protocol="tcp" port="22" drop"
+    ```shell
+    firewall-cmd --add-rich-rule="rule family="ipv4" source address="192.168.0.0/24" port protocol="tcp" port="22" reject"
+    firewall-cmd --add-rich-rule="rule family="ipv4" source address="192.168.0.0/24" port protocol="tcp" port="22" drop"
+    ```
