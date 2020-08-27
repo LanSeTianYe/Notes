@@ -6,7 +6,7 @@
 
 ## ln 命令
 
-## 简介    
+## 简介
 
 **硬连接：** 相当于把一个文件放到多个目录下面，然后每个目录下文件的权限等属性可以分开管理。
 
@@ -17,17 +17,22 @@
 
 **符号链接：** 相当于到一个文件的引用，删除源文件链接依然存在。
 
-**硬链接合符号链接的区别：**
+**硬链接和符号链接的区别：**
 
 * 删除源文件或目录，只删除了数据，不会删除链接。一旦以同样文件名创建了源文件，链接将继续指向该文件的新数据。
 * 在目录长列表中，符号链接作为一种特殊的文件类型显示出来，其第一个字母是l。
 * 符号链接的大小是其链接文件的路径名中的字节数。
 
 ### 实用 
-  
+
 1. 创建符号连接。
 
-		ln -s /home/xiaotian/nodejs/bin/node /usr/local/bin/node
-2. 创硬连接。
+    ```shell
+    ln -s /home/xiaotian/nodejs/bin/node /usr/local/bin/node
+    ```
 
-		ln /home/xiaotian/nodejs/bin/node /usr/local/bin/node
+4. 创硬连接。
+
+    ```shell
+    ln /home/xiaotian/nodejs/bin/node /usr/local/bin/node
+    ```

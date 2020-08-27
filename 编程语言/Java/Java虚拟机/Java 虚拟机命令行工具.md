@@ -1,7 +1,8 @@
-时间：2017/12/30 10:20:03   
+时间：2017/12/30 10:20:03
+
 参考：
 
-1. 深入理解Java虚拟机 周志明  
+1. 深入理解Java虚拟机 周志明
 
 环境：
 
@@ -9,7 +10,7 @@
 
 ## 命令行工具 
 
-jdk自带的一些命令行工具，用来分析运行的java实例的内存使用情况。  
+jdk自带的一些命令行工具，用来分析运行的java实例的内存使用情况。
 
 ### jps（JVM Process Status Tool）： 查看虚拟机进程状况  
 
@@ -49,31 +50,34 @@ jdk自带的一些命令行工具，用来分析运行的java实例的内存使�
 ### jinfo 查看系统参数，查看和设置 VMFLag。
 1.  `jinfo 123456` 输出信息如下：
 
-		Java System Properties:
-		java.runtime.name = Java(TM) SE Runtime Environment
-		java.vm.version = 25.221-b11
-		sun.boot.library.path = /home/xiaotian/software/java/jdk1.8.0_221/jre/lib/amd64
-		java.protocol.handler.pkgs = org.springframework.boot.loader
-		java.vendor.url = http://java.oracle.com/
-		java.vm.vendor = Oracle Corporation
-		path.separator = :
-		... ...
-		java.version = 1.8.0_221
-		java.ext.dirs = /home/xiaotian/software/java/jdk1.8.0_221/jre/lib/ext:/usr/java/packages/lib/ext
-		sun.boot.class.path = /home/xiaotian/software/java/jdk1.8.0_221/jre/lib/resources.jar:/home/xiaotian/software/java/jdk1.8.0_221/jre/lib/rt.jar:/home/xiaotian/software/java/jdk1.8.0_221/jre/lib/sunrsasign.jar:/home/xiaotian/software/java/jdk1.8.0_221/jre/lib/jsse.jar:/home/xiaotian/software/java/jdk1.8.0_221/jre/lib/jce.jar:/home/xiaotian/software/java/jdk1.8.0_221/jre/lib/charsets.jar:/home/xiaotian/software/java/jdk1.8.0_221/jre/lib/jfr.jar:/home/xiaotian/software/java/jdk1.8.0_221/jre/classes
-		java.awt.headless = true
-		java.vendor = Oracle Corporation
-		catalina.base = /tmp/tomcat.5571146530846755836.8082
-		com.zaxxer.hikari.pool_number = 1
-		file.separator = /
-		java.vendor.url.bug = http://bugreport.sun.com/bugreport/
-		sun.io.unicode.encoding = UnicodeLittle
-		sun.cpu.endian = little
-		sun.cpu.isalist =
+    ```shell
+    Java System Properties:
+    java.runtime.name = Java(TM) SE Runtime Environment
+    java.vm.version = 25.221-b11
+    sun.boot.library.path = /home/xiaotian/software/java/jdk1.8.0_221/jre/lib/amd64
+    java.protocol.handler.pkgs = org.springframework.boot.loader
+    java.vendor.url = http://java.oracle.com/
+    java.vm.vendor = Oracle Corporation
+    path.separator = :
+    ... ...
+    java.version = 1.8.0_221
+    java.ext.dirs = /home/xiaotian/software/java/jdk1.8.0_221/jre/lib/ext:/usr/java/packages/lib/ext
+    sun.boot.class.path = /home/xiaotian/software/java/jdk1.8.0_221/jre/lib/resources.jar:/home/xiaotian/software/java/jdk1.8.0_221/jre/lib/rt.jar:/home/xiaotian/software/java/jdk1.8.0_221/jre/lib/sunrsasign.jar:/home/xiaotian/software/java/jdk1.8.0_221/jre/lib/jsse.jar:/home/xiaotian/software/java/jdk1.8.0_221/jre/lib/jce.jar:/home/xiaotian/software/java/jdk1.8.0_221/jre/lib/charsets.jar:/home/xiaotian/software/java/jdk1.8.0_221/jre/lib/jfr.jar:/home/xiaotian/software/java/jdk1.8.0_221/jre/classes
+    java.awt.headless = true
+    java.vendor = Oracle Corporation
+    catalina.base = /tmp/tomcat.5571146530846755836.8082
+    com.zaxxer.hikari.pool_number = 1
+    file.separator = /
+    java.vendor.url.bug = http://bugreport.sun.com/bugreport/
+    sun.io.unicode.encoding = UnicodeLittle
+    sun.cpu.endian = little
+    sun.cpu.isalist =
 
-		VM Flags:
-		Non-default VM flags: -XX:CICompilerCount=2 -XX:InitialHeapSize=134217728 -XX:MaxHeapSize=536870912 -XX:MaxNewSize=178913280 -XX:MinHeapDeltaBytes=196608 -XX:NewSize=44695552 -XX:OldSize=89522176 -XX:+PrintGC -XX:+PrintGCTimeStamps -XX:+UseCompressedClassPointers -XX:+UseCompressedOops -XX:+UseFastUnorderedTimeStamps
-		Command line:  -XX:+PrintGC -Xloggc:./gc.log -Xms128m -Xmx512m -Dloader.path=/home/xiaotian/tools/lib/ -Dspring.profiles.active=dev
+    VM Flags:
+    Non-default VM flags: -XX:CICompilerCount=2 -XX:InitialHeapSize=134217728 -XX:MaxHeapSize=536870912 -XX:MaxNewSize=178913280 -XX:MinHeapDeltaBytes=196608 -XX:NewSize=44695552 -XX:OldSize=89522176 -XX:+PrintGC -XX:+PrintGCTimeStamps -XX:+UseCompressedClassPointers -XX:+UseCompressedOops -XX:+UseFastUnorderedTimeStamps
+    Command line:  -XX:+PrintGC -Xloggc:./gc.log -Xms128m -Xmx512m -Dloader.path=/home/xiaotian/tools/lib/ -Dspring.profiles.active=dev
+    ```
+
 2. 设置 VM FLAG。
 
 	* `jinfo -flag <name>` 打印 VM Flag。
