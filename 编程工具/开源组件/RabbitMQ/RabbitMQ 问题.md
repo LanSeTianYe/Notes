@@ -4,6 +4,7 @@
 
 1. [记一次RabbitMQ连接阻塞，全部队列不消费异常](https://www.wolzq.com/%E8%AE%B0%E4%B8%80%E6%AC%A1RabbitMQ%E8%BF%9E%E6%8E%A5%E9%98%BB%E5%A1%9E%EF%BC%8C%E5%85%A8%E9%83%A8%E9%98%9F%E5%88%97%E4%B8%8D%E6%B6%88%E8%B4%B9%E5%BC%82%E5%B8%B8/)
 
+2. [Memory and Disk Alarms](https://www.rabbitmq.com/alarms.html)
 
 ## RabbitMQ 异常
 
@@ -25,5 +26,8 @@ memory resource limit alarm set on node rabbit@localhost.
 **********************************************************
 ```
 
+### RabbitMQ 消费者过多导致内存占用超过限制，RabbitMQ 进程阻塞
 
+**问题原因：** 客户端消费消息的时候没有指定 `consumerTag` 导致每次消费的时候都自动创建一个新的消费者，消费者增多导致 RabbiMQ 占用内存超过最高限制，最终阻塞。
 
+**解决方案：** 创建消费者的时候指定 `customerTag`。
