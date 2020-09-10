@@ -23,8 +23,9 @@
 	开始(S1) -> 第一次更新数据（S2）-> 第二次更新数据(S3) -> 第三次插入一条数据(S4) -> 提交事务(S5)
 
 1. Read Uncommit（读未提交）：可能发生脏读、不可重复度和幻读。
-	* 在此隔离级别下：事务B执行 `S2` 之后，事务A读取数据，会读取到事务B第一次更新后的数据，此时事务B还未提交，出现脏读的情况。
-
+	
+* 在此隔离级别下：事务B执行 `S2` 之后，事务A读取数据，会读取到事务B第一次更新后的数据，此时事务B还未提交，出现脏读的情况。
+	
 2. Read Commit（读提交）：  可避免脏读，可能发生不可重复度和幻读。
 	* 在此隔离级别下：
 		* 事务B执行 `S2` 之后，事务A读取数据，会读取到事务B开始时的原始数据，避免脏读的情况。
@@ -36,17 +37,19 @@
 	* 事务B执行 S5 之后，事务A再次读取数据（事务A在第一次读取之后没有提交），此时读取的数据和第一次读取的数据一致的，避免不可重复读的情况（快照机制）。
 	* 事务B执行 S5 之后，事务A查询一次总数量，和前面查询结果相同，事务A执行一次 `update all` 操作，此时事务B提交的内容也会被更新（在所有已提交事务产生的最新版本的数据上进行更新），之后事务A再执行一次查询总数操作，此时查询的数量比前两次多一。
 
-			START TRANSACTION;
-			SELECT * FROM person;
-			update person SET age = age + 1 WHERE name = 1;
-			COMMIT;
+        ```mysql
+        START TRANSACTION;
+        SELECT * FROM person;
+        update person SET age = age + 1 WHERE name = 1;
+        COMMIT;
 
-			START TRANSACTION;
-			SELECT * FROM person;
-			update person SET age = age + 1 WHERE name = 1;
-			COMMIT;
+        START TRANSACTION;
+        SELECT * FROM person;
+        update person SET age = age + 1 WHERE name = 1;
+        COMMIT;
+        ```
 
-		上面两个事务不论以什么的顺序执行，全部提交之后，age的值会增加二，符合常理。
+        上面两个事务不论以什么的顺序执行，全部提交之后，age的值会增加二，符合常理。
 	
 4. SERIALIZABLE：串行执行。可避免脏读，不可重复读，幻读。 
 

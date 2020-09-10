@@ -13,9 +13,12 @@
 
 1. 变量赋值。  
 
-		SET @var_name := expr
+    ```mysql
+    SET @var_name := expr
+    ```
 
 2. 变量递增
 
-		SELECT @num := @num + 1 FROM table_name;
- 
+    ```mysql
+    SELECT @num := @num + 1 FROM table_name;
+    ```

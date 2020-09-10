@@ -25,7 +25,7 @@
 ### 查询优化
 
 #### select count(*) from table 的优化
- 
+
 方案一 ： 数据库主键自增，而且不删除数据的前提下。这里假设主键是连续的:
 
     SELECT max(uid)-min(uid)+1 from alarminfo
@@ -112,11 +112,11 @@
 上面的Sql语句查询很耗时间，根据查询需要的含义可以替换为下面的语句
 
     SELECT SQL_NO_CACHE  * from alarminfo 
-		WHERE num = '4' 
-					and location = 'F21_行政酒廊' 
-					and time > '2015-06-28 12:24:06'
-					and time < '2015-08-28 12:24:06'
-		ORDER BY time asc
+    	WHERE num = '4' 
+    				and location = 'F21_行政酒廊' 
+    				and time > '2015-06-28 12:24:06'
+    				and time < '2015-08-28 12:24:06'
+    	ORDER BY time asc
 在num列有索引的情况下： 扫描36688行，耗时2.434s
 创建联合索引:
 

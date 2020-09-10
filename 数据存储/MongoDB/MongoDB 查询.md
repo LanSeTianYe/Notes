@@ -13,14 +13,16 @@
 
 **限制返回字段：**
 
+```sql
 	# 返回指定的字段
 	db.inventory.find({ status: "A" }, { item: 1, status: 1, "instock.qty": 1 })
 	# 返回指定字段之外的字段		
 	db.inventory.find( { status: "A" }, { status: 0, instock: 0 } )
 `1` 表示返回该字段，当字段是子文档是返回子文档所有字段，可以通过 `.` 语法只返回需要的字段，数组包含子文档类似。 
+```
 
 ## 通用查询
-  
+
 1. 根据一个或多个字段查询 `and`   
 
 		db.user.find({ age: "18", name: "liujs" })  
@@ -94,7 +96,7 @@
 		db.inventory.find( { item : { $type: 10 } } )
 		# 字段是否存在 
 		db.inventory.find( { item : { $exists: false } } )
- 
+
 8. 类型查找 `$type`  
 
 		db.col.find({ "title": { $type: "string" } })

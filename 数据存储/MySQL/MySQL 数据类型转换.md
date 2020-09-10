@@ -1,4 +1,4 @@
-时间：2019/11/27 10:09:01  
+时间：2019/11/27 10:09:01 
 
 参考：
 
@@ -22,22 +22,29 @@
 
 #### BINARY 
 
-1. 类型转换  
+1. 类型转换 
 	
-		# 1
-		SELECT 'a' = 'A';
-		# 0
-		SELECT BINARY('a') = BINARY('A');
+    ```sql
+    # 1
+    SELECT 'a' = 'A';
+    # 0
+    SELECT BINARY('a') = BINARY('A');
+    ```
 
 #### CAST
 1.  转换编码  
 
-		SELECT CAST('test' AS CHAR CHARACTER SET utf8);
-		# 指定校验规则
-		SELECT CAST('test' AS CHAR CHARACTER SET utf8) COLLATE utf8_bin
+    ``` sql
+    SELECT CAST('test' AS CHAR CHARACTER SET utf8);
+    # 指定校验规则
+    SELECT CAST('test' AS CHAR CHARACTER SET utf8) COLLATE utf8_bin
+    ```
+
 2.  转换数据类型  
 
-		SELECT CAST(1 - 2 AS UNSIGNED);
+    ``` sql
+    SELECT CAST(1 - 2 AS UNSIGNED);
+    ```
 
 	支持的数据类型如下：
 	* BINARY：类似于 `CHAR`，使用字节存储数据。
@@ -52,12 +59,14 @@
 	* TIME: 时间。
 
 #### CONVERT
-  
+
 1. 转换编码  
   
-		SELECT CONVERT(_latin1'Müller' USING utf8);
-		SELECT CONVERT(latin1_column USING utf8) FROM latin1_table;
-		SELECT CONVERT('test', CHAR CHARACTER SET utf8);
+    ```
+    SELECT CONVERT(_latin1'Müller' USING utf8);
+    SELECT CONVERT(latin1_column USING utf8) FROM latin1_table;
+    SELECT CONVERT('test', CHAR CHARACTER SET utf8);
+    ```
 
 ### 隐式类型转换 
 
@@ -84,9 +93,12 @@
 #### 遇到的问题
 
 1. long 型数据比较。
-	
-		# 转换为浮点数之后精度损失，转换结果都一样	
-		SELECT '18446744073709551601' + 0E0 AS VALUE1,
-		    	'18446744073709551602' + 0E0 AS VALUE2,
-		    	'18446744073709551603' + 0E0 AS VALUE3,
-		     	18446744073709551601 + 0E0 AS VALUE4
+
+    ```sql
+    # 转换为浮点数之后精度损失，转换结果都一样	
+    SELECT '18446744073709551601' + 0E0 AS VALUE1,
+        '18446744073709551602' + 0E0 AS VALUE2,
+        '18446744073709551603' + 0E0 AS VALUE3,
+        18446744073709551601 + 0E0 AS VALUE4
+    ```
+
