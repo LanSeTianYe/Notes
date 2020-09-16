@@ -7,7 +7,9 @@
 
 ### 添加数据
 
-* `_:michael` 空白节点，表示数据库中不存在，执行命令后会在数据库中创建节点，创建成功后返回节点对应的uid。`_:michael` 可以用来标识一条执行语句中的节点。
+Dgraph以三元组的形式添加数据 `（节点A，关系，属性/节点B）` 可以理解为，`节点A 有一个关系（朋友/名字）是 属性/节点B` 。如 `小明有一个名字是小明` `小明有一个朋友是小暗`。最后的 `.` 表示一条语句的结束。
+
+* `_:michael` 空白节点，表示数据库中不存在，执行命令后会在数据库中创建节点，创建成功后返回节点对应的uid。`_:michael` 用来标识添加数据中的节点，从而可以在添加的数据中互相引用， 如 `    _:michael <friend> _:amit .`。
 
 * `<name> <age> <friend> <owns_pet>` 表示边，标识关系。可以这样读  `michael 有一个 name 是 Michael` `michael 有一个 friend 是 amit`。
 
@@ -121,8 +123,34 @@
     }
     ```
 
+### 删除数据
 
-### 查询语法
+删除数据有三种方式。
+
+* 删除一条边。`<uid> <edge> <uid>/"value" .`
+* 删除所有边。`<uid> <edge> * .`
+* 删除所有边。`<uid> * * .`
+
+例子如下：
+
+```
+{
+  delete {
+    # 删除一条边
+    <0x1c3eb> <name> "Steven" .
+    <0x1c3eb> <age> "38" .
+    <0x1c3eb> <friend> <1x1c2a1> .
+    
+    # 删除所有的朋友边
+    <0x1c3eb> <friend> * .
+    
+    # 删除所有的边
+    <0x1c3eb> * * .
+  }
+}
+```
+
+### 查询数据
 
 #### 支持的函数
 
@@ -143,19 +171,21 @@
 * cascade: `@cascade` 排除有空边的数据。
 * normalize:  `@normalize` 只返回有别名的边，并且拉平内嵌结构。
 * @facets: `@facets` 边属性。 
+* 显示所有属性: `expand`。
+* 查询表结构:`schema`
 
 #### 查询列子 
 
 1. 根据uid查询。
 
-    ```
+```
     {
       find_by_uid(func:uid(0x7)){
         name@.
         age
       }
     }
-    ```
+```
 
 2. 根据名字查询
 
@@ -261,4 +291,24 @@
         }
       }
     }
+    ```
+    
+10. 显示所有属性。
+
+    ```
+    {
+      expand(func: anyofterms(name, "Michael")) {
+        expand(_all_) {
+          expand(_all_) {
+            expand(_all_)
+          }
+        }
+      }
+    }
+    ```
+
+11. 查询表结构。
+
+    ```
+    schema {}
     ```

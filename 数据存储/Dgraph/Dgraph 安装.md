@@ -38,3 +38,9 @@ curl -sSf https://get.dgraph.io | bash
     # 默认 800端口
     /usr/local/bin/dgraph-ratel
     ```
+
+4. 数据导入，需要先定义好数据结构。
+
+    ```
+    dgraph live -f 1million.rdf.gz --alpha localhost:offset+9080 --zero localhost:5080 -c 1
+    ```

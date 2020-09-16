@@ -5,10 +5,7 @@
 
 ## DGraph 简介
 
-
-
 ### 数据类型
-
 
 |  类型名字    | 描述      |
 | ---- | ---- |
@@ -21,4 +18,39 @@
 | geo | 地理坐标类型 |
 | password | 加密类型 |
 | uid | uid类型，节点标识字段，用于连接节点和节点 |
+
+### 定义结构
+
+#### 定义类型
+
+语法类似 GraphQL，定义顶点的类型，顶点拥有的边，边的属性。
+
+定义双向边有两种方法。
+
+* 在添加数据的时候添加双向关系，如同时添加两条边 `A有一个朋友B` 和 `B有一个朋友A`。
+* 在定义边类型的的时候指定双向关系，`boss_of: [uid] @reverse .`。生成的反向边的名字是 `~boos_of`。
+
+```
+# 人
+type Person {
+    name         # 姓名
+    boss_of      # 他的老板
+    works_for    # 他的工作
+}
+
+# 公司
+type Company {
+    name      # 公司的名字
+    industry  # 公司的行业
+    work_here # 工作地址
+}
+
+# 定义边的类型和索引
+industry: string @index(term) .
+boss_of: [uid] .
+name: string @index(exact, term) .
+works_for: [uid] .
+work_here: [uid] .
+```
+
 
