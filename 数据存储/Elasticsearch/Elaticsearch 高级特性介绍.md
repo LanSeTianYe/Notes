@@ -1,5 +1,6 @@
 时间：2017/12/8 17:43:06   
 参考：  
+
 1. [分布式文档存储](https://www.elastic.co/guide/cn/elasticsearch/guide/current/routing-value.html)
 
 ##
@@ -23,7 +24,7 @@
 
 Elasticsearch 使用一种称为 倒排索引 的结构，它适用于快速的全文搜索。一个倒排索引由文档中所有不重复词的列表构成，对于其中每个词，有一个包含它的文档列表。  
 例如，假设我们有两个文档，每个文档的 content 域包含如下内容： 
- 
+
 > 1. The quick brown fox jumped over the lazy dog  
 > 2. Quick brown foxes leap over lazy dogs in summer 
 
