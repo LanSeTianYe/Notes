@@ -246,3 +246,26 @@ type Performance {
       }
     }
     ```
+
+10. 查询所有导演最近一部电影，按上映时间排序。
+
+    ```
+    {
+      var(func:has(director.film)){
+        director.film{
+          date as initial_release_date
+        }
+        maxDate as max(val(date))
+        daysSince as math(since(maxDate)/(24*60*60))
+      }
+
+      var(func:uid(maxDate), orderdesc:val(maxDate), first: 10){
+        name@en
+        days: val(daysSince)
+        director.film(orderdesc: initial_release_date, first: 1) {
+          name@en
+          initial_release_date
+        }
+      }
+    }
+    ```

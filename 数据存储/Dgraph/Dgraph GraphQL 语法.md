@@ -152,12 +152,24 @@ Dgraph以三元组的形式添加数据 `（节点A，关系，属性/节点B）
 
 ### 查询数据
 
+值需要有有索引才能进行查询。
+
+int、 float、 geo 和 date 有默认的索引。 string 支持几种不同类型的索引，如下：
+
+* term: `allofterms` 和 `anyofterms` 默认使用的索引。
+* exact: 匹配整个字符串。
+* hash: 字符串的hash值。
+* fulltext: 全文搜索。`alloftext` 和 `anyoftext` 使用。
+* trigram : 正则表达式。
+
 #### 支持的函数
 
 * uid: `func uid(real_uid)` 根据uid查询。
 * eq: `func eq(edge_name, "value")` 相等。
 * allOfTerms: `func: allOfTerms(edge_name, "value ... value")`  和所有的值都匹配。
 * anyofterms: `func: anyofterms(edge_name, "value ... value")` 和任意一个匹配。
+* alloftext:  `func: alloftext(edge_name, "value ... value")` 包含所有。
+* anyofText: `func: anyofText(edge_name, "value ... value")` 包含任意一个。
 * ge:  `func ge(edge_name, 27)` 大于。
 * le: `func le(edge_name, 27)` 小于。
 * gt: `func gt(edge_name, 27)` 大于等于。
@@ -311,4 +323,27 @@ Dgraph以三元组的形式添加数据 `（节点A，关系，属性/节点B）
 
     ```
     schema {}
+    ```
+12. 正则表达式搜索，最少三个字符。
+
+    ```
+    {
+      peters(func: regexp(name@en, /.*ali.*/i)) {
+        name@en
+      }
+    }
+    ```
+
+13. 全文搜索，全文搜索支持不同的语言，通过 `@语言` 指定。
+
+    ```
+    {
+      movie(func:alloftext(name@de, "Die schwarz"))
+        @filter(has(genre))
+      {
+        name@de
+        name@en
+        name@it
+      }
+    }
     ```

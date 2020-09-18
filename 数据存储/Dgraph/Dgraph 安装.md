@@ -32,6 +32,7 @@ curl -sSf https://get.dgraph.io | bash
     ```shell
     /usr/local/bin/dgraph zero
     ```
+
 3. 运行 ratel UI，完成之后访问 [http://localhost:8000](http://localhost:8000) 访问Web管理界面。
 
     ```shell
