@@ -27,7 +27,7 @@
 		{ "title": "The quick brown fox jumps over the quick dog" }
 		{ "index": { "_id": 4 }}
 		{ "title": "Brown fox brown dog" } 
-  
+
 ### 单字段匹配查询  
 
 1. 匹配一个单词。
