@@ -1,4 +1,4 @@
-时间：2019/11/25 22:01:43
+时间：2019-11-25 22:01:43
 
 参考：
 
@@ -6,9 +6,9 @@
 2. [Git 代码分支模型（1）：GitFlow、GitHub Flow、Trunk Based Development](http://www.brofive.org/?p=2165)
 2. [客户端 GitKraken](https://www.gitkraken.com/)
 
-## GitFLow 分支模型  
+## GitFLow 分支模型 
 
-### GitFLow 分支模型简介     
+### GitFLow 分支模型简介 
 
 GitFlow 是一个分支模型，为 Git 分支管理提供一种可参考的规范，有了规范团队工作才能更高效，同时也能减少出错的可能，当然也需要根据实际情况扩展该模型。
 
