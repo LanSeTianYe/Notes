@@ -7,7 +7,7 @@
 
 ## Win32 error
 ### 问题描述：  
- 
+
 Git Extensions: Win32 error 487: Couldn't reserve space for cygwin's heap, Win32 error 0**
 
 ### 解决方法:
