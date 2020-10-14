@@ -97,7 +97,7 @@ MySQL服务器会对查询的SQL语句进行优化，因此实际执行的SQL和
         select coulmn1, column2 ... from TABLE_NAME UNION ALL select column1, column2 ... from TABLE_NAME
         ```
     
-    * `INTERSECT`: 连接两个查询结果，保留两个结果都存在的数据。
+    * `INTERSECT`: 连接两个查询结果，保留两个结果同时存在的数据。
     * `EXCEPT`: 连接两个查询结果，保留在第一个结果中存在且第二个结果中不存在的行。
 
 * 分组过滤：
