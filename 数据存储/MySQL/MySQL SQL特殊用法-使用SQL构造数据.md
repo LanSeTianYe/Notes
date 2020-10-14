@@ -1,5 +1,9 @@
 时间：2020-10-14 10:54:54
 
+参考：
+
+1. [UNION ALL Operator](https://www.techonthenet.com/sql/union_all.php#:~:text=The%20SQL%20UNION%20ALL%20operator%20is%20used%20to%20combine%20the,sets%20with%20similar%20data%20types.)
+
 ## MySQL SQL特殊用法-使用SQL构造数据
 
 ### 说明 

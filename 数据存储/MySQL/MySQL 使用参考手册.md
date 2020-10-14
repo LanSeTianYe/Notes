@@ -85,17 +85,20 @@ MySQL服务器会对查询的SQL语句进行优化，因此实际执行的SQL和
     * `left join`：左表全部。 
     * `right join`：右表全部。    
 * 连接查询结果：需要返回的列数一样
-    * `UNION`：去重复（去重可能严重影响性能）
+    * `UNION`：连接两个查询结果，去重复行（去重可能严重影响性能）
 
         ```mysql
         select coulmn1, column2 ... from TABLE_NAME UNION select column1, column2 ... from TABLE_NAME
         ```
 
-    * `UNION ALL`: 保留重复
+    * `UNION ALL`: 连接两个查询结果，保留重复行。
 
         ```mysql
         select coulmn1, column2 ... from TABLE_NAME UNION ALL select column1, column2 ... from TABLE_NAME
         ```
+    
+    * `INTERSECT`: 连接两个查询结果，保留两个结果都存在的数据。
+    * `EXCEPT`: 连接两个查询结果，保留在第一个结果中存在且第二个结果中不存在的行。
 
 * 分组过滤：
 
