@@ -4,6 +4,10 @@
 
 1.  [https://dgraph.io/downloads#download-linux](https://dgraph.io/downloads#download-linux)
 
+环境：
+
+1. CentOS7
+
 ## 安装使用
 
 ### 单机安装
@@ -16,7 +20,7 @@ curl -sSf https://get.dgraph.io | bash
 
 ### 单机运行 
 
-需要运行三个组件，运行完成之后访问Web即可查询和管理数据。
+需要运行三个组件,  alpha数据存储、zero集群控制和ratel UI可视化界面，运行完成之后访问[http://localhost:8000](http://localhost:8000) 查询和管理数据。 
 
 1. 运行 alpha。
 
@@ -38,10 +42,4 @@ curl -sSf https://get.dgraph.io | bash
     ```shell
     # 默认 800端口
     /usr/local/bin/dgraph-ratel
-    ```
-
-4. 数据导入，需要先定义好数据结构。
-
-    ```
-    dgraph live -f 1million.rdf.gz --alpha localhost:offset+9080 --zero localhost:5080 -c 1
     ```

@@ -1,4 +1,5 @@
 时间：2020-09-10 15:48:48
+
 参考：
 
 1.[贝壳分布式图数据库选型与实践](https://dbaplus.cn/news-160-3315-1.html)
@@ -53,4 +54,10 @@ works_for: [uid] .
 work_here: [uid] .
 ```
 
+### 常用命令
 
+1. 数据导入，注意变更alpha和zero的端口。
+
+    ```shell
+    dgraph live -f 1million.rdf.gz --alpha localhost:9080 --zero localhost:5080 -c 1
+    ```
