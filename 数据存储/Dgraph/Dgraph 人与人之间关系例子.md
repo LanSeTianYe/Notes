@@ -40,6 +40,43 @@ friend: [uid] .
 dgraph live -f dgraph-data-file.rdf --alpha localhost:9080 --zero localhost:5080 -c 1
 ```
 
+### 数据查询
+
+1. 根据六度空间理论查询A可能认识的所有朋友，即查询 `朋友->朋友->朋友->朋友->朋友->朋友->B`,B 的数量就是A认识的所有朋友的数量。由于数据比较多，下面查询限制查询数量，查询语句和效果图如下。
+
+
+```
+{
+  f as A(func: eq(num,1)) {
+    num
+    f1 as f1: friend(first: 2, offset:0) @filter(not(uid(f))){
+      num
+      f2 as f2: friend (first: 2, offset:0) @filter(not(uid(f1,f))) {
+        num
+        f3 as f3: friend (first: 2, offset:0) @filter(not(uid(f2,f1,f))) {
+          num
+          f4 as f4: friend (first: 2, offset:0) @filter(not(uid(f3, f2,f1,f))) {
+            num
+            f5 as f5: friend (first: 2, offset:0) @filter(not(uid(f4, f3, f2,f1,f))) {
+              num
+              f6: friend (first: 2, offset:0) @filter(not(uid(f5, f4, f3, f2,f1,f))) {
+                num
+                B: friend(first: 2, offset:0){
+                  num
+                }
+              }
+            }
+          }
+        } 
+      }
+    }
+  }
+}
+
+```
+
+![2friends](../../img/dgraph/2friends.png)
+
 ## 数据生成程序
 
 数据生成程序用go语言编写，[源码地址](https://github.com/sunfeilong/dgraph-person)，生成1000000用户，每个用户最大200个朋友，生成程序耗时80秒，生成文件大小5.6GB。由于生成随机数的时候会设置随机数种子，所以参数相同时可以保证生成的数据完全相同。
