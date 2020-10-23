@@ -40,9 +40,18 @@ friend: [uid] .
 dgraph live -f dgraph-data-file.rdf --alpha localhost:9080 --zero localhost:5080 -c 1
 ```
 
+导入数据耗时：
+
+```
+Number of TXs run            : 201900
+Number of N-Quads processed  : 201899348
+Time spent                   : 6h23m10.634168116s
+N-Quads processed per second : 8782
+```
+
 ### 数据查询
 
-1. 根据六度空间理论查询A可能认识的所有朋友，即查询 `朋友->朋友->朋友->朋友->朋友->朋友->B`,B 的数量就是A认识的所有朋友的数量。由于数据比较多，下面查询限制查询数量，查询语句和效果图如下。
+1. 根据六度空间理论查询A可能认识的所有朋友，即查询 `朋友->朋友->朋友->朋友->朋友->朋友->B`,B 的数量就是A认识的所有朋友的数量。由于数据比较多，下面查询限制查询数量，查询语句以及效果图如下。
 
 
 ```
