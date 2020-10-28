@@ -14,7 +14,7 @@ Java SPI (Service Provider Interface) 是 `jdk1.6` 增加的用于发现和加�
 ### 怎么使用      
 
 ### JAVA SQL 框架
-  
+
 1. `jdk` 使用 `java.sql.Driver` 定义数据库驱动类。 
 
 2. MySQL数据库连接器 `mysql-connector-java.jar` 实现驱动接口，创建 `META-INF/services/java.sql.Driver` 文件，文件的内容如下：
