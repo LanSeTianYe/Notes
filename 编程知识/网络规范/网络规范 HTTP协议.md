@@ -54,6 +54,7 @@
 |Host|<>|请求的域名，主机地址。|Host: www.baidu.com||
 |User-Agent|>|客户端类型|User-Agent: curl/7.29.0|标识请求客户端类型|
 |Connection|>|保持连接，不主动关闭连接|Connection: keep-alive|复用连接，减少创建连接的开销|
+|Keep-Alive|>|保持连接参数|Keep-Alive:timeout:15,max=100||
 |Content-Length|<>|请求数据长度|Content-Length: 2381||
 |Content-Encoding|<>|数据压缩方式|Content-Encoding: gzip||
 |Content-Length|<>|数据类型|Content-Type: text/html||
@@ -64,4 +65,31 @@
 |Set-Cookie|<|Cookie内容|Set-Cookie: dwf_sg_task_completion=False; Domain=developer.mozilla.org; expires=Sat, 28 Nov 2020 08:03:18 GMT; Max-Age=2592000; Path=/; Secure|记录状态信息，区分客户端|
 |Cookie|>|客户端的Cookie| Cookie: JSESSIONID=31212121;_ga=GA1.3.;_gid=GA1.3.107;       |客户端标识|
 |Server|<|服务器名字|Server:nginx|判断服务器类型|
+|Range|>|范围请求|Range:bytes=5001-10000|获取部分内容|
+|Content-Range|<|响应数据范围|Content-Range: bytes 5001-10000/10000||
 
+### 状态码
+
+服务端响应码，用于标识服务端处理结果。状态码是规范，服务端依据规范返回即可。
+
+|响应码|名字|描述|
+|::|::|--|
+|1XX||处理中。|
+|2XX||处理成功。|
+|200|OK|处理成功时返回。|
+|204|No Content|处理成功但没有数据返回时返回。|
+|206|Partial Content|客户端执行范围请求时返回。|
+|3XX||需要进行附加操作以完成请求，一般指重定向。|
+|301|Moved Permanently|请求的资源被永久分配到新的URI时返回，在 Loaction 中返回新的位置。|
+|302|Found|请求的资源被临时分配到新的URI时返回，在 Loaction 中返回新的位置。|
+|304|Not Modified|资源没有改变，可以使用客户端缓存是返回。|
+|4XX||服务器无法处理请求。|
+|400|Bad Request|请求报文存在语法错误。|
+|401|Unauthorized|需要认证或认证失败。|
+|403|Forbidden|禁止访问。|
+|404|Not Found|无法找到资源。|
+|5XX||服务器处理请求出错。|
+|500|Internal Server Error|服务器内部错误。|
+|503|Service Unavailable|服务暂时不可用|
+
+ 
