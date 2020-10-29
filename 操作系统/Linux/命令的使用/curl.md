@@ -1,10 +1,11 @@
-时间 ： 2017/4/20 16:14:22
+时间 : 2017-04-20 16:14:22
 参考:
 
 1. [curl 的用法指南](http://www.ruanyifeng.com/blog/2019/09/curl-reference.html)
 2. [cookbooks-curl](https://catonmat.net/cookbooks/curl)
 
 ## 命令介绍
+
 用于和网络服务器进行通信
 
 ## 语法
@@ -56,16 +57,39 @@ curl [options] [URL...]
      curl -G -d 'name=name' -d 'age=age' http://www.baidu.com
      ```
 
-* POST 请求, `-d` 指定参数 
+* POST 请求, `-d` 指定参数。`Content-Type: application/x-www-form-urlencoded`
 
     ```shell
-    curl -d 'name=name＆age=age' -X POST http://www.baidu.com
+    curl -X POST -d 'name=name＆age=age'  http://www.baidu.com
+    curl -v -X POST -d 'name=name＆age=age'  http://www.baidu.com
     ```
 
-* POST 请求, `--data-urlencode` URL Encode 参数
+* POST 请求, `--data-urlencode` URL Encode 参数。`Content-Type: application/x-www-form-urlencoded`
 
     ```shell
-    curl --data-urlencode 'name=nam e＆age=age' -X POST http://www.baidu.com
+    curl -X POST --data-urlencode 'name=name&age=age' http://www.baidu.com
+    curl -v -X POST --data-urlencode 'name=name&age=age' http://www.baidu.com
+    ```
+    
+* POST  请求，`form-data`, -F 指定参数。` Content-Type: multipart/form-data`
+
+    ```shell
+    curl -X POST -F 'name=123' -F 'age=44' http://www.baidu.com
+    curl -v -X POST -F 'name=123' -F 'age=44' http://www.baidu.com
+    ```
+
+* POST 请求， 发送JSON参数。`Content-Type: application/json`
+
+    ```shell
+    curl -X POST -H 'Content-Type: application/json' -d '{"username":"test","password":"password"}' http://www.baidu.com
+    curl -v -X POST -H 'Content-Type: application/json' -d '{"username":"test","password":"password"}' http://www.baidu.com
+    ```
+
+* POST 请求，上传文件。` Content-Type: multipart/form-data`
+
+    ```shell
+    curl -X POST -F 'image=@/mnt/data/install_docker.sh' http://www.baidu.com/
+    curl -v -X POST -F 'image=@/mnt/data/install_docker.sh' http://www.baidu.com/
     ```
 
 * Header 请求
