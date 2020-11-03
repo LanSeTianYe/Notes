@@ -4,11 +4,11 @@
 1. [curl 的用法指南](http://www.ruanyifeng.com/blog/2019/09/curl-reference.html)
 2. [cookbooks-curl](https://catonmat.net/cookbooks/curl)
 
-## 命令介绍
+## curl 命令介绍
 
-用于和网络服务器进行通信
+用于和网络服务器进行通信、数据下载等。
 
-## 语法
+## curl 语法
 
 ```shell
 curl [options] [URL...]
@@ -37,7 +37,7 @@ curl [options] [URL...]
  *  `-A,--user-agent <agent string>`: 用户代理，什么类型的浏览器。
  *  `-I, --head` ： 只获取HTTP响应头
 
-## 具体使用
+## curl 具体使用
 
 *  请求指定网址，请求内容显示在命令行。
 
