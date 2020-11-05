@@ -1,5 +1,10 @@
 时间：2020-10-29 15:24:24
 
+参考：
+
+1. 《图解HTTP》 上野 宣 (作者) 于均良 (译者)
+2. 《HTTP 权威指南》  David Gourley , Brian Totty , Marjorie Sayer , Sailu Reddy , Anshu Aggarwal (作者) 陈涓 , 赵振平 (译者)
+
 ## HTTP 协议
 
 下面是 `curl -v www.baidu.com` 命令的输出。
@@ -44,6 +49,46 @@
 |TRACE|追踪路径|
 |CONNECT|使用隧道协议连接代理|
 
+### HTTP 状态码
+
+服务端响应码，用于标识服务端处理结果。状态码是规范，服务端依据规范返回即可。
+
+|响应码|名字|描述|
+|::|::|--|
+|1XX||信息|
+|100|Continue|继续，收到请求的起始部分，客户端应继续请求|
+|101|Switching  Protocols|协议切换，服务端正根据客户端要求将协议切换成Update首部列出的协议|
+|2XX||成功|
+|200|OK|服务器已成功处理请求|
+|201|Created|已创建，对那些要服务器创建对象的请求来说，资源一创建完毕|
+|202|Accepted|已接受，请求已接收，但服务器尚未处理|
+|203|Non-Authoritative Infomation|非权威信息，服务器已将事务处理成功，只是实体首部包含的信息不是来自 原始服务器，而是来自资源副本。|
+|204|No Content|没有内容，响应报文包含首部和状态行，但不包含实体的主题内容|
+|205|Reset Content|重置内容，表示浏览器应该重置当前页面上的所有HTML标签|
+|206|Partial Content|部分内容，部分请求成功|
+|3XX||重定向|
+|300|Multiple Choices|多项选择，客户端请求实际指向了多个资源的URL，用户可以选择显示的内容|
+|301|Moved Permanently|永久搬离，URL已经移走，响应中应该包含一个Location URL表示资源的新位置|
+|302|Found|已找到，请求的资源被临时分配到新的URL时返回，在 Loaction 中返回新的位置|
+|303|See Other|参见其他，高呼客户端一个新的URL，新的URL在Location中返回。|
+|304|Not Modified|未修改，客户端可以他们所包含的请求首部发起条件请求，说明资源没有发生过变化|
+|305|Use Proxy|使用代理，必须使用代理访问，代理的位置在Location中返回|
+|307|Temporary Redirect|临时重定向，类似于301，但客户端应该使用Location给出的URL对子资源进行重定向|
+|4XX||客户端错误|
+|400|Bad Request|坏请求，告诉客户端它发送了一条异常请求|
+|401|Unauthorized|未授权，和适当的首部一起返回，当客户端访问需要授权的资源之前，请它进行身份认证|
+|403|Forbidden|禁止，服务器拒绝了请求|
+|404|Not Found|未找到，服务器无法找到所请求的URL|
+|405|Method Not Allowed|不允许使用的请求方法，如不支持GET请求等|
+|408|Request Timeout|请求超时，客户端完成请求耗费太长时间，服务端可以返回该响应码并关闭连接|
+|5XX||服务器错误|
+|500|Internal Server Error|内部服务器错误，服务器遇到一个错误使其无法为请求提供服务|
+|501|Not Implemented|未实现，服务器无法满足客户端请求的某个服务|
+|502|Bad Gateway|网关故障，作为网关或代理的服务器遇到了来自响应链中上游服务的无效响应|
+|503|Service Unavailable|未提供该服务，服务暂时不可用|
+|504|Gateway Timeout|网关超时，类似于408，但响应来自网关或代理，此网关或代理在等待另外一台服务器响应的时候出现超时|
+|505|HTTP Version Not Supported|服务器收到的情趣是它不支持的或不愿处理的版本|
+
 ### HTTP请求或响应头
 
 用于传输除请求或响应数据之外的一些数据。 注：`>` 表示请求 `<` 表示响应。
@@ -86,40 +131,57 @@
 |X-Frame-Options|<|控制网站内容是否可以在其它网站的Frame标签内显示|X-Frame-Options: DENY/SAMEORIGIN|防止点击劫持|
 |X-XSS-Protection|<|XSS防护机制开关|X-XSS-Protection: 0/1|防止跨站脚本攻击|
 
-### HTTP 状态码
-
-服务端响应码，用于标识服务端处理结果。状态码是规范，服务端依据规范返回即可。
-
-|响应码|名字|描述|
-|::|::|--|
-|1XX||处理中。|
-|2XX||处理成功。|
-|200|OK|处理成功时返回。|
-|204|No Content|处理成功但没有数据返回时返回。|
-|206|Partial Content|客户端执行范围请求时返回。|
-|3XX||需要进行附加操作以完成请求，一般指重定向。|
-|301|Moved Permanently|请求的资源被永久分配到新的URI时返回，在 Loaction 中返回新的位置。|
-|302|Found|请求的资源被临时分配到新的URI时返回，在 Loaction 中返回新的位置。|
-|304|Not Modified|资源没有改变，可以使用客户端缓存是返回。|
-|4XX||服务器无法处理请求。|
-|400|Bad Request|请求报文存在语法错误。|
-|401|Unauthorized|需要认证或认证失败。|
-|403|Forbidden|禁止访问。|
-|404|Not Found|无法找到资源。|
-|5XX||服务器处理请求出错。|
-|500|Internal Server Error|服务器内部错误。|
-|503|Service Unavailable|服务暂时不可用|
-
 ### HTTP 请求报文
 
 #### HTTP 请求报文
 
-* 请求方法、UR和HTTP 版本I：如 `GET / HTTP/1.1`
-* HTTP首部字段：Header信息
+* 起始行：请求方法、UR和HTTP 版本I：如 `GET / HTTP/1.1`
+* 首部字段：HTTP首部字段：Header信息
+* 主体：请求数据
 
 #### HTTP 响应报文
 
-* HTTP版本、状态码和原因：如 `HTTP/1.1 200 OK`
-* HTTP首部字段：Header信息
+* 起始行：HTTP版本、状态码和原因：如 `HTTP/1.1 200 OK`
+* 首部字段：HTTP首部字段：Header信息
+* 主体：响应数据
 
 ### HTTP 媒体类型
+
+* 文本类型: text
+
+    * text/html
+
+* 图片类型: image
+
+    * image/png
+    * image/gif
+
+* 视频类型: video
+
+    * video/mp4
+    * video/quicktime
+
+* application
+
+    * application/json
+
+### URL 特殊字符
+
+URL使用US-ASCII编码表示，[US-ASCII](http://www.columbia.edu/kermit/ascii.html) 可以表示0-126共127个字符。保留字符和其余不可表示字符需要转义。
+
+|名字|作用|
+|::|::|
+|%|保留字符，转义|
+|/|保留字符：路径分隔符|
+|.|保留字符：路径|
+|..|保留字符：路径|
+|#|保留字符：分段定界符|
+|?|保留字符：查询定界符|
+|;|保留字符：参数分界符|
+|:|保留字符：方案、主机/端口、用户/密码分界符|
+|$ +|保留|
+|@ & =|保留|
+|{}\|\^~[]'|使用受限|
+|<>"|不安全，这些字符在URL范围之外通常有特殊意义|
+|0x00-0x1F,0x7F|受限，不可打印|
+|>0x7F|受限，十六进制值，不在US-ASCII字符可表示范围之内|
