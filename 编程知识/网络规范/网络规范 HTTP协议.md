@@ -149,21 +149,25 @@
 
 * 文本类型: text
 
-    * text/html
+    * html: text/html
+    * css: text/css
+    * xml: text/xml
 
 * 图片类型: image
 
-    * image/png
-    * image/gif
+    * png: image/png
+    * git: image/gif
 
 * 视频类型: video
 
-    * video/mp4
-    * video/quicktime
+    * mp4: video/mp4
+    * vquicktime: ideo/quicktime
 
 * application
 
-    * application/json
+    * json: application/json
+    * pdf: application/pdf
+    * xls: application/vnd.ms-excel
 
 ### URL 特殊字符
 
