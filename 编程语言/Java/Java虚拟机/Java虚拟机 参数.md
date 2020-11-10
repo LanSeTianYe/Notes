@@ -9,7 +9,7 @@
 ### 虚拟机垃圾回收器配置  
 
 * `-XX:+UseSerialGC` 新生代使用 `Seriol` 老年代使用 `Serial Old`。
-* `-XX:+UseParnNewGC` 新生代使用 `ParNew` 老年代使用 `Serial Old`。
+* `-XX:+UseParNewGC` 新生代使用 `ParNew` 老年代使用 `Serial Old`。
 * `-XX:+UseConcMarkSweepGC`  新生代使用 `ParNew` 老年代使用 `CMS`。
 * `-XX:+UseParallel` 新生代使用 `Parallel Scavenge` 老年代使用 `Serial Old`。
 * `-XX:UseParallelOldGC` 新生代使用 `Parallel Scavenge` 老年代使用 `Parallel Old`。
