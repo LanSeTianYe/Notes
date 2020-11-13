@@ -49,3 +49,15 @@
 * `-XX:+UseParallelGC` Parallel Scavenge+Serial Old(PS Mark Sweep)
 * `-XX:+UseParallelOldGC` Parallel Scavenge+Parallel Old
 * `-XX:+UseG1GC` G1
+
+### 查看垃圾收集日志
+
+JDK1.9 之前
+
+*　｀-XX：+PrintGC｀ 简要GC
+*　`-XX：+PrintGCDetails` 详细GC
+
+JDK1.9 以及之后
+
+* `-Xlog:gc` 简要GC
+* `-Xlog:gc*` 详细GC
