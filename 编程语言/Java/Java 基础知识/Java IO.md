@@ -7,6 +7,24 @@
 输入：读取数据。
 输出：写入数据。
 
+### 使用列流
+
+使用结束时记得关闭流，一方面释放资源，另一方面对于输出流避免数据没有完全写入。
+
+`GZIPOutputStream.close`
+
+```
+public void close() throws IOException {
+    if (!closed) {
+        finish();
+        if (usesDefaultDeflater)
+            def.end();
+        out.close();
+        closed = true;
+    }
+}
+```
+
 ### 字节输入输出
 
 > java.io.InputStream 字节输入流
