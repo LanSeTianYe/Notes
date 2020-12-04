@@ -6,6 +6,7 @@
 2. [Design A Dark Traffic System To Test HTTPS Requests With Goreplay](https://medium.com/a-layman/software-testing-design-a-dark-traffic-system-to-test-https-requests-with-goreplay-8d143ebc5497)
 3. [流量复制重放工具goreplay与diffy结合使用](http://xifxiong.online/goreplay/)
 4. [goreplay-wiki](https://github.com/buger/goreplay/wiki)
+5. [kudiffy-一个很酷的自动化回归平台](https://tech.kujiale.com/kudiffy-yi-ge-hen-ku-de-zi-dong-hua-hui-gui-ping-tai/)
 
 ## HTTP 流量复制
 
