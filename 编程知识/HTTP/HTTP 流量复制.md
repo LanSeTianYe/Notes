@@ -90,4 +90,10 @@ gor -input-file './request_0.gor|800%' -output-tcp "localhost:8090|10%" --http-h
 
 * `-exit-after 30s` 多长时间之后结束。
 
+### [ngx_http_mirror_module](http://nginx.org/en/docs/http/ngx_http_mirror_module.html)
+
+The ngx_http_mirror_module module (1.13.4) implements mirroring of an original request by creating background mirror subrequests. Responses to mirror subrequests are ignored.
+
+不够灵活，变更需要重新加载Nginx。
+
 
