@@ -18,4 +18,4 @@ Lightweigth Directory Access Protocol 轻量级目录访问协议。读效率高
 ### 结构图
 
 
-![ldap](..\..\img\ldap\ldap.png)
+![ldap](../../img/ldap/ldap.png)
