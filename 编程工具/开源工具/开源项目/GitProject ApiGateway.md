@@ -1,11 +1,11 @@
-时间：2018/9/20 9:51:33  
+时间：2018/9/20 9:51:33 
 
 参考： 
 
 1. [OpenResty](http://openresty.org/cn/) 基于 Nginx 与 Lua 的高性能 Web 平台。
 2. [API网关的作用、方案以及如何选择](http://blog.didispace.com/API%E7%BD%91%E5%85%B3%E7%9A%84%E4%BD%9C%E7%94%A8%E3%80%81%E6%96%B9%E6%A1%88%E4%BB%A5%E5%8F%8A%E5%A6%82%E4%BD%95%E9%80%89%E6%8B%A9/)
 
-## Api GeteWay       
+## Api GeteWay 
 
 API Gateway 作为应用接口的上一层，代理对业务接口的访问。在代理过程前后增加业务逻辑，实现一些常用功能，如负载均衡，缓存，频率限制、安全认证等。
 
@@ -20,7 +20,7 @@ API Gateway 作为应用接口的上一层，代理对业务接口的访问。�
 
 ### [Kong](https://github.com/Kong/kong.git) 
 
-#### 是什么 ？  
+#### 是什么 ？ 
 
 基于Nginx实现的 API Gateway，以插件的形式存在。使用PL/SQL或Cassandra做数据存储。提供 Admin-API 接口，通过接口可以管理路由、服务和插件等，实现实时变更。功能模块以插件的形式存在，提供常用功能，支持自定义插件。
 
@@ -61,7 +61,7 @@ NetFlix 公司提供的Java语言实现的 Api Gateway 框架，基于过滤器�
 
 [官方文档](https://cloud.spring.io/spring-cloud-gateway/)
 
-#### 是什么 ？     
+#### 是什么 ？ 
 
 Spring-Cloud-Gateway 是Spring官方提供的 API-Gateway 实现。提供常用过滤器和路由模板插件，通过增加配置参数即可使用。提供扩展过滤器和路由器的构造类（对于Java开发者来说扩展比较方便)。
 
@@ -96,7 +96,8 @@ Spring-Cloud-Gateway 是Spring官方提供的 API-Gateway 实现。提供常用�
 * 跳过path，跳过path的前几级。
 * 重试。
 * 请求大小。
-##### 全局过滤器  
+
+##### 全局过滤器 
 
 全局过滤器可以指定执行的先后顺序。
 
@@ -107,16 +108,18 @@ Spring-Cloud-Gateway 是Spring官方提供的 API-Gateway 实现。提供常用�
 * 网管数据统计。
 * 把 Exchange 作为路由器，经 Exchange 的请求不会再次被路由。
 		
-		# takes a ServerWebExchange object and marks it as "routed"
+        ```
+        # takes a ServerWebExchange object and marks it as "routed"
 		ServerWebExchangeUtils.setAlreadyRouted 
+        ```
 
-## 总结  
+## 总结 
 
 **Zuul：**
 
 Zuul 依赖 Netflix 的一些组件，如 Eureka 等，依赖额外的技术栈较多，目前不考虑使用。
 
-**Spring Cloud Gateway：**  
+**Spring Cloud Gateway：** 
 
 Spring Cloud Gateway 是 SpringCloud 系列的一个组件，配置和自定义功能组件比较方便（对于Java开发者）。  
 
@@ -126,7 +129,7 @@ API Gateway 项目可以单独使用，也可以结合Spring CLoud的其他模�
 
 目前并没有被大量使用。
 
-**kong：**  
+**kong：** 
 
 kong 提供社区版和企业版，企业版包含一些高级功能。如管理界面，实时监控和分析、可扩展性等。社区版也可以满足大量需求。
 
@@ -134,7 +137,7 @@ kong 提供社区版和企业版，企业版包含一些高级功能。如管理
 
 数据持久化依赖 PL/SQL或Cassandra，数据库的高可用以及容灾也许要进行考虑。 
 
-基于 Lua 脚本的插件，自定义插件的复杂度较高（自己试一下）。  
+基于 Lua 脚本的插件，自定义插件的复杂度较高（自己试一下）。 
 
 ## 性能测试 
 
