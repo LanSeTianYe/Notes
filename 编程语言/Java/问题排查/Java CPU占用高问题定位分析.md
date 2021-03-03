@@ -17,7 +17,7 @@
     root     13483     1  0 Nov11 pts/3    04:15:33 java -jar -XX:+UseG1GC -XX:+PrintGC /home/root/software/halo/halo-1.3.2.jar
     ```
 
-3. 定位CPU线程，使用 `top -H -p 13483` 命令或者 `ps -mp 13483 -o THREAD,tid,time` , 定位到线程 `13486`。
+3. 定位CPU线程，使用 `top -H -p 13483` 命令或者 `ps H -eo pid,tid,%cpu | grep 13483` , 定位到线程 `13486`。
 
     ```
     [root@qyi-599a961908983 ~]#top -H -p 13483
