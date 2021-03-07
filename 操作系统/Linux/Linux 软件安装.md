@@ -1,13 +1,11 @@
-时间：2018/12/31 10:44:10   
+时间：2018/12/31 10:44:10 
 
-参考： 
+## Linux 软件安装 
 
+### CentOS yum 命令
 
-## Linux 软件安装   
+#### 简介 
 
-### CentOS yum 命令  
-
-#### 简介  
 yum 全称 Yellow dog Updater, Modified，是一个在 Fedora 和 RedHat 以及 SUSE 中的 Shell 前端软件包管理器。基于 RPM 包管理，可以自动处理依赖关系，简单好用。
 
 支持同时配置多个软件仓库。
@@ -18,7 +16,7 @@ yum 全称 Yellow dog Updater, Modified，是一个在 Fedora 和 RedHat 以及 
 * `yum-config-manager --disable "仓库名"`：启用仓库。
 * `yum-config-manager --enable "仓库名"`：禁用仓库。
 
-#### yum 软件管理   
+#### yum 软件管理 
 
 **语法：** `yum [option] [commands] [package ...]`
 
