@@ -11,7 +11,7 @@
 * `-XX:+UseSerialGC` 新生代使用 `Seriol` 老年代使用 `Serial Old`。
 * `-XX:+UseParNewGC` 新生代使用 `ParNew` 老年代使用 `Serial Old`。
 * `-XX:+UseConcMarkSweepGC`  新生代使用 `ParNew` 老年代使用 `CMS`。
-* `-XX:+UseParallel` 新生代使用 `Parallel Scavenge` 老年代使用 `Serial Old`。
+* `-XX:+UseParallelGC` 新生代使用 `Parallel Scavenge` 老年代使用 `Serial Old`。
 * `-XX:UseParallelOldGC` 新生代使用 `Parallel Scavenge` 老年代使用 `Parallel Old`。
 * `-XX:SurvivorRatio` 新生代 `Eden` 区域和 `Survivor` 区域比率配置。
 * `-XX:PretenureSizeThreshold` 直接晋升到老年代的对象大小。
