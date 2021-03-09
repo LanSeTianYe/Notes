@@ -42,8 +42,8 @@ private LazyIterator lookupIterator;
     
     public static <S> ServiceLoader<S> load(Class<S> service, ClassLoader loader){
         return new ServiceLoader<>(service, loader);
-    }
-    ````
+    }S
+    ```
 
 2. ServiceLoader 创建过程
 
