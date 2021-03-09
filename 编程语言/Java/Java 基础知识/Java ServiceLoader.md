@@ -110,9 +110,9 @@ private LazyIterator lookupIterator;
     # 字段
     Class<S> service; 	             //服务接口
     ClassLoader loader;				 //类加载器
-   Enumeration<URL> configs = null; //所有提供者配置信息
-   Iterator<String> pending = null; //服务提供者迭代器
-   String nextName = null;			 //下一个服务提供者的名字
+    Enumeration<URL> configs = null; //所有提供者配置信息
+    Iterator<String> pending = null; //服务提供者迭代器
+    String nextName = null;			 //下一个服务提供者的名字
     
     # 判断有没有服务提供者
     public boolean hasNext() {
