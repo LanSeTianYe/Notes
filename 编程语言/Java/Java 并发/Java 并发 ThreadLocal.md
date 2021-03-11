@@ -1,4 +1,5 @@
 时间：2017-04-07 09:33:10 
+
 说明：
 
 1. 第一次接触到是在 `tomcat-embebd-core` 里面看到。
@@ -17,7 +18,7 @@
 **使用**：在同一线程不同层次进行数据共享，通过初始化为静态变量的方式。
 
 ```java
-public class Test{
+public class Test {
     private static ThreadLocal<Object> = new ThreadLocal<Object>();
 }
 ```
