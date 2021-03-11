@@ -135,7 +135,7 @@
 
 #### HTTP 请求报文
 
-* 起始行：请求方法、UR和HTTP 版本I：如 `GET / HTTP/1.1`
+* 起始行：请求方法、URL和HTTP版本：如 `GET / HTTP/1.1`
 * 首部字段：HTTP首部字段：Header信息
 * 主体：请求数据
 
@@ -161,7 +161,7 @@
 * 视频类型: video
 
     * mp4: video/mp4
-    * vquicktime: ideo/quicktime
+    * quicktime: ideo/quicktime
 
 * application
 
