@@ -126,7 +126,7 @@ NTP (Network Time Protocol) 网络时间协议是用于服务器（计算机）�
         # 设置服务开机启动
         systemctl enable ntpd
         ```
-    *  第二步，在服务器B和服务器B上同步时间，然后启动服务。
+    *  第二步，在服务器B和服务器C上同步时间，然后启动服务。
 
         ```shell
         # 方法1 手动设置
