@@ -1,27 +1,36 @@
-时间： 2018/9/26 18:16:48   
+时间： 2018/9/26 18:16:48 
 
 ## SpringCloud Eureka 简介
 
 ### 概念
 
-#### 服务提供者  
+#### 服务提供者
 
 * 注册服务：把服务注册到注册中心。
 
-		eureka.cli ent.register-with-eureka=true
+    ```
+    eureka.cli ent.register-with-eureka=true
+    ```
+
 * 服务同步：不同注册中心会同步已经注册的服务，因此可以从任意一个注册中心获取到已经注册的服务。
+
 * 服务续约：服务提供者会定期发送续约信息给注册中心，告诉注册中心我还活着。
-	* eureka.instance.lease-renewal-interval-in-seconds：发送续约信息的间隔，默认30秒。
-	* eureka.ins七ance.lease-expiration-duration-in-seconds：服务失效的时间，默认90秒。
+
+    * eureka.instance.lease-renewal-interval-in-seconds：发送续约信息的间隔，默认30秒。
+    * eureka.instance.lease-expiration-duration-in-seconds：服务失效的时间，默认90秒。
 
 #### 服务消费者  
 
 * 获取服务：调用接口获取服务列表（注册中心会维护一个只读的服务提供者列表，每30秒刷新一次）。
 
-		eureka.client.fetch-registry=true
-		eureka.client.registry-fetch-interval-seconds=30
+    ```
+    eureka.client.fetch-registry=true
+    eureka.client.registry-fetch-interval-seconds=30
+    ```
+
 * 服务调用：获取服务清单后，根据清单现戏确定调用哪一个接口。
-* 服务下线：服务提供者正常关闭时，会发送下线消息给注册中心，注册中西会把服务的状态标记为 `Down` 。
+
+* 服务下线：服务提供者正常关闭时，会发送下线消息给注册中心，注册中西会把服务的状态标记为 `Down`。
 
 #### 服务注册中心  
 

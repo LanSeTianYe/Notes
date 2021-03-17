@@ -1,4 +1,3 @@
-shijia
 参考：
 
 1. [OpenResty最佳实践](https://www.gitbook.com/book/moonbingbing/openresty-best-practices)
@@ -35,7 +34,7 @@ table 默认下表从一开始，而且长度函数取得的长度是第一个ni
 	    [10] = 360, --直接把数字索引给出
 	    ["city"] = "Beijing" --索引为字符串
 	} 
-
+	
 	print(corp.web)               -->output:www.google.com
 	print(corp["telephone"])      -->output:12345678
 	print(corp[2])                -->output:100191

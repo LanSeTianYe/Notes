@@ -1,8 +1,8 @@
-时间：2018/9/6 19:58:51  
+时间：2018-09-06 19:58:51
 
 参考： 
 
-## Spring 容器    
+## Spring 容器
 
 ### Spring 简介
 
@@ -14,43 +14,53 @@ Bean初始化的过程中，Spring通过反射给Bean的属性赋值，普通变
 
 Spring初始化Bean的过程分为几个阶段，在每个阶段都可以做一些处理，Spring也提供了操作不同过程的切入点，因此我们可以使用Spring灵活的操作Bean的初始化过程。
 
-### Spring Bean 使用  
-#### 扩展接口  
+### Spring Bean 使用 
+
+#### 扩展接口 
+
 1. 销毁bean。等价的注解 `@PreDestroy`
 
-		public interface DisposableBean {
-			void destroy() throws Exception;		
-		}
+    ```java
+    public interface DisposableBean {
+        void destroy() throws Exception;		
+    }
+    ```
 
 2. Bean的属性全部被设置之后调用的方法。 等价的注解 `@PostConstruct`  
 
-		public interface InitializingBean {
-			void afterPropertiesSet() throws Exception;
-		}
+    ```java
+    public interface InitializingBean {
+        void afterPropertiesSet() throws Exception;
+    }
+    ```
+
 3. 更灵活的Bean处理接口
 
-		public interface BeanPostProcessor {
-			@Nullable
-			default Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
-				return bean;
-			}
-	
-			@Nullable
-			default Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
-				return bean;
-			}
-		}
+    ```java
+    public interface BeanPostProcessor {
+        @Nullable
+        default Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
+            return bean;
+        }
+        @Nullable
+        default Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
+            return bean;
+        }
+    }
+    ```
+
 4. 支持生命周期管理接口，实现接口的类提供生命周期管理方法  
 
-		public interface Lifecycle {
-	
-			void start();
+    ```
+    public interface Lifecycle {
+        void start();
+        void stop();
+        boolean isRunning();
+    }
+    ```
 
-			void stop();
-
-			boolean isRunning();
-		}
 5. 属性注入接口  
+
 	* ApplicationContextAware 
 	* ApplicationEventPublisherAware
 	* BeanClassLoaderAware
@@ -72,37 +82,41 @@ Spring提供了一系列插件化的接口，方便开发者扩展容器功能�
 `org.springframework.context` 包提供更灵活的功能。 
 
 1. Bean 初始化前后进行处理，用法可参考 `RequiredAnnotationBeanPostProcessor` 以及 `AutowiredAnnotationBeanPostProcessor`。
-		
-		public interface BeanPostProcessor {
-			@Nullable
-			default Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
-				return bean;
-			}
-		
-			@Nullable
-			default Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
-				return bean;
-			}
-		}
+
+    ```java
+    public interface BeanPostProcessor {
+        @Nullable
+        default Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
+            return bean;
+    
+        @Nullable
+        default Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
+            return bean;
+        }
+    }
+    ```
 
 2. 自定义变更 `BeanDefinition`，再Bean初始化之前进行。
 
-		@FunctionalInterface
-		public interface BeanFactoryPostProcessor {
-			void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException;
-		}
-3. 替换占位符 `PropertySourcesPlaceholderConfigurer`
+    ```java
+    @FunctionalInterface
+    public interface BeanFactoryPostProcessor {
+        void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException;
+    }
+    ```
+
+3. 替换占位符 `PropertySourcesPlaceholderConfigurer`。
+
 4. 使用 `BeanFactory` 自定义Bean初始化逻辑，Spring框架内部有50多种BeanFactory实现。
-		
-		public interface FactoryBean<T> {
-		
-			@Nullable
-			T getObject() throws Exception;
-		
-			@Nullable
-			Class<?> getObjectType();
-		
-			default boolean isSingleton() {
-				return true;
-			}
-		}
+
+    ```java
+    public interface FactoryBean
+        @Nullable
+        T getObject() throws Exc
+        @Nullable
+        Class<?> getObject
+        default boolean isSingleton() {
+            return true;
+        }
+    }
+    ```
