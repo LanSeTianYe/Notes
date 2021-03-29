@@ -12,6 +12,8 @@
 
     ```shell
     ssh-copy-id -i ~/.ssh/id_rsa.pub root@192.168.0.201
+    # 指定端口号
+    ssh-copy-id -i ~/.ssh/id_rsa.pub -p 36000 root@192.168.0.201
     ```
     
 3. 登陆服务器。
