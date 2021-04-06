@@ -16,17 +16,17 @@ Linux I/O 调度器是Linux内核中的一个组成部分，可以通过调整�
 
     命令：
     
-        ```
-        dmesg | grep -i scheduler
-        ```
+    ```
+    dmesg | grep -i scheduler
+    ```
 
-	结果：default是当前使用的调度器
+    efault是当前使用的调度器
 
-        ```
-        [    0.876354] io scheduler noop registered
-        [    0.876356] io scheduler deadline registered (default)
-        [    0.876394] io scheduler cfq registered
-        ```
+    ```
+    [    0.876354] io scheduler noop registered
+    [    0.876356] io scheduler deadline registered (default)
+    [    0.876394] io scheduler cfq registered
+    ```
 
 * 查看一个硬盘使用的I/O调度器 `cat /sys/block/vda/queue/scheduler`
 
