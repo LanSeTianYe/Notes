@@ -16,17 +16,17 @@ Linux I/O 调度器是Linux内核中的一个组成部分，可以通过调整�
 
     命令：
     
-        ```
-        dmesg | grep -i scheduler
-        ```
+    ```
+    dmesg | grep -i scheduler
+    ```
 
-	结果：default是当前使用的调度器
+    efault是当前使用的调度器
 
-        ```
-        [    0.876354] io scheduler noop registered
-        [    0.876356] io scheduler deadline registered (default)
-        [    0.876394] io scheduler cfq registered
-        ```
+    ```
+    [    0.876354] io scheduler noop registered
+    [    0.876356] io scheduler deadline registered (default)
+    [    0.876394] io scheduler cfq registered
+    ```
 
 * 查看一个硬盘使用的I/O调度器 `cat /sys/block/vda/queue/scheduler`
 
@@ -54,13 +54,15 @@ Linux I/O 调度器是Linux内核中的一个组成部分，可以通过调整�
 
 * DeadLine  
 
-	截止时间调度器，是对Linus Elevator的一种改进，它避免有些请求太长时间不能被处理。另外可以区分对待读操作和写操作。DEADLINE额外分别为读I/O和写I/O提供了FIFO队列。
+    截止时间调度器，是对Linus Elevator的一种改进，它避免有些请求太长时间不能被处理。另外可以区分对待读操作和写操作。DEADLINE额外分别为读I/O和写I/O提供了FIFO队列。
+
 * CFQ
 
-	CFQ全称Completely Fair Scheduler ，中文名称完全公平调度器，它是现在许多 Linux 发行版的默认调度器，CFQ是内核默认选择的I/O调度器。它将由进程提交的同步请求放到多个进程队列中，然后为每个队列分配时间片以访问磁盘。对于通用的服务器是最好的选择,CFQ均匀地分布对I/O带宽的访问。CFQ为每个进程和线程,单独创建一个队列来管理该进程所产生的请求,以此来保证每个进程都能被很好的分配到I/O带宽，I/O调度器每次执行一个进程的4次请求。该算法的特点是按照I/O请求的地址进行排序，而不是按照先来后到的顺序来进行响应。简单来说就是给所有同步进程分配时间片，然后才排队访问磁盘
+    CFQ全称Completely Fair Scheduler ，中文名称完全公平调度器，它是现在许多 Linux 发行版的默认调度器，CFQ是内核默认选择的I/O调度器。它将由进程提交的同步请求放到多个进程队列中，然后为每个队列分配时间片以访问磁盘。对于通用的服务器是最好的选择,CFQ均匀地分布对I/O带宽的访问。CFQ为每个进程和线程,单独创建一个队列来管理该进程所产生的请求,以此来保证每个进程都能被很好的分配到I/O带宽，I/O调度器每次执行一个进程的4次请求。该算法的特点是按照I/O请求的地址进行排序，而不是按照先来后到的顺序来进行响应。简单来说就是给所有同步进程分配时间片，然后才排队访问磁盘
+
 * NOOP
 
-	NOOP全称No Operation,中文名称电梯式调度器，该算法实现了最简单的FIFO队列，所有I/O请求大致按照先来后到的顺序进行操作。NOOP实现了一个简单的FIFO队列,它像电梯的工作主法一样对I/O请求进行组织。它是基于先入先出（FIFO）队列概念的 Linux 内核里最简单的I/O 调度器。此调度程序最适合于固态硬盘。
+    NOOP全称No Operation,中文名称电梯式调度器，该算法实现了最简单的FIFO队列，所有I/O请求大致按照先来后到的顺序进行操作。NOOP实现了一个简单的FIFO队列,它像电梯的工作主法一样对I/O请求进行组织。它是基于先入先出（FIFO）队列概念的 Linux 内核里最简单的I/O 调度器。此调度程序最适合于固态硬盘。
 
 ### 调度器适用场景 
 
