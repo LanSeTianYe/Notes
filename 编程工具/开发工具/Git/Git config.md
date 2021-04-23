@@ -49,3 +49,8 @@
     ```shell
     git config --global core.quotepath false
     ```
+9. git bash 禁止制动转换换行符
+
+    ```shell
+    git config core.autocrlf false
+    ```
