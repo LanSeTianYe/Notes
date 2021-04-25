@@ -110,7 +110,8 @@ func TestHello(t *testing.T) {
 ## gomock
 
 ```shell
-go get github.com/golang/mock/mockgen@v1.5.0
+go get github.com/golang/mock/mockgen
+go install github.com/golang/mock/mockgen
 ```
 
 ### mock 步骤
