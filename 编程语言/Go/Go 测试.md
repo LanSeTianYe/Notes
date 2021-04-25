@@ -2,6 +2,8 @@
 
 参考：
 
+1. [gomock](https://pkg.go.dev/github.com/golang/mock/gomock#pkg-variables)
+
 ## Go 测试
 
 在 `go` 语言中，以 `_test.go` 结尾的文件是测试文件。执行 `go test` 命令的时候会运行对应的测试函数。
