@@ -128,6 +128,7 @@ go install github.com/golang/mock/mockgen
 
     ```shell
     mockgen -destination ./person_mock.go -package mock -source person.go
+    //go:generate mockgen -destination ./person_mock.go -package mock -source person.go
     ```
 
 2. 使用例子。
