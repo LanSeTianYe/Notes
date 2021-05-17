@@ -2,6 +2,8 @@
 
 参考：
 
+1. [gomock](https://pkg.go.dev/github.com/golang/mock/gomock#pkg-variables)
+
 ## Go 测试
 
 在 `go` 语言中，以 `_test.go` 结尾的文件是测试文件。执行 `go test` 命令的时候会运行对应的测试函数。
@@ -108,7 +110,8 @@ func TestHello(t *testing.T) {
 ## gomock
 
 ```shell
-go get github.com/golang/mock/mockgen@v1.5.0
+go get github.com/golang/mock/mockgen
+go install github.com/golang/mock/mockgen
 ```
 
 ### mock 步骤
@@ -125,6 +128,7 @@ go get github.com/golang/mock/mockgen@v1.5.0
 
     ```shell
     mockgen -destination ./person_mock.go -package mock -source person.go
+    //go:generate mockgen -destination ./person_mock.go -package mock -source person.go
     ```
 
 2. 使用例子。
