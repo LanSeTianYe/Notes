@@ -4,6 +4,7 @@
 
 1. [Transport Layer Security](https://en.wikipedia.org/wiki/Transport_Layer_Security)
 2. [图解SSL/TLS协议](http://www.ruanyifeng.com/blog/2014/09/illustration-ssl.html)
+3. [根证书、服务器证书、用户证书](https://www.nginx.cn/5559.html)
 
 ## SSL/TSL简介
 
