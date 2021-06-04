@@ -3,6 +3,7 @@
 参考：
 
 1. [Go pprof的使用](https://studygolang.com/articles/12970)
+2. [go-pprof](https://golang.org/pkg/runtime/pprof/)
 
 ## go pprof
 
