@@ -71,8 +71,14 @@ go http.ListenAndServe(":8080", nil)
 2. 通过命令行查看
 
     ```shell
-    go tool pprof -inuse_space http://127.0.0.1:8080/debug/pprof/heap
-    go tool pprof -seconds=10 http://127.0.0.1:8080/debug/pprof/profile
+    go tool pprof -h
+    go tool pprof -sample_index=inuse_space http://127.0.0.1:8080/debug/pprof/heap
+    go tool pprof -sample_index=inuse_space -http=:8081 http://127.0.0.1:8080/debug/pprof/heap
+    go tool pprof -sample_index=cpu http://127.0.0.1:8080/debug/pprof/profile?seconds=30
+    go tool pprof -sample_index=cpu -http=:8081 http://127.0.0.1:8080/debug/pprof/profile?seconds=30
+    go tool pprof -sample_index=samples http://127.0.0.1:8080/debug/pprof/profile?seconds=30
+    go tool pprof -sample_index=samples -http=:8081 http://127.0.0.1:8080/debug/pprof/profile?seconds=30
     go tool pprof http://127.0.0.1:8080/debug/pprof/goroutine
+    go tool pprof -http=:8081 http://127.0.0.1:8080/debug/pprof/goroutine
     ```
 
