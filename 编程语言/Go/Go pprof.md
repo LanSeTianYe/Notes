@@ -80,5 +80,14 @@ go http.ListenAndServe(":8080", nil)
     go tool pprof -sample_index=samples -http=:8081 http://127.0.0.1:8080/debug/pprof/profile?seconds=30
     go tool pprof http://127.0.0.1:8080/debug/pprof/goroutine
     go tool pprof -http=:8081 http://127.0.0.1:8080/debug/pprof/goroutine
+    
+    #
+    -inuse_space           Same as -sample_index=inuse_space
+    -inuse_objects         Same as -sample_index=inuse_objects
+    -alloc_space           Same as -sample_index=alloc_space
+    -alloc_objects         Same as -sample_index=alloc_objects
+    -total_delay           Same as -sample_index=delay
+    -contentions           Same as -sample_index=contentions
+    -mean_delay
     ```
 
