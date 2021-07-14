@@ -7,6 +7,7 @@
 3. [根证书、服务器证书、用户证书](https://www.nginx.cn/5559.html)
 4. [HTTPS篇之SSL握手过程详解](https://razeencheng.com/post/ssl-handshake-detail.html)
 5. [几幅图拿下HTTPS](https://mp.weixin.qq.com/s/U9SRLE7jZTB6lUZ6c8gTKg)
+6. [TLS 1.3 0-RTT and Anti-Replay](https://halfrost.com/tls_1-3_0-rtt/)
 
 ## SSL
 
