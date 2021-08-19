@@ -6,8 +6,11 @@
 2. [Format of an immutable Table file](https://github.com/google/leveldb/blob/master/doc/table_format.md)
 3. [Format of a log file](https://github.com/google/leveldb/blob/master/doc/log_format.md)
 4. [Implementation notes](https://github.com/google/leveldb/blob/master/doc/impl.md)
+5. [leveldb-handbook](https://leveldb-handbook.readthedocs.io/zh/latest/basic.html)
 
 ## LevelDB 简介
+
+基于LSM（Log Structured-Merge Tree）实现，放弃部分读性能，换取最大的写性能。
 
 LevelDB 是key/value存储，key/value都以字节的形式存储。
 
