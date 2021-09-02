@@ -26,6 +26,42 @@ int类型的指针指向内存中存储int数据的位置。int值在内存中�
 
 ### 关于作用域
 
+**块做作用域：** 在代码块 `{}` 中声明的变量在代码块内有效。
+
+**文件作用域（单个文件有效）：** 在函数外面定义的变量在文件内有效，从定义位置开始到文件结尾。
+
+**全局作用域：**  在其它文件中也可使用。
+
+
+```C
+#include <stdio.h>
+
+void function_scope_function(int function_scope) {
+    //方法内部有效
+    printf("function_1:%d\n", function_scope);
+}
+
+//全局变量 可以被引用的文件使用
+int file_scope = 1;
+//单个文件内有效
+static int file_static_scope = 1;
+
+void file_scope_function() {
+    printf("function_2:%d\n", file_scope);
+}
+
+int main() {
+    //代码块内有效
+    int code_block_scope = 2;
+    printf("function scope:%d\n", code_block_scope);
+
+    function_scope_function(3);
+    file_scope_function();
+}
+```
+
+
+
 ### 关于宏定义
 
 可以定义字面量，在程序编译的时候会替换对应的字面量。
