@@ -16,12 +16,6 @@
     git reset HEAD
     ```
     
-3. 将工作去的修改撤销。
-
-    ```shell
-    git restore
-    ```
-    
 4. 撤销文件
 
     ```shell
