@@ -65,11 +65,11 @@ GOGCCFLAGS="-fPIC -m64 -pthread -fno-caret-diagnostics -Qunused-arguments -fmess
 ```shell
 xiaotian@LAPTOP-SDV1PEGS:~/go$ cd /usr/local/go/ && tree -L 2
 ├── api
-├── bin
+├── bin #编译后的可执行文件
 ├── doc
 ├── lib
 ├── misc
-├── pkg
+├── pkg #编译的中间文件 strings.a
 ├── src
 └── test
 ```
@@ -116,7 +116,7 @@ go env -w GO111MODULE="on" && go env -w GOPROXY=https://goproxy.cn,direct
 
 下载的第三方仓库都会放到 `GOPATH的pkg的mod` 目录。
 
-GO 编译代码的时候，先从 `GOROOT的src` 目录，再从 `GOPATH的pkg的mod` 目录查找，如果没有找到则编译报错。
+GO 编译代码的时候，先从 `GOROOT的src` 目录，再从 `GOPATH的pkg的mod` 目录查找，如果没有找到则编译报错。编译后的可执行文件在 `GOPATH的bin目录`，编译的中间文件 （`.a` ）文件在 `GOPATH的pkg目录的GOHOSTOS_GOHOSTARCH` 目录。
 
 **第三方依赖目录结构：**
 

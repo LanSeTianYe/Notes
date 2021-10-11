@@ -2,7 +2,21 @@
 
 参考：
 
-## go 编译
+## GO 编译
+
+### go install
+
+生成可执行文件同时编译依赖的文件。
+
+1. 保存编译生成的中间文件
+
+    ```shell
+    go install -i mypkg
+    ```
+
+### GO 交叉编译
+
+GO 可以在一个平台编译生成其它平台的可执行文件。
 
 ```shell
 CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build main.go
