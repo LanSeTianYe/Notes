@@ -3,6 +3,9 @@
 参考:
 
 1. [Golang — GOROOT、GOPATH、Go-Modules-三者的關係介紹](https://medium.com/%E4%BC%81%E9%B5%9D%E4%B9%9F%E6%87%82%E7%A8%8B%E5%BC%8F%E8%A8%AD%E8%A8%88/golang-goroot-gopath-go-modules-%E4%B8%89%E8%80%85%E7%9A%84%E9%97%9C%E4%BF%82%E4%BB%8B%E7%B4%B9-d17481d7a655)
+2. [Go 包依赖管理工具 —— govendor](https://shockerli.net/post/go-package-manage-tool-govendor/)
+3. [go_command_tutorial](https://github.com/hyper0x/go_command_tutorial)
+4. [初探 Go 的编译命令执行过程](https://halfrost.com/go_command/)
 
 ## GO 项目结构
 
@@ -60,7 +63,20 @@ PKG_CONFIG="pkg-config"
 GOGCCFLAGS="-fPIC -m64 -pthread -fno-caret-diagnostics -Qunused-arguments -fmessage-length=0 -fdebug-prefix-map=/tmp/go-build821839068=/tmp/go-build -gno-record-gcc-switches"
 ```
 
-### go 目录结构
+### GO 版本管理历史
+
+#### vendor
+
+从1.5开始提供支持，从1.7开始默认开启 `vendor`特性。要求项目必须在 `GOPATH的src目录`。从1.11版本开始提供 `go modules` 支持，从此开始不推荐使用 vendor 方式管理包。
+
+在 `vendor` 模式下，包查找顺序：
+
+1. 当前包的 `vendor目录`。
+2. 如果当前包不存在`vendor`目录，则向上级查找直到找到 `GOPATH的src下的vendor目录`。
+3. 查找 `GOROOT的src目录`。
+4. 查找 `GOPATH的src目录`。
+
+### GO 目录结构
 
 ```shell
 xiaotian@LAPTOP-SDV1PEGS:~/go$ cd /usr/local/go/ && tree -L 2
