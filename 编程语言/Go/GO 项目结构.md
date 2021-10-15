@@ -86,7 +86,7 @@ xiaotian@LAPTOP-SDV1PEGS:~/go$ cd /usr/local/go/ && tree -L 2
 ├── lib
 ├── misc
 ├── pkg #编译的中间文件 strings.a
-├── src
+├── src #源代码
 └── test
 ```
 
