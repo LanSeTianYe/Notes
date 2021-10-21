@@ -1,10 +1,10 @@
 时间： 2019-08-01 21:19
 
-
-
 ## 　MongoDB 配置信息
 
-启动:  `./mongod 配置1 配置2`  使用 `mongod --help` 查看帮助信息。
+启动:  `./mongod 配置1 配置2`。
+
+使用 `mongod --help` 查看帮助信息。
 
 停止:  `kill pid` or `kill -2 pid`。
 
@@ -16,7 +16,7 @@
 
 ## 安全配置
 
-第一步 添加管理员用户 `use admin` `db.addUser('admin','admin',readonly)`。一定要先在admin添加管理园用户。管理员用户拥有数据库的所有权限。
+第一步 添加管理员用户 `use admin` `db.addUser('admin','admin',readonly)`。一定要先在admin添加管理员用户。管理员用户拥有数据库的所有权限。
 
 其它数据库的权限，在对应数据库添加用户。
 
