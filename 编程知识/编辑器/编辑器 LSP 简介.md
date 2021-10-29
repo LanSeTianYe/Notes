@@ -4,6 +4,7 @@
 
 1. [language-server-protocol](https://microsoft.github.io/language-server-protocol/)
 2. [JSON-RPC](http://wiki.geekdream.com/Specification/json-rpc_2.0.html)
+3. [语言服务器协议](https://docs.microsoft.com/zh-cn/visualstudio/extensibility/language-server-protocol?view=vs-2019)
 
 ## LSP 简介
 
