@@ -43,6 +43,8 @@
     git config --global credential.helper store
     # 存储到内存
     git config --global credential.helper cache
+    # 清空配置
+    git config --local credential.helper ""
     ```
 8. git bash 显示中文
 
