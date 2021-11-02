@@ -1,4 +1,4 @@
-时间：2021-10-22 15:52:52
+api.json时间：2021-10-22 15:52:52
 
 参考：
 
@@ -18,4 +18,244 @@ LSP（Language Server Protocol） 语言服务器协议。定义编辑器和语�
 
 ![](../../img/lsp/lsp.png)
 
-### 
+### LSP 接口请求和响应
+
+####  initialize
+
+```json
+# 请求
+InitializeParams{
+    ProcessID:             2233,
+    ClientInfo:            struct { Name string "json:\"name\""; Version string "json:\"version,omitempty\"" }
+								  { Name:"test",                 Version:"v1.0.0"},
+    Locale:                "",
+    RootPath:              "",
+    RootURI:               "",
+    Capabilities:          main.ClientCapabilities{},
+    InitializationOptions: nil,
+    Trace:                 "",
+    WorkspaceFolders:      {
+        {URI:"file://test", Name:"test"},
+    },
+}
+
+# 响应
+InitializeResult{
+    Capabilities: main.ServerCapabilities{
+        TextDocumentSync: map[string]interface {}{
+            "openClose": bool(true),
+            "change":    float64(2),
+            "save":      map[string]interface {}{
+            },
+        },
+        CompletionProvider: main.CompletionOptions{
+            TriggerCharacters:       {"."},
+            AllCommitCharacters:     nil,
+            ResolveProvider:         false,
+            CompletionItem:          struct { LabelDetailsSupport bool "json:\"labelDetailsSupport,omitempty\"" }{},
+            WorkDoneProgressOptions: main.WorkDoneProgressOptions{},
+        },
+        HoverProvider:         true,
+        SignatureHelpProvider: main.SignatureHelpOptions{
+            TriggerCharacters:       {"(", ","},
+            RetriggerCharacters:     nil,
+            WorkDoneProgressOptions: main.WorkDoneProgressOptions{},
+        },
+        DeclarationProvider:              nil,
+        DefinitionProvider:               true,
+        TypeDefinitionProvider:           bool(true),
+        ImplementationProvider:           bool(true),
+        ReferencesProvider:               true,
+        DocumentHighlightProvider:        true,
+        DocumentSymbolProvider:           true,
+        CodeActionProvider:               bool(true),
+        CodeLensProvider:                 main.CodeLensOptions{},
+        DocumentLinkProvider:             main.DocumentLinkOptions{},
+        ColorProvider:                    nil,
+        WorkspaceSymbolProvider:          true,
+        DocumentFormattingProvider:       true,
+        DocumentRangeFormattingProvider:  false,
+        DocumentOnTypeFormattingProvider: main.DocumentOnTypeFormattingOptions{},
+        RenameProvider:                   bool(true),
+        FoldingRangeProvider:             bool(true),
+        SelectionRangeProvider:           nil,
+        ExecuteCommandProvider:           main.ExecuteCommandOptions{
+            Commands:                {
+                "gopls.add_dependency", 
+                "gopls.add_import", 
+                "gopls.apply_fix", 
+                "gopls.check_upgrades", 
+                "gopls.gc_details", 
+                "gopls.generate", 
+                "gopls.generate_gopls_mod", 
+                "gopls.go_get_package", 
+                "gopls.list_known_packages", 
+                "gopls.regenerate_cgo", 
+                "gopls.remove_dependency", 
+                "gopls.run_tests", 
+                "gopls.start_debugging", 
+                "gopls.test", 
+                "gopls.tidy", 
+                "gopls.toggle_gc_details", 
+                "gopls.update_go_sum", 
+                "gopls.upgrade_dependency", 
+                "gopls.vendor", 
+                "gopls.workspace_metadata"
+            },
+            WorkDoneProgressOptions: main.WorkDoneProgressOptions{},
+        },
+        CallHierarchyProvider:      bool(true),
+        LinkedEditingRangeProvider: nil,
+        SemanticTokensProvider:     nil,
+        Workspace:                  main.Workspace5Gn{
+            FileOperations:   (*main.FileOperationOptions)(nil),
+            WorkspaceFolders: main.WorkspaceFolders4Gn{
+                Supported:true, 
+                ChangeNotifications:"workspace/didChangeWorkspaceFolders"
+            },
+        },
+        MonikerProvider: nil,
+        Experimental:    nil,
+    },
+    ServerInfo: struct { Name string "json:\"name\""; Version string "json:\"version,omitempty\"" }
+                       { Name:"gopls",                Version:"{\"path\":\"golang.org/x/tools/gopls\",\"version\":\"(devel)\",\"deps\":[{\"path\":\"github.com/BurntSushi/toml\",\"version\":\"v0.4.1\""}]}"},
+}
+```
+
+#### initialized
+
+响应收到初始化结果响应。
+
+```json
+# 请求参数
+{}
+# 响应数据
+无
+```
+
+#### textDocument/completion 自动完成
+
+```json
+# 请求参数
+{
+    Context:                    main.CompletionContext{},
+    TextDocumentPositionParams: main.TextDocumentPositionParams{
+        TextDocument: main.TextDocumentIdentifier{URI:"file://test//hello.go"},
+        Position:     main.Position{Line:0x1, Character:0x4},
+    },
+    WorkDoneProgressParams: main.WorkDoneProgressParams{
+        WorkDoneToken: "333333333333333333333",
+    },
+    PartialResultParams: main.PartialResultParams{},
+}
+# 响应数据
+{
+    "items": []interface {}{
+        map[string]interface {}{
+            "sortText":         "00000",
+            "filterText":       "const",
+            "insertTextFormat": float64(1),
+            "textEdit":         map[string]interface {}{
+                "range": map[string]interface {}{
+                    "start": map[string]interface {}{
+                        "line":      float64(1),
+                        "character": float64(1),
+                    },
+                    "end": map[string]interface {}{
+                        "line":      float64(1),
+                        "character": float64(1),
+                    },
+                },
+                "newText": "const",
+            },
+            "label":        "const",
+            "labelDetails": map[string]interface {}{
+            },
+            "kind":      float64(14),
+            "preselect": bool(true),
+        },
+        ... ...
+        map[string]interface {}{
+            "insertTextFormat": float64(1),
+            "textEdit":         map[string]interface {}{
+                "range": map[string]interface {}{
+                    "end": map[string]interface {}{
+                        "line":      float64(1),
+                        "character": float64(1),
+                    },
+                    "start": map[string]interface {}{
+                        "line":      float64(1),
+                        "character": float64(1),
+                    },
+                },
+                "newText": "var",
+            },
+            "label":        "var",
+            "labelDetails": map[string]interface {}{
+            },
+            "kind":       float64(14),
+            "sortText":   "00004",
+            "filterText": "var",
+        },
+    },
+    "isIncomplete": bool(true),
+}
+```
+
+#### workspace/executeCommand
+执行命令。
+
+##### gopls.list_known_packages 查看已知的包
+
+```json
+# 请求参数
+{"command":"gopls.list_known_packages","arguments":[{"URI":"file://test/hello.go"}]}
+# 响应参数
+{
+    "Packages": []interface {}{
+        "archive/tar",
+        "archive/zip",
+        ... ...
+        "unicode",
+        "unicode/utf16",
+        "unicode/utf8",
+        "unsafe",
+    }
+}
+```
+
+##### gopls.tidy 执行 `go mod tidy`
+
+```json
+# 请求参数
+{"command":"gopls.tidy","arguments":[{"URI":"file://test/go.mod"}]}
+# 响应数据
+无
+```
+
+##### gopls.vendor 执行 `go mod vendor`
+
+```json
+# 请求参数
+{"command":"gopls.vendor","arguments":[{"URI":"file://test/go.mod"}]}
+# 响应数据
+无
+```
+
+##### gopls.add_dependency
+##### gopls.add_import
+##### gopls.apply_fix
+##### gopls.check_upgrades
+##### gopls.gc_details
+##### gopls.generate
+##### gopls.generate_gopls_mod
+##### gopls.go_get_package
+##### gopls.regenerate_cgo
+##### gopls.remove_dependency
+##### gopls.run_tests
+##### gopls.start_debugging
+##### gopls.test
+##### gopls.toggle_gc_details
+##### gopls.update_go_sum
+##### gopls.upgrade_dependency
+##### gopls.workspace_metadata
