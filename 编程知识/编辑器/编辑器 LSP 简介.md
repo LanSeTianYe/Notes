@@ -124,7 +124,7 @@ InitializeResult{
 
 #### initialized
 
-响应收到初始化结果响应。
+响应收到初始化结果响应。服务端收到请求后开始监听工作目录文件的变化。
 
 ```json
 # 请求参数
@@ -202,8 +202,245 @@ InitializeResult{
 }
 ```
 
-#### workspace/executeCommand
-执行命令。
+#### textDocument/hover 鼠标悬停信息
+
+```json
+# 请求
+HoverParams{
+    TextDocumentPositionParams: main.TextDocumentPositionParams{
+        TextDocument: main.TextDocumentIdentifier{URI:"file://test//hello.go"},
+        Position:     main.Position{Line:0x8, Character:0xa},
+    },
+    WorkDoneProgressParams: main.WorkDoneProgressParams{
+        WorkDoneToken: "44444444444444",
+    },
+}
+# 响应
+{
+    "contents": map[string]interface {}{
+        "kind":  "markdown",
+        "value": "```go\nfunc fmt.Println(a ...interface{}) (n int, err error)\n```\n\n[`fmt.Println` on pkg.go.dev](https://pkg.go.dev/fmt?utm_source=gopls#Println)\n\nPrintln formats using the default formats for its operands and writes to standard output\\.\nSpaces are always added between operands and a newline is appended\\.\nIt returns the number of bytes written and any write error encountered\\.\n",
+    },
+    "range": map[string]interface {}{
+        "start": map[string]interface {}{
+            "character": float64(5),
+            "line":      float64(8),
+        },
+        "end": map[string]interface {}{
+            "line":      float64(8),
+            "character": float64(12),
+        },
+    },
+}
+```
+
+#### textDocument/signatureHelp 签名帮助
+
+```json
+#请求
+SignatureHelpParams{
+    Context: main.SignatureHelpContext{
+        TriggerKind:         0,
+        TriggerCharacter:    "(",
+        IsRetrigger:         true,
+        ActiveSignatureHelp: main.SignatureHelp{},
+    },
+    TextDocumentPositionParams: main.TextDocumentPositionParams{
+        TextDocument: main.TextDocumentIdentifier{URI:"file://test//hello.go"},
+        Position:     main.Position{Line:0x8, Character:0x19},
+    },
+    WorkDoneProgressParams: main.WorkDoneProgressParams{
+        WorkDoneToken: "5555555555555",
+    },
+}
+# 响应
+{
+    "activeParameter": float64(0),
+    "signatures":      []interface {}{
+        map[string]interface {}{
+            "documentation": "Println formats using the default formats for its operands and writes to standard output.\nSpaces are always added between operands and a newline is appended.\nIt returns the number of bytes written and any write error encountered.\n",
+            "parameters":    []interface {}{
+                map[string]interface {}{
+                    "label": "a ...interface{}",
+                },
+            },
+            "label": "Println(a ...interface{}) (n int, err error)",
+        },
+    },
+    "activeSignature": float64(0),
+}
+```
+
+#### textDocument/references 变量、方法
+
+```json
+# 请求
+{
+    Context:                    main.ReferenceContext{},
+    TextDocumentPositionParams: main.TextDocumentPositionParams{
+        TextDocument: main.TextDocumentIdentifier{URI:"file://test//hello.go"},
+        Position:     main.Position{Line:0x7, Character:0x5},
+    },
+    WorkDoneProgressParams: main.WorkDoneProgressParams{
+        WorkDoneToken: "77777777777777777777",
+    },
+    PartialResultParams: main.PartialResultParams{},
+}
+# 响应
+{
+    {
+        URI:   "file:///C:/test/hello.go",
+        Range: main.Range{
+            Start: main.Position{Line:0x7, Character:0x5},
+            End:   main.Position{Line:0x7, Character:0xc},
+        },
+    },
+    {
+        URI:   "file:///C:/test/hello.go",
+        Range: main.Range{
+            Start: main.Position{Line:0x8, Character:0x5},
+            End:   main.Position{Line:0x8, Character:0xc},
+        },
+    },
+}
+```
+
+#### textDocument/documentHighlight 代码高亮
+
+```json
+# 请求
+{
+    TextDocumentPositionParams: main.TextDocumentPositionParams{
+        TextDocument: main.TextDocumentIdentifier{URI:"file://test//hello.go"},
+        Position:     main.Position{Line:0x7, Character:0x5},
+    },
+    WorkDoneProgressParams: main.WorkDoneProgressParams{
+        WorkDoneToken: "77777777777777777777",
+    },
+    PartialResultParams: main.PartialResultParams{},
+}
+# 响应
+{
+    {
+        Range: main.Range{
+            Start: main.Position{Line:0x7, Character:0x5},
+            End:   main.Position{Line:0x7, Character:0xc},
+        },
+        Kind: 1,
+    },
+    {
+        Range: main.Range{
+            Start: main.Position{Line:0x8, Character:0x5},
+            End:   main.Position{Line:0x8, Character:0xc},
+        },
+        Kind: 1,
+    },
+}
+```
+
+#### textDocument/documentSymbol 文档符号信息
+
+```json
+# 请求
+{
+    TextDocument:           main.TextDocumentIdentifier{URI:"file://test//hello.go"},
+    WorkDoneProgressParams: main.WorkDoneProgressParams{
+        WorkDoneToken: "77777777777777777777",
+    },
+    PartialResultParams: main.PartialResultParams{},
+}
+# 响应
+{
+    {
+        Name:           "main",
+        Detail:         "",
+        Kind:           12,
+        Tags:           nil,
+        Deprecated:     false,
+        Range:          main.Range{},
+        SelectionRange: main.Range{},
+        Children:       nil,
+    },
+}
+```
+
+#### textDocument/codeAction 
+
+```json
+# 请求
+{
+    TextDocument:           main.TextDocumentIdentifier{URI:"file://test//hello.go"},
+    Range:                  main.Range{},
+    Context:                main.CodeActionContext{},
+    WorkDoneProgressParams: main.WorkDoneProgressParams{
+        WorkDoneToken: "1010101010101010",
+    },
+    PartialResultParams: main.PartialResultParams{},
+}
+# 响应
+{
+    {
+        Title:       "Organize Imports",
+        Kind:        "source.organizeImports",
+        Diagnostics: nil,
+        IsPreferred: false,
+        Disabled:    (*struct { Reason string "json:\"reason\"" })(nil),
+        Edit:        main.WorkspaceEdit{
+            Changes:         {},
+            DocumentChanges: {
+                {
+                    TextDocument: main.OptionalVersionedTextDocumentIdentifier{
+                        Version:                0,
+                        TextDocumentIdentifier: main.TextDocumentIdentifier{URI:"file:///C:/test/hello.go"},
+                    },
+                    Edits: {
+                        {
+                            Range: main.Range{
+                                Start: main.Position{Line:0x2, Character:0x7},
+                                End:   main.Position{Line:0x2, Character:0x7},
+                            },
+                            NewText: "(\n\t",
+                        },
+                        {
+                            Range: main.Range{
+                                Start: main.Position{Line:0x2, Character:0xc},
+                                End:   main.Position{Line:0x2, Character:0xc},
+                            },
+                            NewText: "\n",
+                        },
+                        {
+                            Range: main.Range{
+                                Start: main.Position{Line:0x3, Character:0x0},
+                                End:   main.Position{Line:0x3, Character:0x7},
+                            },
+                            NewText: "",
+                        },
+                        {
+                            Range: main.Range{
+                                Start: main.Position{Line:0x3, Character:0x7},
+                                End:   main.Position{Line:0x3, Character:0x7},
+                            },
+                            NewText: "\t",
+                        },
+                        {
+                            Range: main.Range{
+                                Start: main.Position{Line:0x4, Character:0x0},
+                                End:   main.Position{Line:0x4, Character:0x0},
+                            },
+                            NewText: ")\n",
+                        },
+                    },
+                },
+            },
+            ChangeAnnotations: {},
+        },
+        Command: (*main.Command)(nil),
+        Data:    nil,
+    },
+}
+```
+
+#### workspace/executeCommand 执行命令
 
 ##### gopls.list_known_packages 查看已知的包
 
