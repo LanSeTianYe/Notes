@@ -42,6 +42,32 @@ go vet ./...
 
 提供 [150+](https://staticcheck.io/docs/checks/) 检查选项。支持多种 [输出格式](https://staticcheck.io/docs/running-staticcheck/cli/formatters/)。
 
+```shell
+Usage: staticcheck [flags] [packages]
+
+Flags:
+  -checks checks
+        Comma-separated list of checks to enable. (default "inherit")
+  -explain check
+        Print description of check
+  -f format
+        Output format (valid choices are 'stylish', 'text' and 'json') (default text)
+  -fail checks
+        Comma-separated list of checks that can cause a non-zero exit status. (default "all")
+  -go version
+        Target Go version in the format '1.x', or the literal 'module' to use the module's Go version (default "module")
+  -list-checks
+        List all available checks
+  -show-ignored
+        Don't filter ignored problems
+  -tags build tags
+        List of build tags
+  -tests
+        Include tests (default true)
+  -version
+        Print version and exit
+```
+
 **输出格式：**
 
 * Text: 文本格式输出
@@ -103,9 +129,24 @@ dot_import_whitelist = ["github.com/mmcloughlin/avo/build", "github.com/mmclough
 http_status_code_whitelist = ["200", "400", "404", "500"]
 ```
 
+**不检查行或者文件：**
+
+忽略单行用法：在行上面加注释 `//lint:ignore Check1[,Check2,...,CheckN] reason`
+
+```go
+func TestNewEqual(t *testing.T) {
+  //lint:ignore SA4000 we want to make sure that no two results of errors.New are ever the same
+  if errors.New("abc") == errors.New("abc") {
+    t.Errorf(`New("abc") == New("abc")`)
+  }
+}
+```
+
+忽略整个文件用法：在文件开头加注释 `//lint:file-ignore U1000 Ignore all unused code, it's generated`
+
 **使用手册：**
 
-```
+```shell
 # 检测当前包
 staticcheck .
 # 检测当前包，指定go版本
@@ -119,6 +160,16 @@ staticcheck ./...
 
 # 查看检测规则的说明
 staticcheck -explain SA5009
+
+··· 输出内容如下
+    Invalid Printf call
+
+    Available since
+        2019.2
+
+    Online documentation
+        https://staticcheck.io/docs/checks#SA5009
+···
 ```
 
 
