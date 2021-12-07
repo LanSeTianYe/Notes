@@ -18,6 +18,7 @@
     Windows 64位平台，选择 protoc-x.x.x-win32.zip
     Linux 64位平台，选择 protoc-x.x.x-linux-x86_64.zip
    ```
+
 2. 安装插件，不同的指令会使用不同的插件。`go get 和 go install` 都可以安装。
 
     ```shell
