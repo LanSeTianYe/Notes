@@ -112,6 +112,8 @@ lsof      7491    root    3r      DIR                0,3        0        1 /proc
 ### 使用
 
 ```shell
+# 显示父进程
+lsof -R
 # 指定进程名字
 lsof -c main
 # 指定文件描述符
@@ -135,4 +137,6 @@ lsof -a -u root -i
 lsof -i :7070
 # 重复执行，每三秒输出一次
 lsof -r 3
+# 查看删除之后没有释放的文件
+lsof | grep deleted
 ```

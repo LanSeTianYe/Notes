@@ -3,6 +3,8 @@
 ```go
 package main
 
+import "fmt"
+
 func main() {
     aaa := 10
     fmt.Println(aaa)
@@ -125,7 +127,10 @@ features:
   workspace_symbol : search symbols in workspace
   
   workspace : manage the gopls workspace (experimental: under development)
+  # gopls  signature main.go:6:16
+  # Println(a ...interface{}) (n int, err error)
   signature : display selected identifier's signature
+  
   # 链接远程服务
   # 启动服务：gopls -vv serve -listen "192.168.88.130:9877" -logfile /tmp/gopls.log -rpc.trace
   # 连接服务：gopls -remote 192.168.88.130:9877 remote debug
