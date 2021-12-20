@@ -2,7 +2,7 @@
 
 参考：
 
-1. [https://github.com/golang/lint] (https://github.com/golang/lint)
+1. [https://github.com/golang/lint](https://github.com/golang/lint)
 2. [staticcheck](https://staticcheck.io/docs/)
 3. [如果你用Go，不要忘了vet](https://studygolang.com/articles/9619)
 
