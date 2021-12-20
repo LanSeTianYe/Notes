@@ -122,7 +122,10 @@ features:
   symbols : display selected file's symbols
   
   # 在工作目录中查找指定符号，返回文件路径和在文件中的位置。（语法提示）
-  # gopls workspace_symbol math
+  # fuzzy, caseSensitive, or caseInsensitive
+  # gopls workspace_symbol -matcher caseInsensitive math
+  # gopls workspace_symbol -matcher fuzzy math
+  # gopls workspace_symbol -matcher caseSensitive math
   # /usr/local/go/src/math/abs.go:12:6-9 math.Abs Function
   workspace_symbol : search symbols in workspace
   
