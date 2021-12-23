@@ -42,3 +42,66 @@
         cd proto/ && protoc -I=. --gogofaster_out=plugins=grpc:../protogo --gogofaster_opt=paths=source_relative message.proto
     ```
 
+### 模板 `contract_invoke.proto`
+```protobuf
+syntax = "proto3";
+
+option go_package = "server/pb/protogo";
+
+package protogo;
+
+//rpc server
+service ContractInvoke {
+  rpc InvokeContractArgs(ContractInfo) returns (ContractArgs){};
+  rpc ExecResult(ExecuteResult) returns (ExecuteResultResponse){};
+}
+
+//ContractInfo contract info
+message ContractInfo{
+  string name = 1;
+  string method = 2;
+  string version = 3;
+}
+
+//ContractArgs invoke contract args
+message ContractArgs {
+  string name = 1;
+  string method = 2;
+  string version = 3;
+  string sid = 4;
+  map<string, string> args = 5;
+  map<string, string> globalSates = 6;
+}
+
+//ExecuteResult execute result
+message ExecuteResult {
+  string name = 1;
+  string method = 2;
+  string version = 3;
+  string sid = 4;
+  map<string, string> globalSates = 6;
+  repeated string logs = 7;
+  repeated Event event = 8;
+  string time_cost = 9;
+}
+
+// Event message
+message Event {
+  // Event topic
+  string topic = 1;
+  // Event payload
+  repeated string data = 2;
+}
+
+//ExecuteResultResponse execute result response
+message ExecuteResultResponse {
+}
+```
+
+### Makefile
+
+```shell
+pb:
+	cd proto && protoc -I=. --gogofaster_out=plugins=grpc:../protogo\
+                            --gogofaster_opt=paths=source_relative contract_invoke.proto
+```
