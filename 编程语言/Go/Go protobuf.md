@@ -50,8 +50,35 @@ option go_package = "server/pb/protogo";
 
 package protogo;
 
+//SearchRequest
+message SearchRequest {
+  //required 必须字段
+  required string query = 1;
+  //optional 可选字段
+  optional int32 page_number = 2;
+  //repeated 列表
+  repeated string description = 3;
+  //enum and default value
+  required Corpus groups = 4 [default = UNIVERSAL];
+  //map  
+  map<string, string> globalSates = 6;
+}
+
+//enum
+enum Corpus {
+  UNIVERSAL = 0;
+  WEB = 1;
+  IMAGES = 2;
+  LOCAL = 3;
+  NEWS = 4;
+  PRODUCTS = 5;
+  VIDEO = 6;
+}
+
+//定义RPC服务，会自动生成RPC相关代码
 //rpc server
 service ContractInvoke {
+  //接收 ContractInfo 返回 ContractArgs
   rpc InvokeContractArgs(ContractInfo) returns (ContractArgs){};
   rpc ExecResult(ExecuteResult) returns (ExecuteResultResponse){};
 }
