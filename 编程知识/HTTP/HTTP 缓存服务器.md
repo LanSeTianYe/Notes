@@ -5,6 +5,7 @@
 1. [IMPROVING PAGE SPEED: CDN VS SQUID/VARNISH/NGINX/MOD_PROXY](https://blog.matthewskelton.net/2011/12/02/improving-page-speed-cdn-vs-squid-varnish-nginx/)
 2. [squid](http://www.squid-cache.org/Versions/)
 3. [varnish](https://varnish-cache.org/)
+4. [终于有人把正向代理和反向代理解释的明明白白了！](https://cloud.tencent.com/developer/article/1418457)
 
 ## HTTP 缓存服务器
 
@@ -22,9 +23,9 @@ CDN 和实际服务器是分离的。
 
 ### 反向代理 (reverse proxy)
 
-正向代理：客户端通过代理访问其它资源，此时的代理用于转发客户端的请求是正向代理。
+正向代理：客户端通过代理访问其它资源，此时的代理用于转发客户端的请求是正向代理。服务端不知道真正的客户端是谁。代理客户端访问资源。
 
-反向代理：代理服务器代理原始服务器的服务，此时代理用于聚合原始服务器的服务是反向代理。
+反向代理：代理服务器代理原始服务器的服务，此时代理用于聚合原始服务器的服务是反向代理。客户端不知道真实的服务器是哪一个。代理服务端提供服务。
 
 ### [Squid](http://www.squid-cache.org/)
 
