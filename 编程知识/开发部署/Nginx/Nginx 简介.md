@@ -88,13 +88,17 @@ server {
 }
 ```
 
-### 配置模式
+### 配置
 
 ```nginx
 # 以.git .jpg .png 结尾的文件
 # ~ 表示后面的内容为正则表达式
 location ~ \.(gif|jpg|png)$ {
     root /data/images;
+}
+# 包含.html或.htm的所有请求
+location ~ \.html? {
+    #...
 }
 
 # 代理到其它服务，支持WebSocker
