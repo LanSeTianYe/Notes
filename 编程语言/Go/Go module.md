@@ -69,9 +69,132 @@
 >
 >6: `github.com/kr/text v0.2.0 // indirect` indirect 标识间接依赖（依赖的其它仓库的依赖）。
 >
->7:  `exclude` 排除依赖。
+>7:  `exclude` 排除依赖的版本。
 >
 >8: `replace`替换依赖。用于替换依赖包的内容，支持本地和仓库。
 
+### Go mod 获取期望的依赖版本
 
-### Go mod 版本依赖规则
+#### 指定部分或完整版本号信息
+
+如果只指定主版本，会找对应主版本号，以及次版本和修订版本最大的版本。
+如果指定主版本和次版本，会找对应主版本和次版本，以及修订版本号最大的版本。
+如果指定主版本、次版本和修订版本，会找对应主版本、次版本和修订版本的版本。
+如果指定主版本、次版本、修订版本和先行版本号，会找主版本、次版本、修订版本和先行版本号对应的版本。
+
+> 注意：如果当前项目依赖的仓库A依赖了B仓库，当前项目也依赖B，此时项目依赖的B版本和A依赖的版本保持一致。
+
+假设 `github.com/xiaotianfork/q-tls-common` 目前有如下版本:
+
+```go
+v0.1.1
+v0.1.2
+v0.1.3-alpha
+v0.1.3
+```
+
+`go.mod` 文件内容如下：
+
+```go
+# 指定主版本
+github.com/xiaotianfork/q-tls-common v0
+# 指定主版本和次版本
+github.com/xiaotianfork/q-tls-common v0.1
+# 指定主版本、次版本和修订版本
+github.com/xiaotianfork/q-tls-common v0.1.3
+# 指定主版本、次版本、修订版本和先行版本号
+# github.com/xiaotianfork/q-tls-common v0.1.3-alpha
+```
+
+执行 `go mod tidy` 之后上面的内容会被更新成如下内容：
+
+```go
+# 指定主版本
+github.com/xiaotianfork/q-tls-common v0.1.3
+# 指定主版本和次版本
+github.com/xiaotianfork/q-tls-common v0.1.3
+# 指定主版本、次版本和修订版本
+github.com/xiaotianfork/q-tls-common v0.1.3
+# 指定主版本、次版本、修订版本和先行版本号
+# github.com/xiaotianfork/q-tls-common v0.1.3-alpha
+```
+
+对应的 `go get` 命令
+
+```shell
+go get github.com/xiaotianfork/q-tls-common@v0
+go get github.com/xiaotianfork/q-tls-common@v0.1
+go get github.com/xiaotianfork/q-tls-common@v0.1.3
+go get github.com/xiaotianfork/q-tls-common@v0.1.3-alpha
+```
+
+#### 特殊版本标识
+
+**latest**: 选择最高的 release 版本，如果没有 release 版本，则选择最高的 pre-release 版本，如果根本就没有打过 tag，则选择最高的伪版本号的版本(默认分支的最后的提交版本)。
+**upgrade**: 类似 latest，但是如果有比release更高的版本(比如pre-release)，会选择更高的版本。
+**patch**: major 和 minor 和当前的版本相同，只把patch升级到最高。当然如果没有当前的版本，则无从比较，则 patch 退化成 latest 语义。
+
+对应的 `go.mod` 文件。
+
+```go
+# 指定主版本
+github.com/xiaotianfork/q-tls-common latest
+github.com/xiaotianfork/q-tls-common upgrade
+github.com/xiaotianfork/q-tls-common patch
+```
+
+执行 `go mod tidy` 之后上面的内容会被更新成如下内容：
+
+```shell
+github.com/xiaotianfork/q-tls-common v0.1.3
+github.com/xiaotianfork/q-tls-common v0.1.3
+github.com/xiaotianfork/q-tls-common v0.1.3
+```
+
+#### 指定特定的 commit id
+
+```shell
+# 指定提交 commit id
+github.com/xiaotianfork/q-tls-common 7982002
+go get github.com/xiaotianfork/q-tls-common@7982002
+# 结果
+github.com/xiaotianfork/q-tls-common v0.0.11-0.20210723072042-798200281f4a
+
+# 最新代码
+github.com/panicthis/H HEAD
+go get github.com/xiaotianfork/q-tls-common@HEAD
+# 结果
+github.com/xiaotianfork/q-tls-common v0.1.3
+```
+
+#### 指定分支
+
+```shell
+github.com/xiaotianfork/q-tls-common develop
+go get github.com/xiaotianfork/q-tls-common@develop
+```
+
+#### 数学符号
+
+找符合条件的最大版本号。
+
+```shell
+# go module 
+github.com/xiaotianfork/q-tls-common >v0.1.2
+github.com/xiaotianfork/q-tls-common >=v0.1.2
+github.com/xiaotianfork/q-tls-common <v0.1.2
+github.com/xiaotianfork/q-tls-common <=v0.1.2
+# go get 
+go get github.com/xiaotianfork/q-tls-common >v0.1.2
+go get github.com/xiaotianfork/q-tls-common >=v0.1.2
+go get github.com/xiaotianfork/q-tls-common <v0.1.2
+go get github.com/xiaotianfork/q-tls-common <=v0.1.2
+```
+
+#### 移除依赖
+
+使用 `none` 关键字可以从 go module 中移除依赖。
+
+```shell
+go get github.com/stretchr/testify@none
+```
