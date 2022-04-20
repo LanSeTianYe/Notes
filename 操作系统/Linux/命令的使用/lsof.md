@@ -137,6 +137,6 @@ lsof -a -u root -i
 lsof -i :7070
 # 重复执行，每三秒输出一次
 lsof -r 3
-# 查看删除之后没有释放的文件
+# 查看删除之后没有释放的文件(kill 掉对应的进程然后删除)
 lsof | grep deleted
 ```
