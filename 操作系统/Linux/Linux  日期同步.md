@@ -6,6 +6,7 @@
 2. [rfc5905(NTP-v4)](https://tools.ietf.org/pdf/rfc5905.pdf)
 3. [NTP 协议简单分析](https://blog.srefan.com/2017/07/ntp-protocol/)
 4. [NTP服务的安装、配置和使用 ](http://blog.sina.com.cn/s/blog_605fc9b20100r17u.html)
+5. [CentOS7 日期时间设置](https://www.jianshu.com/p/6c03ec89bda0)
 
 环境:
 
