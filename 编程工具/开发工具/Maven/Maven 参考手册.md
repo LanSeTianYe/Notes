@@ -132,53 +132,70 @@ Maven 使用坐标表示 `jar` 包的位置，使用坐标在仓库中查找对�
 
 远程仓库配置：
 
-	<profile>
-		<id>good_repository</id>
-		<!-- jar包仓库-->
-		<repositories>
-			<repository>
-				<id>taobao</id>
-				<url>http://maven.aliyun.com/nexus/content/groups/public/</url>
-			</repository>
-			<repository>
-				<id>mvnrepository</id>
-				<url>http://repo1.maven.org/maven2/</url>
-			</repository>
-			<repository>
-				<id>spring-snapshots</id>
-				<url>http://repo.spring.io/snapshot</url>
-				<snapshots><enabled>true</enabled></snapshots>
-			</repository>
-			<repository>
-				<id>spring-milestones</id>
-				<url>http://repo.spring.io/milestone</url>
-			</repository>
-		</repositories>
+```xml
+<profile>
+    <id>good_repository</id>
+    <!-- jar包仓库-->
+    <repositories>
+        <repository>
+            <id>taobao</id>
+            <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+        </repository>
+        <repository>
+            <id>mvnrepository</id>
+            <url>http://repo1.maven.org/maven2/</url>
+        </repository>
+        <repository>
+            <id>spring-snapshots</id>
+            <url>http://repo.spring.io/snapshot</url>
+            <snapshots><enabled>true</enabled></snapshots>
+        </repository>
+        <repository>
+            <id>spring-milestones</id>
+            <url>http://repo.spring.io/milestone</url>
+        </repository>
+    </repositories>
 
-		<!--插件仓库-->
-		<pluginRepositories>
-			<pluginRepository>
-				<id>spring-snapshots</id>
-				<url>http://repo.spring.io/snapshot</url>
-			</pluginRepository>
+    <!--插件仓库-->
+    <pluginRepositories>
+        <pluginRepository>
+            <id>spring-snapshots</id>
+            <url>http://repo.spring.io/snapshot</url>
+        </pluginRepository>
 
-			<pluginRepository>
-				<id>spring-milestones</id>
-				<url>http://repo.spring.io/milestone</url>
-			</pluginRepository>
-		</pluginRepositories>
-	</profile>
+        <pluginRepository>
+            <id>spring-milestones</id>
+            <url>http://repo.spring.io/milestone</url>
+        </pluginRepository>
+    </pluginRepositories>
+</profile>
+
+# 默认jdk版本
+
+<profile>
+    <id>jdk-1.8</id>
+    <activation>
+        <activeByDefault>true</activeByDefault>
+        <jdk>1.8</jdk>
+    </activation>
+    <properties>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <maven.compiler.compilerVersion>1.8</maven.compiler.compilerVersion>
+    </properties>
+</profile>
+```
 
 发布到远程仓库
 
 	<distributionManagement>
 		<repository>
 			<id>nexus-releases</id>
-    		<url>http://192.168.1.110:8081/nexus/content/repositories/releases</url>
+			<url>http://192.168.1.110:8081/nexus/content/repositories/releases</url>
 		</repository>
 		<snapshotRepository>
 			<id>nexus-snapshots</id>
-    		<url>http://192.168.1.110:8081/nexus/content/repositories/snapshots</url>
+			<url>http://192.168.1.110:8081/nexus/content/repositories/snapshots</url>
 		</snapshotRepository>
 	</distributionManagement>
 
@@ -187,57 +204,57 @@ Maven 使用坐标表示 `jar` 包的位置，使用坐标在仓库中查找对�
 和指定仓库的ID对应即可。
 
 	<server>
-      <id>nexus-releases</id>  
-      <username>admin</username>  
-      <password>admin</password> 
-    </server>  
-    <server> 
-      <id>nexus-snapshots</id>  
-      <username>admin</username>  
-      <password>admin</password> 
-    </server> 
+	  <id>nexus-releases</id>  
+	  <username>admin</username>  
+	  <password>admin</password> 
+	</server>  
+	<server> 
+	  <id>nexus-snapshots</id>  
+	  <username>admin</username>  
+	  <password>admin</password> 
+	</server> 
 
 ### 镜像仓库 中央仓库的完全复制
 
 `mirrorOf` 指定对哪个仓库的访问会从当前镜像仓库中拉取数据。支持 `*` 所有，`external:*` 所有，除了本地访问(地址中包含localhost),`id1,id2` 指定id `*,!id1` 排除指定Id。 
 
 	<mirror>
-      <id>mirrorId</id>
-      <mirrorOf>repositoryId</mirrorOf>
-      <name>Human Readable Name for this Mirror.</name>
-      <url>http://my.repository.com/repo/path</url>
-    </mirror>
+	  <id>mirrorId</id>
+	  <mirrorOf>repositoryId</mirrorOf>
+	  <name>Human Readable Name for this Mirror.</name>
+	  <url>http://my.repository.com/repo/path</url>
+	</mirror>
 
 ### 模块管理  
 
 定义一个Mavan项目作为聚合项目，负责统一管理子模块的生命周期管理。在聚合模块执行命令相当于对所有的子模块执行命令。类似于批量管理，多用于不同模块内容经常一起变更的情况，此时可以对变更的模块进行统一执行测试，构建，打包，发布等生命周期。
 
 	<modules>
-        <module>springcloud-context</module>
-        <module>springcloud-gateway</module>
-
-        <module>springcloud-eureka-server</module>
-        <module>springcloud-eureka-client</module>
-        <module>springcloud-eureka-center</module>
-
-        <module>springcloud-config-server</module>
-        <module>springcloud-config-client</module>
-
-        <module>springcloud-hystrix</module>
-        <module>springcloud-hystrix-dashboard</module>
-        <module>springcloud-hystrix-turbine</module>
-    </modules>
+	    <module>springcloud-context</module>
+	    <module>springcloud-gateway</module>
+	
+	    <module>springcloud-eureka-server</module>
+	    <module>springcloud-eureka-client</module>
+	    <module>springcloud-eureka-center</module>
+	
+	    <module>springcloud-config-server</module>
+	    <module>springcloud-config-client</module>
+	
+	    <module>springcloud-hystrix</module>
+	    <module>springcloud-hystrix-dashboard</module>
+	    <module>springcloud-hystrix-turbine</module>
+	</modules>
 
 ### 父模块    
 父模块，子模块会继承父模块的依赖和配置。通常会在公司内部定义统一的父模块（pom）进行jar包版本统一管理，其他项目的继承该pom，maven默认会从上级目录找父pom，如果没父pom和当前项目在同一级目录，需要指定父pom的路径 `<relativePath>../../spring-boot-dependencies</relativePath>`。
 
 	<dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot</artifactId>
-                <version>2.0.2.RELEASE</version>
-            </dependency>
+	    <dependencies>
+	        <dependency>
+	            <groupId>org.springframework.boot</groupId>
+	            <artifactId>spring-boot</artifactId>
+	            <version>2.0.2.RELEASE</version>
+	        </dependency>
 	</dependencyManagement>
 
 ## 插件 
