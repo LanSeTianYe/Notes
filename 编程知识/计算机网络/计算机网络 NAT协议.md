@@ -9,7 +9,7 @@
 
 NAT 协议，即 Network Address Translation。现在更多用于表示 NAPT，即Network Address And Port Translation。
 
-NAT协议运行在支持NAT协议的路由器上，用于让局域网内没有公网地址的主机可以和公网上的主机进行通信。通信的发起放必须是局域网中的内网服务器。
+NAT协议运行在支持NAT协议的路由器上，用于让局域网内没有公网地址的主机可以和公网上的主机进行通信。通信的发起方必须是局域网中的内网服务器。
 
 ### 怎么实现
 
