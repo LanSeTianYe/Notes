@@ -31,7 +31,7 @@ SetReadDeadline(t time.Time) error
 SetWriteDeadline(t time.Time) error
 ```
 
-### net.UDPConn  <==> net.Conn + net.PacketConn `net.ListenUDP("udp", "8080")`
+### net.UDPConn <==> net.Conn + net.PacketConn `net.ListenUDP("udp", "8080")`
 
 UDP 网络连接
 
