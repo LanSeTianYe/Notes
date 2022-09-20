@@ -3,9 +3,7 @@
 
 ## 
 
-1. LSM 树
 2. Apache Arrow
-3. Go的GMP模型
 4. https://lifelines.readthedocs.io/en/latest/
 5. Linux inotify 和 epoll 系统调用
 6. 音乐播放器。 [https://github.com/qier222/YesPlayMusic](https://github.com/qier222/YesPlayMusic) [https://vercel.com/](https://vercel.com/)
