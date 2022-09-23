@@ -4,6 +4,7 @@
 
 1. [Protobuf编码安装](https://github.com/davyxu/cellnet/blob/master/doc/pbcodec.md)
 2. [go-GRPC指南](https://grpc.io/docs/languages/go/quickstart/)
+3. [gRPC 入门](https://chai2010.cn/advanced-go-programming-book/ch4-rpc/ch4-04-grpc.html#443-grpc-%E6%B5%81)
 
 ## Go protobuf
 
@@ -132,3 +133,21 @@ pb:
 	cd proto && protoc -I=. --gogofaster_out=plugins=grpc:../protogo\
                             --gogofaster_opt=paths=source_relative contract_invoke.proto
 ```
+
+### 支持的类型
+
+* stream: 服务端和客户端可以连续的发送和接受数据。
+
+    ```go
+    type HelloService_ChannelServer interface {
+        Send(*String) error
+        Recv() (*String, error)
+        grpc.ServerStream
+    }
+
+    type HelloService_ChannelClient interface {
+        Send(*String) error
+        Recv() (*String, error)
+        grpc.ClientStream
+    }
+    ```
