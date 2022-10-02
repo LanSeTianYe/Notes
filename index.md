@@ -2,6 +2,3 @@
 001110001010100101100101110110010010
 
 ## 请按 `s` 键 或者用鼠标点击右上角搜索框搜索。
-
-<iframe  src="https://output.jsbin.com/mihugovano" width="500" height="500"   frameborder="1/0"  name=""   scrolling="no">
-</iframe>
