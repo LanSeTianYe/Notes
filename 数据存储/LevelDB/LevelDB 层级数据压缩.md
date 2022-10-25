@@ -8,7 +8,7 @@
 
 ### 基础知识
 
-*　SST：Sorted String Table，基于文件系统的存储。
+* SST：Sorted String Table，基于文件系统的存储。
 * MemTable： 内存Table，LevelDB 基于跳表实现。
 * SST文件大小：2MB
 * 无效访问次数：`max(100,file_size / (6*1024))`
