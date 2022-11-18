@@ -3,7 +3,6 @@
 参考：
 
 1. [Maxwell 官网](http://maxwells-daemon.io/)
-2. [RedisStream](../../数据库/Redis/Redis Stream.md)
 
 ## Maxwell 结合 RedisStream 使用
 

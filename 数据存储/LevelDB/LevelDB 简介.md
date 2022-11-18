@@ -31,6 +31,7 @@ LevelDB 是key/value存储，key/value都以字节的形式存储。
 
 存储目录结构如下：
 
+
 ```shell
 ├── 000001.ldb
 ├── 000002.ldb
@@ -45,6 +46,7 @@ LevelDB 是key/value存储，key/value都以字节的形式存储。
 ```
 
 ### 使用
+
 
 ```go
 # 打开一个存储仓库 
