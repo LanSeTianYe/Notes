@@ -75,6 +75,9 @@ make && make install
     
     " Initialize plugin system
     call plug#end()
+    
+    " 显示行号
+    set number
     ```
 
     配置完成之后 刷新并安装插件
