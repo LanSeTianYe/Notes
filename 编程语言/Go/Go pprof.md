@@ -2,16 +2,14 @@
 
 参考：
 
-1. [Go pprof的使用](https://studygolang.com/articles/12970)
+1. [Go 大杀器之性能剖析 PProf](https://eddycjy.gitbook.io/golang/di-9-ke-gong-ju/go-tool-pprof)
 2. [go-pprof](https://golang.org/pkg/runtime/pprof/)
 
 ## go pprof
 
-1. StartCPUProfile：开始监控cpu。
-2. StopCPUProfile：结束监控CPU。
-3. WriteHeapProfile：把队中的内存信息写入到文件中。
-
 ### 命令行版本
+
+程序启动之后开始监听程序，程序执行结束之后把内存和CPU信息写入到文件中，然后命令行工具分析查看。
 
 #### CPU取样分析
 
@@ -65,23 +63,38 @@ _ "net/http/pprof"
 go http.ListenAndServe(":8080", nil)
 ```
 
-### 使用
+#### 使用
 
-1. 通过浏览器查看信息：[http://localhost:8080/debug/pprof/](http://localhost:8080/debug/pprof/)
-2. 通过命令行查看
+1. 总览：`http://127.0.0.1:8086/debug/pprof/`
+
+2. 通过命令行查看。在命令行模式下可以使用 `sample_index` 切换到不同的采样维度，如：`(pprof) sample_index=alloc_objects`。
 
     ```shell
     go tool pprof -h
-    go tool pprof -sample_index=inuse_space http://127.0.0.1:8080/debug/pprof/heap
-    go tool pprof -sample_index=inuse_space -http=:8081 http://127.0.0.1:8080/debug/pprof/heap
-    go tool pprof -sample_index=cpu http://127.0.0.1:8080/debug/pprof/profile?seconds=30
-    go tool pprof -sample_index=cpu -http=:8081 http://127.0.0.1:8080/debug/pprof/profile?seconds=30
-    go tool pprof -sample_index=samples http://127.0.0.1:8080/debug/pprof/profile?seconds=30
-    go tool pprof -sample_index=samples -http=:8081 http://127.0.0.1:8080/debug/pprof/profile?seconds=30
-    go tool pprof http://127.0.0.1:8080/debug/pprof/goroutine
-    go tool pprof -http=:8081 http://127.0.0.1:8080/debug/pprof/goroutine
     
-    #
+    ### CPU和内存
+    # 内存占用
+    go tool pprof http://127.0.0.1:8086/debug/pprof/heap
+    go tool pprof -http=:8081 http://127.0.0.1:8086/debug/pprof/heap
+    
+    # CPU 耗时
+    go tool pprof http://127.0.0.1:8086/debug/pprof/profile?seconds=30
+    go tool pprof -http=:8081 http://127.0.0.1:8086/debug/pprof/profile?seconds=30
+    
+    
+    ### 并发信息
+    # 阻塞 阻塞在同步原语上的堆栈信息
+    go tool pprof -http=:8081 http://127.0.0.1:8086/debug/pprof/block
+    
+    # 互斥锁 阻塞在互斥锁上的堆栈信息
+    go tool pprof -http=:8081 http://127.0.0.1:8086/debug/pprof/mutex
+    
+    # 当前启动协程的堆栈信息
+    go tool pprof http://127.0.0.1:8086/debug/pprof/goroutine
+    go tool pprof -http=:8081 http://127.0.0.1:8086/debug/pprof/goroutine
+    
+    
+    # 遗留的便捷入口
     -inuse_space           Same as -sample_index=inuse_space
     -inuse_objects         Same as -sample_index=inuse_objects
     -alloc_space           Same as -sample_index=alloc_space
