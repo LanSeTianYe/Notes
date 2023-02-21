@@ -146,7 +146,7 @@ go 编译的时候会优化掉没有使用的参数，可以使用 `-gcflags "-N
             /Users/feilong/workspace/github/FPF_Go/main.go:10 +0x34
     ```
 
-8. 指针作为方法的接收器，会第一个打印接收器的地址。如果不是指针或者没有接收器不会打印额外信息。
+8. 指针作为方法的接收器，会第一个打印接收器的地址。
 
     ```go
     //data := &Data{}
@@ -166,4 +166,61 @@ go 编译的时候会优化掉没有使用的参数，可以使用 `-gcflags "-N
     
     ```
 
-9. 
+9. 结构体作为方法的接收器，会第打印结构体的属性信息。
+
+    ```go
+    type Data struct {
+      value  string
+      value1 string
+    }
+    
+    func (d Data) testParam() {
+      panic("")
+    }
+    
+    func main() {
+      data := Data{value: "1", value1: "11"}
+      data.testParam()
+    }
+    
+    //输出
+    main.Data.testParam({{0x104ef4c88, 0x1}, {0x104ef4ca6, 0x2}})
+            /Users/feilong/workspace/github/FPF_Go/main.go:9 +0x3c
+    main.main()
+            /Users/feilong/workspace/github/FPF_Go/main.go:14 +0x4c
+    
+    ## demo2----------------------
+    type Data int
+    
+    func (d Data) testParam() {
+    	panic("")
+    }
+    
+    func main() {
+    	data := Data(11)
+    	data.testParam()
+    }
+    //输出
+    main.Data.testParam(0xb)
+            /Users/feilong/workspace/github/FPF_Go/main.go:6 +0x30
+    main.main()
+            /Users/feilong/workspace/github/FPF_Go/main.go:11 +0x24
+    ```
+
+10. 方法没有接收器，不会打印多余信息。
+
+    ```go
+    func testParam() {
+      panic("")
+    }
+    
+    func main() {
+      testParam()
+    }
+    
+    // 输出
+    main.testParam()
+            /Users/feilong/workspace/github/FPF_Go/main.go:6 +0x2c
+    main.main()
+            /Users/feilong/workspace/github/FPF_Go/main.go:10 +0x1c
+    ```
