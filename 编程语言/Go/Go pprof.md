@@ -104,3 +104,9 @@ go http.ListenAndServe(":8080", nil)
     -mean_delay
     ```
 
+3. 打开本地文件。
+
+	  ```
+    go tool pprof -http=:8082 check_cpu.pb.gz
+	```
+
