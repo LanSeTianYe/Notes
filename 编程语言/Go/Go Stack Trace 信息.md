@@ -12,30 +12,87 @@ go 编译的时候会优化掉没有使用的参数，可以使用 `-gcflags "-N
 
 1. `slice` ：引用类型。长度为三，第一个是指向底层数组的指针，第二个表示长度，第三个表示容量。
 
-    ```
-    // Slice header values
-    Pointer:  0x2080c3f50
-    Length:   0x2
-    Capacity: 0x4
+    ```go
+    //data := make([]string, 0)
+    //testParam(data)
+    func testParam(data []string) {
+      panic("")
+    }
+    
+    # 输出
+    main.testParam({0x1400006ef48, 0x0, 0x0})
+            /Users/feilong/workspace/github/FPF_Go/main.go:13 +0x38
+    main.main()
+            /Users/feilong/workspace/github/FPF_Go/main.go:9 +0x38
+    exit status 2
     ```
 
-2. string：应用类型，长度为二，第一个表示地址指针执行底层字节数组，第二个表示字符串长度。
+2. `map` 类型。长度为一，显示map的地址。
 
+    ```go
+    //data := make(map[string]string, 0)
+    //testParam(data)
+    
+    func testParam(data map[string]string) {
+      panic("")
+    }
+    
+    # 输出
+    goroutine 1 [running]:
+    main.testParam(0x14000066e68)
+            /Users/feilong/workspace/github/FPF_Go/main.go:16 +0x98
+    main.main()
+            /Users/feilong/workspace/github/FPF_Go/main.go:11 +0x7c
+    exit status 2
     ```
-    // String header values
-    Pointer: 0x425c0
-    Length:  0x5
-    ```
-3. int 类型：长度为1.
 
-    ```
-    // Integer value
-    Base 16: 0xa
+3. string：应用类型，长度为二，第一个表示地址指针执行底层字节数组，第二个表示字符串长度。
+
+    ```go
+    //testParam("data")
+    func testParam(data string) {
+      panic("")
+    }
+    
+    # 输出
+    main.testParam({0x104928d35, 0x4})
+            /Users/feilong/workspace/github/FPF_Go/main.go:12 +0x34
+    main.main()
+            /Users/feilong/workspace/github/FPF_Go/main.go:8 +0x28
     ```
     
-4. 指针作为方法的接收器，会第一个打印接收器的地址。如果不是指针或者没有接收器不会打印额外信息。
+4. 指针类型：长度为1，表示指针地址。
 
-5. boolean、uint8类型，会合并参数，一个字可以表示四个boolean。在64位机器上，一个字可以表示8个布尔类型。
+    ```go
+    testParam(&A{})
+    func testParam(data *A) {
+      panic("")
+    }
+    // 输出
+    main.testParam(0x14000098f58)
+            /Users/feilong/workspace/github/FPF_Go/main.go:12 +0x30
+    main.main()
+            /Users/feilong/workspace/github/FPF_Go/main.go:8 +0x30
+    exit status 2
+    ```
+
+4. int 类型：长度为1，表示int的值。
+
+    ```go
+    //testParam(10000000)
+    func testParam(data int) {
+    	panic("")
+    }
+    
+    //输出
+    main.testParam(0x989680)
+            /Users/feilong/workspace/github/FPF_Go/main.go:12 +0x30
+    main.main()
+            /Users/feilong/workspace/github/FPF_Go/main.go:8 +0x24
+    exit status 2
+    ```
+
+4. boolean、uint8类型，会合并参数，一个字可以表示四个boolean。在64位机器上，一个字可以表示8个布尔类型。
 
     ```
     # 代码
@@ -59,19 +116,54 @@ go 编译的时候会优化掉没有使用的参数，可以使用 `-gcflags "-N
     # 参数解析
     // Parameter values
     true, false, true, 25
-
+    
     // Word value
     Bits    Binary      Hex   Value
     00-07   0000 0001   01    true
     08-15   0000 0000   00    false
     16-23   0000 0001   01    true
     24-31   0001 1001   19    25
-
+    
     // Declaration
     main.Example(b1, b2, b3 bool, i uint8)
-
+    
     // Stack trace
     main.Example(0x19010001)
     ```
 
-6. 接口类型参数，第一个表示类型，第二个表示指针地址。
+5. 接口类型参数，第一个表示类型，第二个表示指针地址。
+
+    ```go
+    // testParam(errors.New("s"))
+    func testParam(data error) {
+      panic("")
+    }
+    
+    //输出
+    main.testParam({0x104f718c8, 0x14000110000})
+        /Users/feilong/workspace/github/FPF_Go/main.go:14 +0x34
+    main.main()
+            /Users/feilong/workspace/github/FPF_Go/main.go:10 +0x34
+    ```
+
+8. 指针作为方法的接收器，会第一个打印接收器的地址。如果不是指针或者没有接收器不会打印额外信息。
+
+    ```go
+    //data := &Data{}
+    //data.testParam()
+    type Data struct{ value string }
+    
+    func (d *Data) testParam() {
+      panic("")
+    }
+    
+    //输出
+    main.(*Data).testParam(0x14000098f58)
+            /Users/feilong/workspace/github/FPF_Go/main.go:8 +0x30
+    main.main()
+            /Users/feilong/workspace/github/FPF_Go/main.go:13 +0x24
+    
+    
+    ```
+
+9. 
