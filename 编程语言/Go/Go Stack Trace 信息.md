@@ -6,7 +6,11 @@
 
 ## Go Stack Trace 信息
 
-go 编译的时候会优化掉没有使用的参数，可以使用 `-gcflags "-N -l"` 禁止编译优化。
+go 编译的时候会优化掉没有使用的参数，可以使用 `-gcflags "-N -l"` 禁止编译优化。例如：
+
+```go
+go run -gcflags "-N -l" main.go
+```
 
 ### 堆栈追踪信息含义
 
@@ -164,6 +168,38 @@ go 编译的时候会优化掉没有使用的参数，可以使用 `-gcflags "-N
             /Users/feilong/workspace/github/FPF_Go/main.go:13 +0x24
     
     
+    ```
+
+9. chan 类型参数，长度为1，打印指针地址。
+
+      ```go
+      //testParam(ch)
+      func testParam(data chan int) {
+        panic("")
+      }
+
+      // 输出
+      main.testParam(0x140000143c0)
+          /Users/feilong/workspace/github/FPF_Go/main.go:9 +0x30
+      main.main()
+          /Users/feilong/workspace/github/FPF_Go/main.go:5 +0x30
+      ```
+
+10. func 类型作为参数，长度为1，指针地址。
+
+    ```go
+    // data := func(s string) {}
+    // testParam(data)
+
+    func testParam(data AFunc) {
+    panic("")
+    }
+
+    //输出
+    main.testParam(0x1025508a8)
+    /Users/feilong/workspace/github/FPF_Go/main.go:11 +0x30
+    main.main()
+    /Users/feilong/workspace/github/FPF_Go/main.go:7 +0x2c
     ```
 
 9. 结构体作为方法的接收器，会第打印结构体的属性信息。
