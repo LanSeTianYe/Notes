@@ -14,7 +14,7 @@ go run -gcflags "-N -l" main.go
 
 ### 堆栈追踪信息含义
 
-1. `slice` ：引用类型。长度为三，第一个是指向底层数组的指针，第二个表示长度，第三个表示容量。
+1. `slice` ：引用类型。个数为三，第一个是指向底层数组的指针，第二个表示长度，第三个表示容量。
 
     ```go
     //data := make([]string, 0)
@@ -31,7 +31,7 @@ go run -gcflags "-N -l" main.go
     exit status 2
     ```
 
-2. `map` 类型。长度为一，显示map的地址。
+2. `map` 类型。个数为一，显示map的地址。
 
     ```go
     //data := make(map[string]string, 0)
@@ -50,7 +50,7 @@ go run -gcflags "-N -l" main.go
     exit status 2
     ```
 
-3. string：应用类型，长度为二，第一个表示地址指针执行底层字节数组，第二个表示字符串长度。
+3. string：应用类型，个数为二，第一个表示地址指针执行底层字节数组，第二个表示字符串长度。
 
     ```go
     //testParam("data")
@@ -65,7 +65,7 @@ go run -gcflags "-N -l" main.go
             /Users/feilong/workspace/github/FPF_Go/main.go:8 +0x28
     ```
     
-4. 指针类型：长度为1，表示指针地址。
+4. 指针类型：个数为1，表示指针地址。
 
     ```go
     testParam(&A{})
@@ -80,7 +80,7 @@ go run -gcflags "-N -l" main.go
     exit status 2
     ```
 
-4. int 类型：长度为1，表示int的值。
+4. int 类型：个数为1，表示int的值。
 
     ```go
     //testParam(10000000)
@@ -135,7 +135,7 @@ go run -gcflags "-N -l" main.go
     main.Example(0x19010001)
     ```
 
-5. 接口类型参数，第一个表示类型，第二个表示指针地址。
+5. 接口类型参数，个数为2，第一个表示类型，第二个表示指针地址。
 
     ```go
     // testParam(errors.New("s"))
@@ -150,7 +150,7 @@ go run -gcflags "-N -l" main.go
             /Users/feilong/workspace/github/FPF_Go/main.go:10 +0x34
     ```
 
-8. 指针作为方法的接收器，会第一个打印接收器的地址。
+8. 指针作为方法的接收器，个数为一，会第一个打印接收器的地址。
 
     ```go
     //data := &Data{}
@@ -170,7 +170,7 @@ go run -gcflags "-N -l" main.go
     
     ```
 
-9. chan 类型参数，长度为1，打印指针地址。
+9. chan 类型参数，个数为1，打印指针地址。
 
       ```go
       //testParam(ch)
@@ -185,7 +185,7 @@ go run -gcflags "-N -l" main.go
           /Users/feilong/workspace/github/FPF_Go/main.go:5 +0x30
       ```
 
-10. func 类型作为参数，长度为1，指针地址。
+10. func 类型作为参数，个数为1，指针地址。
 
     ```go
     // data := func(s string) {}
