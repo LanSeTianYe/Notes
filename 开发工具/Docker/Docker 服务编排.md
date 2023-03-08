@@ -4,8 +4,6 @@
 
 ### Docker Compose
 
-#### Docker Compose 简介 
-
 使 Docker容器 像服务一样运行，通过编写 `yaml` 文件，定制 docker 容器的运行方式。 
 
 #### 下载和安装 
