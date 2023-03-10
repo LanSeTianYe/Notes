@@ -4,7 +4,18 @@
 
 1. [docker 安装](https://yeasy.gitbooks.io/docker_practice/install/centos.html)
 
-## Docker 命令
+
+## Docker 常用命令
+
+1. 启动 MyQL。
+
+    ```
+    # -p 宿主机端口:容器内部端口
+    # MYSQL_ROOT_PASSWORD 默认密码
+    docker run --name mysql -e MYSQL_ROOT_PASSWORD=123456 -p 3306:3306 -d mysql:8.0
+    ```
+
+## Docker 命令详解
 
 查看帮助文档 : `docker --help` `docker [start][ps][build] --help` 
 
