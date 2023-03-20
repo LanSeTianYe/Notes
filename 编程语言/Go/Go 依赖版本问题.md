@@ -7,9 +7,9 @@
 
 ## Go 依赖版本问题
 
-**使用的Go版本：**`1.16.15`
+问题描述：项目使用 `1.16.15` 版本的Go，项目依赖的仓库依赖了 `Go 1.17` 的方法，
 
-**起因：** 项目引入依赖之后编译报错，错误信息如下：
+**编译错误信息：** 
 
 ```shell
 # golang.org/x/sys/unix
@@ -24,7 +24,7 @@ note: module requires Go 1.17
 
 ### 方法一：使用 `go graph` 
 
-使用 `go graph` 之内依赖的包，然后降低包的版本。
+使用 `go graph` 找到依赖的包，然后降低包的版本。
 
 ```
 # 找到谁依赖了 golang.org/x/sys@v0.4.0 
@@ -46,7 +46,7 @@ golang.org/x/crypto@v0.5.0 golang.org/x/text@v0.6.0
 
 ### 方法二：使用 `gmchart` 解决
 
-以图形画方式展示Go模块依赖关系，找到依赖关系。类似于方法一。
+以图形画方式展示Go模块依赖关系，找到依赖关系。
 
 ### 安装 gmchart 
 
@@ -61,3 +61,5 @@ go install github.com/PaulXu-cn/go-mod-graph-chart/gmchart@latest
 ```shell
 go mod graph | gmchart
 ```
+
+最终找到是 `github.com/xuri/excelize/v2@v2.7.0` 的依赖引入了对 `golang.org/x/sys@v0.4.0` 的依赖。把 `excelize` 的版本降到 `2.6.0` 解决问题。
