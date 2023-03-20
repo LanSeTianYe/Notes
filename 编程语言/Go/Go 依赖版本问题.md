@@ -4,7 +4,6 @@
 
 1. [Golang 遇到 note: module requires Go 1.nn 解决之道，不升go](https://learnku.com/articles/74763)
 
-
 ## Go 依赖版本问题
 
 问题描述：项目使用 `1.16.15` 版本的Go，项目依赖的仓库依赖了 `Go 1.17` 的方法，
