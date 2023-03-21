@@ -4,7 +4,7 @@
 
 git tag 打标签。
 
-## 常用操作 
+### 常用操作 
 
 1. 查看标签。
 
@@ -22,6 +22,11 @@ git tag 打标签。
 
     ```
     git tag -a v1.0.0 -m "first tag"
+    ```
+3. 推送标签
+
+    ```shell
+    git push origin v1.1.12
     ```
 
 4. 指定提交打标签。
