@@ -6,13 +6,13 @@
 
 ## Typora 0.11.18 版本启动
 
+[Typora-0.11.18版本](./Typora-0.11.18.dmg)
+
 **问题**：启动 Typora 时报错：`当前测试版版本过低，请下载较新版本`。
 
 **解决方案**：可以通过调系统时间。然后再启动的方法启动。
 
-脚本：[typora.sh](./typora.sh)
-
-脚本内容：
+**脚本内容：**
 
 ```shell
 #/bin/bash
@@ -27,18 +27,18 @@ open "/Applications/Typora.app"
 sudo sntp -sS time.apple.com
 ```
 
-### 手动启动
+### 操作过程
 
-* 第一步：下载脚本 [typora.sh](./typora.sh)。
+**第一步**：下载脚本 [typora.sh](./typora.sh)。
 
-* 第二步：把脚本移动到 `/usr/local/bin` 目录。
+**第二步**：把脚本移动到 `/usr/local/bin` 目录。
 
-  ```shell
-  mv ./typora.sh /usr/local/bin/typora
-  ```
+```shell
+mv ./typora.sh /usr/local/bin/typora
+```
 
-* 第三步：执行脚本。
+**第三步**：执行脚本。
 
-  ```shell
-  typora
-  ```
+```shell
+typora
+```
