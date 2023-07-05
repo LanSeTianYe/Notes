@@ -13,38 +13,38 @@
 * masquerade connections
 * multicast memberships
 
-1. 语法
+### 语法
 
-  ```shell
-  netstat [options ...]
-  ```
+```shell
+netstat [options ...]
+```
 
-3. 第一个选项
+### 第一个选项
 
-  * (none) 默认情况， 显示被打开的socket列表
-  * --route, -r 显示路由表
-  * --groups, -g 显示组播信息
-  * --interfaces, -i 显示所有的网络接口表，网卡
-  * --masquerade, -M 
-  * --statistics, -s
+* (none) 默认情况， 显示被打开的socket列表
+* --route, -r 显示路由表
+* --groups, -g 显示组播信息
+* --interfaces, -i 显示所有的网络接口表，网卡
+* --masquerade, -M 
+* --statistics, -s
 
-5. 其他选项
+### 其他选项
 
-  * --all, -a 显示所有端口
+* --all, -a 显示所有端口
 
-  * --verbos, -V 显示指令执行过程
+* --verbos, -V 显示指令执行过程
 
-  * --tcp, -t 显示tcp连接状况
+* --tcp, -t 显示tcp连接状况
 
-  * --udp, -u 显示udp连接状况
+* --udp, -u 显示udp连接状况
 
-  * --numeric, -n 显示数字IP地址，而不是域名
+* --numeric, -n 显示数字IP地址，而不是域名
 
-  * --extend, -e 显示附加信息
+* --extend, -e 显示附加信息
 
-  * --listening, -l 只显示监听的Socket,默认参数
+* --listening, -l 只显示监听的Socket,默认参数
 
-  * --program, -p 显示scoket所属的应用程序的Pid和名字
+* --program, -p 显示scoket所属的应用程序的Pid和名字
 
 ### 实例
 
