@@ -7,6 +7,8 @@
 
 ## HTTP Cookie
 
+`Cookie` 设计用于存储客户端和服务端交互时的会话状态信息。
+
 `Cookie` 存储在浏览器中，当浏览器发起到服务端请求的，会根据 `Domain` 和 `Path` 共同确定是否发送Cookie的服务端。
 
 如果 `Cookie` 设置 `Secure` 属性，只有请求是 `Https` 请求的时候会发送 `Cookie`。
