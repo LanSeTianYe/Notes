@@ -7,19 +7,43 @@
 
 ## HTTP Cookie
 
+`Cookie` 存储在浏览器中，当浏览器发起到服务端请求的，会根据 `Domain` 和 `Path` 共同确定是否发送Cookie的服务端。
+
+如果 `Cookie` 设置 `Secure` 属性，只有请求是 `Https` 请求的时候会发送 `Cookie`。
+
+如果到了 `Cookie` 已经过期，则请求的时候不会带上该 `Cookie`。
+
+如果设置了 `HttpOnly` 属性，则客户端没有修改该 `Cookie` 的权限。
+
 ### Cookie 属性的作用
 
 |字段|含义|
-|::|::|
+|:-|:-|
 |Name|名字|
 |Value|值|
-|Domain|所属的域 `.sunfeilong.com` `note.sunfeilong.com`|
-|Max-Age|距离过期还剩余多少秒。IE不支持，其余浏览器支持。不推荐使用|
-|Expires|过期日期，推荐使用|
-|Path|请求路径，和域共同确定是否发送Cookie给服务端|
-|Size|Cookie大小|
-|HttpOnly|设置该属性后客户端不可以编辑该Cookie|
-|Secure|设置该属性后，只有HTTPS请求会发送该属性|
+|Path|请求路径，和Domain共同确定，该Cookie是否发送给服务端|
+|Domain|所属的域，如`.sunfeilong.com` `note.sunfeilong.com`|
+|Max-Age|距离过期还剩余多少秒。IE不支持，其余浏览器支持。**不推荐使用**|
+|Expires|过期日期。**推荐使用**|
+|Size|Cookie 的大小|
+|HttpOnly|控制客户端是否可以编辑该Cookie|
+|Secure|安全性，设置该属性之后只有一HTTPS请求会带上该Cookie。|
+
+### 一次设置Cookie的记录
+
+只有 `Set-Cookie: tal_token=1; Path=/; Domain=sunfeilong.com; Expires=Sat, 15 Jul 2023 02:37:29 GMT; HttpOnly` 这个Cookie会存储到浏览器中。
+
+```shell
+➜  test curl -I http://www.sunfeilong.com:8888/echo
+HTTP/1.1 200 OK
+Set-Cookie: tal_token=1; Path=/; Domain=sunfeilong.com; Expires=Sat, 15 Jul 2023 02:37:29 GMT; HttpOnly
+Set-Cookie: tal_token=2; Path=/; Domain=note.sunfeilong.com; Expires=Sat, 15 Jul 2023 02:37:29 GMT; HttpOnly
+Set-Cookie: tal_token=3; Path=/; Domain=aaaa.sunfeilong.com; Expires=Sat, 15 Jul 2023 02:37:29 GMT; HttpOnly; Secure
+Set-Cookie: tal_token=3; Path=/; Domain=aaaa.sunfeilong.com; Max-Age=1689388649; HttpOnly; Secure
+Date: Wed, 05 Jul 2023 02:37:29 GMT
+Content-Length: 6
+Content-Type: text/plain; charset=utf-8
+```
 
 
 
