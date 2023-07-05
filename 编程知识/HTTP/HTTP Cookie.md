@@ -27,8 +27,8 @@
 |Domain|所属的域，如`.sunfeilong.com` `note.sunfeilong.com`|
 |Max-Age|距离过期还剩余多少秒。IE不支持，其余浏览器支持。**不推荐使用**|
 |Expires|过期日期。**推荐使用**|
-|Size|Cookie 的大小|
-|HttpOnly|控制客户端是否可以编辑该Cookie|
+|Size|Cookie 的大小。|
+|HttpOnly|控制客户端是否可以编辑该Cookie。|
 |Secure|安全性，设置该属性之后只有一HTTPS请求会带上该Cookie。|
 
 ### 一次设置 Cookie 的记录

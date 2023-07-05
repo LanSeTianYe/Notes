@@ -4,4 +4,8 @@
 
 
 
-## HTTP Header
+## HTTP Request Header
+
+|名称|作用|
+|::|::|
+|Host||
