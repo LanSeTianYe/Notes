@@ -1,19 +1,21 @@
-##   
-时间：2017/6/3 22:45:19   
+时间：2017-06-03 22:45:19   
+
 参考：
 
 1. [http://man.linuxde.net/netstat](http://man.linuxde.net/netstat)
 
-##  
+##  Netstat
 
 1. 简介
 
     打印网络连接信息。输出的信息类型根据第一个参数的不同而不同包含：
+
 	* network connections
 	* routing tables
 	* interface statistics 
 	* masquerade connections
 	* multicast memberships
+
 2. 语法
 	
 		netstat [options ...]
@@ -24,7 +26,7 @@
 	* --interfaces, -i 显示所有的网络接口表，网卡
 	* --masquerade, -M 
 	* --statistics, -s 
-4. 其他选项
+5. 其他选项
 
 	* --all, -a 显示所有端口
 	* --verbos, -V 显示指令执行过程
