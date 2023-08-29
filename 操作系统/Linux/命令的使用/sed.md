@@ -2,13 +2,13 @@
 
 ## sed
 
-## sed 简介 
-
-注：Mac的Sed命令用法不一致，`-i` 后面需要加 `""`。
+注：Mac的Sed命令用法和Linux不一致，`-i` 后面需要加 `""`。
 
 ```shell
 sed -i '' 's/aa/bb/g' 123.txt
 ```
+
+## sed 简介 
  
 替换字符串。
 
