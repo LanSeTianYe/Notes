@@ -296,5 +296,5 @@ performance: bodyclose, maligned, noctx, prealloc
 sql: execinquery, rowserrcheck, sqlclosecheck
 style: asciicheck, containedctx, decorder, depguard, dogsled, dupl, errname, exhaustivestruct, exhaustruct, forbidigo, forcetypeassert, gochecknoglobals, gochecknoinits, goconst, gocritic, godot, godox, goerr113, goheader, golint, gomnd, gomoddirectives, gomodguard, goprintffuncname, gosimple, grouper, ifshort, importas, interfacebloat, interfacer, ireturn, lll, loggercheck, makezero, misspell, nakedret, nilnil, nlreturn, nolintlint, nonamedreturns, nosnakecase, nosprintfhostport, paralleltest, predeclared, promlinter, revive, stylecheck, tagliatelle, tenv, testpackage, thelper, tparallel, unconvert, usestdlibvars, varnamelen, wastedassign, whitespace, wrapcheck, wsl
 test: exhaustivestruct, exhaustruct, paralleltest, testableexamples, testpackage, tparallel
-unused: deadcode, ineffassign, structcheck, unparam, unused, varcheck
+unused: deadcode, ineffassign, structcheck, unparam, unused, varcheck 
 ```
