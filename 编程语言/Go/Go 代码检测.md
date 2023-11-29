@@ -5,6 +5,7 @@
 1. [https://github.com/golang/lint](https://github.com/golang/lint)
 2. [staticcheck](https://staticcheck.io/docs/)
 3. [如果你用Go，不要忘了vet](https://studygolang.com/articles/9619)
+4. [golangci-lint](https://golangci-lint.run/)
 
 ## GO 代码检测
 
@@ -171,6 +172,12 @@ staticcheck -explain SA5009
         https://staticcheck.io/docs/checks#SA5009
 ···
 ```
+
+### golangci-lint
+
+是集成了多个linters（静态分析工具）的框架，支持30多种linters，并且可以同时运行它们。
+
+
 
 
 
