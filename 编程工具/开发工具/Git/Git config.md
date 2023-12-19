@@ -20,6 +20,7 @@
     ```shell
     git config [--global] user.name "sunfeilong1993"
     git config [--global] user.email "1498282352@qq.com"
+    git config user.name "sunfeilong" && git config user.email "sunfeilong1993@gmail.com"
     ```
 4. 配置支持长路径文件。  
 
