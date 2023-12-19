@@ -4,6 +4,8 @@
 
 1. [gomock](https://pkg.go.dev/github.com/golang/mock/gomock#pkg-variables)
 2. [benchmark 基准测试](https://geektutu.com/post/hpg-benchmark.html)
+3. [benchstat 对比测试结果](https://pkg.go.dev/golang.org/x/perf/cmd/benchstat)
+3. [go benchstat 工具](https://chenlujjj.github.io/go/benchstat/)
 
 ## Go 测试
 
@@ -43,12 +45,9 @@ go test -v -benchmem -benchtime=1000000000x -count=2
 常用方法：
 
 * ResetTimer：重新开始计时。
-
 * StopTimer：暂停计时和StartTimer结合使用。
-
 * StartTimer ：开始计时。
 
-  
 
 下面是测试 `map` 和 `sync.Map` 的例子：
 
@@ -106,7 +105,37 @@ BenchmarkMap-8          1000000000               7.297 ns/op           0 B/op   
 BenchmarkSyncMap-8      1000000000              15.03 ns/op            0 B/op          0 allocs/op
 ```
 
+### Benchstat
 
+计算和比较 `benchmark` 的统计结果。
+
+安装：
+
+```shell
+go get -u golang.org/x/perf/cmd/benchstat
+go install golang.org/x/perf/cmd/benchstat
+```
+
+示例：
+
+```shell
+➜  performance git:(master) ✗ go test -v -benchtime=1000x  -bench=. > old.txt 
+➜  performance git:(master) ✗ go test -v -benchtime=1000x  -bench=. > new.txt
+
+➜  performance git:(master) ✗ benchstat old.txt new.txt                      
+goos: darwin
+goarch: arm64
+                              │    old.txt    │               new.txt                │
+                              │    sec/op     │    sec/op     vs base                │
+ArrayAppendNoInitSize-8          38.14µ ± ∞ ¹   47.83µ ± ∞ ¹       ~ (p=1.000 n=1) ²
+ArrayAppendWithInitSize-8        32.45µ ± ∞ ¹   32.63µ ± ∞ ¹       ~ (p=1.000 n=1) ²
+ArrayAssignmentWithInitSize-8    6.798µ ± ∞ ¹   6.680µ ± ∞ ¹       ~ (p=1.000 n=1) ²
+ArrayTraversal-8                 4.750n ± ∞ ¹   4.959n ± ∞ ¹       ~ (p=1.000 n=1) ²
+MapTraversal-8                  100.80n ± ∞ ¹   92.25n ± ∞ ¹       ~ (p=1.000 n=1) ²
+geomean                          1.321µ         1.367µ        +3.43%
+¹ need >= 6 samples for confidence interval at level 0.95
+² need >= 4 samples to detect a difference at alpha level 0.05
+```
 
 ### Example测试
 

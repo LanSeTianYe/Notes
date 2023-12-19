@@ -175,6 +175,10 @@ staticcheck -explain SA5009
 
 ### golangci-lint
 
+```
+golangci-lint run -c .golangci.yml
+```
+
 是集成了多个linters（静态分析工具）的框架，支持30多种linters，并且可以同时运行它们。
 
 ```shell
