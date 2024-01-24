@@ -53,7 +53,7 @@
         SELECT * FROM person;
         update person SET age = age + 1 WHERE name = 1;
         COMMIT;
-
+    
         START TRANSACTION;
         SELECT * FROM person;
         update person SET age = age + 1 WHERE name = 1;
