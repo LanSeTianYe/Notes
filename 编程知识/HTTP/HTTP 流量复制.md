@@ -16,7 +16,7 @@
 
 GoReplay is an open-source network monitoring tool which can record your live traffic, and use it for shadowing, load testing, monitoring and detailed analysis.
 
-GoReplay 监听HTTP端口，记录HTTP请求。把记录的请求发送到其它HTTP服务，支持流量放大或缩小。可以用记录的请求测试服务（功能测试或眼里测试）。
+GoReplay 监听HTTP端口，记录HTTP请求。把记录的请求发送到其它HTTP服务，支持流量放大或缩小。可以用记录的请求测试服务（功能测试或压力测试）。
 
 ### GoReplay 使用
 
@@ -96,5 +96,4 @@ gor -input-file './request_0.gor|800%' -output-tcp "localhost:8090|10%" --http-h
 The ngx_http_mirror_module module (1.13.4) implements mirroring of an original request by creating background mirror subrequests. Responses to mirror subrequests are ignored.
 
 不够灵活，变更需要重新加载Nginx。
-
 
