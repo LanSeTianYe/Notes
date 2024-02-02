@@ -1,17 +1,44 @@
 时间: 2023-12-18 15:03:03
 
 参考：
-
-1. [郑建勋：代码优化的三重境界](https://mp.weixin.qq.com/s?__biz=MjM5NTk0NjMwOQ==&mid=2651158406&idx=1&sn=e5ae249e07694991a8f14c255dbd5153&chksm=bd011dac8a7694bada7fc9acf6b8be2bf577255c2eaef8653e6dfcf3ba8cc8b0161802fba41f&scene=27)
+1. [让 CPU 告诉你硬盘和网络到底有多慢](https://cizixs.com/2017/01/03/how-slow-is-disk-and-network/)
+2. [郑建勋：代码优化的三重境界](https://mp.weixin.qq.com/s?__biz=MjM5NTk0NjMwOQ==&mid=2651158406&idx=1&sn=e5ae249e07694991a8f14c255dbd5153&chksm=bd011dac8a7694bada7fc9acf6b8be2bf577255c2eaef8653e6dfcf3ba8cc8b0161802fba41f&scene=27)
 2. [郑建勋：Go程序性能分层优化 | CPU篇](https://mp.weixin.qq.com/s?__biz=MzAwNDUxOTQ5MQ==&mid=2247521593&idx=1&sn=bd532d38ef1d438b1ceb3825826aaa7e&chksm=9b287615ac5fff0366a04917d109d0f212a3c2c99badf2fbd584a9f2a6f1d3d4997f27bfa961&scene=21#wechat_redirect)
-
-3. [让 CPU 告诉你硬盘和网络到底有多慢](https://cizixs.com/2017/01/03/how-slow-is-disk-and-network/)
+3. [Go 大杀器之性能剖析 PProf](https://eddycjy.gitbook.io/golang/di-9-ke-gong-ju/go-tool-pprof)
+4. [Go 大杀器之跟踪剖析 trace](https://eddycjy.gitbook.io/golang/di-9-ke-gong-ju/go-tool-trace)
 
 ## Go 性能优化
 
-### 性能介绍
+### 简介
 
-计算机：
+**简介：** 通过优化代码逻辑，提升系统性能。
+
+常见的提升性能的手段：
+
+* 提高机器配置。主要包含CPU、内存、带宽、磁盘等。
+* 增加机器数量。
+* 提高算法效率。优化算法是算法的时间耗时更低。
+* 优化代码逻辑。使用性能更高的方法、类库。
+* 并发。并发处理业务逻辑，让计算机资源得到充分利用。
+* 连接复用。数据库连接池等。
+* 使用缓存：缓存处理结果，避免重复计算。可用本地缓存 、分布式缓存等。
+* 慢查询优化。
+* 使用更切合场景的数据存储。如时序数据库、OLAP 数据库等。
+
+**过程：** 找出系统性能瓶颈，使用不同优化手段解决性能瓶颈。
+
+**原则：** 
+
+* 优先优化对系统性能影响比较明显的问题。
+* 避免过度优化。
+
+![](../../img/go/time_cost.png)
+
+
+
+### 耗时
+
+计算机不同层次、不同操作耗时如下图所示：
 
 ![](../../img/go/cpu_time.png)
 
@@ -21,11 +48,19 @@
 
 
 
+###  什么时候优化？
 
-### 性能测试工具使用
+* 开发完之后发现性能不能满足线上需求。
+* 压测性能不达标。
+* 线上接口响应缓慢？
+
+
+
+
+### 性能分析工具
 数组和map遍历性能。
 
-### pprof 工具使用
+#### pprof 工具使用
 
 ```go
 package main
@@ -61,7 +96,7 @@ go tool pprof -sample_index=cpu -http=:8084 http://127.0.0.1:8080/debug/pprof/pr
 ```
 
 
-#### 一次线上问题排查过程
+##### 一次线上问题排查过程
 
 **业务：**从 Kafka 拉取数据，然后转换成需要的格式，保存到数据库。
 
@@ -195,3 +230,6 @@ func (d *DispatcherCenter) Run() {
 **在用对象**
 
 ![](../../img/go/consumer_inuse_object.png)
+
+
+#### Trace 分析
