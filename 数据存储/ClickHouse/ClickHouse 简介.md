@@ -22,5 +22,7 @@ ClickHouse 是一个 OLAP 数据库。
 ./clickhouse client --secure --host play.clickhouse.com --user explorer
 ```
 
+## 存储引擎
 
+* MySQL：链接到MySQL数据库，查询发送到MySQL进行处理。
 
