@@ -6,6 +6,7 @@
 2. [Installing snap on CentOS](https://snapcraft.io/docs/installing-snap-on-centos)
 
 环境：
+
 * Centos7
 
 ## Certbot 安装
