@@ -193,3 +193,84 @@ curl [options] [URL...]
     # 在fd-deu-fra词典中查询bash单词的含义
     curl dict://dict.org/d:bash:fd-deu-fra
     ```
+
+* 统计接口耗时
+
+  ```shell
+  curl -w "\n\n\n\n\n响应:\n        url_effective:  %{url_effective}
+            error_msg:  %{errormsg}
+            exit_code:  %{exitcode}
+          content_type:  %{content_type}
+             http_code:  %{http_code}
+          http_connect:  %{http_connect}
+          http_version:  %{http_version}
+              local_ip:  %{local_ip}
+             remote_ip:  %{remote_ip}
+           remote_port:  %{remote_port}
+         response_code:  %{response_code}
+          size_request:  %{size_request} \tbyte
+         size_download:  %{size_download} \tbyte
+           size_header:  %{size_header} \tbyte
+           size_upload:  %{size_upload} \tbyte
+        speed_download:  %{speed_download} \tbyte/s
+          speed_upload:  %{speed_upload} \tbyte/s
+       time_namelookup:  %{time_namelookup} s (DNS 域解析耗时)
+          time_connect:  %{time_connect} s (TCP 三次握手耗时)
+       time_appconnect:  %{time_appconnect} s (SSL/SSH 等上层协议建立连接)
+         time_redirect:  %{time_redirect} s (重定向步骤耗时)
+      time_pretransfer:  %{time_pretransfer} s (从请求开始到向服务器发送第一个 GET/POST 请求开始之前的耗时)
+    time_starttransfer:  %{time_starttransfer} s (从请求开始到第一个字节将要传输的时>    间)
+                       ----------
+            time_total:  %{time_total} s (从请求开始到完成的总耗时)
+   ------------------------------------------------------------------
+   备注：
+   DNS 解析查询时间：time_namelookup
+   TCP 建立连接时间：time_connect - time-namelookup
+     服务器处理时间：time_starttransfer - time_pretransfer
+       内容传输时间：time_total - time_starttransfer\n" -S -s -L -k -o /dev/null https://note.sunfeilong.com
+  ```
+
+等价命令，可以把输出内容写到文件中：
+
+```shell
+curl -w "@format.txt" -S -s -L -k -o /dev/null https://note.sunfeilong.com
+```
+
+文件内容：`format.txt`
+
+```shell
+           
+      url_effective:  %{url_effective}\n
+          error_msg:  %{errormsg}\n
+          exit_code:  %{exitcode}\n
+       content_type:  %{content_type}\n
+          http_code:  %{http_code}\n
+       http_connect:  %{http_connect}\n
+       http_version:  %{http_version}\n
+           local_ip:  %{local_ip}\n
+          remote_ip:  %{remote_ip}\n
+        remote_port:  %{remote_port}\n
+      response_code:  %{response_code}\n
+       size_request:  %{size_request} \tbyte\n
+      size_download:  %{size_download} \tbyte\n
+        size_header:  %{size_header} \tbyte\n
+        size_upload:  %{size_upload} \tbyte\n
+     speed_download:  %{speed_download} \tbyte/s\n
+       speed_upload:  %{speed_upload} \tbyte/s\n
+    time_namelookup:  %{time_namelookup} s (DNS 域解析耗时)\n
+       time_connect:  %{time_connect} s (TCP 三次握手耗时)\n
+    time_appconnect:  %{time_appconnect} s (SSL/SSH 等上层协议建立连接)\n
+      time_redirect:  %{time_redirect} s (重定向步骤耗时)\n
+   time_pretransfer:  %{time_pretransfer} s (从请求开始到向服务器发送第一个 GET/POST 请求开始之前的耗时
+)\n
+ time_starttransfer:  %{time_starttransfer} s (从请求开始到第一个字节将要传输的时间)\n
+                    ----------\n
+         time_total:  %{time_total} s (从请求开始到完成的总耗时)\n
+------------------------------------------------------------------\n
+备注：\n
+DNS 解析查询时间：time_namelookup\n
+TCP 建立连接时间：time_connect - time-namelookup\n
+  服务器处理时间：time_starttransfer - time_pretransfer\n
+    内容传输时间：time_total - time_starttransfer\n
+```
+
