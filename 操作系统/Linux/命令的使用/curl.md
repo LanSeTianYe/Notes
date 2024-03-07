@@ -227,13 +227,13 @@ curl [options] [URL...]
    DNS 解析查询时间：time_namelookup
    TCP 建立连接时间：time_connect - time-namelookup
      服务器处理时间：time_starttransfer - time_pretransfer
-       内容传输时间：time_total - time_starttransfer\n" -S -s -L -k -o /dev/null https://note.sunfeilong.com
+       内容传输时间：time_total - time_starttransfer\n" -S -s -L -k -o /dev/null https://www.baidu.com
   ```
 
 等价命令，可以把输出内容写到文件中：
 
 ```shell
-curl -w "@format.txt" -S -s -L -k -o /dev/null https://note.sunfeilong.com
+curl -w "@format.txt" -S -s -L -k -o /dev/null https://www.baidu.com
 ```
 
 文件内容：`format.txt`
