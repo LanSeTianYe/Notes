@@ -38,7 +38,9 @@ sudo yum remove certbot
 安装过程中需要在命令行 输入 邮箱，选择域名等。
 
 ```
+# 安装
 sudo snap install --classic certbot
+# 命令行支持
 sudo ln -s /snap/bin/certbot /usr/bin/certbot
 ```
 
