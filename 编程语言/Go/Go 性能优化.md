@@ -8,6 +8,7 @@
 2. [郑建勋：Go程序性能分层优化 | CPU篇](https://mp.weixin.qq.com/s?__biz=MzAwNDUxOTQ5MQ==&mid=2247521593&idx=1&sn=bd532d38ef1d438b1ceb3825826aaa7e&chksm=9b287615ac5fff0366a04917d109d0f212a3c2c99badf2fbd584a9f2a6f1d3d4997f27bfa961&scene=21#wechat_redirect)
 3. [Go 大杀器之性能剖析 PProf](https://eddycjy.gitbook.io/golang/di-9-ke-gong-ju/go-tool-pprof)
 4. [Go 大杀器之跟踪剖析 trace](https://eddycjy.gitbook.io/golang/di-9-ke-gong-ju/go-tool-trace)
+5. [Hi, 使用多年的go pprof检查内存泄漏的方法居然是错的?!](https://colobu.com/2019/08/20/use-pprof-to-compare-go-memory-usage/)
 
 ## Go 性能优化
 
