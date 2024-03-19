@@ -194,7 +194,7 @@ curl [options] [URL...]
     curl dict://dict.org/d:bash:fd-deu-fra
     ```
 
-* 统计接口耗时
+* 统计HTTP请求各阶段接口耗时
 
   ```shell
   curl -w "\n\n\n\n\n响应:\n        url_effective:  %{url_effective}
