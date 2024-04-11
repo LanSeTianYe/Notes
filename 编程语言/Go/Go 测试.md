@@ -40,7 +40,9 @@ go test -v -benchmem -benchtime=1000000000x -bench=.
 go test -v -benchmem -benchtime=1000s -bench=.
 go test -v -benchmem -benchtime=1000000000x -cpu=1,2,3
 go test -v -benchmem -benchtime=1000000000x -count=2
-go test -bench='Benchmark(Empty|Map|SyncMap)' -benchmem -benchtime=10s
+
+# 默认会执行单元测试，加上 -run="^$"，可以排除单元测试
+go test -run="^S" -bench='Benchmark(Empty|Map|SyncMap)' -benchmem -benchtime=10s
 ```
 
 常用方法：
