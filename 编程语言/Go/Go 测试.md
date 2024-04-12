@@ -17,6 +17,12 @@
 
 验证函数的正确性。
 
+常用命令：
+
+```shell
+go test -run="^S" -bench='Benchmark(Empty|Map|SyncMap)' -benchmem -benchtime=10s
+```
+
 ### Benchmark
 
 性能测试，测试代码性能。
