@@ -20,7 +20,7 @@
 常用命令：
 
 ```shell
-go test -run="^S" -bench='Benchmark(Empty|Map|SyncMap)' -benchmem -benchtime=10s
+go test -run="^$" -bench='Benchmark(Empty|Map|SyncMap)' -benchmem -benchtime=10s
 ```
 
 ### Benchmark
@@ -48,7 +48,7 @@ go test -v -benchmem -benchtime=1000000000x -cpu=1,2,3
 go test -v -benchmem -benchtime=1000000000x -count=2
 
 # 默认会执行单元测试，加上 -run="^$"，可以排除单元测试
-go test -run="^S" -bench='Benchmark(Empty|Map|SyncMap)' -benchmem -benchtime=10s
+go test -run="^$" -bench='Benchmark(Empty|Map|SyncMap)' -benchmem -benchtime=10s
 ```
 
 常用方法：
