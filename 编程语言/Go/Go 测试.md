@@ -118,6 +118,40 @@ BenchmarkSyncMap-8      1000000000              15.03 ns/op            0 B/op   
 
 计算和比较 `benchmark` 的统计结果。
 
+帮助文档
+
+```shell
+➜  src benchstat -h                      
+Usage: benchstat [flags] inputs...
+
+benchstat computes statistical summaries and A/B comparisons of Go
+benchmarks. It shows benchmark medians in a table with a row for each
+benchmark and a column for each input file. If there is more than one
+input file, it also shows A/B comparisons between the files. If a
+difference is likely to be noise, it shows "~".
+
+For details, see https://pkg.go.dev/golang.org/x/perf/cmd/benchstat.
+  -alpha α
+        consider change significant if p < α (default 0.05)
+  -col projection
+        split results into columns by distinct values of projection (default ".file")
+  -confidence level
+        confidence level for ranges (default 0.95)
+  -filter query
+        use only benchmarks matching benchfilter query (default "*")
+  -format format
+        print results in format:
+          text - plain text
+          csv  - comma-separated values (warnings will be written to stderr)
+         (default "text")
+  -ignore keys
+        ignore variations in keys
+  -row projection
+        split results into rows by distinct values of projection (default ".fullname")
+  -table projection
+        split results into tables by distinct values of projection (default ".config")
+```
+
 安装：
 
 ```shell
@@ -131,7 +165,7 @@ go install golang.org/x/perf/cmd/benchstat
 ➜  performance git:(master) ✗ go test -v -benchtime=1000x  -bench=. > old.txt 
 ➜  performance git:(master) ✗ go test -v -benchtime=1000x  -bench=. > new.txt
 
-➜  performance git:(master) ✗ benchstat old.txt new.txt                      
+➜  performance git:(master) ✗ benchstat -alpha=1 old.txt new.txt                      
 goos: darwin
 goarch: arm64
                               │    old.txt    │               new.txt                │
