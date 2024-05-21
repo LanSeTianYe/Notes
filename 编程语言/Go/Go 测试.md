@@ -6,6 +6,7 @@
 2. [benchmark 基准测试](https://geektutu.com/post/hpg-benchmark.html)
 3. [benchstat 对比测试结果](https://pkg.go.dev/golang.org/x/perf/cmd/benchstat)
 3. [go benchstat 工具](https://chenlujjj.github.io/go/benchstat/)
+4. [基准测试数据分析](https://golang.dbwu.tech/engineering/benchstat/)_
 
 ## Go 测试
 
