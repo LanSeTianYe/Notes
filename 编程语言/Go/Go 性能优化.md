@@ -133,7 +133,7 @@ msg: time cost, fetch: 3ms, handle: 10ms, commit: 0ms, total: 14ms
 * fetch： 从 Kafka 拉取数据耗时。
 * handle：处理消息存入数据库耗时。
 
-**可疑点一：**由于 `fetch` 时间变长，怀疑是从 `kafka` 拉消息的时间变长到值。
+**可疑点一：**由于 `fetch` 时间变长，怀疑是从 `kafka` 拉消息的时间变长导致。
 
 **处理：** 
 
