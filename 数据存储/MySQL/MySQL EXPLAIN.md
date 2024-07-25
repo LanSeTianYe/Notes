@@ -41,6 +41,7 @@
 	* NULL：在性能优化阶段分解查询语句，在查询阶段甚至不用再访问表或索引。
 			
 			SELECT min(age) FROM person_copy
+
 * possible_keys: 可以使用哪些索引来提升查询性能。
 * key: 实际使用的key，最小化查询成本的Key（覆盖索引）
 * key_len: 使用索引的字节数。
