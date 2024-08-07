@@ -2,6 +2,8 @@
 
 参考：
 
+
+
 ## HTTP Request Header
 
 |名称|含义|
@@ -13,3 +15,12 @@
 |Cookie|页面的Cookie信息。|
 |User-Agent|标识用户代理软件的应用类型、操作系统、软件开发商以及版本号。|
 
+
+
+## HTTP Response Header
+
+|名称|含义|示例|
+|::|::|--|
+|Cache-Control|控制资源缓存|public, max-age=36000|
+|Etag|资源的版本|66a1cb85-8e78|
+|Content-Encoding|压缩算法|gzip|
