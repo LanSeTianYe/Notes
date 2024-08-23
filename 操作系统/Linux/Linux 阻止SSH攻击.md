@@ -12,7 +12,7 @@
 
 ```shell
 # 确认sshd是否支持TCP Wrapper，输出类似:libwrap.so.0 => /lib/libwrap.so.0
-ldd `which sshd` | grep libwrap  (0x00bd1000)
+ldd `which sshd` | grep libwrap
 # 进入目录
 cd /usr/local/bin/
 # 下载文件

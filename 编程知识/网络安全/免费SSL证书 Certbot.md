@@ -57,10 +57,32 @@ server {
 }
 ```
 
-运行命令：
+**自动生成**：只需配置80端口，certbot 会自动生成 443 的配置
+
+```shell
+sudo certbot --nginx
+```
+
+**手动生成**：生成之后手动修改配置文件，以后不需要手动修改配置文件
+
+```shell
+sudo certbot certonly --nginx
+```
+
+配置如下：
 
 ```
-sudo certbot --nginx
+
+server {
+    listen   443 ssl;
+    server_name  note.sunfeilong.com; #根据这里生成证书
+    
+    # ssl    on;
+    ssl_certificate /etc/letsencrypt/live/note.sunfeilong.com/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/note.sunfeilong.com/privkey.pem; # managed by Certbot
+    
+    //....
+}
 ```
 
 ### 第五步 测试自动续期
