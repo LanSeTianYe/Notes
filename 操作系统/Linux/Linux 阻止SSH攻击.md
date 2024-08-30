@@ -17,7 +17,7 @@ ldd `which sshd` | grep libwrap
 # 进入目录
 cd /usr/local/bin/
 # 下载文件
-echo "curl https://blackip.ustc.edu.cn/mailblackip.php\?txt | sed 's/^/sshd:&/g' > /etc/hosts.deny" > fetch_neusshbl.sh
+echo "curl https://blackip.ustc.edu.cn/list.php?txt | sed 's/^/sshd:&/g' > /etc/hosts.deny" > fetch_neusshbl.sh
 # 文件执行权限
 chmod +x fetch_neusshbl.sh
 # 每小时更新，文件目录
