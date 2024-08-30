@@ -3,7 +3,7 @@
 参考 ： 
 
 1. [已不可用-东北大学 网络威胁黑名单系统](http://antivirus.neu.edu.cn/scan/ssh.php)
-1. [search.php](https://blackip.ustc.edu.cn/search.php)
+1. [USTC IP BlackList](https://blackip.ustc.edu.cn/search.php)
 
 环境：
 
