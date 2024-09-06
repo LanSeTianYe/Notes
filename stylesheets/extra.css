@@ -1,0 +1,33 @@
+/* From www.lingdaima.com */
+button {
+    position: relative;
+    display: inline-block;
+    margin: 15px;
+    padding: 15px 30px;
+    text-align: center;
+    font-size: 18px;
+    letter-spacing: 1px;
+    text-decoration: none;
+    color: #03bdd6;
+    background: transparent;
+    cursor: pointer;
+    transition: ease-out 0.5s;
+    transition-behavior: normal;
+    transition-duration: 0.5s;
+    transition-timing-function: ease-out;
+    transition-delay: 0s;
+    transition-property: all;
+    border-radius: 30px;
+    border: 2px solid #03bdd6;
+    border-radius: 10px;
+    box-shadow: inset 0 0 0 0 #03bdd6;
+   }
+   
+   button:hover {
+    color: white;
+    box-shadow: inset 0 -100px 0 0 #03bdd6;
+   }
+   
+   button:active {
+    transform: scale(0.9);
+   }
