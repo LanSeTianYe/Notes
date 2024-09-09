@@ -61,8 +61,22 @@ nginx 配置：
 
 ```
 server {
-    listen   443 ssl;
-    server_name  note.sunfeilong.com; #根据这里生成证书
+    gzip on;
+    gzip_buffers 4 16k;
+    gzip_comp_level 6;
+    gzip_vary on;
+    gzip_types text/plain text/css application/json application/x-javascript text/xml  application/xml application/xml+rss text/javascript;
+
+    listen       80;
+    server_name  www.sunfeilong.com;
+
+    access_log /var/log/nginx/www_sunfeilong_com_$logdate.log main;
+
+    location / {
+        proxy_pass http://127.0.0.1:7860;
+        proxy_set_header Host $http_host;
+        add_header Cache-Control "public, max-age=36000";
+    }
 }
 ```
 

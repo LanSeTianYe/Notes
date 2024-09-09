@@ -1,10 +1,10 @@
+<button onclick="window.location.href='https://iphoto.sunfeilong.com/'"> 证件照制作 </button>
+<button onclick="window.location.href='https://filestash.sunfeilong.com/'"> SFTP登录 </button>
+
+
+> 请按 `s` 键 或者用鼠标点击右上角搜索框搜索。 
 
 001110001010100101100101110110010010
 
-## 请按 `s` 键 或者用鼠标点击右上角搜索框搜索。 
 
-🌵🌵🌵
-
-**内存数据库较磁盘数据库更快的原因：把内存里面的数据结构编码存储到磁盘上需要时间，并不是因为内存访问更快。（内存数据库和磁盘数据库都有内存缓存）**
-
-
+🌵🌵🌵🌵🌵🌵🌵🌵🌵🌵🌵🌵🌵🌵🌵
