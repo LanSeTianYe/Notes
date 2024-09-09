@@ -15,6 +15,15 @@
 
 Certbot 会根据 Web 服务器的配置文件自动生成 HTTPS 证书，自动续期证书。
 
+注：如果执行 certbot 没有反应，可能是 snapd 服务挂掉了，重启即可。
+
+```
+# 查看服务状态
+systemctl status snapd.service
+# 重启服务
+systemctl restart snapd.service
+```
+
 ### 第一步 安装 snapd
 
 ```
