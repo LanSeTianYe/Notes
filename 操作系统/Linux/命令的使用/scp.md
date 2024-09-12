@@ -29,20 +29,30 @@ scp命令用于在Linux下进行远程拷贝文件的命令，scp传输是加密
 
 ## 参数
 
- * 源文件：要复制的源文件
- * 目标文件：格式为 `user@host:filename` ,filename 包含路径。 
+* 源文件：要复制的源文件
+* 目标文件：格式为 `user@host:filename` ,filename 包含路径。 
 
 ## 使用
- * 复制文件到本地目录
+* 复制文件到本地目录
 
-		scp root@10.10.10.10:/opt/soft/nginx-0.5.38.tar.gz /opt/soft/
+	```
+	scp root@10.10.10.10:/opt/soft/nginx-0.5.38.tar.gz /opt/soft/
+	```
 
- * 复制目录到本地
+* 复制目录到本地
 
-		scp -r root@10.10.10.10:/opt/soft/mongodb /opt/soft/
- * 上传本地文件到远程机器指定目录
+	```
+	scp -r root@10.10.10.10:/opt/soft/mongodb /opt/soft/
+	```
 
-		scp /opt/soft/nginx-0.5.38.tar.gz root@10.10.10.10:/opt/soft/scptest
- * 上传本地目录到远程机器指定目录
+* 上传本地文件到远程机器指定目录
 
-		scp -r /opt/soft/mongodb root@10.10.10.10:/opt/soft/scptest
+	```
+	scp /opt/soft/nginx-0.5.38.tar.gz root@10.10.10.10:/opt/soft/scptest
+	```
+
+* 上传本地目录到远程机器指定目录
+
+	```
+	scp -r /opt/soft/mongodb root@10.10.10.10:/opt/soft/scptest
+	```
