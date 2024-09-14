@@ -1,6 +1,3 @@
-<button onclick="window.location.href='https://iphoto.sunfeilong.com/'"> 证件照制作 </button>
-<button onclick="window.location.href='https://filestash.sunfeilong.com/'"> SFTP登录 </button>
-<button onclick="window.location.href='https://qrbtf.com/zh/'"> 二维码生成 </button>
 
 > 请按 `s` 键 或者用鼠标点击右上角搜索框搜索。 
 
