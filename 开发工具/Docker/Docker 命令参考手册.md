@@ -169,11 +169,12 @@
 
 0. 修改docker容器里面文件。
 
-首先把文件复制到本地，然后修改，修改后再复制到容器里面。
+	首先把文件复制到本地，然后修改，修改后再复制到容器里面。
 
-  ```shell
-  //复制到本地
-  docker cp containerId:/etc/onlyoffice/documentserver/default.json ./
-  docker cp ./ containerId:/etc/onlyoffice/documentserver/default.json
-  ```
+    ```shell
+    //从容器复制文件到本地
+    docker cp containerId:/etc/onlyoffice/documentserver/default.json ./
+    //修改后复制到 docker 容器里面
+    docker cp ./ containerId:/etc/onlyoffice/documentserver/default.json
+    ```
 
