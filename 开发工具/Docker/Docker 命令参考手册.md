@@ -167,5 +167,13 @@
     wait        Block until one or more containers stop, then print their exit codes
     ```
 
+0. 修改docker容器里面文件。
 
+首先把文件复制到本地，然后修改，修改后再复制到容器里面。
+
+  ```shell
+  //复制到本地
+  docker cp containerId:/etc/onlyoffice/documentserver/default.json ./
+  docker cp ./ containerId:/etc/onlyoffice/documentserver/default.json
+  ```
 
