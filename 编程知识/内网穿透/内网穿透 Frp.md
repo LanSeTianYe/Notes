@@ -38,7 +38,7 @@ webServer.password = "登录服务端Web管理界面的密码"
 
 ```toml
 # 服务端IP
-serverAddr = "43.167.232.46"
+serverAddr = "服务端IP地址"
 # 服务端端口
 serverPort = 7000
 # 服务端认证密码
