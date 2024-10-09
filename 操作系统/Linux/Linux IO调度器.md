@@ -20,7 +20,7 @@ Linux I/O 调度器是Linux内核中的一个组成部分，可以通过调整�
     dmesg | grep -i scheduler
     ```
 
-    efault是当前使用的调度器
+    default 是当前使用的调度器
 
     ```
     [    0.876354] io scheduler noop registered

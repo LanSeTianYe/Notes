@@ -42,11 +42,11 @@ buff/cache  Sum of buffers and cache
 
 ```shell
 # 清理  page cache
-# sync; echo 1 > /proc/sys/vm/drop_caches      
+sync; echo 1 > /proc/sys/vm/drop_caches      
 # 清理 目录项和inode
-# sync; echo 2 > /proc/sys/vm/drop_caches
+sync; echo 2 > /proc/sys/vm/drop_caches
 # 清理 page cache 和 目录项和inode
-# sync; echo 3 > /proc/sys/vm/drop_caches 
+sync; echo 3 > /proc/sys/vm/drop_caches 
 ```
 
 page cache 是缓存在磁盘上的文件信息，清理之后，读文件会时先到磁盘读，然后把信息缓存在内存中。

@@ -86,7 +86,7 @@ NTP (Network Time Protocol) 网络时间协议是用于服务器（计算机）�
         server 1.cn.pool.ntp.org
         server 2.cn.pool.ntp.org
         server 3.cn.pool.ntp.org
-    
+        
         # 授时中心不可用时使用本机时间
         server  127.127.1.0
         fudge   127.127.1.0 stratum 10
@@ -103,7 +103,7 @@ NTP (Network Time Protocol) 网络时间协议是用于服务器（计算机）�
         # Use public servers from the pool.ntp.org project.
         # 授时中心服务器地址
         server 192.168.0.201
-    
+        
         # 授时中心不可用时使用本机时间
         server  127.127.1.0
         fudge   127.127.1.0 stratum 10
