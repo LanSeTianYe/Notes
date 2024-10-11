@@ -67,7 +67,7 @@ git clone https://github.com/zdharma-continuum/fast-syntax-highlighting.git  ~/.
 # zsh-autocomplete 命令自动补全
 git clone --depth 1 -- https://github.com/marlonrichert/zsh-autocomplete.git  ~/.oh-my-zsh/custom/plugins/zsh-autocomplete
 
-# z 内置插件，不需要下载，添加到插件列表即可
+# z 是一个文件夹快捷跳转插件，对于曾经跳转过的目录，只需要输入最终目标文件夹名称，就可以快速跳转，避免再输入长串路径，提高切换文件夹的效率。
 # colorize 内置插件，不需要下载，添加到插件列表即可
 ```
 
