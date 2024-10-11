@@ -70,7 +70,7 @@ plugins=(git zsh-autosuggestions zsh-syntax-highlighting fast-syntax-highlightin
 
 **启用插件：** `source ~/.zshrc `
 
-**第四步：** 修改用户默认 shell。
+**第四步：** 修改用户默认 shell。然后退出重新登录即可。
 
 ```shell
 # 方法一：
