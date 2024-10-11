@@ -5,6 +5,7 @@
 1. [https://github.com/ohmyzsh/ohmyzsh](https://github.com/ohmyzsh/ohmyzsh)
 2. [如何使用 oh-my-zsh 让使用zsh更高效](https://blog.csdn.net/m0_60511809/article/details/138525435)
 2. [https://github.com/ohmyzsh/ohmyzsh/wiki/Plugins](https://github.com/ohmyzsh/ohmyzsh/wiki/Plugins)
+3. [Linux Zsh 使用 oh-my-zsh 打造高效便捷的 shell 环境](https://sysin.org/blog/linux-zsh/)
 
 
 ## zsh 安装及使用
@@ -49,23 +50,31 @@ sh -c "$(curl -fsSL https://install.ohmyz.sh/)"
 
 **第三步：** 安装并启用插件。
 
+插件分为两种，内置插件和第三方插件，内置插件在 `~/.oh-my-zsh/plugins` 目录，不需要下载，如： `z` 和 `git` 等。第三方插件需要下载，在 `~/.oh-my-zsh/custom/plugins` 目录，如：`zsh-autosuggestions` 等。
+
 **安装插件：**
 
 ```shell
-# zsh-autosuggestions 命令行建议（根据历史输入提供建议）
+# zsh-autosuggestions 是一个命令提示插件，当你输入命令时，会自动推测你可能需要输入的命令，按下右键可以快速采用建议。
 git clone https://github.com/zsh-users/zsh-autosuggestions.git  ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
-# zsh-syntax-highlighting 语法高亮
+
+# zsh-syntax-highlighting 是一个命令语法校验插件，在输入命令的过程中，若指令不合法，则指令显示为红色，若指令合法就会显示为绿色。
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
+
 # fast-syntax-highlighting 语法高亮
 git clone https://github.com/zdharma-continuum/fast-syntax-highlighting.git  ~/.oh-my-zsh/custom/plugins/fast-syntax-highlighting
+
 # zsh-autocomplete 命令自动补全
 git clone --depth 1 -- https://github.com/marlonrichert/zsh-autocomplete.git  ~/.oh-my-zsh/custom/plugins/zsh-autocomplete
+
+# z 内置插件，不需要下载，添加到插件列表即可
+# colorize 内置插件，不需要下载，添加到插件列表即可
 ```
 
 **配置插件：** `vim ~/.zshrc`，找到 `plugins=(git)` 这一行，在括号里面添加插件，插件之间用空格分开。（如果不需要对应插件，删除对应的插件配置即可）
 
 ```shell
-plugins=(git zsh-autosuggestions zsh-syntax-highlighting fast-syntax-highlighting zsh-autocomplete)
+plugins=(git zsh-autosuggestions zsh-syntax-highlighting fast-syntax-highlighting zsh-autocomplete z colorize)
 ```
 
 **启用插件：** `source ~/.zshrc `
