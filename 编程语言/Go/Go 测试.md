@@ -21,7 +21,7 @@
 常用命令：
 
 ```shell
-go test -run="^$" -bench='Benchmark(Empty|Map|SyncMap)' -benchmem -benchtime=10s
+go test -v -run="^TestInfosFromCache$" 
 ```
 
 ### Benchmark
