@@ -9,6 +9,7 @@
 1.  [Keepalived](https://github.com/acassen/keepalived)
 2.  [Using Keepalived for managing simple failover in clusters](https://www.redhat.com/sysadmin/ha-cluster-linux)
 3.  [Setting up a Linux cluster with Keepalived: Basic configuration](https://www.redhat.com/sysadmin/keepalived-basics)
+4.  [基于 LVS + Keepalived 搭建负载均衡](https://dudashuang.com/load-blance/)
 
 # Keepalived
 
