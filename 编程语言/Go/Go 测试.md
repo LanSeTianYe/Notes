@@ -21,7 +21,10 @@
 常用命令：
 
 ```shell
-go test -v -run="^TestInfosFromCache$" 
+# 匹配方法
+go test -v -run="^TestInfosFromCache$"
+# 执行指定测试文件（后面是依赖的当前包的文件）
+go test -v logger_test.go logger.go common.go
 ```
 
 ### Benchmark
