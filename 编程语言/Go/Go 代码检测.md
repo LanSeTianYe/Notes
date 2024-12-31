@@ -302,3 +302,27 @@ style: asciicheck, containedctx, decorder, depguard, dogsled, dupl, errname, exh
 test: exhaustivestruct, exhaustruct, paralleltest, testableexamples, testpackage, tparallel
 unused: deadcode, ineffassign, structcheck, unparam, unused, varcheck 
 ```
+
+在项目根目录创建 `.golangci.yml`,内容如下:
+
+```yml
+linters:
+  disable-all: false
+  enable:
+    - errcheck
+    - gosimple
+    - govet
+    - ineffassign
+    - staticcheck
+    - typecheck
+    - unused
+    - gocyclo
+    - gofmt
+    - goimports
+  fast: true
+
+linters-settings:
+  gocyclo:
+    min-complexity: 10
+```
+
