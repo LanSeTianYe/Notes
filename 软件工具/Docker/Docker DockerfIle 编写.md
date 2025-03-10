@@ -72,7 +72,7 @@
 	
     运行容器 `docker run myip -i`，`-i` 会作为参数传递给 `ENTRYPOINT` 指定的命令。
     
-7. `ENV` 环境变量，容器运行的时候存在。
+7. `ENV` 环境变量。不仅在镜像构建过程中可用，而且会被持久化到镜像里。当基于该镜像启动容器时，这些环境变量会在容器内部生效，可被容器内的进程访问。
 
     ```
     ENV <key> <value>
@@ -87,6 +87,7 @@
 
 8. `ARG`: 定义参数名称，以及定义其默认值。该默认值可以在构建命令 `docker build` 中用 `--build-arg <参数名>=<值>` 覆盖。
 
+    * 主要用于构建镜像阶段，作用范围仅限于 `Dockerfile` 内部的构建过程。一旦镜像构建完成，这些参数不会保留在镜像中，也不会传递到基于该镜像运行的容器中。 
     * 如果在 `FROM` 指令前，只能用在 `FROM` 指令中。
 
     ```shell
@@ -135,76 +136,76 @@
 
 11. `WORKDIR` 指令用于为 `Dockerfile` 中后续的 `RUN`、`CMD`、`ENTRYPOINT`、`COPY` 和 `ADD` 指令设置工作目录。简单来说，它就像是在容器内部 “切换目录”，后续的操作都会基于这个指定的目录来执行。
 
-     ```dockerfile
-     WORKDIR /opt/webapp/db
-     RUN bundle install
-     WORKDIR /opt/webapp
-     ENTRYPOINT ["rackup"]
-     ```
+      ```dockerfile
+      WORKDIR /opt/webapp/db
+      RUN bundle install
+      WORKDIR /opt/webapp
+      ENTRYPOINT ["rackup"]
+      ```
 
 12. `USER` 指定镜像以什么用户运行。默认使用 root 用户运行。
 
-      ```dockerfile
-      RUN groupadd -r nginx && useradd -r -g nginx nginx
-      USER nginx
-      RUN ["nginx"]
-      ```
-    
+       ```dockerfile
+       RUN groupadd -r nginx && useradd -r -g nginx nginx
+       USER nginx
+       RUN ["nginx"]
+       ```
+
 13. `HEALTHCHECK` 健康检查。
 
-     ```dockerfile
-     FROM nginx:latest
-     
-     # 设置健康检查，每隔 5 秒检查一次，超时时间为 3 秒，启动 10 秒后开始检查，最多允许失败 2 次
-     HEALTHCHECK --interval=5s --timeout=3s --start-period=10s --retries=2 \
-         CMD curl -f http://localhost/ || exit 1
-     ```
+      ```dockerfile
+      FROM nginx:latest
+      
+      # 设置健康检查，每隔 5 秒检查一次，超时时间为 3 秒，启动 10 秒后开始检查，最多允许失败 2 次
+      HEALTHCHECK --interval=5s --timeout=3s --start-period=10s --retries=2 \
+          CMD curl -f http://localhost/ || exit 1
+      ```
 
 14. `ONBUILD` 添加触发器，当镜像作为基础镜像使用时触发，会在 `FROM` 之后执行触发器指定的任务。
 
-      ```dockerfile
-      # 语法
-      ONBUILD <其它 Dockerfile 指令>
-      
-      这里 <其它 Dockerfile 指令> 可以是除 FROM、MAINTAINER、ONBUILD 之外的任何 Dockerfile 指令，像 RUN、COPY、ADD 等。
-      
-      # 例子
-      FROM ubuntu:14.04　
-      MAINTAINER James Turnbull "james@example.com"　
-      RUN apt-get update && apt-get install -y apache2　
-      ENV APACHE_RUN_USER www-data　
-      ENV APACHE_RUN_GROUP www-data　
-      ENV APACHE_LOG_DIR /var/log/apache2　
-      ONBUILD ADD . /var/www/　
-      EXPOSE 80　
-      ENTRYPOINT ["/usr/sbin/apache2"]　
-      CMD ["-D", "FOREGROUND"]
-      ```
+       ```dockerfile
+       # 语法
+       ONBUILD <其它 Dockerfile 指令>
+       
+       这里 <其它 Dockerfile 指令> 可以是除 FROM、MAINTAINER、ONBUILD 之外的任何 Dockerfile 指令，像 RUN、COPY、ADD 等。
+       
+       # 例子
+       FROM ubuntu:14.04　
+       MAINTAINER James Turnbull "james@example.com"　
+       RUN apt-get update && apt-get install -y apache2　
+       ENV APACHE_RUN_USER www-data　
+       ENV APACHE_RUN_GROUP www-data　
+       ENV APACHE_LOG_DIR /var/log/apache2　
+       ONBUILD ADD . /var/www/　
+       EXPOSE 80　
+       ENTRYPOINT ["/usr/sbin/apache2"]　
+       CMD ["-D", "FOREGROUND"]
+       ```
 
-      基于上面的镜像构造镜像（会把Dockerfile目录下的所有文件拷贝到 /var/www 目录）：
+       基于上面的镜像构造镜像（会把Dockerfile目录下的所有文件拷贝到 /var/www 目录）：
 
-      ```shell
-      FROM jamtur01/apache2　
-      MAINTAINER James Turnbull "james@example.com"　
-      ENV APPLICATION_NAME webapp　
-      ENV ENVIRONMENT development
-      ```
+       ```shell
+       FROM jamtur01/apache2　
+       MAINTAINER James Turnbull "james@example.com"　
+       ENV APPLICATION_NAME webapp　
+       ENV ENVIRONMENT development
+       ```
 
 15. `LABEL`: 给镜像添加元数据。允许你将一些描述性信息嵌入到 Docker 镜像中。这些信息可以包含镜像的作者、版本、用途、许可证等，就像是给镜像贴上了 “标签”，方便后续对镜像进行识别和管理。
 
+      ```dockerfile
+      LABEL version="1.0"
+      LABEL location="New York" type="Data Center" role="Web Server"
+      ```
+
+16. `SHELL`：用于指定后续 `RUN`、`CMD` 和 `ENTRYPOINT` 指令所使用的默认 shell 命令。
+
      ```dockerfile
-     LABEL version="1.0"
-     LABEL location="New York" type="Data Center" role="Web Server"
+     # 指定使用 /bin/bash 并开启 -o pipefail 选项
+     SHELL ["/bin/bash", "-o", "pipefail", "-c"]
+     
+     # 后续的 RUN 指令会使用指定的 shell 执行
+     RUN apt-get update && apt-get install -y some-package
      ```
-    
-15. `SHELL`：用于指定后续 `RUN`、`CMD` 和 `ENTRYPOINT` 指令所使用的默认 shell 命令。
 
-    ```dockerfile
-    # 指定使用 /bin/bash 并开启 -o pipefail 选项
-    SHELL ["/bin/bash", "-o", "pipefail", "-c"]
-
-    # 后续的 RUN 指令会使用指定的 shell 执行
-    RUN apt-get update && apt-get install -y some-package
-    ```
-
-16. `STOPSIGNAL`：设置停止容器时发送什么系统调用信号给容器。这个信号必须是内核系统调用表中合法的数，如 9，或者 `SIGNAME` 格式中的信号名称，如 `SIGKILL`。
+17. `STOPSIGNAL`：设置停止容器时发送什么系统调用信号给容器。这个信号必须是内核系统调用表中合法的数，如 9，或者 `SIGNAME` 格式中的信号名称，如 `SIGKILL`。
