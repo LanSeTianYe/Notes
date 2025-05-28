@@ -5,13 +5,7 @@
 * HTTP/2 in Action 中文版
 * grok
 
-
-
 ## HTTP 协议版本
-
-梳理 HTTP 各个版本的功能。
-
-### HTTP/0.9
 
 |功能|HTTP/0.9|HTTP/1.0|HTTP/1.1|HTTP/2.0|HTTP/3.0|
 |:----:|:--|:--|:--|:--|:--|
@@ -41,10 +35,8 @@
 
 **服务器发送事件**：即 `SSE (Server-Sent Events)`，是基于 `HTTP/1.0` 协议的 `KeepAlive` 的应用层扩展，通过 `text/event-stream` 内容类型实现。
 
-
-
 ### 附录
 
 #### 有哪些网站使用了 HTTP/3.0 ？
 
-1. `cdnjs.cloudflare.com`，用浏览器访问 [https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.52.2/min/vs/loader.js](https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.52.2/min/vs/loader.js)，在 `开发者工具 -> 网络 ->协议`里面可以看到。
+1. `cdnjs.cloudflare.com`，用浏览器访问 [https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.52.2/min/vs/loader.js](https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.52.2/min/vs/loader.js)，在 `开发者工具 -> 网络 ->协议`里面可以看到。（又是不是）
